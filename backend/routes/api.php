@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,6 +25,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('auth/login', [AuthController::class, 'login'])->name('login');
 Route::post('auth/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('auth/register', [AuthController::class, 'register'])->name('register');
+Route::get('/users/all', [UserController::class, 'getAllUsers'])->name('users.all');
+Route::get('/users/{userId}', [UserController::class, 'getUserById'])->name('users.get');
+Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.update');
+
+
+
 
 
 // Rutas protegidas por el middleware jwt.auth

@@ -37,33 +37,37 @@ class AuthController extends Controller
 }
 }
  
-    public function login(Request $request){
- try {
+   public function login(Request $request){
+    try {
         $credentials = $request->only('email', 'password');
        
-            if (!Auth::attempt($credentials)) {
-                return response()->json(['error' => 'Invalid credentials', 'message' => $e-> getMessage()], Response::HTTP_UNAUTHORIZED);
-            }
-        } catch (JWTException $e) {
-            return response()->json(['error' => 'Error creating token'], Response::HTTP_INTERNAL_SERVER_ERROR);
+        if (!Auth::attempt($credentials)) {
+            return response()->json(['error' => 'Invalid credentials'], Response::HTTP_UNAUTHORIZED);
         }
-
+        
         $user = Auth::user();
         $user->makeHidden('password'); 
         $token = JWTAuth::fromUser($user);
 
         return response()->success(['token' => $token,'user' => $user ], 'Successful login!');
+    } catch (\Illuminate\Auth\AuthenticationException $e) {
+        return response()->json(['error' => 'Authentication failed', 'message' => $e->getMessage()], Response::HTTP_UNAUTHORIZED);
+} catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+    return response()->json(['error' => 'Error creating token', 'message' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
+
+
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'An error occurred', 'message' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
     }
+}
+
    public function logout(Request $request)
 {
     try {
         Auth::logout();
-        
         return response()->json(['message' => 'Logged out successfully']);
     } catch (\Exception $e) {
         return response()->json(['error' => 'An error occurred while logging out', 'message' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 }
-
-
 }
