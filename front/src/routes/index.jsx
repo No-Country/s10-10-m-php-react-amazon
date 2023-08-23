@@ -5,12 +5,12 @@ import SignUp from "../views/signUp";
 
 
 const AppRouter = () => {
-    return (
-      <Router>
-        <Navbar />
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={SignUp} />
-      </Router>
-    );
-  };
-  export default AppRouter;
+  return (
+    <Router>
+      <Navbar />
+      <Route path="/login" component={Login} />
+      <Route path="/signup" component={SignUp} />
+    </Router>
+  );
+};
+export default AppRouter;
