@@ -1,7 +1,7 @@
-import panaderia from '../../../assets/panaderias.png'
-import verduleria1 from '../../../assets/verduleria1.png'
-import verduleria2 from '../../../assets/verdulerias2.png'
-import superMercado from '../../../assets/superMercado.png'
+import panaderia from '../../../../assets/panaderias.png'
+import verduleria1 from '../../../../assets/verduleria1.png'
+import verduleria2 from '../../../../assets/verdulerias2.png'
+import superMercado from '../../../../assets/superMercado.png'
 import Cards from './cards';
 
 const ExploreCategories = () => {

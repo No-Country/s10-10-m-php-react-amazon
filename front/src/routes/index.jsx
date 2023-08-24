@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import SignUp from "../views/signUp";
 import StartPage from "../views/startPage";
 import Maps from "../views/maps";
+
 const AppRouter = () => {
   return (
     <Router>
