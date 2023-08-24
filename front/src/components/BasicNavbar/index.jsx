@@ -6,6 +6,7 @@ import {
   Button,
   IconButton,
 } from "@material-tailwind/react";
+import { Link } from "wouter";
  
 const BasicNavbar =() => {
   const [openNav, setOpenNav] = React.useState(false);
@@ -67,14 +68,14 @@ const BasicNavbar =() => {
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
         <Typography
           as="a"
-          href="#"
+          href="/"
           className="mr-4 cursor-pointer py-1.5 font-medium"
         >
           ListoParaLlevar
         </Typography>
         <div className="hidden lg:block">{navList}</div>
         <Button variant="gradient" size="sm" className="hidden lg:inline-block">
-          <span>Buy Now</span>
+          <Link to='home'>Home</Link>
         </Button>
         <IconButton
           variant="text"

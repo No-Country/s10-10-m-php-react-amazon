@@ -28,7 +28,7 @@ const Form = () => {
                     </Button>
                     <Typography variant="small" className="mt-6 flex justify-between">
                         <span>¿No tienes cuenta?</span>
-                        <span>Registrate aca</span>
+                        <span><a href="/signup">Registrate aca</a></span>
                     </Typography>
                 </div>
 

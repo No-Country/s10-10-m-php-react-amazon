@@ -35,7 +35,7 @@ const FormUser = () => {
                     </Button>
                     <Typography variant="small" className="mt-6 flex justify-between">
                         <span>¿Ya tienes cuenta?</span>
-                        <span>Inicia sesión acá</span>
+                        <span><a href="/login">Inicia sesión acá</a></span>
                     </Typography>
                 </div>
             </form>

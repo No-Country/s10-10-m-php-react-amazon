@@ -36,7 +36,7 @@ function StartPage() {
               className="rounded-full normal-case w-72"
               color="white"
             >
-              ¿Ya tienes cuenta?
+              <Link to="/login">¿Ya tienes cuenta?</Link>
             </Button>
           </div>
         </section>
