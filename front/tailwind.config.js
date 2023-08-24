@@ -11,6 +11,7 @@ module.exports = withMT({
     extend: {
       colors: {
         mainColor: '#52525B',
+        secondColorTextForms: '#ADB5BD'
       },
       fontSize: {
         customSizeTitle: '24px'
@@ -22,7 +23,7 @@ module.exports = withMT({
       height: {
         heightMainBtn: '39.78px',
         heightImgCardHome: '115px',
-        heightCardsHome: '156.21px'
+        heightCardsHome: '156.21px',
       }
     },
   },
