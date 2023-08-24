@@ -7,10 +7,11 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { Link } from "wouter";
- 
+import {useSelector} from 'react-redux'
+
 const BasicNavbar =() => {
   const [openNav, setOpenNav] = React.useState(false);
- 
+  const user = useSelector((state) => state.user);
   React.useEffect(() => {
     window.addEventListener(
       "resize",
@@ -26,9 +27,9 @@ const BasicNavbar =() => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="/login" className="flex items-center">
+        <Link to="/login" className="flex items-center">
           Login
-        </a>
+        </Link>
       </Typography>
       <Typography
         as="li"
@@ -36,9 +37,9 @@ const BasicNavbar =() => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="/signup" className="flex items-center">
+        <Link to="/signup" className="flex items-center">
           Registro
-        </a>
+        </Link>
       </Typography>
       <Typography
         as="li"
@@ -46,9 +47,9 @@ const BasicNavbar =() => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="/" className="flex items-center">
+        <Link to="/" className="flex items-center">
           Inicio
-        </a>
+        </Link>
       </Typography>
       <Typography
         as="li"
@@ -56,9 +57,9 @@ const BasicNavbar =() => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="/maps" className="flex items-center">
+        <Link to="/maps" className="flex items-center">
           Maps
-        </a>
+        </Link>
       </Typography>
     </ul>
   );
@@ -66,13 +67,12 @@ const BasicNavbar =() => {
   return (
     <Navbar className="mx-auto max-w-screen-xl py-2 px-4 lg:px-8 lg:py-4">
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
-        <Typography
-          as="a"
-          href="/"
+        <Link
+          to="/"
           className="mr-4 cursor-pointer py-1.5 font-medium"
         >
-          ListoParaLlevar
-        </Typography>
+          {user.name? user.name :  "ListoParaLlevar"}
+        </Link>
         <div className="hidden lg:block">{navList}</div>
         <Button variant="gradient" size="sm" className="hidden lg:inline-block">
           <Link to='home'>Home</Link>
@@ -119,7 +119,7 @@ const BasicNavbar =() => {
         <div className="container mx-auto">
           {navList}
           <Button variant="gradient" size="sm" fullWidth className="mb-2">
-            <span>Buy Now</span>
+            <span><Link to="/home">Home</Link></span>
           </Button>
         </div>
       </MobileNav>

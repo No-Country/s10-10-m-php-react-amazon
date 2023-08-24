@@ -1,16 +1,20 @@
 import { useForm } from "react-hook-form";
+import {useDispatch} from 'react-redux';
+
 import {
     Input,
     Button,
     Typography,
 } from "@material-tailwind/react";
+import { setUser } from "../../../features/userSlice";
+import { Link } from "wouter";
 
 const FormUser = () => {
-
+    const dispatch = useDispatch()
     const { register, handleSubmit } = useForm();
 
     const submit = (data) => {
-        console.log(data);
+        dispatch(setUser(data))
     }
 
 
@@ -35,7 +39,7 @@ const FormUser = () => {
                     </Button>
                     <Typography variant="small" className="mt-6 flex justify-between">
                         <span>¿Ya tienes cuenta?</span>
-                        <span><a href="/login">Inicia sesión acá</a></span>
+                        <span><Link to="/login">Inicia sesión acá</Link></span>
                     </Typography>
                 </div>
             </form>

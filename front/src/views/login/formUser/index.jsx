@@ -4,6 +4,7 @@ import {
     Button,
     Typography,
 } from "@material-tailwind/react";
+import { Link } from "wouter";
 
 
 
@@ -28,7 +29,7 @@ const Form = () => {
                     </Button>
                     <Typography variant="small" className="mt-6 flex justify-between">
                         <span>¿No tienes cuenta?</span>
-                        <span><a href="/signup">Registrate aca</a></span>
+                        <span><Link to="/signup">Registrate aca</Link></span>
                     </Typography>
                 </div>
 
