@@ -1,40 +1,85 @@
-
-import {
-    Input,
-    Button,
-    Typography,
-} from "@material-tailwind/react";
-
-
+import { Input, Button, Typography, Checkbox } from "@material-tailwind/react";
+import { useForm } from "react-hook-form";
 
 const Form = () => {
+  const { register, handleSubmit } = useForm();
 
-    return (
-        <div>
-            <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
-                <div className="mb-4 flex flex-col gap-4">
-                    <span className='text-left text-black font-bold -mb-3' style={{ fontSize: '11px' }}>Email</span>
-                    <Input label="Email" size="lg" />
-                    <span className='text-left text-black font-bold -mb-3' style={{ fontSize: '11px' }}>Contraseña</span>
-                    <Input label="Contraseña" size="lg" />
-                </div>
-                <div className="-ml-2.5 text-left pl-3 text-gray-800 my-4" style={{ fontSize: '11px' }}>
-                    <p>Todos los campos son obligatorios</p>
-                    <span>La contraseña debe tener caracteres xxxx</span>
-                </div>
-                <div className="pt-0">
-                    <Button variant="gradient" fullWidth className="rounded-full" type="submit">
-                        Iniciar Sesion
-                    </Button>
-                    <Typography variant="small" className="mt-6 flex justify-between">
-                        <span>¿No tienes cuenta?</span>
-                        <span><a href="/signup">Registrate aca</a></span>
-                    </Typography>
-                </div>
+  const submit = (data) => {
+    console.log(data);
+  };
 
+  return (
+    <>
+      <div className="flex flex-col items-center h-screen">
+        <form onSubmit={handleSubmit(submit)}>
+          <div className="mt-15">
+            <label
+              htmlFor="email"
+              className="text-left text-secondColorTextForms font-bold -mb-3"
+              style={{ fontSize: "11px" }}
+            >
+              Correo electrónico
+            </label>
+            <Input
+              size="lg"
+              {...register("email")}
+              id="email"
+              className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+              labelProps={{
+                className: "hidden",
+              }}
+              containerProps={{ className: "min-w-[100px]" }}
+              placeholder="Correo electrónico"
+            />
+            <label
+              htmlFor="password"
+              className="text-left text-secondColorTextForms font-bold -mb-3"
+              style={{ fontSize: "11px" }}
+            >
+              Contraseña
+            </label>
+            <Input
+              size="lg"
+              type="password"
+              {...register("password")}
+              id="password"
+              className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+              labelProps={{
+                className: "hidden",
+              }}
+              containerProps={{ className: "min-w-[100px]" }}
+              placeholder="Contraseña"
+            />
+          </div>
 
-            </form>
-        </div>
-    )
-}
-export default Form
+          <div className="mt-3">
+            <Checkbox
+              className="rounded-full bg-white h-4 w-4"
+              label={
+                <Typography
+                  variant="small"
+                  className="text-secondColorTextForms"
+                >
+                  Recuérdame
+                </Typography>
+              }
+            />
+          </div>
+
+          <div className="mt-10 text-center">
+            <Button className="rounded-full normal-case w-72" type="submit">
+              Iniciá sesión
+            </Button>
+
+            <div className="text-secondColorTextForms mt-4 text-sm">
+              <span>
+                <a href="#">¿Has olvidado la contraseña?</a>
+              </span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </>
+  );
+};
+export default Form;
