@@ -35,7 +35,7 @@ const BasicNavbar =() => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="/registro" className="flex items-center">
+        <a href="/signup" className="flex items-center">
           Registro
         </a>
       </Typography>
@@ -55,8 +55,8 @@ const BasicNavbar =() => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
-          Docs
+        <a href="/maps" className="flex items-center">
+          Maps
         </a>
       </Typography>
     </ul>

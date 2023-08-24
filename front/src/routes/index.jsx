@@ -11,7 +11,7 @@ const AppRouter = () => {
       <Route path="/" component={StartPage} />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={SignUp} />
-      <Route path='/maps' component={Maps}/>
+      <Route path='/maps' component={Maps} />
     </Router>
   );
 };
