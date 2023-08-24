@@ -5,6 +5,8 @@ import {
     Typography,
     Checkbox,
 } from "@material-tailwind/react";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
+import { useState } from "react";
 
 const FormUser = () => {
 
@@ -14,6 +16,13 @@ const FormUser = () => {
         console.log(data);
     }
 
+    const [isVisible, setIsVisible] = useState(true);
+
+    const handleChangeVisible = () => {
+        setIsVisible(!isVisible)
+
+    }
+    console.log(isVisible);
 
     return (
         <div>
@@ -23,8 +32,11 @@ const FormUser = () => {
                     <Input size="lg" {...register('name')} id="name" className="bg-white" placeholder="Nombre" />
                     <label htmlFor="email" className='text-left text-secondColorTextForms font-bold -mb-3' style={{ fontSize: '11px' }}>Email</label>
                     <Input size="lg" {...register('email')} id="email" className="bg-white" placeholder="Email" />
-                    <label htmlFor="password" className='text-left text-secondColorTextForms font-bold -mb-3' style={{ fontSize: '11px' }}>Contraseña</label>
-                    <Input size="lg" {...register('password')} id="password" className="bg-white" placeholder="Contraseña" />
+                    <div className="relative">
+                        <label htmlFor="password" className='text-left text-secondColorTextForms font-bold -mb-3' style={{ fontSize: '11px' }}>Contraseña</label>
+                        <Input size="lg" {...register('password')} type={isVisible ? "password" : "text"} id="password" className="bg-white" placeholder="Contraseña" />
+                        <button className="absolute right-2 top-1/2 text-2xl text-mainColor" type="button" onClick={handleChangeVisible}>{isVisible ? < BsEye /> : <BsEyeSlash />} </button>
+                    </div>
                 </div>
                 <Checkbox
                     label={
@@ -42,7 +54,7 @@ const FormUser = () => {
                             </a>
                         </Typography>
                     }
-                    containerProps={{ className: "-ml-2.5" }}
+                    containerProps={{ className: "-ml-2.5 my-3" }}
                 />
                 <div className="pt-0">
                     <Button variant="gradient" fullWidth className="rounded-full" type="submit">
