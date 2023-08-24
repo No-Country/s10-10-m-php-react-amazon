@@ -1,18 +1,21 @@
 import Login from "../views/login";
 import { Router, Route } from "wouter";
-import Navbar from "../components/Navbar";
+import BasicNavbar from "../components/BasicNavbar";
 import SignUp from "../views/signUp";
 import StartPage from "../views/startPage";
 import Maps from "../views/maps";
 
+import Home from "../views/home";
+
 const AppRouter = () => {
   return (
     <Router>
-      <Navbar />
+      <BasicNavbar />
       <Route path="/" component={StartPage} />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={SignUp} />
       <Route path='/maps' component={Maps} />
+      <Route path='/home' component={Home} />
     </Router>
   );
 };

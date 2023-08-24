@@ -41,11 +41,6 @@ const Maps = () => {
         if (status === "OK" && results.length > 0) {
           const location = results[0].geometry.location;
           setSelectedLocation({ lat: location.lat(), lng: location.lng() });
-
-          console.log("Coordenadas:", {
-            lat: location.lat(),
-            lng: location.lng(),
-          });
         } else {
           console.error(
             "Geocode was not successful for the following reason:",
@@ -97,16 +92,16 @@ const Maps = () => {
         <p className="font-semibold text-2xl text-white p-10 text-center">
           Mensaje tipo enhorabuena estás a un paso de salvar comida
         </p>
-        <section >
-          <div className="flex flex-col space-y-2">
+        <section className="container mx-auto flex justify-center">
+          <div className="flex flex-col space-y-2 w-96">
             <label className="text-white">Selecciona tu ubicación</label>
-            <div className="flex space-x-2">
-              <Autocomplete>
+            <div className="flex space-x-2 w-96">
+              <Autocomplete className="w-80">
                 <Input
                   type="text"
                   placeholder="Origin"
                   inputRef={originRef}
-                  className="w-96"
+                  color="white"
                 />
               </Autocomplete>
               <IconButton
