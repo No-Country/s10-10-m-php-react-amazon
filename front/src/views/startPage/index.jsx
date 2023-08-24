@@ -4,7 +4,7 @@ import { Link } from "wouter";
 function StartPage() {
   return (
     <>
-      <div className="flex flex-col items-center h-screen bg-[#52525B] p-[2rem]">
+      <div className="flex flex-col items-center h-screen bg-mainColor p-[2rem]">
         <div className="h-[114px] flex justify-center items-center">
           <h2 className="text-customSizeTitle text-white  font-bold p-10 text-center">
             ¡Bienvenido a ListoParaLlevar!
@@ -14,7 +14,7 @@ function StartPage() {
           Regístrate, explora y compra fácilmente alimentos a precios reducidos.
           ¡Cada producto que salvas marca la diferencia!
         </p>
-        <section className="mt-48">
+        <section className="mt-72">
           <div className="flex flex-col space-y-2">
             <Button
               variant="filled"

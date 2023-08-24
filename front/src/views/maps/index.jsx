@@ -90,7 +90,7 @@ const Maps = () => {
   return (
     <div className="flex flex-col items-center h-screen bg-mainColor py-[2rem]">
       <h2 className="font-bold text-customSizeTitle text-white p-10 text-center">
-        Mensaje tipo enhorabuena estás a un paso de salvar comida
+        Enhorabuena estás a un paso de salvar comida
       </h2>
       <section className="container mx-auto flex justify-center">
         <div className="flex flex-col space-y-2 w-96 px-[2-rem]">
@@ -149,7 +149,7 @@ const Maps = () => {
         </GoogleMap>
       </section>
 
-      <Button variant="gradient" fullWidth className="rounded-full w-widthMainBtn mt-8" type="submit">
+      <Button variant="gradient" fullWidth className="rounded-full w-widthMainBtn m-8" type="submit">
         Continuar
       </Button>
     </div>
