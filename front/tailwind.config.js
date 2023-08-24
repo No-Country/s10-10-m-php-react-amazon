@@ -10,7 +10,7 @@ module.exports = withMT({
   theme: {
     extend: {
       colors: {
-        mainTextColor: '#52525B',
+        mainColor: '#52525B',
       },
       fontSize: {
         customSizeTitle: '24px'
