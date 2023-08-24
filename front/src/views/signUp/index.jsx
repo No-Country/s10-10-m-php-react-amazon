@@ -4,7 +4,7 @@ import FormUser from './formUser';
 const SignUp = () => {
 
   return (
-    <div className="container flex flex-col items-center">
+    <div className="container flex flex-col items-center m-auto">
       <div className=' flex items-center justify-center relative w-80 h-16 text-gray-800 mb-6'>
         <button className='absolute left-0  text-xl'>
           <IoArrowBackOutline />
