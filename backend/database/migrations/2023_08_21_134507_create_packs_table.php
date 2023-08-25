@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('packs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->float('price'); 
+            $table->float('price');
             $table->text('description');
             $table->datetime('time_limit')->nullable();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('business_id');
             $table->timestamps();
 
-            $table->foreign('user_id')
+            $table->foreign('business_id')
                 ->references('id')
-                ->on('users')
+                ->on('businesses')
                 ->onDelete('cascade');
 
         });
