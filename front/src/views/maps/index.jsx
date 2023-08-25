@@ -149,7 +149,7 @@ const Maps = () => {
         </GoogleMap>
       </section>
 
-      <Button variant="gradient" fullWidth className="rounded-full w-widthMainBtn m-8" type="submit">
+      <Button variant="gradient" fullWidth className="rounded-full w-80 m-8" type="submit">
         Continuar
       </Button>
     </div>
