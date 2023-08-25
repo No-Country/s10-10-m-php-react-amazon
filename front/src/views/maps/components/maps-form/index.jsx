@@ -62,9 +62,12 @@ const MapsForm = ({ setSelectedLocation, map, originRef, setMark }) => {
               type="text"
               placeholder="Origin"
               inputRef={originRef}
-              color="white"
               size="md"
-              className="w-80"
+              className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+              containerProps={{ className: "min-w-[100px]" }}
+              labelProps={{
+                className: "hidden",
+              }}
              
             />
           </Autocomplete>

@@ -5,6 +5,7 @@ import {
   Typography,
   Button,
   IconButton,
+  Collapse,
 } from "@material-tailwind/react";
 import { Link } from "wouter";
 import {useSelector} from 'react-redux'
@@ -12,6 +13,7 @@ import {useSelector} from 'react-redux'
 const BasicNavbar =() => {
   const [openNav, setOpenNav] = React.useState(false);
   const user = useSelector((state) => state.user);
+
   React.useEffect(() => {
     window.addEventListener(
       "resize",
@@ -115,14 +117,15 @@ const BasicNavbar =() => {
           )}
         </IconButton>
       </div>
-      <MobileNav open={openNav}>
+      
+      <Collapse open={openNav}>
         <div className="container mx-auto">
           {navList}
           <Button variant="gradient" size="sm" fullWidth className="mb-2">
             <span><Link to="/home">Home</Link></span>
           </Button>
         </div>
-      </MobileNav>
+      </Collapse>
     </Navbar>
   );
 }
