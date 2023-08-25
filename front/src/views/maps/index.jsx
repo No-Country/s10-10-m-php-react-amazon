@@ -13,7 +13,7 @@ library.add(faLocationDot, faCrosshairs);
 
 const Maps = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [map, setMap] = useState(/** @type google.maps.Map */ (null));
+  const [map, setMap] = useState(/** @type google.maps.Map */(null));
   const [direction, setDirection] = useState(null);
   /** @type React.MutableRefObject<HTMLInputElement> */
   const originRef = useRef();
@@ -65,6 +65,7 @@ const Maps = () => {
         type="submit"
       >
         Registrarse
+
       </Button>
     </div>
   );

@@ -4,7 +4,9 @@ import BasicNavbar from "../components/BasicNavbar";
 import SignUp from "../views/signUp";
 import StartPage from "../views/startPage";
 import Maps from "../views/maps";
+
 import Home from "../views/home";
+
 const AppRouter = () => {
   return (
     <Router>
