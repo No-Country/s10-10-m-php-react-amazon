@@ -1,6 +1,7 @@
 import { Input, Button, Typography, Checkbox } from "@material-tailwind/react";
 import { useForm } from "react-hook-form";
 
+
 const Form = () => {
   const { register, handleSubmit } = useForm();
 
@@ -51,7 +52,6 @@ const Form = () => {
               placeholder="Contraseña"
             />
           </div>
-
           <div className="mt-3">
             <Checkbox
               className="rounded-full bg-white h-4 w-4"

@@ -1,19 +1,23 @@
 import { useForm } from "react-hook-form";
+import {useDispatch} from 'react-redux';
+
 import {
     Input,
     Button,
     Typography,
     Checkbox,
 } from "@material-tailwind/react";
+import { setUser } from "../../../features/userSlice";
+import { Link } from "wouter";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
 
 const FormUser = () => {
-
+    const dispatch = useDispatch()
     const { register, handleSubmit } = useForm();
 
     const submit = (data) => {
-        console.log(data);
+        dispatch(setUser(data))
     }
 
     const [isVisible, setIsVisible] = useState(true);
@@ -62,7 +66,7 @@ const FormUser = () => {
                     </Button>
                     <Typography variant="small" className="mt-6 flex justify-between text-secondColorTextForms pb-8">
                         <span>¿Ya tienes cuenta?</span>
-                        <span className="border-b-2 border-secondColorTextForms "><a href="/login">Inicia sesión acá</a></span>
+                        <span className="border-b-2 border-secondColorTextForms "><Link to="/login">Inicia sesión acá</Link></span>
                     </Typography>
                 </div>
             </form>
