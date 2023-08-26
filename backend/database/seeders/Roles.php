@@ -27,7 +27,8 @@ class Roles extends Seeder
                 'name' => 'admin',
             ],
         );
-
+        Role::create(['name' => 'user']);
+        Role::create(['name' => 'business']);
         $permisos = Permission::pluck('id', 'id')->all();
         $roles->syncPermissions($permisos);
         $usuario->assignRole([$roles->id]);
