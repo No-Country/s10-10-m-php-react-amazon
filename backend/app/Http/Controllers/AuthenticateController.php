@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Location;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,9 +11,8 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Cookie;
-
-
 use Illuminate\Support\Facades\DB;
+
 
 
 class AuthenticateController extends Controller
@@ -30,8 +30,9 @@ class AuthenticateController extends Controller
     public function register(Request $request)
     {
         try{
+            DB::beginTransaction();
             $validateData = $request->validate([
-                'name' => 'required',
+                'fullname' => 'required',
                 'lastname' => 'required',
                 'email' => 'required|email|unique:users',
                 'password' => [
@@ -40,19 +41,28 @@ class AuthenticateController extends Controller
                     'min:6',
                     'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
                 ],
+                'latitude' => 'required',
+                'longitude' => 'required',
                 'address' => 'required',
-                'role_id' => 'required',
+                'role' => 'required|in:user,business',
+            ]);
+            $location = Location::create([
+                'address' => $validateData['address'],
+                'latitude' => $validateData['latitude'],
+                'longitude' => $validateData['longitude']
             ]);
 
             $user = User::create([
-                'name' => $validateData['name'],
+                'fullname' => $validateData['fullname'],
                 'lastname' => $validateData['lastname'],
                 'email' => $validateData['email'],
                 'password' => bcrypt($validateData['password']),
-                'address' => $validateData['address'],
-                'role_id' => $validateData['role_id'],
+                'location_id' => $location->id
             ]);
+            $user->assignRole($validateData['role']);
+            DB::commit();
         } catch (ValidationException $e) {
+            DB::rollback();
             return response()->json([
                 'error' => 'Invalid data',
                 'message' => $e->getMessage(),
@@ -83,8 +93,11 @@ class AuthenticateController extends Controller
             }
 
             $cookie = cookie('jwt_token', $token, 60, null, null, true, true);
-
-            return $this->respondWithToken($token)->withCookie($cookie);
+            $user = auth()->user();
+            return response()->json([
+                'token' => $token,
+                'user' => $user,
+            ])->withCookie($cookie);
         } catch (\Illuminate\Auth\AuthenticationException $e) {
             return response()->json(['error' => 'Authentication failed', 'message' => $e->getMessage()], Response::HTTP_UNAUTHORIZED);
         } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {

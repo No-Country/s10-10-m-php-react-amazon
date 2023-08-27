@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -29,9 +29,9 @@ Route::group(['middleware' => 'api',], function ($router) {
 
 
 // Rutas de login y logout
-Route::post('auth/login', [AuthController::class, 'login'])->name('login');
-Route::post('auth/logout', [AuthController::class, 'logout'])->name('logout');
-Route::post('auth/register', [AuthController::class, 'register'])->name('register');
+Route::post('auth/login', [AuthenticateController::class, 'login'])->name('login');
+Route::post('auth/logout', [AuthenticateController::class, 'logout'])->name('logout');
+Route::post('auth/register', [AuthenticateController::class, 'register'])->name('register');
 Route::get('/users/all', [UserController::class, 'getAllUsers'])->name('users.all');
 Route::get('/users/{userId}', [UserController::class, 'getUserById'])->name('users.get');
 Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.update');
