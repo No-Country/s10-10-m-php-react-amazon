@@ -14,7 +14,7 @@ class AuthController extends Controller
     public function register(Request $request){
  try {
         $this->validate($request, [
-            'name' => 'required',
+            'fullname' => 'required',
             'lastname' => 'required',
             'email' => 'required|email|unique:users',
              'password' => [
@@ -28,7 +28,7 @@ class AuthController extends Controller
         ]);
 
         $user = new User;
-        $user->name = $request->name;
+        $user->fullname = $request->fullname;
         $user->lastname = $request->lastname;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
