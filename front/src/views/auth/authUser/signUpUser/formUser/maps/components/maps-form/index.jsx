@@ -3,7 +3,7 @@ import { Autocomplete } from "@react-google-maps/api";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const MapsForm = ({ setSelectedLocation, map, originRef, setMark }) => {
+const MapsForm = ({ setSelectedLocation, map, originRef, setMark, setDirection }) => {
   const markPoint = async () => {
     if (originRef.current.value === "") {
       return;
@@ -41,6 +41,7 @@ const MapsForm = ({ setSelectedLocation, map, originRef, setMark }) => {
           geocoder.geocode({ location: userLocation }, (results, status) => {
             if (status === "OK" && results.length > 0) {
               originRef.current.value = results[0].formatted_address;
+              setDirection(originRef.current.value)
             }
           });
         },

@@ -1,5 +1,6 @@
 import { Button } from '@material-tailwind/react';
 import React from 'react';
+import { Link } from 'wouter';
 
 const Mission = () => {
     return (
@@ -16,7 +17,7 @@ const Mission = () => {
                 <Button className='rounded-full normal-case bg-mainColor p-0 text-white w-widthMainBtn h-heightMainBtn' style={{ fontSize: "12px" }}>
                     Quiero salvar comida
                 </Button>
-                <Button normal-casen className='rounded-full normal-case p-0 bg-white text-mainColor border border-black w-widthMainBtn h-heightMainBtn' style={{ fontSize: "12px" }}>
+                <Button className='rounded-full normal-case p-0 bg-white text-mainColor border border-black w-widthMainBtn h-heightMainBtn' style={{ fontSize: "12px" }}>
                     Quiero vender comida
                 </Button>
             </div>
