@@ -1,3 +1,4 @@
+import { Button } from '@material-tailwind/react';
 import React from 'react';
 
 const Mission = () => {
@@ -12,12 +13,12 @@ const Mission = () => {
                 conectando a usuarios con establecimientos que tienen excedentes del día.
             </p>
             <div className='flex justify-between my-8'>
-                <button className='rounded-full bg-mainColor text-white w-widthMainBtn h-heightMainBtn' style={{ fontSize: "12px" }}>
+                <Button className='rounded-full normal-case bg-mainColor p-0 text-white w-widthMainBtn h-heightMainBtn' style={{ fontSize: "12px" }}>
                     Quiero salvar comida
-                </button>
-                <button className='rounded-full bg-white text-mainColor border border-black w-widthMainBtn h-heightMainBtn' style={{ fontSize: "12px" }}>
-                    Quiero salvar comida
-                </button>
+                </Button>
+                <Button normal-casen className='rounded-full normal-case p-0 bg-white text-mainColor border border-black w-widthMainBtn h-heightMainBtn' style={{ fontSize: "12px" }}>
+                    Quiero vender comida
+                </Button>
             </div>
         </div>
     );

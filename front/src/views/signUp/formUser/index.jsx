@@ -1,32 +1,31 @@
 import { useForm } from "react-hook-form";
+import { useDispatch } from 'react-redux';
+
 import {
     Input,
     Button,
     Typography,
     Checkbox,
 } from "@material-tailwind/react";
+import { setUser } from "../../../features/userSlice";
+import { Link } from "wouter";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
+import useToggleVisibility from "../../../utils/hooks/useToggleVisibility";
 
 const FormUser = () => {
-
+    const dispatch = useDispatch()
     const { register, handleSubmit } = useForm();
 
-    const submit = (data) => {
-        console.log(data);
-    }
+    // const submit = (data) => {
+    //     dispatch(setUser(data))
+    // }
 
-    const [isVisible, setIsVisible] = useState(true);
-
-    const handleChangeVisible = () => {
-        setIsVisible(!isVisible)
-
-    }
-    console.log(isVisible);
+    const [isVisible, handleVisible] = useToggleVisibility(true);
 
     return (
         <div>
-            <form onSubmit={handleSubmit(submit)} className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
+            <form onSubmit={handleSubmit("submit")} className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
                 <div className="mb-4 flex flex-col gap-4">
                     <label htmlFor="name" className='text-left text-secondColorTextForms font-bold -mb-3' style={{ fontSize: '11px' }}>Nombre completo</label>
                     <Input size="lg" {...register('name')} id="name" className="bg-white" placeholder="Nombre" />
@@ -35,7 +34,7 @@ const FormUser = () => {
                     <div className="relative">
                         <label htmlFor="password" className='text-left text-secondColorTextForms font-bold -mb-3' style={{ fontSize: '11px' }}>Contraseña</label>
                         <Input size="lg" {...register('password')} type={isVisible ? "password" : "text"} id="password" className="bg-white" placeholder="Contraseña" />
-                        <button className="absolute right-2 top-1/2 text-2xl text-mainColor" type="button" onClick={handleChangeVisible}>{isVisible ? < BsEye /> : <BsEyeSlash />} </button>
+                        <button className="absolute right-2 top-1/2 text-2xl text-mainColor" type="button" onClick={handleVisible}>{isVisible ? < BsEye /> : <BsEyeSlash />} </button>
                     </div>
                 </div>
                 <Checkbox
@@ -62,7 +61,7 @@ const FormUser = () => {
                     </Button>
                     <Typography variant="small" className="mt-6 flex justify-between text-secondColorTextForms pb-8">
                         <span>¿Ya tienes cuenta?</span>
-                        <span className="border-b-2 border-secondColorTextForms "><a href="/login">Inicia sesión acá</a></span>
+                        <span className="border-b-2 border-secondColorTextForms "><Link to="/login">Inicia sesión acá</Link></span>
                     </Typography>
                 </div>
             </form>

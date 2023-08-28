@@ -14,7 +14,7 @@ function StartPage() {
           Regístrate, explora y compra fácilmente alimentos a precios reducidos.
           ¡Cada producto que salvas marca la diferencia!
         </p>
-        <section className="mt-72">
+        <section className="mt-64">
           <div className="flex flex-col space-y-2">
             <Button
               variant="filled"

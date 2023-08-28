@@ -11,10 +11,11 @@ module.exports = withMT({
     extend: {
       colors: {
         mainColor: '#52525B',
-        secondColorTextForms: '#ADB5BD'
+        secondColorTextForms: '#ADB5BD',
+        colorModal: '#D9D9D9'
       },
       fontSize: {
-        customSizeTitle: '24px'
+        customSizeTitle: '32px'
       },
       width: {
         widthMainBtn: '156.72px',
