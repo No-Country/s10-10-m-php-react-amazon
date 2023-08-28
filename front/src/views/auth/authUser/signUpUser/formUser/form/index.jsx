@@ -26,6 +26,7 @@ const FormUser = ({ setData, data }) => {
       };
       setData(updatedData);
     }
+
   };
 
 
@@ -59,6 +60,7 @@ const FormUser = ({ setData, data }) => {
               className={`bg-white ${
                 errors.fullname ? "border-red-500" : ""
               }`}
+
               placeholder="Nombre"
             />
             {errors.fullname && (
@@ -97,6 +99,7 @@ const FormUser = ({ setData, data }) => {
               className={`bg-white ${
                 errors.email ? "border-red-500" : ""
               }`}
+
               placeholder="Email"
             />
             {errors.email && (
@@ -118,7 +121,13 @@ const FormUser = ({ setData, data }) => {
                 className={`bg-white ${
                   error || errors ? "border-red-500" : ""
                 }`}
+
                 placeholder="Contraseña"
+                className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+                labelProps={{
+                  className: "hidden",
+                }}
+                containerProps={{ className: "min-w-[100px]" }}
               />
              
               <button

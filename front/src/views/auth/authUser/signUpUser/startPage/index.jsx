@@ -1,7 +1,7 @@
 import { Button, Typography } from "@material-tailwind/react";
 import { Link } from "wouter";
 
-function SignUpStartPage({setChoice}) {
+function SignUpStartPage({ setChoice }) {
   return (
     <>
       <div className="flex flex-col items-center h-screen bg-mainColor p-[2rem]">
@@ -14,7 +14,7 @@ function SignUpStartPage({setChoice}) {
           Regístrate, explora y compra fácilmente alimentos a precios reducidos.
           ¡Cada producto que salvas marca la diferencia!
         </p>
-        <section className="mt-72">
+        <section className="mt-64">
           <div className="flex flex-col space-y-2">
             <Button
               variant="filled"

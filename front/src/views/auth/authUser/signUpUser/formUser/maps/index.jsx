@@ -64,7 +64,7 @@ const Maps = ({setData, data}) => {
   };
 
   return (
-    <div className="flex flex-col items-center h-screen bg-[#52525B]">
+    <div className="flex flex-col items-center h-screen bg-mainColor">
       <MapsHeader />
       <MapsForm
         map={map}

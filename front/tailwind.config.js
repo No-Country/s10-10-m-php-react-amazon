@@ -12,6 +12,7 @@ module.exports = withMT({
       colors: {
         mainColor: '#52525B',
         secondColorTextForms: '#ADB5BD',
+        colorModal: '#D9D9D9',
         primary: '#045162',
         secondary: '#FFGBCC',
         neutral1: 'black',
@@ -22,7 +23,7 @@ module.exports = withMT({
         denotativo3: 'green'
       },
       fontSize: {
-        customSizeTitle: '24px'
+        customSizeTitle: '32px'
       },
       width: {
         widthMainBtn: '156.72px',
@@ -37,10 +38,10 @@ module.exports = withMT({
         fontFamily: {
           main: ['Montserrat', 'Roboto', 'Poppins']
         },
-       
+
       }
-      
-      
+
+
     },
   },
   plugins: [],

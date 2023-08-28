@@ -1,3 +1,4 @@
+import { Button } from '@material-tailwind/react';
 import React from 'react';
 import { Link } from 'wouter';
 
@@ -13,12 +14,12 @@ const Mission = () => {
                 conectando a usuarios con establecimientos que tienen excedentes del día.
             </p>
             <div className='flex justify-between my-8'>
-                <button className='rounded-full bg-mainColor text-white w-widthMainBtn h-heightMainBtn' style={{ fontSize: "12px" }}>
-                    <Link to='auth/user/login'>Quiero salvar comida</Link>
-                </button>
-                <button className='rounded-full bg-white text-mainColor border border-black w-widthMainBtn h-heightMainBtn' style={{ fontSize: "12px" }}>
-                   <Link to='auth/seller/login'> Quiero vender comida</Link>
-                </button>
+                <Button className='rounded-full normal-case bg-mainColor p-0 text-white w-widthMainBtn h-heightMainBtn' style={{ fontSize: "12px" }}>
+                    Quiero salvar comida
+                </Button>
+                <Button className='rounded-full normal-case p-0 bg-white text-mainColor border border-black w-widthMainBtn h-heightMainBtn' style={{ fontSize: "12px" }}>
+                    Quiero vender comida
+                </Button>
             </div>
         </div>
     );
