@@ -7,20 +7,25 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\User;
 
+
 class UserController extends Controller
 {
 public function getAllUsers()
 {
     try {
-        $users = User::all();
+        $users = User::with('location')->get();
 
         $userDetails = $users->map(function ($user) {
+           $userLocation = $user->location;
+
             return [
-                'name' => $user->name,
+                'fullname' => $user->fullname,
                 'lastname' => $user->lastname,
                 'email' => $user->email,
-                'address' => $user->address,
-                'role_id' => $user->role_id,
+                'address' => $userLocation ? $userLocation->address : null,
+                'longitude' => $userLocation ? $userLocation->longitude : null,
+                'latitude' => $userLocation ? $userLocation->latitude : null,
+                'role' => $user->role,
             ];
         });
 
@@ -39,18 +44,22 @@ public function getAllUsers()
 }
 
 
+
    public function getUserById($userId)
 {
     try {
         $user = User::findOrFail($userId);
+ $userLocation = $user->location;
 
-        $userDetails = [
-            'name' => $user->name,
-            'lastname' => $user->lastname,
-            'email' => $user->email,
-            'role_id' => $user->role_id,
-            'address' => $user->address,
-        ];
+            return [
+                'fullname' => $user->fullname,
+                'lastname' => $user->lastname,
+                'email' => $user->email,
+                'address' => $userLocation ? $userLocation->address : null,
+                'longitude' => $userLocation ? $userLocation->longitude : null,
+                'latitude' => $userLocation ? $userLocation->latitude : null,
+                'role' => $user->role,
+            ];
 
         return response()->json(['user' => $userDetails]);
     } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
@@ -60,30 +69,44 @@ public function getAllUsers()
     }
 }
 
-public function update(Request $request, User $user) {
+public function update(Request $request, User $user)
+{
     try {
         $fields = [
-            'name' => $request->input('name'),
-            'lastname' => $request->input('lastname'),
-            'email' => $request->input('email'),
-            'password' => $request->input('password'),
-            'address' => $request->input('address'),
-            'role_id' => $request->input('role_id'),
+            'fullname',
+            'lastname',
+            'email',
+            'password',
         ];
 
         $validations = [
             'email' => 'email|unique:users,email,' . $user->id,
             'password' => 'min:6',
-            'role_id' => 'exists:roles,id',
         ];
 
-        foreach ($fields as $field => $value) {
+        foreach ($fields as $field) {
             if ($request->has($field)) {
                 if (array_key_exists($field, $validations)) {
                     $this->validate($request, [$field => $validations[$field]]);
                 }
-                $user->$field = $value;
+                $user->$field = $request->input($field);
             }
+        }
+
+        // Actualizar información de ubicación si está disponible
+        if ($request->has('address') || $request->has('latitude') || $request->has('longitude')) {
+            if ($user->location) {
+                $user->location->update([
+                    'address' => $request->input('address', $user->location->address),
+                    'latitude' => $request->input('latitude', $user->location->latitude),
+                    'longitude' => $request->input('longitude', $user->location->longitude),
+                ]);
+            }
+        }
+
+        // Actualizar rol si está disponible
+        if ($request->has('role')) {
+            $user->syncRoles([$request->input('role')]);
         }
 
         $user->save();
@@ -96,5 +119,4 @@ public function update(Request $request, User $user) {
         return response()->json(['error' => 'An error occurred while updating user', 'message' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 }
-
 }
