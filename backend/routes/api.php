@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\ImageController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -41,6 +41,6 @@ Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.up
 
 
 // Rutas protegidas por el middleware jwt.auth
-/* Route::group(['middleware' => 'jwt.auth'], function () {
-
-}); */
+ Route::group(['middleware' => 'jwt.auth'], function () {
+     Route::resource('image', ImageController::class)->except(['edit','create','destroy']);
+}); 
