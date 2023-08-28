@@ -1,7 +1,7 @@
 import { Button, Typography } from "@material-tailwind/react";
 import { Link } from "wouter";
 
-function StartPage() {
+function LoginStartPage({setChoice}) {
   return (
     <>
       <div className="flex flex-col items-center h-screen bg-mainColor p-[2rem]">
@@ -11,8 +11,7 @@ function StartPage() {
           </h2>
         </div>
         <p className="text-center text-white font-semibold">
-          Regístrate, explora y compra fácilmente alimentos a precios reducidos.
-          ¡Cada producto que salvas marca la diferencia!
+          Continúa descubriendo ofertas increíbles y rescatando deliciosos productos a precios reducidos. ¡A disfrutar!
         </p>
         <section className="mt-72">
           <div className="flex flex-col space-y-2">
@@ -20,23 +19,24 @@ function StartPage() {
               variant="filled"
               className="rounded-full normal-case w-72 text-white"
             >
-              Registrate con Google
+              Continúa con Google
             </Button>
             <Button
               variant="filled"
               className="rounded-full normal-case w-72 text-white"
             >
-              Registrate con Facebook
+              Continúa con Facebook
             </Button>
             <Button
               variant="filled"
               className="rounded-full normal-case w-72 text-white"
+              onClick={() => setChoice('email')}
             >
-              <Link to="/signup">Registrate con mail</Link>
+              Continúa con mail
             </Button>
             <Typography variant="small" className="mt-6 flex justify-between text-secondColorTextForms pb-8">
-              <span>¿Ya tienes cuenta?</span>
-              <span className="border-b-2 border-secondColorTextForms "><a href="/login">Inicia sesión acá</a></span>
+              <span>No tienes cuenta?</span>
+              <span className="border-b-2 border-secondColorTextForms "><Link to="/auth/user/signup">Regístrate acá</Link></span>
             </Typography>
           </div>
         </section>
@@ -45,4 +45,4 @@ function StartPage() {
   );
 }
 
-export default StartPage;
+export default LoginStartPage;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'wouter';
 
 const Mission = () => {
     return (
@@ -13,10 +14,10 @@ const Mission = () => {
             </p>
             <div className='flex justify-between my-8'>
                 <button className='rounded-full bg-mainColor text-white w-widthMainBtn h-heightMainBtn' style={{ fontSize: "12px" }}>
-                    Quiero salvar comida
+                    <Link to='auth/user/login'>Quiero salvar comida</Link>
                 </button>
                 <button className='rounded-full bg-white text-mainColor border border-black w-widthMainBtn h-heightMainBtn' style={{ fontSize: "12px" }}>
-                    Quiero salvar comida
+                   <Link to='auth/seller/login'> Quiero vender comida</Link>
                 </button>
             </div>
         </div>

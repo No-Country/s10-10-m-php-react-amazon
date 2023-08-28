@@ -2,7 +2,10 @@ import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
     name: "",
-    email: ""
+    email: "",
+    address: '',
+    coordinates: {latitude: "", longitude: ""},
+
 }
 
 export const userSlice = createSlice({
@@ -10,9 +13,11 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         setUser: (state, action) => {
-            const {name, email} = action.payload
+            const {name, email, coordinates, address} = action.payload
             state.name = name
             state.email = email
+            state.address = address
+            state.coordinates = coordinates
         }
 
     }

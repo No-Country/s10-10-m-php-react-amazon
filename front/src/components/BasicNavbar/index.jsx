@@ -29,7 +29,7 @@ const BasicNavbar =() => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to="/login" className="flex items-center">
+        <Link to="/auth/user/login" className="flex items-center">
           Login
         </Link>
       </Typography>
@@ -39,7 +39,7 @@ const BasicNavbar =() => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to="/signup" className="flex items-center">
+        <Link to="/auth/user/signup" className="flex items-center">
           Registro
         </Link>
       </Typography>
@@ -59,8 +59,8 @@ const BasicNavbar =() => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to="/maps" className="flex items-center">
-          Maps
+        <Link to="/" className="flex items-center">
+          Home
         </Link>
       </Typography>
     </ul>
@@ -73,7 +73,7 @@ const BasicNavbar =() => {
           to="/"
           className="mr-4 cursor-pointer py-1.5 font-medium"
         >
-          {user.name? user.name :  "ListoParaLlevar"}
+          {user.address? user.address :  "ListoParaLlevar"}
         </Link>
         <div className="hidden lg:block">{navList}</div>
         <Button variant="gradient" size="sm" className="hidden lg:inline-block">

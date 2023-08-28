@@ -8,10 +8,12 @@ import { faLocationDot, faCrosshairs } from "@fortawesome/free-solid-svg-icons";
 import MapsHeader from "./components/maps-header";
 import MapsForm from "./components/maps-form";
 import MapsMap from "./components/maps-map";
+import { signUpUser } from "../../../../../../api/authApi";
+import { navigate } from "wouter/use-location";
 
 library.add(faLocationDot, faCrosshairs);
 
-const Maps = () => {
+const Maps = ({setData, data}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [map, setMap] = useState(/** @type google.maps.Map */(null));
   const [direction, setDirection] = useState(null);
@@ -35,11 +37,25 @@ const Maps = () => {
     setTimeout(() => {
       setMark(selectedLocation);
     }, 1000);
-  }, [isLoaded, selectedLocation]);
+  }, [isLoaded, selectedLocation, data]);
 
   if (isLoading) {
     return <Spinner />;
   }
+
+  const submit = async () => {
+    const updatedData = {
+      ...data,
+      address: direction,
+      latitude: selectedLocation.lat, 
+      longitude: selectedLocation.lng 
+    };
+    setData(updatedData);
+    signUpUser(updatedData).then(response => {
+      response && navigate('/auth/user/login')
+    })
+    
+  };
 
   return (
     <div className="flex flex-col items-center h-screen bg-[#52525B]">
@@ -49,6 +65,7 @@ const Maps = () => {
         setMark={setMark}
         setSelectedLocation={setSelectedLocation}
         originRef={originRef}
+        setDirection={setDirection}
       />
       <MapsMap
         selectedLocation={selectedLocation}
@@ -63,6 +80,7 @@ const Maps = () => {
         fullWidth
         className="rounded-full w-widthMainBtn h-heightMainBtn mt-5"
         type="submit"
+        onClick={submit}
       >
         Registrarse
 
