@@ -4,21 +4,32 @@ import { Input, Button, Typography, Checkbox } from "@material-tailwind/react";
 import { Link } from "wouter";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
+import { validatePassword } from "../../../../../../utils/validatePassword";
 
 const FormUser = ({ setData, data }) => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: {errors} } = useForm();
+  const [error, setError] = useState("");
+  const [isVisible, setIsVisible] = useState(true);
+
 
   const submit = (info) => {
-    const updatedData = {
-      ...data,
-      fullname: info.name,
-      password: info.password,
-      email: info.email
-    };
-    setData(updatedData);
+    const passwordError = validatePassword(info.password);
+    setError(passwordError)
+
+    if (!passwordError) {
+      const updatedData = {
+        ...data,
+        fullname: info.fullname,
+        lastname: info.lastname,
+        password: info.password,
+        email: info.email,
+      };
+      setData(updatedData);
+    }
+
   };
 
-  const [isVisible, setIsVisible] = useState(true);
+
 
   const handleChangeVisible = () => {
     setIsVisible(!isVisible);
@@ -36,23 +47,44 @@ const FormUser = ({ setData, data }) => {
         >
           <div className="mb-4 flex flex-col gap-4">
             <label
-              htmlFor="name"
+              htmlFor="fullname"
               className="text-left text-secondColorTextForms font-bold -mb-3"
               style={{ fontSize: "11px" }}
             >
-              Nombre completo
+              Nombre
             </label>
             <Input
               size="lg"
-              {...register("name")}
-              id="name"
-              className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
-              labelProps={{
-                className: "hidden",
-              }}
-              containerProps={{ className: "min-w-[100px]" }}
+              {...register("fullname", { required: true })}
+              id="fullname"
+              className={`bg-white ${
+                errors.fullname ? "border-red-500" : ""
+              }`}
+
               placeholder="Nombre"
             />
+            {errors.fullname && (
+              <p className="text-red-500">Campo obligatorio</p> 
+            )}
+            <label
+              htmlFor="lastname"
+              className="text-left text-secondColorTextForms font-bold -mb-3"
+              style={{ fontSize: "11px" }}
+            >
+              Apellido
+            </label>
+            <Input
+              size="lg"
+              {...register("lastname", { required: true })}
+              id="lastname"
+              className={`bg-white ${
+                errors.lastname ? "border-red-500" : ""
+              }`}
+              placeholder="Apellido"
+            />
+            {errors.lastname && (
+              <p className="text-red-500">Campo obligatorio</p> 
+            )}
             <label
               htmlFor="email"
               className="text-left text-secondColorTextForms font-bold -mb-3"
@@ -62,15 +94,17 @@ const FormUser = ({ setData, data }) => {
             </label>
             <Input
               size="lg"
-              {...register("email")}
+              {...register("email", { required: true })}
               id="email"
-              className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
-              labelProps={{
-                className: "hidden",
-              }}
-              containerProps={{ className: "min-w-[100px]" }}
+              className={`bg-white ${
+                errors.email ? "border-red-500" : ""
+              }`}
+
               placeholder="Email"
             />
+            {errors.email && (
+              <p className="text-red-500">Campo obligatorio</p> 
+            )}
             <div className="relative">
               <label
                 htmlFor="password"
@@ -81,9 +115,13 @@ const FormUser = ({ setData, data }) => {
               </label>
               <Input
                 size="lg"
-                {...register("password")}
+                {...register("password", { required: true })}
                 type={isVisible ? "password" : "text"}
                 id="password"
+                className={`bg-white ${
+                  error || errors ? "border-red-500" : ""
+                }`}
+
                 placeholder="Contraseña"
                 className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
                 labelProps={{
@@ -91,6 +129,7 @@ const FormUser = ({ setData, data }) => {
                 }}
                 containerProps={{ className: "min-w-[100px]" }}
               />
+             
               <button
                 className="absolute right-2 top-1/2 text-2xl text-mainColor"
                 type="button"
@@ -98,7 +137,14 @@ const FormUser = ({ setData, data }) => {
               >
                 {isVisible ? <BsEye /> : <BsEyeSlash />}{" "}
               </button>
+             
             </div>
+            {error && (
+                <p className="text-red-500">{error}</p>
+              )}
+               {errors.password && (
+              <p className="text-red-500">Campo obligatorio</p> 
+            )}
           </div>
           <Checkbox
             label={

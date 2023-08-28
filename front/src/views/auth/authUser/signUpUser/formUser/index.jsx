@@ -6,13 +6,13 @@ const FormUser = () => {
 
     const [data, setData] = useState({
     fullname: '',
-    lastname: 'lastname',
+    lastname: '',
     email: '',
     password: '',
     address: '',
     latitude: '',
     longitude: '',
-    role: 2 //rol de usuario
+    role: "user" //rol de usuario
 });
     
     if (!data.fullname) return (<Form setData={setData} data={data}/>)
