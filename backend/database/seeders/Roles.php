@@ -18,6 +18,7 @@ class Roles extends Seeder
                 'password' => bcrypt('12345678'),
             ]);
 
+
             $adminRole = Role::create(['name' => 'admin']);
             Role::create(['name' => 'user']);
             Role::create(['name' => 'business']);
@@ -27,4 +28,5 @@ class Roles extends Seeder
     
             $admin->assignRole([$adminRole->id]);
         }
+
 }

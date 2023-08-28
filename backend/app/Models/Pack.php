@@ -14,6 +14,6 @@ class Pack extends Model
         'price',
         'description',
         'time_limit',
-        'user_id',
+        'business_id',
     ];
 }
