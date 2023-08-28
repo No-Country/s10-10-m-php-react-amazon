@@ -5,15 +5,15 @@ import { Link } from "wouter";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
 
-const FormUser = ({setData, data}) => {
+const FormUser = ({ setData, data }) => {
   const { register, handleSubmit } = useForm();
 
   const submit = (info) => {
     const updatedData = {
       ...data,
       fullname: info.name,
-      password: info.password, 
-      email: info.email 
+      password: info.password,
+      email: info.email
     };
     setData(updatedData);
   };
@@ -46,7 +46,11 @@ const FormUser = ({setData, data}) => {
               size="lg"
               {...register("name")}
               id="name"
-              className="bg-white"
+              className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+              labelProps={{
+                className: "hidden",
+              }}
+              containerProps={{ className: "min-w-[100px]" }}
               placeholder="Nombre"
             />
             <label
@@ -60,7 +64,11 @@ const FormUser = ({setData, data}) => {
               size="lg"
               {...register("email")}
               id="email"
-              className="bg-white"
+              className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+              labelProps={{
+                className: "hidden",
+              }}
+              containerProps={{ className: "min-w-[100px]" }}
               placeholder="Email"
             />
             <div className="relative">
@@ -76,8 +84,12 @@ const FormUser = ({setData, data}) => {
                 {...register("password")}
                 type={isVisible ? "password" : "text"}
                 id="password"
-                className="bg-white"
                 placeholder="Contraseña"
+                className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+                labelProps={{
+                  className: "hidden",
+                }}
+                containerProps={{ className: "min-w-[100px]" }}
               />
               <button
                 className="absolute right-2 top-1/2 text-2xl text-mainColor"

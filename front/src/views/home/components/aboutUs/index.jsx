@@ -11,15 +11,15 @@ const AboutUs = () => {
                 conectando a usuarios con establecimientos que tienen excedentes del día.
             </p>
             <section>
-                <h4 className='text-[20px] text-mainColor font-bold mt-12 mb-8'>Problema</h4>
+                <h4 className='text-[24px] text-mainColor font-bold mt-12 mb-8'>Problema</h4>
                 <p className='my-3 font-bold text-mainColor'>
                     Únete, transforma excedentes en ingresos. Atrae clientes y sé más sostenible.
                 </p>
-                <h4 className='text-[20px] text-mainColor font-bold my-8'>Objetivo</h4>
+                <h4 className='text-[24px] text-mainColor font-bold my-8'>Objetivo</h4>
                 <p className='my-3 font-bold text-mainColor'>
                     Únete, transforma excedentes en ingresos. Atrae clientes y sé más sostenible.
                 </p>
-                <h4 className='text-[20px] text-mainColor font-bold my-8'>Solución</h4>
+                <h4 className='text-[24px] text-mainColor font-bold my-8'>Solución</h4>
                 <p className='my-3 font-bold text-mainColor'>
                     Únete, transforma excedentes en ingresos. Atrae clientes y sé más sostenible.
                 </p>
