@@ -1,5 +1,6 @@
 import { Button, Spinner } from "@material-tailwind/react";
 import { useJsApiLoader } from "@react-google-maps/api";
+import { Toaster, toast } from 'sonner'
 
 import React, { useEffect, useRef, useState } from "react";
 
@@ -52,7 +53,12 @@ const Maps = ({setData, data}) => {
     };
     setData(updatedData);
     signUpUser(updatedData).then(response => {
-      response && navigate('/auth/user/login')
+      if (response.status == 201) {
+        toast('Su registro fue exitoso')
+        setTimeout(() => {
+          navigate('/auth/user/login')
+        }, 2500)
+      }
     })
     
   };
@@ -85,6 +91,7 @@ const Maps = ({setData, data}) => {
         Registrarse
 
       </Button>
+      <Toaster position="bottom-right" richColors/>
     </div>
   );
 };

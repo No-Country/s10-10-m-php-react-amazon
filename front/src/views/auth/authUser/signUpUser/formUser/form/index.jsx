@@ -4,21 +4,31 @@ import { Input, Button, Typography, Checkbox } from "@material-tailwind/react";
 import { Link } from "wouter";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
+import { validatePassword } from "../../../../../../utils/validatePassword";
 
-const FormUser = ({setData, data}) => {
-  const { register, handleSubmit } = useForm();
+const FormUser = ({ setData, data }) => {
+  const { register, handleSubmit, formState: {errors} } = useForm();
+  const [error, setError] = useState("");
+  const [isVisible, setIsVisible] = useState(true);
+
 
   const submit = (info) => {
-    const updatedData = {
-      ...data,
-      fullname: info.name,
-      password: info.password, 
-      email: info.email 
-    };
-    setData(updatedData);
+    const passwordError = validatePassword(info.password);
+    setError(passwordError)
+
+    if (!passwordError) {
+      const updatedData = {
+        ...data,
+        fullname: info.fullname,
+        lastname: info.lastname,
+        password: info.password,
+        email: info.email,
+      };
+      setData(updatedData);
+    }
   };
 
-  const [isVisible, setIsVisible] = useState(true);
+
 
   const handleChangeVisible = () => {
     setIsVisible(!isVisible);
@@ -36,19 +46,43 @@ const FormUser = ({setData, data}) => {
         >
           <div className="mb-4 flex flex-col gap-4">
             <label
-              htmlFor="name"
+              htmlFor="fullname"
               className="text-left text-secondColorTextForms font-bold -mb-3"
               style={{ fontSize: "11px" }}
             >
-              Nombre completo
+              Nombre
             </label>
             <Input
               size="lg"
-              {...register("name")}
-              id="name"
-              className="bg-white"
+              {...register("fullname", { required: true })}
+              id="fullname"
+              className={`bg-white ${
+                errors.fullname ? "border-red-500" : ""
+              }`}
               placeholder="Nombre"
             />
+            {errors.fullname && (
+              <p className="text-red-500">Campo obligatorio</p> 
+            )}
+            <label
+              htmlFor="lastname"
+              className="text-left text-secondColorTextForms font-bold -mb-3"
+              style={{ fontSize: "11px" }}
+            >
+              Apellido
+            </label>
+            <Input
+              size="lg"
+              {...register("lastname", { required: true })}
+              id="lastname"
+              className={`bg-white ${
+                errors.lastname ? "border-red-500" : ""
+              }`}
+              placeholder="Apellido"
+            />
+            {errors.lastname && (
+              <p className="text-red-500">Campo obligatorio</p> 
+            )}
             <label
               htmlFor="email"
               className="text-left text-secondColorTextForms font-bold -mb-3"
@@ -58,11 +92,16 @@ const FormUser = ({setData, data}) => {
             </label>
             <Input
               size="lg"
-              {...register("email")}
+              {...register("email", { required: true })}
               id="email"
-              className="bg-white"
+              className={`bg-white ${
+                errors.email ? "border-red-500" : ""
+              }`}
               placeholder="Email"
             />
+            {errors.email && (
+              <p className="text-red-500">Campo obligatorio</p> 
+            )}
             <div className="relative">
               <label
                 htmlFor="password"
@@ -73,12 +112,15 @@ const FormUser = ({setData, data}) => {
               </label>
               <Input
                 size="lg"
-                {...register("password")}
+                {...register("password", { required: true })}
                 type={isVisible ? "password" : "text"}
                 id="password"
-                className="bg-white"
+                className={`bg-white ${
+                  error || errors ? "border-red-500" : ""
+                }`}
                 placeholder="Contraseña"
               />
+             
               <button
                 className="absolute right-2 top-1/2 text-2xl text-mainColor"
                 type="button"
@@ -86,7 +128,14 @@ const FormUser = ({setData, data}) => {
               >
                 {isVisible ? <BsEye /> : <BsEyeSlash />}{" "}
               </button>
+             
             </div>
+            {error && (
+                <p className="text-red-500">{error}</p>
+              )}
+               {errors.password && (
+              <p className="text-red-500">Campo obligatorio</p> 
+            )}
           </div>
           <Checkbox
             label={
