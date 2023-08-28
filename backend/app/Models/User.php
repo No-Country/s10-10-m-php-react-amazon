@@ -45,4 +45,11 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+
+//Agrege esta funcion para relacionar la location con el user y poder obtenerlo para mostarlo en getAllUsers
+      public function location()
+    {
+        return $this->belongsTo(Location::class, 'location_id');
+    }
 }
