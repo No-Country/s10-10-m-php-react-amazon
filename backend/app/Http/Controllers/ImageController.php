@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,41 +34,21 @@ class imageController extends Controller
             ], 400);
         }
     }
-
-    public function show($id)
-    {
-        try {
-            $image = image::with('thumbnail')->findOrFail($id);
-    
-            $response = [
-                'status' => 'success',
-                'message' => 'image found!',
-                'data' => [
-                    'image' => $image,
-                ],
-            ];
-    
-            return response()->json($response, Response::HTTP_OK);
-        } catch (ValidationException $th) {
-            return response()->json([
-                'error' => 'Invalid data',
-                'message' => $th->getMessage(),
-                'errors' => $th->errors()
-            ], 400);
-        }
-    }    
-    
+  
     public function store(Request $request)
     {
         $uploadedFile = $request->file('image');
-
+        $token = $request->bearerToken();
+        $validator = Validator::make($request->all(), [
+            'image' => 'required|image|mimes:jpeg,png',
+            'type' => 'required|in:user,business',
+        ]);
+        $user = Auth::user();
         try {
             $uploadedImage = Cloudinary::upload($uploadedFile->getRealPath());
             $image = new Image;
             $image->urlImg = $uploadedImage->getSecurePath();
-            $image->publicId = $uploadedImage->getPublicId();
-            $image->name = $request->name;
-            $image->user_id = 1;
+            $image->user_id = $user->id;
             $image->save();
 
             return response()->json([

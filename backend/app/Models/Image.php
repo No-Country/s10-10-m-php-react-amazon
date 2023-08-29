@@ -12,7 +12,6 @@ class Image extends Model
     protected $fillable = [
         'user_id',
         'urlImg',
-        'publicId',
-        'name'
+        'type'
     ];
 }

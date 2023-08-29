@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('publicId');
             $table->string('urlImg');
-            $table->string('name');
+            $table->string('type');
 
             $table->foreign('user_id')
             ->references('id')
