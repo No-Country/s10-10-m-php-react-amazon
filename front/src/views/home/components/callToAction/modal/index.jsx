@@ -5,7 +5,7 @@ import { Button } from '@material-tailwind/react';
 
 const Modal = ({ isVisible, handleVisible }) => {
     return (
-        <div className={`${isVisible ? "hidden" : "block"} h-[684px] w-[342px] z-10 bg-colorModal rounded-lg absolute top-60 right-1/2 translate-x-1/2 py-8 px-3`}>
+        <div className={`${isVisible ? "hidden" : "block"} h-[684px] w-[342px] z-10 bg-colorModal rounded-lg absolute top-58 right-1/2 translate-x-1/2 py-8 px-3`}>
             <div className='relative w-full'>
                 <button className='absolute right-2 font-bold text-mainColor -top-5' onClick={() => handleVisible()}>
                     X

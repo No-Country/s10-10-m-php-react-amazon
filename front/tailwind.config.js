@@ -11,6 +11,7 @@ module.exports = withMT({
     extend: {
       colors: {
         mainColor: '#52525B',
+        colorFooter: '#858587',
         secondColorTextForms: '#ADB5BD',
         colorModal: '#D9D9D9',
         colorPrimary: '#045162',

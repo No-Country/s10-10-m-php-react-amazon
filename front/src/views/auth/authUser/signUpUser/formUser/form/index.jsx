@@ -37,7 +37,7 @@ const FormUser = ({ setData, data }) => {
 
   return (
     <div className="flex flex-col items-center bg-mainColor h-screen">
-      <div className="custom-title leading-tight mt-8 text-center">
+      <div className="text-sizeTitle text-colorNeutral3 font-weightTitle leading-tight mt-8 text-center">
         <p> ¡Regístrate, compra a precios bajos y marca la diferencia!</p>
       </div>
       <div>
@@ -48,7 +48,7 @@ const FormUser = ({ setData, data }) => {
           <div className="mb-4 flex flex-col gap-4">
             <label
               htmlFor="fullname"
-              className="text-left custom-label -mb-3"
+              className="text-left custom-label -mb-3 "
               style={{ fontSize: "11px" }}
             >
               Nombre
@@ -151,14 +151,14 @@ const FormUser = ({ setData, data }) => {
             <Button
               variant="gradient"
               fullWidth
-              className="rounded-full custom-buttonCTAs"
+              className="rounded-full custom-buttonCTAs normal-case"
               type="submit"
             >
               Continuar
             </Button>
             <Typography
               variant="small"
-              className="mt-6 flex justify-between custom-textButton pb-8"
+              className="mt-6 flex justify-between custom-textButton  pb-8"
             >
               <span>¿Ya tienes cuenta?</span>
               <Link to="/auth/user/login">Inicia sesión acá</Link>
