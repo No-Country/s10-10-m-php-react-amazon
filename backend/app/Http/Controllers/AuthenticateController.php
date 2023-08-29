@@ -43,14 +43,12 @@ class AuthenticateController extends Controller
                 'tipo_user' => 'required',
                 'address' => 'required',
                 'description' => 'nullable',
-                'category' => 'nullable'
+                'category' => 'nullable',
+                'latitude' => 'nullable',
+                'longitude' => 'nullable'
             ]);
             
-            /* $location = Location::create([
-                'address' => $validateData['address'],
-                'latitude' => $validateData['latitude'],
-                'longitude' => $validateData['longitude']
-            ]); */
+
             
             $user = User::create([
                 'name' => $validateData['name'],
@@ -62,7 +60,12 @@ class AuthenticateController extends Controller
                 'description' => $validateData['description'] ?? null,
                 'category' => $validateData['category'] ?? null,
             ]);
-
+            $location = Location::create([
+                'address' => $validateData['address'],
+                'latitude' => $validateData['latitude'],
+                'longitude' => $validateData['longitude']
+            ]); 
+            $user->location_id = $location->id;
             $user->assignRole($validateData['tipo_user']);
             DB::commit();
         } catch (ValidationException $e) {
