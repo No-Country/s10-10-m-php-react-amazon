@@ -17,6 +17,7 @@ public function getAllUsers()
 
         $userDetails = $users->map(function ($user) {
            $userLocation = $user->location;
+    
 
             return [
                 'name' => $user->name,
@@ -65,6 +66,8 @@ public function getAllUsers()
                 'avatar' => $user->avatar,
                 'external_id' => $user->external_id,
                 'external_auth' => $user->external_auth,
+                'description' => $user->description,
+                'category' => $user->category,
             ];
 
         return response()->json(['user' => $userDetails]);
