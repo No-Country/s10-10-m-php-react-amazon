@@ -42,9 +42,10 @@ class AuthenticateController extends Controller
                 ],
                 'tipo_user' => 'required',
                 'address' => 'required',
-                'description' => 'required',
-                'category' => 'required'
+                'description' => 'nullable',
+                'category' => 'nullable'
             ]);
+            
             /* $location = Location::create([
                 'address' => $validateData['address'],
                 'latitude' => $validateData['latitude'],
