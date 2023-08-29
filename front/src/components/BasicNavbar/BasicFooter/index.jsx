@@ -9,7 +9,7 @@ const BasicFooter = () => {
                 <span>Términos</span>
             </div>
             <div className='text-center py-2'>
-                <p>© 2023 Nombre de la app</p>
+                <p>© 2023 ListoParaLlevar</p>
                 <p>Todos los derechos reservados.</p>
             </div>
         </div>
