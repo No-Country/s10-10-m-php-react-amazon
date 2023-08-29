@@ -17,15 +17,19 @@ use App\Http\Controllers\UserController;
 */
 
 Route::group(['middleware' => 'api',], function ($router) {
-     //Rutas de autenticación y usuario
-     Route::post('login', 'App\Http\Controllers\AuthenticateController@login');
-     Route::post('logout', 'App\Http\Controllers\AuthenticateController@logout');
-     Route::post('refresh', 'App\Http\Controllers\AuthenticateController@refresh');
-     Route::get('me', 'App\Http\Controllers\AuthenticateController@me');
-     Route::get('verifyToken', 'App\Http\Controllers\AuthenticateController@verifyToken');
-     Route::post('update', 'App\Http\Controllers\AuthenticateController@update');
-     Route::post('delete', 'App\Http\Controllers\AuthenticateController@delete');
-
+     //Rutas de autenticación
+    Route::post('login', 'App\Http\Controllers\AuthenticateController@login');
+    Route::post('logout', 'App\Http\Controllers\AuthenticateController@logout');
+    Route::post('refresh', 'App\Http\Controllers\AuthenticateController@refresh');
+    Route::get('me', 'App\Http\Controllers\AuthenticateController@me');
+    Route::get('verifyToken', 'App\Http\Controllers\AuthenticateController@verifyToken');
+    Route::post('update', 'App\Http\Controllers\AuthenticateController@update');
+    Route::post('delete', 'App\Http\Controllers\AuthenticateController@delete');
+    
+    //Rutas de usuario
+    Route::get('/users/all', [UserController::class, 'getAllUsers'])->name('users.all');
+    Route::get('/users/{userId}', [UserController::class, 'getUserById'])->name('users.get');
+    Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.update');
 
      //Rutas de Business
     Route::post('business', 'App\Http\Controllers\BusinessController@store');
@@ -42,20 +46,3 @@ Route::group(['middleware' => 'api',], function ($router) {
 
 });
 
-
-// Rutas de login y logout
-Route::post('auth/login', [AuthenticateController::class, 'login'])->name('login');
-Route::post('auth/logout', [AuthenticateController::class, 'logout'])->name('logout');
-Route::post('auth/register', [AuthenticateController::class, 'register'])->name('register');
-Route::get('/users/all', [UserController::class, 'getAllUsers'])->name('users.all');
-Route::get('/users/{userId}', [UserController::class, 'getUserById'])->name('users.get');
-Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.update');
-
-
-
-
-
-// Rutas protegidas por el middleware jwt.auth
-/* Route::group(['middleware' => 'jwt.auth'], function () {
-
-}); */
