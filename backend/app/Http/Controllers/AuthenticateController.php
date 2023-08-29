@@ -67,6 +67,7 @@ class AuthenticateController extends Controller
             ]); 
             $user->location_id = $location->id;
             $user->assignRole($validateData['tipo_user']);
+            $user->save();
             DB::commit();
         } catch (ValidationException $e) {
             DB::rollback();
