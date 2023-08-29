@@ -23,23 +23,23 @@ Route::get('/', function () {
 Route::get('/login-google', function () {
     return Socialite::driver('google')->redirect();
 });
- 
+
 Route::get('/google-callback', function () {
     $user = Socialite::driver('google')->stateless()->user();
    $userExist = User::where('external_id', $user->id)->where('external_auth','google')->first();
 if($userExist) {
     Auth::login($userExist);
-     $token = JWTAuth::fromUser($userExist); 
+     $token = JWTAuth::fromUser($userExist);
 } else {
     $userNew = User::create([
-        'fullname' => $user->name,
+        'name' => $user->name,
         'email' => $user->email,
         'avatar' => $user->avatar,
         'external_id' => $user->id,
         'external_auth' => 'google',
     ]);
     Auth::login($userNew);
-     $token = JWTAuth::fromUser($userNew); 
+     $token = JWTAuth::fromUser($userNew);
 }
 
 return redirect('/dashboard')->with('token', $token);
@@ -58,7 +58,7 @@ if($userExist) {
      $token = JWTAuth::fromUser($userExist);
 } else {
     $userNew = User::create([
-        'fullname' => $user->name,
+        'name' => $user->name,
         'email' => $user->email,
         'avatar' => $user->avatar,
         'external_id' => $user->id,
@@ -72,4 +72,4 @@ if($userExist) {
 });
 
 
- 
+

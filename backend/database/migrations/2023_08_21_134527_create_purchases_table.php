@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pack_id');
-            $table->unsignedBigInteger('person_id');
+            $table->unsignedBigInteger('user_id');
             $table->integer('code');
 
             $table->foreign('pack_id')
@@ -22,9 +22,9 @@ return new class extends Migration
             ->on('packs')
             ->onDelete('cascade');
 
-            $table->foreign('person_id')
+            $table->foreign('user_id')
             ->references('id')
-            ->on('people')
+            ->on('users')
             ->onDelete('cascade');
 
             $table->timestamps();

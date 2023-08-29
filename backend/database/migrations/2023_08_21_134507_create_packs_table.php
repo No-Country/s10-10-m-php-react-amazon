@@ -17,12 +17,12 @@ return new class extends Migration
             $table->float('price');
             $table->text('description');
             $table->datetime('time_limit')->nullable();
-            $table->unsignedBigInteger('business_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
-            $table->foreign('business_id')
+            $table->foreign('user_id')
                 ->references('id')
-                ->on('businesses')
+                ->on('users')
                 ->onDelete('cascade');
 
         });
