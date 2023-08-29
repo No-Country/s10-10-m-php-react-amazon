@@ -19,6 +19,7 @@ use App\Http\Controllers\UserController;
 Route::group(['middleware' => 'api',], function ($router) {
      //Rutas de autenticación
     Route::post('login', 'App\Http\Controllers\AuthenticateController@login');
+    Route::post('register', 'App\Http\Controllers\AuthenticateController@register');
     Route::post('logout', 'App\Http\Controllers\AuthenticateController@logout');
     Route::post('refresh', 'App\Http\Controllers\AuthenticateController@refresh');
     Route::get('me', 'App\Http\Controllers\AuthenticateController@me');
