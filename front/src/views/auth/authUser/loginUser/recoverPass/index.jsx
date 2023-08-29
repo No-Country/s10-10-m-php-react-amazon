@@ -1,18 +1,9 @@
-import { Input, Button, Typography, Checkbox } from "@material-tailwind/react";
+import { Input, Button, Typography } from "@material-tailwind/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { navigate } from "wouter/use-location";
-import { loginUser } from "../../../../../api/authApi";
-import { setToken } from "../../../../../features/userSlice";
 import { validatePassword } from "../../../../../utils/validatePassword";
 
 function RecoverPass() {
-
-    /*
-    TODO - verificar que las contraseñas sean iguales
-     */
-
   const {
     register,
     handleSubmit,
@@ -21,15 +12,23 @@ function RecoverPass() {
 
   const [error, setError] = useState("");
 
-  const dispatch = useDispatch();
+  const submit = (data) => {
+    const { password, newPassword } = data;
+    if (password !== newPassword) {
+      setError("Las contraseñas no coinciden");
+      return;
+    }
 
-  const [invalid, setInvalid] = useState(false);
-
-  const submit = (data) => {};
+    const passwordValidationResult = validatePassword(password);
+    if (passwordValidationResult) {
+      setError(passwordValidationResult);
+      return;
+    }
+  };
 
   return (
     <div className="flex flex-col items-center bg-mainColor h-screen">
-      <div className="flex flex-col items-center justify-center h-screen">
+      <div className="p-10  text-3xl mt-8 custom-title">
         <div className="custom-title text-center">
           <p>Establece tu nueva contraseña</p>
         </div>
@@ -39,7 +38,7 @@ function RecoverPass() {
         </Typography>
       </div>
 
-      <div className="items-center h-screen">
+      <div className="flex flex-col items-center h-screen">
         <form onSubmit={handleSubmit(submit)}>
           <div>
             <label
@@ -49,6 +48,7 @@ function RecoverPass() {
             >
               Ingresá nueva contraseña
             </label>
+
             <Input
               size="lg"
               {...register("password", { required: true })}
@@ -60,11 +60,12 @@ function RecoverPass() {
               containerProps={{ className: "min-w-[100px]" }}
               placeholder="Ingresá nueva contraseña"
             />
-            {errors.email && (
+            {errors.password && (
               <p className="text-red-500" style={{ fontSize: "14px" }}>
                 Campo obligatorio
               </p>
             )}
+
             <label
               htmlFor="newPassword"
               className="text-left custom-label -mb-3"
@@ -72,6 +73,7 @@ function RecoverPass() {
             >
               Confirmá la contraseña
             </label>
+
             <Input
               size="lg"
               type="newPassword"
@@ -95,27 +97,12 @@ function RecoverPass() {
               </p>
             )}
           </div>
-          <div className="mt-3">
-            <Checkbox
-              className="rounded-full bg-white h-4 w-4"
-              label={
-                <Typography
-                  variant="small"
-                  className="custom-textButton"
-                >
-                  Recuérdame
-                </Typography>
-              }
-            />
-          </div>
-          {invalid && (
-            <p className="text-red-500" style={{ fontSize: "14px" }}>
-              Email y/o contraseña incorrectos
-            </p>
-          )}
 
           <div className="mt-10 text-center">
-            <Button className="rounded-full normal-case w-72 custom-buttonCTAs" type="submit">
+            <Button
+              className="rounded-full normal-case w-72 custom-buttonCTAs"
+              type="submit"
+            >
               Establecer nueva contraseña
             </Button>
           </div>
