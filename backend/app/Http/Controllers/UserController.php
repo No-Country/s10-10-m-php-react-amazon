@@ -26,6 +26,9 @@ public function getAllUsers()
                 'longitude' => $userLocation ? $userLocation->longitude : null,
                 'latitude' => $userLocation ? $userLocation->latitude : null,
                 'role' => $user->role,
+                'avatar' => $user->avatar,
+                'external_id' => $user->external_id,
+                'external_auth' => $user->external_auth,
             ];
         });
 
@@ -59,6 +62,9 @@ public function getAllUsers()
                 'longitude' => $userLocation ? $userLocation->longitude : null,
                 'latitude' => $userLocation ? $userLocation->latitude : null,
                 'role' => $user->role,
+                'avatar' => $user->avatar,
+                'external_id' => $user->external_id,
+                'external_auth' => $user->external_auth,
             ];
 
         return response()->json(['user' => $userDetails]);
