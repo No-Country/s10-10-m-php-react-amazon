@@ -8,7 +8,7 @@ import Cards from './cards';
 const ExploreCategories = () => {
     return (
         <div>
-            <h2 className='font-bold text-mainColor leading-none text-customSizeTitle my-10'>
+            <h2 className='font-bold text-mainColor leading-none text-sizeTitle my-10'>
                 Explora nuestras categorías
             </h2>
             <section className='grid grid-cols-2 justify-items-center'>
