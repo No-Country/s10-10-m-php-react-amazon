@@ -14,6 +14,11 @@ class Pack extends Model
         'price',
         'description',
         'time_limit',
-        'business_id',
+        'user_id',
+        'photo_url'
     ];
+    public function location()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

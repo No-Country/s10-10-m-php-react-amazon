@@ -17,7 +17,7 @@ class PackController extends Controller
                 'price' => 'required|numeric',
                 'description' => 'required|string|max:255',
                 'time_limit' => 'nullable|date',
-                'business_id' => 'required|exists:businesses,id',
+                'user_id' => 'required|exists:user,id',
             ]);
 
             $pack = Pack::create([
@@ -25,7 +25,7 @@ class PackController extends Controller
                 'price' => $validatedData['price'],
                 'description' => $validatedData['description'],
                 'time_limit' => $validatedData['time_limit'],
-                'business_id' => $validatedData['business_id'],
+                'user_id' => $validatedData['user_id'],
             ]);
 
             return response()->json(['Pack created' => $pack], 201);
