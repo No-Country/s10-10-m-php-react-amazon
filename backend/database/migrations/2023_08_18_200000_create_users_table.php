@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('lastname')->nullable();
             $table->string('email')->unique();
-            $table->string('password')->bcrypt()->nullable()->change();
+            $table->string('password')->bcrypt();
             $table->enum('tipo_user', ['person', 'business']);
             $table->unsignedBigInteger('location_id')->nullable();
             $table->string('address')->nullable();

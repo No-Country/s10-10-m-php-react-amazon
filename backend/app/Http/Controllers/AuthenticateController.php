@@ -41,13 +41,16 @@ class AuthenticateController extends Controller
                     'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
                 ],
                 'tipo_user' => 'required',
+                'address' => 'required',
+                'description' => 'required',
+                'category' => 'required'
             ]);
             /* $location = Location::create([
                 'address' => $validateData['address'],
                 'latitude' => $validateData['latitude'],
                 'longitude' => $validateData['longitude']
             ]); */
-
+            
             $user = User::create([
                 'name' => $validateData['name'],
                 'lastname' => $validateData['lastname'],
@@ -58,7 +61,8 @@ class AuthenticateController extends Controller
                 'description' => $validateData['description'],
                 'category' => $validateData['category'],
             ]);
-            $user->assignRole($validateData['role']);
+
+            $user->assignRole($validateData['tipo_user']);
             DB::commit();
         } catch (ValidationException $e) {
             DB::rollback();

@@ -13,14 +13,15 @@ class Roles extends Seeder
         public function run(): void
         {
             $admin = User::create([
-                'fullname' => 'Admin',
+                'name' => 'Admin',
                 'email' => 'admin@mail.com',
                 'password' => bcrypt('12345678'),
+                'tipo_user' => 'person'
             ]);
 
 
             $adminRole = Role::create(['name' => 'admin']);
-            Role::create(['name' => 'user']);
+            Role::create(['name' => 'person']);
             Role::create(['name' => 'business']);
     
             $permissions = Permission::pluck('id', 'id')->all();
