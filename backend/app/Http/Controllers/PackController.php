@@ -4,13 +4,10 @@ namespace App\Http\Controllers;
 use App\Models\Pack;
 
 use App\Models\User;
-
-
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
+
 
 class PackController extends Controller
 {
