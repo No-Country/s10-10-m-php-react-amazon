@@ -13,17 +13,38 @@ module.exports = withMT({
         mainColor: '#52525B',
         secondColorTextForms: '#ADB5BD',
         colorModal: '#D9D9D9',
-        primary: '#045162',
-        secondary: '#FFGBCC',
-        neutral1: 'black',
-        neutral2: 'grey',
-        neutral3: 'white',
-        denotativo1: 'red',
-        denotativo2: 'yellow',
-        denotativo3: 'green'
+        colorPrimary: '#045162',
+        colorSecondary: '#FFGBCC',
+        colorNeutral1: 'black',
+        colorNeutral2: '#ADB5BD',
+        colorNeutral3: 'white',
+        colorDenotativo1: 'red',
+        colorDenotativo2: 'yellow',
+        colorDenotativo3: 'green'
       },
       fontSize: {
-        customSizeTitle: '32px'
+        sizeTitle: '24px',
+        sizeSubtitle: '20px',
+        sizeText: '16px',
+        sizeButtonCTAs: '16px',
+        sizeTextButton: '14px',
+        sizeLabel: '14px',
+        sizePlaceholder: '16px',
+        sizeNote: '14px',
+        sizeCategory: '16px',
+        sizeFilter: '14px'
+      },
+      fontWeight: {
+        weightTitle: 'bold',
+        weightSubtitle: 'medium',
+        weightText: 'regular',
+        weightButtonCTAs: 'bold',
+        weightTextButton: 'bold',
+        weightLabel: 'medium',
+        weightPlaceholder: 'regular',
+        weightNote: 'regular',
+        weightCategory: 'bold',
+        weightFilter: 'medium'
       },
       width: {
         widthMainBtn: '156.72px',

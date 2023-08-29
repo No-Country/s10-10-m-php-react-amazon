@@ -1,18 +1,15 @@
 import React from "react";
 import {
   Navbar,
-  MobileNav,
   Typography,
   Button,
   IconButton,
   Collapse,
 } from "@material-tailwind/react";
 import { Link } from "wouter";
-import {useSelector} from 'react-redux'
-
+import Logo from '../../assets/logo.png';
 const BasicNavbar =() => {
   const [openNav, setOpenNav] = React.useState(false);
-  const user = useSelector((state) => state.user);
 
   React.useEffect(() => {
     window.addEventListener(
@@ -73,7 +70,7 @@ const BasicNavbar =() => {
           to="/"
           className="mr-4 cursor-pointer py-1.5 font-medium"
         >
-          {user.address? user.address :  "ListoParaLlevar"}
+          <img src={Logo} alt="Listo Para Llevar" className="object-cover object-center w-48" />
         </Link>
         <div className="hidden lg:block">{navList}</div>
         <Button variant="gradient" size="sm" className="hidden lg:inline-block">

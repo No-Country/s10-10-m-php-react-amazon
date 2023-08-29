@@ -24,7 +24,6 @@ const Form = () => {
     if (!passwordError) {
       loginUser(email, password)
         .then((response) => {
-          console.log(response);
           setInvalid(false);
           if (response.status == 200) {
             dispatch(setToken(response.data.token));
@@ -40,14 +39,14 @@ const Form = () => {
 
   return (
     <div className="flex flex-col items-center bg-mainColor h-screen">
-      <div className="p-10 font-medium text-3xl mt-8 text-white">
+      <div className="p-10  text-3xl mt-8 custom-title">
         <p>¡Te damos la bienvenida de nuevo!</p>
         <div className="flex flex-col items-center h-screen">
           <form onSubmit={handleSubmit(submit)}>
             <div className="mt-15">
               <label
                 htmlFor="email"
-                className="text-left text-secondColorTextForms font-bold -mb-3"
+                className="text-left custom-label -mb-3"
                 style={{ fontSize: "11px" }}
               >
                 Correo electrónico
@@ -70,7 +69,7 @@ const Form = () => {
               )}
               <label
                 htmlFor="password"
-                className="text-left text-secondColorTextForms font-bold -mb-3"
+                className="text-left custom-label -mb-3"
                 style={{ fontSize: "11px" }}
               >
                 Contraseña
@@ -104,7 +103,7 @@ const Form = () => {
                 label={
                   <Typography
                     variant="small"
-                    className="text-secondColorTextForms"
+                    className="custom-textButton"
                   >
                     Recuérdame
                   </Typography>
@@ -118,11 +117,11 @@ const Form = () => {
             )}
 
             <div className="mt-10 text-center">
-              <Button className="rounded-full normal-case w-72" type="submit">
+              <Button className="rounded-full normal-case w-72 custom-buttonCTAs" type="submit">
                 Iniciá sesión
               </Button>
 
-              <div className="text-secondColorTextForms mt-4 text-sm">
+              <div className="mt-4 custom-textButton">
                 <Link to="/recover-pass">¿Has olvidado la contraseña?</Link>
               </div>
             </div>

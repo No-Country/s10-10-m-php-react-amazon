@@ -84,7 +84,7 @@ const Maps = ({setData, data}) => {
       <Button
         variant="gradient"
         fullWidth
-        className="rounded-full w-widthMainBtn h-heightMainBtn mt-5"
+        className="rounded-full w-widthMainBtn h-heightMainBtn mt-5 custom-buttonCTAs"
         type="submit"
         onClick={submit}
       >

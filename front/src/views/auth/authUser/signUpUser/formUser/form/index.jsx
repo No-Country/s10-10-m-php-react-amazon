@@ -7,14 +7,17 @@ import { useState } from "react";
 import { validatePassword } from "../../../../../../utils/validatePassword";
 
 const FormUser = ({ setData, data }) => {
-  const { register, handleSubmit, formState: {errors} } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [error, setError] = useState("");
   const [isVisible, setIsVisible] = useState(true);
 
-
   const submit = (info) => {
     const passwordError = validatePassword(info.password);
-    setError(passwordError)
+    setError(passwordError);
 
     if (!passwordError) {
       const updatedData = {
@@ -26,10 +29,7 @@ const FormUser = ({ setData, data }) => {
       };
       setData(updatedData);
     }
-
   };
-
-
 
   const handleChangeVisible = () => {
     setIsVisible(!isVisible);
@@ -37,7 +37,7 @@ const FormUser = ({ setData, data }) => {
 
   return (
     <div className="flex flex-col items-center bg-mainColor h-screen">
-      <div className="w-48 leading-tight font-bold mt-8 text-white text-center">
+      <div className="custom-title leading-tight mt-8 text-center">
         <p> ¡Regístrate, compra a precios bajos y marca la diferencia!</p>
       </div>
       <div>
@@ -48,7 +48,7 @@ const FormUser = ({ setData, data }) => {
           <div className="mb-4 flex flex-col gap-4">
             <label
               htmlFor="fullname"
-              className="text-left text-secondColorTextForms font-bold -mb-3"
+              className="text-left custom-label -mb-3"
               style={{ fontSize: "11px" }}
             >
               Nombre
@@ -57,18 +57,15 @@ const FormUser = ({ setData, data }) => {
               size="lg"
               {...register("fullname", { required: true })}
               id="fullname"
-              className={`bg-white ${
-                errors.fullname ? "border-red-500" : ""
-              }`}
-
+              className={`bg-white ${errors.fullname ? "border-red-500" : ""}`}
               placeholder="Nombre"
             />
             {errors.fullname && (
-              <p className="text-red-500">Campo obligatorio</p> 
+              <p className="text-red-500">Campo obligatorio</p>
             )}
             <label
               htmlFor="lastname"
-              className="text-left text-secondColorTextForms font-bold -mb-3"
+              className="text-left custom-label -mb-3"
               style={{ fontSize: "11px" }}
             >
               Apellido
@@ -77,17 +74,15 @@ const FormUser = ({ setData, data }) => {
               size="lg"
               {...register("lastname", { required: true })}
               id="lastname"
-              className={`bg-white ${
-                errors.lastname ? "border-red-500" : ""
-              }`}
+              className={`bg-white ${errors.lastname ? "border-red-500" : ""}`}
               placeholder="Apellido"
             />
             {errors.lastname && (
-              <p className="text-red-500">Campo obligatorio</p> 
+              <p className="text-red-500">Campo obligatorio</p>
             )}
             <label
               htmlFor="email"
-              className="text-left text-secondColorTextForms font-bold -mb-3"
+              className="text-left custom-label -mb-3"
               style={{ fontSize: "11px" }}
             >
               Email
@@ -96,19 +91,14 @@ const FormUser = ({ setData, data }) => {
               size="lg"
               {...register("email", { required: true })}
               id="email"
-              className={`bg-white ${
-                errors.email ? "border-red-500" : ""
-              }`}
-
+              className={`bg-white ${errors.email ? "border-red-500" : ""}`}
               placeholder="Email"
             />
-            {errors.email && (
-              <p className="text-red-500">Campo obligatorio</p> 
-            )}
+            {errors.email && <p className="text-red-500">Campo obligatorio</p>}
             <div className="relative">
               <label
                 htmlFor="password"
-                className="text-left text-secondColorTextForms font-bold -mb-3"
+                className="text-left custom-label -mb-3"
                 style={{ fontSize: "11px" }}
               >
                 Contraseña
@@ -118,18 +108,14 @@ const FormUser = ({ setData, data }) => {
                 {...register("password", { required: true })}
                 type={isVisible ? "password" : "text"}
                 id="password"
-                className={`bg-white ${
-                  error || errors ? "border-red-500" : ""
-                }`}
-
                 placeholder="Contraseña"
-                className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+                className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:custom-placeholder focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
                 labelProps={{
                   className: "hidden",
                 }}
                 containerProps={{ className: "min-w-[100px]" }}
               />
-             
+
               <button
                 className="absolute right-2 top-1/2 text-2xl text-mainColor"
                 type="button"
@@ -137,13 +123,10 @@ const FormUser = ({ setData, data }) => {
               >
                 {isVisible ? <BsEye /> : <BsEyeSlash />}{" "}
               </button>
-             
             </div>
-            {error && (
-                <p className="text-red-500">{error}</p>
-              )}
-               {errors.password && (
-              <p className="text-red-500">Campo obligatorio</p> 
+            {error && <p className="text-red-500">{error}</p>}
+            {errors.password && (
+              <p className="text-red-500">Campo obligatorio</p>
             )}
           </div>
           <Checkbox
@@ -151,7 +134,7 @@ const FormUser = ({ setData, data }) => {
               <Typography
                 variant="small"
                 color="gray"
-                className="flex items-center font-normal text-secondColorTextForms"
+                className="flex items-center custom-textButton"
               >
                 Acepto
                 <a
@@ -168,19 +151,17 @@ const FormUser = ({ setData, data }) => {
             <Button
               variant="gradient"
               fullWidth
-              className="rounded-full"
+              className="rounded-full custom-buttonCTAs"
               type="submit"
             >
               Continuar
             </Button>
             <Typography
               variant="small"
-              className="mt-6 flex justify-between text-secondColorTextForms pb-8"
+              className="mt-6 flex justify-between custom-textButton pb-8"
             >
               <span>¿Ya tienes cuenta?</span>
-              <span className="border-b-2 border-secondColorTextForms ">
-                <Link to="/auth/user/login">Inicia sesión acá</Link>
-              </span>
+              <Link to="/auth/user/login">Inicia sesión acá</Link>
             </Typography>
           </div>
         </form>

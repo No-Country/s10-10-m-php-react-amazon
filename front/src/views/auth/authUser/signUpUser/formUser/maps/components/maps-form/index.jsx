@@ -54,10 +54,10 @@ const MapsForm = ({ setSelectedLocation, map, originRef, setMark, setDirection }
     }
   };
   return (
-    <section className="container mx-auto flex justify-center w-full">
+    <section className="container mx-auto flex justify-center w-96">
       <div className="flex flex-col space-y-2 w-full items-center">
-        <label className="text-white">Selecciona tu ubicación</label>
-        <div className="flex space-x-2 w-full justify-center shrink px-3">
+        <label className="w-full  custom-label">Selecciona tu ubicación</label>
+        <div className="flex space-x-2 w-full shrink ">
           <Autocomplete  className="w-96">
             <Input
               type="text"
@@ -83,11 +83,11 @@ const MapsForm = ({ setSelectedLocation, map, originRef, setMark, setDirection }
         <div>
           <Button
             variant="text"
-            className="rounded-full"
+            className="rounded-full custom-label"
             color="white"
             onClick={getUserLocation}
           >
-            <FontAwesomeIcon icon="crosshairs" />
+            <FontAwesomeIcon icon="crosshairs" className="text-white"/>
             <span className="px-3">Utilizar tu ubicación actual</span>
           </Button>
         </div>

@@ -30,10 +30,10 @@ function RecoverPass() {
   return (
     <div className="flex flex-col items-center bg-mainColor h-screen">
       <div className="flex flex-col items-center justify-center h-screen">
-        <div className="font-medium text-3xl text-white text-center">
+        <div className="custom-title text-center">
           <p>Establece tu nueva contraseña</p>
         </div>
-        <Typography className="text-secondColorTextForms text-center text-sm p-5">
+        <Typography className="custom-subtitle text-center p-5">
           Consejo de seguridad: opta por una combinación de letras, números y
           símbolos para hacer tu contraseña más fuerte.
         </Typography>
@@ -44,7 +44,7 @@ function RecoverPass() {
           <div>
             <label
               htmlFor="password"
-              className="text-left text-secondColorTextForms font-bold -mb-3"
+              className="text-left custom-label -mb-3"
               style={{ fontSize: "11px" }}
             >
               Ingresá nueva contraseña
@@ -67,7 +67,7 @@ function RecoverPass() {
             )}
             <label
               htmlFor="newPassword"
-              className="text-left text-secondColorTextForms font-bold -mb-3"
+              className="text-left custom-label -mb-3"
               style={{ fontSize: "11px" }}
             >
               Confirmá la contraseña
@@ -101,7 +101,7 @@ function RecoverPass() {
               label={
                 <Typography
                   variant="small"
-                  className="text-secondColorTextForms"
+                  className="custom-textButton"
                 >
                   Recuérdame
                 </Typography>
@@ -115,7 +115,7 @@ function RecoverPass() {
           )}
 
           <div className="mt-10 text-center">
-            <Button className="rounded-full normal-case w-72" type="submit">
+            <Button className="rounded-full normal-case w-72 custom-buttonCTAs" type="submit">
               Establecer nueva contraseña
             </Button>
           </div>
