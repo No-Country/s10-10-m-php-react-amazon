@@ -25,6 +25,21 @@ Route::group(['middleware' => 'api',], function ($router) {
      Route::get('verifyToken', 'App\Http\Controllers\AuthenticateController@verifyToken');
      Route::post('update', 'App\Http\Controllers\AuthenticateController@update');
      Route::post('delete', 'App\Http\Controllers\AuthenticateController@delete');
+
+
+     //Rutas de Business
+    Route::post('business', 'App\Http\Controllers\BusinessController@store');
+    Route::get('business/{id}', 'App\Http\Controllers\BusinessController@show');
+    Route::get('business', 'App\Http\Controllers\BusinessController@showAll');
+    Route::put('business/update/{id}', 'App\Http\Controllers\BusinessController@update');
+    Route::delete('business/delete/{id}', 'App\Http\Controllers\BusinessController@destroy');
+
+    //Rutas de Pack
+    Route::post('pack', 'App\Http\Controllers\PackController@store');
+    Route::get('pack/{id}', 'App\Http\Controllers\PackController@show');
+    Route::put('pack/update/{id}', 'App\Http\Controllers\PackController@update');
+    Route::delete('pack/delete/{id}', 'App\Http\Controllers\PackController@destroy');
+
 });
 
 
