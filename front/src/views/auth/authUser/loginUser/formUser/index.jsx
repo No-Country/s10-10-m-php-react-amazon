@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { navigate } from "wouter/use-location";
+import { Link } from "wouter";
 import { loginUser } from "../../../../../api/authApi";
 import { setToken } from "../../../../../features/userSlice";
 import { validatePassword } from "../../../../../utils/validatePassword";
@@ -15,24 +16,25 @@ const Form = () => {
   } = useForm();
   const [error, setError] = useState("");
   const dispatch = useDispatch();
-  const [invalid, setInvalid] = useState(false)
+  const [invalid, setInvalid] = useState(false);
   const submit = (data) => {
-    const {email, password} = data
+    const { email, password } = data;
     const passwordError = validatePassword(password);
-    setError(passwordError)
+    setError(passwordError);
     if (!passwordError) {
-      loginUser(email, password).then(response => {
-        console.log(response)
-        setInvalid(false)
-        if (response.status == 200) {
-          dispatch(setToken(response.data.token))
-          navigate('/')
-        }
-      }).catch(err => {
-        console.log(err)
-        setInvalid(true)
-      })
-      
+      loginUser(email, password)
+        .then((response) => {
+          console.log(response);
+          setInvalid(false);
+          if (response.status == 200) {
+            dispatch(setToken(response.data.token));
+            navigate("/");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setInvalid(true);
+        });
     }
   };
 
@@ -62,7 +64,9 @@ const Form = () => {
                 placeholder="Correo electrónico"
               />
               {errors.email && (
-                <p className="text-red-500"  style={{ fontSize: '14px' }}>Campo obligatorio</p>
+                <p className="text-red-500" style={{ fontSize: "14px" }}>
+                  Campo obligatorio
+                </p>
               )}
               <label
                 htmlFor="password"
@@ -84,10 +88,14 @@ const Form = () => {
                 placeholder="Contraseña"
               />
               {error && (
-                <p className="text-red-500"  style={{ fontSize: '14px' }}>{error}</p>
+                <p className="text-red-500" style={{ fontSize: "14px" }}>
+                  {error}
+                </p>
               )}
               {errors.password && (
-                <p className="text-red-500" style={{ fontSize: '14px' }}>Campo obligatorio</p>
+                <p className="text-red-500" style={{ fontSize: "14px" }}>
+                  Campo obligatorio
+                </p>
               )}
             </div>
             <div className="mt-3">
@@ -103,7 +111,11 @@ const Form = () => {
                 }
               />
             </div>
-            {invalid && <p className="text-red-500"  style={{ fontSize: '14px' }}>Email y/o contraseña incorrectos</p>}
+            {invalid && (
+              <p className="text-red-500" style={{ fontSize: "14px" }}>
+                Email y/o contraseña incorrectos
+              </p>
+            )}
 
             <div className="mt-10 text-center">
               <Button className="rounded-full normal-case w-72" type="submit">
@@ -111,9 +123,7 @@ const Form = () => {
               </Button>
 
               <div className="text-secondColorTextForms mt-4 text-sm">
-                <span>
-                  <a href="#">¿Has olvidado la contraseña?</a>
-                </span>
+                <Link to="/recover-pass">¿Has olvidado la contraseña?</Link>
               </div>
             </div>
           </form>
