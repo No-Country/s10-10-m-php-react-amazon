@@ -40,6 +40,7 @@ Route::group(['middleware' => 'api',], function ($router) {
     Route::delete('business/delete/{id}', 'App\Http\Controllers\BusinessController@destroy');
 
     //Rutas de Pack
+    Route::post('pack/filter', 'App\Http\Controllers\PackController@filter');
     Route::post('pack', 'App\Http\Controllers\PackController@store');
     Route::get('pack/{id}', 'App\Http\Controllers\PackController@show');
     Route::put('pack/update/{id}', 'App\Http\Controllers\PackController@update');

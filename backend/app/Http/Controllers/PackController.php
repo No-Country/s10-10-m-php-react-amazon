@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Models\Pack;
-use Illuminate\Validation\ValidationException;
+use App\Models\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class PackController extends Controller
 {
@@ -30,6 +31,26 @@ class PackController extends Controller
 
             return response()->json(['Pack created' => $pack], 201);
 
+        } catch (ValidationException $e) {
+            return response()->json([
+                'error' => 'Invalidated data',
+                'message' => $e->getMessage(),
+                'errors' => $e->errors()
+            ], 400);
+        }
+    }
+
+    public function filter(Request $request){
+        try{
+            $validatedData = $request->validate([
+                'category' => 'required'
+            ]);
+            $user= User::Where("tipo_user","business")
+            ->where("category",$validatedData["category"])
+            ->with("pack")
+            ->get();
+
+            return response()->json(['Business' => $user], 201);
         } catch (ValidationException $e) {
             return response()->json([
                 'error' => 'Invalidated data',

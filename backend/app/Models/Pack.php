@@ -16,4 +16,9 @@ class Pack extends Model
         'time_limit',
         'business_id',
     ];
+
+///relacion de pack a user    
+    public function user(){
+        return $this->HasMany(User::class);
+    }
 }
