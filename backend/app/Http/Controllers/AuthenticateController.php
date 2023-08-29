@@ -59,8 +59,8 @@ class AuthenticateController extends Controller
                 'password' => bcrypt($validateData['password']),
                 'tipo_user' => $validateData['tipo_user'],
                 'address' => $validateData['address'],
-                'description' => $validateData['description'],
-                'category' => $validateData['category'],
+                'description' => $validateData['description'] ?? null,
+                'category' => $validateData['category'] ?? null,
             ]);
 
             $user->assignRole($validateData['tipo_user']);
