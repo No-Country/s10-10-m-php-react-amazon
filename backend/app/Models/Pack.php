@@ -17,8 +17,9 @@ class Pack extends Model
         'user_id',
         'photo_url'
     ];
-    public function location()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
+
+///relacion de pack a user    
+    public function user(){
+        return $this->HasMany(User::class);
+
 }
