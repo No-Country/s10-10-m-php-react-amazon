@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 
 
-
 class AuthenticateController extends Controller
 {
         /**
@@ -32,7 +31,7 @@ class AuthenticateController extends Controller
         try{
             DB::beginTransaction();
             $validateData = $request->validate([
-                'fullname' => 'required',
+                'name' => 'required',
                 'lastname' => 'required',
                 'email' => 'required|email|unique:users',
                 'password' => [
@@ -41,25 +40,34 @@ class AuthenticateController extends Controller
                     'min:6',
                     'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
                 ],
-                'latitude' => 'required',
-                'longitude' => 'required',
+                'tipo_user' => 'required',
                 'address' => 'required',
-                'role' => 'required|in:user,business',
+                'description' => 'nullable',
+                'category' => 'nullable',
+                'latitude' => 'nullable',
+                'longitude' => 'nullable'
+            ]);
+            
+
+            
+            $user = User::create([
+                'name' => $validateData['name'],
+                'lastname' => $validateData['lastname'],
+                'email' => $validateData['email'],
+                'password' => bcrypt($validateData['password']),
+                'tipo_user' => $validateData['tipo_user'],
+                'address' => $validateData['address'],
+                'description' => $validateData['description'] ?? null,
+                'category' => $validateData['category'] ?? null,
             ]);
             $location = Location::create([
                 'address' => $validateData['address'],
                 'latitude' => $validateData['latitude'],
                 'longitude' => $validateData['longitude']
-            ]);
-
-            $user = User::create([
-                'fullname' => $validateData['fullname'],
-                'lastname' => $validateData['lastname'],
-                'email' => $validateData['email'],
-                'password' => bcrypt($validateData['password']),
-                'location_id' => $location->id
-            ]);
-            $user->assignRole($validateData['role']);
+            ]); 
+            $user->location_id = $location->id;
+            $user->assignRole($validateData['tipo_user']);
+            $user->save();
             DB::commit();
         } catch (ValidationException $e) {
             DB::rollback();
@@ -199,7 +207,7 @@ class AuthenticateController extends Controller
                 'min:6',
                 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
             ],
-            'address' => 'string',
+            'tipo_user' => 'required',
         ];
 
         $validator = Validator::make(request()->only(array_keys($rules)), $rules);

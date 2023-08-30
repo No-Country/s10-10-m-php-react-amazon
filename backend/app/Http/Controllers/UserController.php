@@ -17,15 +17,19 @@ public function getAllUsers()
 
         $userDetails = $users->map(function ($user) {
            $userLocation = $user->location;
+    
 
             return [
-                'fullname' => $user->fullname,
+                'name' => $user->name,
                 'lastname' => $user->lastname,
                 'email' => $user->email,
-                'address' => $userLocation ? $userLocation->address : null,
+                'address' => $user->address,
                 'longitude' => $userLocation ? $userLocation->longitude : null,
                 'latitude' => $userLocation ? $userLocation->latitude : null,
-                'role' => $user->role,
+                // 'role' => $user->role,
+                'avatar' => $user->avatar,
+                'external_id' => $user->external_id,
+                'external_auth' => $user->external_auth,
             ];
         });
 
@@ -52,13 +56,18 @@ public function getAllUsers()
  $userLocation = $user->location;
 
             return [
-                'fullname' => $user->fullname,
+                'name' => $user->name,
                 'lastname' => $user->lastname,
                 'email' => $user->email,
-                'address' => $userLocation ? $userLocation->address : null,
+                'address' => $user->address,
                 'longitude' => $userLocation ? $userLocation->longitude : null,
                 'latitude' => $userLocation ? $userLocation->latitude : null,
                 'role' => $user->role,
+                'avatar' => $user->avatar,
+                'external_id' => $user->external_id,
+                'external_auth' => $user->external_auth,
+                'description' => $user->description,
+                'category' => $user->category,
             ];
 
         return response()->json(['user' => $userDetails]);
