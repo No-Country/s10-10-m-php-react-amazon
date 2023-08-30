@@ -10,3 +10,7 @@ export const loginUser = (email, password) => {
 export const signUpUser = (userData) => {
   return axios.post(`${BASE_URL}/register`, userData);
 };
+
+export const signUpShop = (shopData) => {
+  return axios.post(`${BASE_URL}/register`, shopData)
+}
