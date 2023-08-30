@@ -1,6 +1,6 @@
 import React from "react";
 import ItemDetail from "./itemDetail";
-import { params } from 'wouter';
+// import { params } from 'wouter';
 
 const ItemDetailContainer = (props) => {
   const [isLoading, setIsLoading] = useState(true);
