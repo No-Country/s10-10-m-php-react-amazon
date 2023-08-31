@@ -13,4 +13,5 @@ class Role extends Model
         'name',
         'guard_name'
     ];
+    protected $hidden = ['created_at','updated_at','pivot'];
 }

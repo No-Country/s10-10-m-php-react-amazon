@@ -56,7 +56,6 @@ class AuthenticateController extends Controller
                 'email' => $validateData['email'],
                 'password' => bcrypt($validateData['password']),
                 'tipo_user' => $validateData['tipo_user'],
-                'address' => $validateData['address'],
                 'description' => $validateData['description'] ?? null,
                 'category' => $validateData['category'] ?? null,
             ]);
@@ -102,6 +101,7 @@ class AuthenticateController extends Controller
 
             $cookie = cookie('jwt_token', $token, 60, null, null, true, true);
             $user = auth()->user();
+            $user->load('location');
             return response()->json([
                 'token' => $token,
                 'user' => $user,

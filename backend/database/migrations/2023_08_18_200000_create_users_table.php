@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('password')->bcrypt();
             $table->enum('tipo_user', ['person', 'business']);
             $table->unsignedBigInteger('location_id')->nullable();
-            $table->string('address')->nullable();
             $table->text('description')->nullable();
             $table->string('category')->nullable();
             $table->string('avatar')->nullable();

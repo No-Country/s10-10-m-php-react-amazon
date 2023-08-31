@@ -19,7 +19,7 @@ return new class extends Migration
             $table->datetime('time_limit')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
-
+            $table->string('photo_url')->nullable();
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
