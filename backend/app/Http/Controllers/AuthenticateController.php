@@ -40,7 +40,7 @@ class AuthenticateController extends Controller
                     'min:6',
                     'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
                 ],
-                'tipo_user' => 'required',
+                'type' => 'required',
                 'address' => 'required',
                 'description' => 'nullable',
                 'category' => 'nullable',
@@ -55,7 +55,7 @@ class AuthenticateController extends Controller
                 'lastname' => $validateData['lastname'],
                 'email' => $validateData['email'],
                 'password' => bcrypt($validateData['password']),
-                'tipo_user' => $validateData['tipo_user'],
+                'type' => $validateData['type'],
                 'description' => $validateData['description'] ?? null,
                 'category' => $validateData['category'] ?? null,
             ]);
@@ -65,7 +65,7 @@ class AuthenticateController extends Controller
                 'longitude' => $validateData['longitude']
             ]); 
             $user->location_id = $location->id;
-            $user->assignRole($validateData['tipo_user']);
+            $user->assignRole($validateData['type']);
             $user->save();
             DB::commit();
         } catch (ValidationException $e) {
@@ -207,7 +207,7 @@ class AuthenticateController extends Controller
                 'min:6',
                 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
             ],
-            'tipo_user' => 'required',
+            'type' => 'required',
         ];
 
         $validator = Validator::make(request()->only(array_keys($rules)), $rules);
