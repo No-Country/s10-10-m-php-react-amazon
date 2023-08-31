@@ -16,7 +16,7 @@ class Roles extends Seeder
                 'name' => 'Admin',
                 'email' => 'admin@mail.com',
                 'password' => bcrypt('12345678'),
-                'tipo_user' => 'person'
+                'type' => 'person'
             ]);
 
 
