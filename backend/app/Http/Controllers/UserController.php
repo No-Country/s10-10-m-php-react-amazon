@@ -7,9 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\User;
 
-
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Cloudinary;
 class UserController extends Controller
 {
+
 public function getAllUsers()
 {
     try {
@@ -23,7 +26,7 @@ public function getAllUsers()
                 'name' => $user->name,
                 'lastname' => $user->lastname,
                 'email' => $user->email,
-                'address' => $user->address,
+                'address' => $userLocation ? $userLocation->address : null,
                 'longitude' => $userLocation ? $userLocation->longitude : null,
                 'latitude' => $userLocation ? $userLocation->latitude : null,
                 // 'role' => $user->role,
@@ -59,7 +62,7 @@ public function getAllUsers()
                 'name' => $user->name,
                 'lastname' => $user->lastname,
                 'email' => $user->email,
-                'address' => $user->address,
+                'address' => $userLocation ? $userLocation->address : null,
                 'longitude' => $userLocation ? $userLocation->longitude : null,
                 'latitude' => $userLocation ? $userLocation->latitude : null,
                 'role' => $user->role,
@@ -126,6 +129,46 @@ public function update(Request $request, User $user)
         return response()->json(['error' => 'Validation error', 'errors' => $errors], Response::HTTP_UNPROCESSABLE_ENTITY);
     } catch (\Exception $e) {
         return response()->json(['error' => 'An error occurred while updating user', 'message' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
+    }
+}
+public function avatar(Request $request)
+{
+    try {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png|max:4096',
+        ], [
+            'image.required' => 'An image is required.',
+            'image.image' => 'The uploaded file must be an image.',
+            'image.mimes' => 'The image must be in JPEG or PNG format.',
+            'image.max' => 'The image size must not exceed 2 MB.',
+        ]);
+        
+        $uploadedFile = $request->file('image');
+        $user = Auth::user();
+        $imageUrl = Cloudinary::upload($uploadedFile->getRealPath());
+        $user->avatar = $imageUrl->getSecurePath();
+        $user->save();
+        return response()->json(['message' => $user->avatar]);
+    } catch (\Illuminate\Validation\ValidationException $validationException) {
+        $errors = $validationException->validator->getMessageBag()->toArray();
+        return response()->json(['error' => 'Validation error', 'errors' => $errors], Response::HTTP_UNPROCESSABLE_ENTITY);
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'An error occurred while updating user', 'message' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
+    }   
+}
+public function deleteImage($id) {
+
+    try {
+        $user = Auth::user();
+        $publicId = pathinfo(parse_url($user->avatar, PHP_URL_PATH), PATHINFO_FILENAME);
+        Cloudinary::destroy($publicId);
+        $user->avatar = null;
+        $user->save();
+        return response()->json(['photo' => 'user photo deleted successfully'], 200);
+    } catch (ValidationException $e) {
+        return response()->json(['error' => 'Invalid ID'], 400);
+    } catch (ModelNotFoundException $e) {
+        return response()->json(['error' => 'user not found'], 404);
     }
 }
 }
