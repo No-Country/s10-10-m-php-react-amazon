@@ -6,6 +6,9 @@ import SignUpUser from "../views/auth/authUser/signUpUser";
 import RecoverPass from "../views/auth/authUser/loginUser/recoverPass";
 import SignUpShop from "../views/auth/authShop/signUpShop"
 import LoginShop from "../views/auth/authShop/loginShop";
+import Dashboard from "../views/dashboard";
+import ItemDetailContainer from "../components/itemDetailContainer";
+
 const AppRouter = () => {
   return (
     <Router>
@@ -16,6 +19,8 @@ const AppRouter = () => {
       <Route path="/recover-pass" component={RecoverPass} />
       <Route path="/auth/shop/signup" component={SignUpShop} />
       <Route path="/auth/shop/login" component={LoginShop} />
+      <Route path="/dashboard" component={Dashboard}/>
+      <Route path='/detail/:id' component={ItemDetailContainer}/>
     </Router>
   );
 };
