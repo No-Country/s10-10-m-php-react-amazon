@@ -22,11 +22,14 @@ const Mission = () => {
                         Quiero salvar comida
                     </Button>
                 </Link>
-                <Button
-                    className="rounded-full normal-case p-0 bg-white text-sizeTextButton text-mainColor border border-mainColor w-widthMainBtn h-heightMainBtn"
-                >
-                    Quiero vender comida
-                </Button>
+                <Link to="/auth/shop/login">
+
+                    <Button
+                        className="rounded-full normal-case p-0 bg-white text-sizeTextButton text-mainColor border border-mainColor w-widthMainBtn h-heightMainBtn"
+                    >
+                        Quiero vender comida
+                    </Button>
+                </Link>
             </div>
         </div>
     );
