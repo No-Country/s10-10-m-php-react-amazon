@@ -1,13 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import ItemDetail from "./itemDetail";
-import { params } from 'wouter';
+import { Spinner } from "@material-tailwind/react";
 
-const ItemDetailContainer = (props) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [item, setItem] = useState({});
-  const [match, params] = props;
 
-  const id = params.id;
+const ItemDetailContainer = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
 
   /** TO DO consultar al back */
   return (
@@ -18,7 +16,7 @@ const ItemDetailContainer = (props) => {
         </div>
       ) : (
         <div>
-          <ItemDetail item={item} key={item.id} />
+          <ItemDetail />
         </div>
       )}
     </div>
