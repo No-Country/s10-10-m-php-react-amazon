@@ -36,3 +36,12 @@
 .custom-filter {
   @apply text-colorNeutral1 text-sizeFilter font-weightFilter
 }
+
+
+.swiper-slide{
+  width: 240px !important;
+}
+
+.swiper-wrapper{
+  background: red;
+}
