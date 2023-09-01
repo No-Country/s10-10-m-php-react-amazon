@@ -41,7 +41,7 @@ class AuthenticateController extends Controller
                     'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
                 ],
                 'type' => 'required',
-                'address' => 'required',
+                'address' => 'nullable', //le agregue el nullable
                 'description' => 'nullable',
                 'category' => 'nullable',
                 'latitude' => 'nullable',
@@ -59,12 +59,18 @@ class AuthenticateController extends Controller
                 'description' => $validateData['description'] ?? null,
                 'category' => $validateData['category'] ?? null,
             ]);
+           // Validar si se proporcionaron valores para latitude y longitude antes de crear Location
+        if (isset($validateData['latitude']) && isset($validateData['longitude']) && isset($validateData['address'])) {
             $location = Location::create([
                 'address' => $validateData['address'],
                 'latitude' => $validateData['latitude'],
-                'longitude' => $validateData['longitude']
-            ]); 
+                'longitude' => $validateData['longitude'],
+            ]);
+
             $user->location_id = $location->id;
+        } else {
+            $location = null;
+        }
             $user->assignRole($validateData['type']);
             $user->save();
             DB::commit();

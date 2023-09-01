@@ -65,7 +65,7 @@ public function getAllUsers()
                 'address' => $userLocation ? $userLocation->address : null,
                 'longitude' => $userLocation ? $userLocation->longitude : null,
                 'latitude' => $userLocation ? $userLocation->latitude : null,
-                'role' => $user->role,
+                'type' => $user->type,
                 'avatar' => $user->avatar,
                 'external_id' => $user->external_id,
                 'external_auth' => $user->external_auth,
@@ -85,7 +85,7 @@ public function update(Request $request, User $user)
 {
     try {
         $fields = [
-            'fullname',
+            'name',
             'lastname',
             'email',
             'password',
