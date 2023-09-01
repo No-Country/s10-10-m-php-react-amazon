@@ -14,9 +14,15 @@ const Form = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+
   const [error, setError] = useState("");
+
   const dispatch = useDispatch();
+
   const [invalid, setInvalid] = useState(false);
+
+
   const submit = (data) => {
     const { email, password } = data;
     const passwordError = validatePassword(password);
@@ -36,6 +42,8 @@ const Form = () => {
         });
     }
   };
+
+  
 
   return (
     <div className="flex flex-col items-center bg-mainColor h-screen">

@@ -4,6 +4,8 @@ import Home from "../views/home";
 import LoginUser from "../views/auth/authUser/loginUser";
 import SignUpUser from "../views/auth/authUser/signUpUser";
 import RecoverPass from "../views/auth/authUser/loginUser/recoverPass";
+import SignUpShop from "../views/auth/authShop/signUpShop"
+import LoginShop from "../views/auth/authShop/loginShop";
 import Dashboard from "../views/dashboard";
 import ItemDetailContainer from "../components/itemDetailContainer";
 
