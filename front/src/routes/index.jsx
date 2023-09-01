@@ -13,7 +13,7 @@ const AppRouter = () => {
   return (
     <Router>
       <BasicNavbar />
-      <Route path="/Detail" component={ItemDetailContainer} />
+      <Route path="/detail" component={ItemDetailContainer} />
       <Route path="/" component={Home} />
       <Route path="/auth/user/signup" component={SignUpUser} />
       <Route path="/auth/user/login" component={LoginUser} />
