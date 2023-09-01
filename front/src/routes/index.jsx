@@ -13,14 +13,13 @@ const AppRouter = () => {
   return (
     <Router>
       <BasicNavbar />
+      <Route path="/detail" component={ItemDetailContainer} />
       <Route path="/" component={Home} />
       <Route path="/auth/user/signup" component={SignUpUser} />
       <Route path="/auth/user/login" component={LoginUser} />
       <Route path="/recover-pass" component={RecoverPass} />
-      <Route path="/auth/shop/signup" component={SignUpShop} />
-      <Route path="/auth/shop/login" component={LoginShop} />
-      <Route path="/dashboard" component={Dashboard}/>
-      <Route path='/detail/:id' component={ItemDetailContainer}/>
+      <Route path="/dashboard" component={Dashboard} />
+      <Route path='/detail/:id' component={ItemDetailContainer} />
     </Router>
   );
 };

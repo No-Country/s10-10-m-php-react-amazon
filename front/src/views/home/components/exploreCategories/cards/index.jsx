@@ -4,9 +4,11 @@ import {
 } from "@material-tailwind/react";
 
 
+
 const Cards = ({ img, title }) => {
+
     return (
-        <Card className="overflow-hidden w-widthMainBtn h-heightCardsHome rounded-sm ">
+        <Card className=" Card overflow-hidden w-[220px] h-[158.506px] rounded-sm ">
             <CardHeader
                 floated={false}
                 shadow={false}
@@ -16,7 +18,7 @@ const Cards = ({ img, title }) => {
                 <img
                     src={img}
                     alt="ui/ux review check"
-                    className="h-heightImgCardHome"
+                    className="h-full w-full"
                 />
             </CardHeader>
             <div className="flex justify-center items-center text-black h-10">
