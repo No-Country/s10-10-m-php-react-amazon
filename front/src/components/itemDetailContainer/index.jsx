@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import ItemDetail from "./itemDetail";
 import { Spinner } from "@material-tailwind/react";
 
-
-const ItemDetailContainer = () => {
+const ItemDetailContainer = (props) => {
   const [isLoading, setIsLoading] = useState(false);
+
 
 
   /** TO DO consultar al back */

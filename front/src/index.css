@@ -28,3 +28,20 @@
 .custom-label {
   @apply text-colorNeutral2 text-sizeLabel font-weightLabel
 }
+
+.custom-text {
+  @apply text-colorNeutral1 text-sizeText font-weightText
+}
+
+.custom-filter {
+  @apply text-colorNeutral1 text-sizeFilter font-weightFilter
+}
+
+
+.swiper-slide{
+  width: 240px !important;
+}
+
+.swiper-wrapper{
+  background: red;
+}
