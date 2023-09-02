@@ -27,7 +27,7 @@ const BasicNavbar = () => {
         color="blue-gray"
         className="p-1 font-bold"
       >
-        <Link to="/">¿Cómo funciona?</Link>
+        <Link to="/page-not-found">¿Cómo funciona?</Link>
       </Typography>
       <Typography
         as="li"
@@ -35,7 +35,7 @@ const BasicNavbar = () => {
         color="blue-gray"
         className="p-1 font-bold"
       >
-        <Link to="/">Sobre nosotros</Link>
+        <Link to="/page-not-found">Sobre nosotros</Link>
       </Typography>
       <Typography
         as="li"
@@ -43,7 +43,7 @@ const BasicNavbar = () => {
         color="blue-gray"
         className="p-1 font-bold"
       >
-        <Link to="/">Ayuda</Link>
+        <Link to="/page-not-found">Ayuda</Link>
       </Typography>
     </ul>
   );
@@ -61,19 +61,19 @@ const BasicNavbar = () => {
 
         <div className="hidden lg:block">{navList}</div>
         <div>
-        <Typography
-          variant="small"
-          className="font-bold text-colorPrimary hidden lg:inline-block"
-        >
-          <Link to="/auth/user/signup">Registrarte</Link>
-        </Typography>
-        <Button
-          size="sm"
-          className="ml-10 hidden lg:inline-block bg-colorPrimary"
-          style={{ textTransform: "none" }}
-        >
-          <Link to="/auth/user/login">Ingresar</Link>
-        </Button>
+          <Typography
+            variant="small"
+            className="font-bold text-colorPrimary hidden lg:inline-block"
+          >
+            <Link to="/auth/user/signup">Registrarte</Link>
+          </Typography>
+          <Button
+            size="sm"
+            className="ml-10 hidden lg:inline-block bg-colorPrimary"
+            style={{ textTransform: "none" }}
+          >
+            <Link to="/auth/user/login">Ingresar</Link>
+          </Button>
         </div>
 
         <IconButton
