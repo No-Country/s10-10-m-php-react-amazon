@@ -13,5 +13,8 @@ class Location extends Model
         'address',
         'latitude',
         'longitude',
+        'city',
+        'province',
+        'postal_code'
     ];
 }
