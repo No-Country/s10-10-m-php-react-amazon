@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\LocationController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -44,6 +45,7 @@ Route::group(['middleware' => 'api',], function ($router) {
 
         Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.update');
         Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.update');
+        Route::post('/users/avatar', [UserController::class, 'avatar'])->name('users.avatar');
         Route::delete('/users/avatar/delete/{id}', [UserController::class, 'deleteImage'])->name('users.deleteImage');
 
         Route::post('business', 'App\Http\Controllers\BusinessController@store');
@@ -57,6 +59,6 @@ Route::group(['middleware' => 'api',], function ($router) {
         Route::post('pack/image/{id}', 'App\Http\Controllers\PackController@image');
         Route::delete('pack/image/delete/{id}', 'App\Http\Controllers\PackController@deleteImage');
 
-        Route::post('/users/avatar', [UserController::class, 'avatar'])->name('users.avatar');
+        Route::patch('/location', [LocationController::class, 'update'])->name('location.update');
     });
 });

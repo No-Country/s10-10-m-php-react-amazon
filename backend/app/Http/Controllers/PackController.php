@@ -49,7 +49,7 @@ class PackController extends Controller
             $validatedData = $request->validate([
                 'category' => 'required'
             ]);
-            $user= User::Where("tipo_user","business")
+            $user= User::Where("type","business")
             ->where("category",$validatedData["category"])
             ->with("pack")
             ->get();
