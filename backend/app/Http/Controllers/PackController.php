@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 use App\Models\Pack;
+
 use App\Models\User;
+
+
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -13,20 +18,20 @@ class PackController extends Controller
 
         try {
 
+
             $validatedData = $request->validate([
                 'name' => 'required|string|max:255',
                 'price' => 'required|numeric',
                 'description' => 'required|string|max:255',
-                'time_limit' => 'nullable|date',
-                'business_id' => 'required|exists:businesses,id',
+                'time_limit' => 'nullable|date'
             ]);
-
+            $user = Auth::user();
             $pack = Pack::create([
                 'name' => $validatedData['name'],
                 'price' => $validatedData['price'],
                 'description' => $validatedData['description'],
                 'time_limit' => $validatedData['time_limit'],
-                'business_id' => $validatedData['business_id'],
+                'user_id' => $user->id,
             ]);
 
             return response()->json(['Pack created' => $pack], 201);
@@ -79,15 +84,13 @@ class PackController extends Controller
                     'name' => 'required|string|max:255',
                     'price' => 'required|numeric',
                     'description' => 'required|string|max:255',
-                    'time_limit' => 'nullable|date',
-                    'business_id' => 'required|exists:businesses,id',
+                    'time_limit' => 'nullable|date'
                 ]);
 
                 $pack->name = $validatedData['name'];
                 $pack->price = $validatedData['price'];
                 $pack->description = $validatedData['description'];
                 $pack->time_limit = $validatedData['time_limit'];
-                $pack->business_id = $validatedData['business_id'];
                 $pack->save();
 
                 return response()->json(['Pack updated' => $pack], 200);
