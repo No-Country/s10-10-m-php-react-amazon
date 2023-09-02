@@ -26,7 +26,12 @@ Route::group(['middleware' => 'api',], function ($router) {
     Route::get('verifyToken', 'App\Http\Controllers\AuthenticateController@verifyToken');
     Route::post('update', 'App\Http\Controllers\AuthenticateController@update');
     Route::post('delete', 'App\Http\Controllers\AuthenticateController@delete');
-    
+
+    //Ruta de favoritos
+    Route::get('favorite/{id}', 'App\Http\Controllers\FavoriteController@index');
+    Route::post('favorite', 'App\Http\Controllers\FavoriteController@store');   
+    Route::delete('favorite/delete/{id}', 'App\Http\Controllers\FavoriteController@destroy');
+
     //Rutas de usuario
     Route::get('/users/all', [UserController::class, 'getAllUsers'])->name('users.all');
     Route::get('/users/{userId}', [UserController::class, 'getUserById'])->name('users.get');
