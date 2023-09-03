@@ -12,6 +12,7 @@ class Purchase extends Model
     protected $fillable = [
         'pack_id',
         'user_id',
-        'code'
+        'code',
+        'status'
     ];
 }
