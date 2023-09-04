@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
+
 use Cloudinary;
 class PackController extends Controller
 {
@@ -133,7 +134,7 @@ class PackController extends Controller
             $imageUrl = Cloudinary::upload($uploadedFile->getRealPath());
             $pack->photo_url = $imageUrl->getSecurePath();
 
-            $pack->save(); 
+            $pack->save();
             return response()->json(['message' => $pack->photo_url]);
         } catch (\Illuminate\Validation\ValidationException $validationException) {
             $errors = $validationException->validator->getMessageBag()->toArray();

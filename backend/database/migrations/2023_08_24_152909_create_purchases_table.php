@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('pack_id');
             $table->unsignedBigInteger('user_id');
-            $table->integer('code');
+            $table->string('code');
+            $table->string('status');
 
             $table->foreign('pack_id')
             ->references('id')
