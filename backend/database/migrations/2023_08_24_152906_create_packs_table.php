@@ -11,24 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('favorites', function (Blueprint $table) {
+        Schema::create('packs', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->float('price');
+            $table->text('description');
+            $table->datetime('time_limit')->nullable();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('business_id');
-            
+            $table->timestamps();
+            $table->string('photo_url')->nullable();
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-            $table->timestamps();
+
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('favorites');
+        Schema::dropIfExists('packs');
     }
 };

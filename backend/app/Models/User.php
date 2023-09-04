@@ -20,8 +20,7 @@ class User extends Authenticatable implements JWTSubject
         'email',
         'password',
         'location_id',
-        'tipo_user',
-        'address',
+        'type',
         'description',
         'category',
         'avatar',
@@ -55,7 +54,7 @@ class User extends Authenticatable implements JWTSubject
 
 ///relacion entre user a pack
     public function pack(){
-        return $this->belongsTo(Pack::class);
+        return $this->hasMany(Pack::class);
     }
 
 //Agrege esta funcion para relacionar la location con el user y poder obtenerlo para mostarlo en getAllUsers

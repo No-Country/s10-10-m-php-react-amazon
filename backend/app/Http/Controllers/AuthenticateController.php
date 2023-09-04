@@ -40,33 +40,24 @@ class AuthenticateController extends Controller
                     'min:6',
                     'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
                 ],
-                'tipo_user' => 'required',
-                'address' => 'required',
+                'type' => 'required',
                 'description' => 'nullable',
-                'category' => 'nullable',
-                'latitude' => 'nullable',
-                'longitude' => 'nullable'
+                'category' => 'nullable'
             ]);
-            
-
             
             $user = User::create([
                 'name' => $validateData['name'],
                 'lastname' => $validateData['lastname'],
                 'email' => $validateData['email'],
                 'password' => bcrypt($validateData['password']),
-                'tipo_user' => $validateData['tipo_user'],
-                'address' => $validateData['address'],
+                'type' => $validateData['type'],
                 'description' => $validateData['description'] ?? null,
                 'category' => $validateData['category'] ?? null,
             ]);
-            $location = Location::create([
-                'address' => $validateData['address'],
-                'latitude' => $validateData['latitude'],
-                'longitude' => $validateData['longitude']
-            ]); 
-            $user->location_id = $location->id;
-            $user->assignRole($validateData['tipo_user']);
+
+            $location = Location::create([]);
+            $user->location_id = $location->id; 
+            $user->assignRole($validateData['type']);
             $user->save();
             DB::commit();
         } catch (ValidationException $e) {
@@ -102,6 +93,7 @@ class AuthenticateController extends Controller
 
             $cookie = cookie('jwt_token', $token, 60, null, null, true, true);
             $user = auth()->user();
+            $user->load('location');
             return response()->json([
                 'token' => $token,
                 'user' => $user,
@@ -207,7 +199,7 @@ class AuthenticateController extends Controller
                 'min:6',
                 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
             ],
-            'tipo_user' => 'required',
+            'type' => 'required',
         ];
 
         $validator = Validator::make(request()->only(array_keys($rules)), $rules);

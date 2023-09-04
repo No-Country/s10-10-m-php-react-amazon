@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Location;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class LocationController extends Controller
 {
     /**
@@ -28,7 +28,7 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -50,9 +50,39 @@ class LocationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Location $location)
+    public function update(Request $request)
     {
-        //
+        try{
+        $validateData = $request->validate([
+            'address' => 'required',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+            'postal_code' => 'required',
+            'city' => 'required',
+            'province' => 'required'
+        ]);
+        $user = Auth::user();
+
+        $location = Location::find($user->location_id);
+        $location->update([
+            'address' => $validateData['address'],
+            'latitude' => $validateData['latitude'],
+            'longitude' => $validateData['longitude'],
+            'postal_code' => $validateData['postal_code'],
+            'city' => $validateData['city'],
+            'province' => $validateData['province']
+
+        ]);
+        $user->location_id = $location->id;
+        $user->save();
+        return response()->json(['location' => $location]);
+        } catch (ValidationException $e){
+            return response()->json([
+                'error' => 'Invalid data',
+                'message' => $e->getMessage(),
+                'errors' => $e->errors()
+            ], 400);
+        }
     }
 
     /**
