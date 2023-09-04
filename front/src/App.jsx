@@ -1,3 +1,4 @@
+import BasicFooter from './components/BasicFooter'
 import AppRouter from './routes'
 
 function App() {
@@ -5,6 +6,7 @@ function App() {
   return (
     <>
       <AppRouter />
+      <BasicFooter/>
     </>
   )
 }
