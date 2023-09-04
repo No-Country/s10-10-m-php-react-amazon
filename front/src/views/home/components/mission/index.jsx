@@ -37,7 +37,6 @@ const Mission = () => {
                     >
                         Quiero vender comida
                     </Button>
-
                 </Link>
             </div>
         </div>

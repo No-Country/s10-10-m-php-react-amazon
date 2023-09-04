@@ -1,30 +1,28 @@
-import panaderia from '../../../../assets/panaderias.png'
-import verduleria1 from '../../../../assets/verduleria1.png'
-import verduleria2 from '../../../../assets/verdulerias2.png'
-import superMercado from '../../../../assets/superMercado.png'
+import React, { useEffect, useState } from 'react';
+import SwipeableViews from 'react-swipeable-views';
 import Cards from './cards';
-import SwipeableViews from "react-swipeable-views";
 
-
+import panaderia from '../../assets/panaderia1.jpg';
+import verduleria from '../../assets/verduleria1.jpg';
+import superMercado from '../../assets/superMercado1.jpg';
 
 const ExploreCategories = () => {
 
     const handleSwipe = (index) => { };
 
     return (
-        <div className=' pl-[2rem] mb-12'>
+        <div className='pl-[2rem] mb-12 w-96 '>
             <h2 className='font-bold text-colorNeutral1 text-left leading-none text-sizeSubtitle my-10'>
                 Explora nuestros rubros
             </h2>
-
-            <SwipeableViews className='w-96' enableMouseEvents onChangeIndex={handleSwipe} resistance>
+            <SwipeableViews enableMouseEvents onChangeIndex={handleSwipe} resistance>
                 <Cards img={panaderia} title={"Panaderías"} />
-                <Cards img={verduleria1} title={"Verdulerías"} />
+
+                <Cards img={verduleria} title={"Verdulerías"} />
+
                 <Cards img={superMercado} title={"Supermercados"} />
             </SwipeableViews>
-
-
-        </div >
+        </div>
     );
 };
 
