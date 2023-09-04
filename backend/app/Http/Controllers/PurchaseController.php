@@ -4,24 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Purchase;
-
+use App\Models\Pack;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
+use Faker\Generator as Faker;
 
 class PurchaseController extends Controller
 {
     public function store(Request $request){
         try {
+            //$amount = Pack::findOrFail($validatedData['pack_id'])->pluck('amount');
             $validatedData = $request->validate([
                 'pack_id' => 'required|exists:packs,id',
-                'user_id' => 'required|exists:users,id',
                 'code' => 'required|string|max:255',
-                'status' => 'required|string|max:255'
+                'amount' => 'required'
             ]);
+            $encryptedId = Auth::user()->getAuthIdentifier();
+
+            
             $purchase = Purchase::create([
                 'pack_id' => $validatedData['pack_id'],
-                'user_id' => $validatedData['user_id'],
-                'code' => $validatedData['code'],
-                'status' => $validatedData['status'],
+                'user_id' => $encryptedId,
+                'code' => $this->generate(),
+                'amount' => $validatedData['amount']
             ]);
 
             return response()->json(['Purchase created' => $purchase], 201);
@@ -81,4 +86,12 @@ class PurchaseController extends Controller
             return response()->json(['message' => 'Purchase not found'], 404);
         }
     }
+    public function generate()
+    {
+        $prefix = ''; // Puedes especificar un prefijo si lo deseas
+        $codigo = $prefix . substr(uniqid(), -6);
+    
+        return $codigo;
+    }
 }
+

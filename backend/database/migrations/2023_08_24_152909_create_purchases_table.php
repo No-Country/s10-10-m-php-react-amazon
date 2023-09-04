@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('pack_id');
             $table->unsignedBigInteger('user_id');
             $table->string('code');
-            $table->string('status');
-
+            $table->enum('status', ['reserved', 'delivered', 'cancelled'])->default('reserved');
+            $table->string('amount');
             $table->foreign('pack_id')
             ->references('id')
             ->on('packs')
@@ -39,4 +39,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('purchases');
     }
+    
 };
