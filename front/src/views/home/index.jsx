@@ -2,8 +2,6 @@ import Mission from "./components/mission";
 import ExploreCategories from "./components/exploreCategories";
 import CallToAction from "./components/callToAction";
 import AboutUs from "./components/aboutUs";
-import BasicFooter from "../../components/BasicFooter";
-
 
 const Home = () => {
   return (
@@ -14,7 +12,6 @@ const Home = () => {
         <CallToAction />
         <AboutUs />
       </div>
-      <BasicFooter />
     </>
   );
 };
