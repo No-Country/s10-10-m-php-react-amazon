@@ -62,4 +62,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsTo(Location::class, 'location_id');
     }
+
+///relacion entre user a pack
+    public function Favorite(){
+        return $this->hasMany(Favorite::class);
+    }
 }

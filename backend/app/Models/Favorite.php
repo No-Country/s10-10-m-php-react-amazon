@@ -13,4 +13,9 @@ class Favorite extends Model
         'user_id',
         'business_id',
     ];
+
+///relacion entre user a pack
+    public function User(){
+        return $this->belongsTo(User::class);
+    }
 }
