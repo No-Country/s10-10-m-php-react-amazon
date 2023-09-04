@@ -6,7 +6,7 @@ import ItemList from "./itemList";
 const ItemListContainer = ({ products }) => {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  
   useEffect(() => {
     setIsLoading(true);
     setTimeout(() => {

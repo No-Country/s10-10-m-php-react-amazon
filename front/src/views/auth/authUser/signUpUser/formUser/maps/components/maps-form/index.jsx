@@ -14,6 +14,8 @@ const MapsForm = ({ setSelectedLocation, map, originRef, setMark, setDirection }
       { address: originRef.current.value },
       (results, status) => {
         if (status === "OK" && results.length > 0) {
+          console.log(originRef)
+          console.log(results[0].address_components[results[0].address_components.length-1])
           const location = results[0].geometry.location;
           setSelectedLocation({ lat: location.lat(), lng: location.lng() });
         } else {

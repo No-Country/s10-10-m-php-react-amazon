@@ -5,8 +5,8 @@ const initialState = {
     lastname: '',
     email: "",
     address: '',
-    latitude: '',
-    longitude: '',
+    latitude: -31.444961,
+    longitude: -64.1850551,
     token: ''
 }
 

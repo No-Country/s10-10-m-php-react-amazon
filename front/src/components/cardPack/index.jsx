@@ -16,7 +16,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 export function CardPack({ item }) {
   return (
-    <Link to={`/detail/:${item.id}`}>
+    <Link to={`/detail/${item.id}`}>
       <Card className="w-[285px] h-[327px] flex-none m-4 overflow-hidden">
         <CardHeader
           floated={false}
@@ -30,23 +30,26 @@ export function CardPack({ item }) {
             className="h-full w-full object-cover"
           />
         </CardHeader>
-        <CardBody className="h-48 p-1">
+        <CardBody className="h-48 p-1 flex-column">
           <Typography className="text-title font-weightTitle text-colorNeutral1">
             {item.name}
           </Typography>
           <Typography variant="lead" color="gray" className="custom-text">
             Buscalo entre las {item.time}
           </Typography>
-          <div className="flex flex-wrap">
-            {item.tags.map((tag) => {
-              return (
-                <Chip
-                  variant="ghost"
-                  value={tag}
-                  className="rounded-full lowercase custom-label m-1"
-                />
-              );
-            })}
+          <div className="h-[72px]">
+            <div className="flex flex-wrap">
+              {item.tags.map((tag, index) => {
+                return (
+                  <Chip
+                    variant="ghost"
+                    value={tag}
+                    className="rounded-full lowercase custom-label m-1"
+                    key={index}
+                  />
+                );
+              })}
+            </div>
           </div>
           <div className="flex justify-between">
             <div className="flex-column justify-between">
@@ -54,7 +57,7 @@ export function CardPack({ item }) {
                 <FontAwesomeIcon icon={faStar} />
                 <span className="custom-textButton">{item.stars}</span>
                 <span className="px-2 custom-textButton">
-                  {item.distance} m
+                  {item.distance}
                 </span>
               </Typography>
               <span>$ {item.price}</span>
