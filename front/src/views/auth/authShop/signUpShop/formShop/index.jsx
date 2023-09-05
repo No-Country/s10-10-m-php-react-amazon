@@ -151,8 +151,11 @@ const FormShop = ({ setData, data }) => {
                     >
                         Continuar
                     </Button>
+
                     <Typography variant="small" className="mt-6 flex justify-between custom-textButton  pb-8">
-                        <span>¿Ya tienes cuenta?</span>
+                        <Link to='/auth/shop/login'>
+                            <span>¿Ya tienes cuenta?</span>
+                        </Link>
                         <Link to="/auth/shop/login">Inicia sesión acá</Link>
                     </Typography>
                 </div>

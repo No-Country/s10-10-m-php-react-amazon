@@ -3,7 +3,7 @@ import { useJsApiLoader } from "@react-google-maps/api";
 import { Toaster, toast } from 'sonner'
 
 import React, { useEffect, useRef, useState } from "react";
-
+    
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faLocationDot, faCrosshairs } from "@fortawesome/free-solid-svg-icons";
 import MapsHeader from "../../../../authUser/signUpUser/formUser/maps/components/maps-header";
