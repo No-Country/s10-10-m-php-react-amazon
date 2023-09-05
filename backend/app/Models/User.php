@@ -19,6 +19,7 @@ class User extends Authenticatable implements JWTSubject
         'lastname',
         'email',
         'password',
+        'is_verified',
         'location_id',
         'type',
         'description',
@@ -61,5 +62,10 @@ class User extends Authenticatable implements JWTSubject
       public function location()
     {
         return $this->belongsTo(Location::class, 'location_id');
+    }
+
+///relacion entre user a pack
+    public function Favorite(){
+        return $this->hasMany(Favorite::class);
     }
 }

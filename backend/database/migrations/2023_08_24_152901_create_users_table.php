@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('avatar')->nullable();
             $table->string('external_id')->nullable();
             $table->string('external_auth')->nullable();
+            $table->boolean('is_verified')->default(false); 
             $table->rememberToken()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
