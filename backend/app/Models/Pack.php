@@ -13,9 +13,11 @@ class Pack extends Model
         'name',
         'price',
         'description',
-        'time_limit',
+        'time_start',
+        'time_end',
         'user_id',
-        'photo_url'
+        'photo_url',
+        'stock'
     ];
 
 ///relacion de pack a user    
