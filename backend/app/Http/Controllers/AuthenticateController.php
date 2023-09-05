@@ -68,10 +68,15 @@ class AuthenticateController extends Controller
                 'errors' => $e->errors()
             ], 400);
         }
+        $credentials = request(['email', 'password']);
 
+        if (!$token = auth()->attempt($credentials)) {
+                return response()->json(['error' => 'Invalid data'], 400);
+        }
         if ($user) {
             return response()->json([
                 'message' => 'User created',
+                'token' => $token,
                 'item' => $user
             ], 201);
         } else {
