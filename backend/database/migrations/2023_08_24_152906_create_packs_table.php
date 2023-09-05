@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->float('price');
+            $table->integer('stock');
             $table->text('description');
-            $table->datetime('time_limit')->nullable();
+            $table->datetime('time_start')->nullable();
+            $table->datetime('time_end')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->string('photo_url')->nullable();

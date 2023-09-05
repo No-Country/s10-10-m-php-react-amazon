@@ -29,10 +29,7 @@ Route::group(['middleware' => 'api',], function ($router) {
     Route::post('delete', 'App\Http\Controllers\AuthenticateController@delete');
      
 
-    //Ruta de favoritos
-    Route::get('favorite/{id}', 'App\Http\Controllers\FavoriteController@index');
-    Route::post('favorite', 'App\Http\Controllers\FavoriteController@store');   
-    Route::delete('favorite/delete/{id}', 'App\Http\Controllers\FavoriteController@destroy');
+
 
     //Rutas de usuario
     Route::get('/users/all', [UserController::class, 'getAllUsers'])->name('users.all');
@@ -47,11 +44,7 @@ Route::group(['middleware' => 'api',], function ($router) {
     //Rutas de Pack
     Route::get('pack/{id}', 'App\Http\Controllers\PackController@show');
 
-    //Rutas de purchases
-    Route::post('purchase', 'App\Http\Controllers\PurchaseController@store');
-    Route::get('purchase', 'App\Http\Controllers\PurchaseController@show');
-    Route::put('purchase/update/{id}', 'App\Http\Controllers\PurchaseController@update');
-    Route::delete('purchase/delete/{id}', 'App\Http\Controllers\PurchaseController@destroy');
+
 
 
     Route::group(['middleware' => 'jwt.auth',], function ($router) {
@@ -72,6 +65,16 @@ Route::group(['middleware' => 'api',], function ($router) {
         Route::post('pack/image/{id}', 'App\Http\Controllers\PackController@image');
         Route::delete('pack/image/delete/{id}', 'App\Http\Controllers\PackController@deleteImage');
 
+            //Ruta de favoritos
+        Route::get('favorite/{id}', 'App\Http\Controllers\FavoriteController@index');
+        Route::post('favorite', 'App\Http\Controllers\FavoriteController@store');   
+        Route::delete('favorite/delete/{id}', 'App\Http\Controllers\FavoriteController@destroy');
+            //Rutas de purchases
+        Route::post('purchase', 'App\Http\Controllers\PurchaseController@store');
+        Route::get('purchase', 'App\Http\Controllers\PurchaseController@show');
+        Route::put('purchase/update/{id}', 'App\Http\Controllers\PurchaseController@update');
+        Route::delete('purchase/delete/{id}', 'App\Http\Controllers\PurchaseController@destroy');
+        
         Route::patch('/location', [LocationController::class, 'update'])->name('location.update');
 
     });

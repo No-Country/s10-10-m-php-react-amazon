@@ -13,6 +13,7 @@ class Purchase extends Model
         'pack_id',
         'user_id',
         'code',
-        'status'
+        'status',
+        'amount'
     ];
 }
