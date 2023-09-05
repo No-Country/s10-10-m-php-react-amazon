@@ -1,6 +1,6 @@
 import { DirectionsRenderer, GoogleMap, Marker } from "@react-google-maps/api";
 import React, { useState } from "react";
-import { products } from "../../utils/products";
+import { shops } from "../../utils/shops";
 
 import shopIcon from "../../assets/icons/shop-solid.svg";
 import { Dialog } from "@material-tailwind/react";
@@ -37,13 +37,14 @@ const Map = ({ selectedLocation, setMap, directionsResponse, mark }) => {
           {mark && (
             <>
               <Marker position={mark} animation="DROP" draggable={false} />
-              {products.map((product) => (
+              {shops.map((shop, index) => (
                 <Marker
-                  position={product.location}
+                key={index}
+                  position={shop.location}
                   animation="DROP"
                   draggable={false}
                   icon={shopIcon}
-                  onClick={()=>handleMarkerClick(product)}
+                  onClick={()=>handleMarkerClick(shop)}
                 />
               ))}
             </>

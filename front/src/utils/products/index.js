@@ -11,12 +11,11 @@ export const products = [
     time: "8:30 - 9:15",
     price: 100,
     tags: ["celiaquía", "intolerancia al gluten", "sin Lactosa"],
-    stars: 4.7,
-    distance: 150,
     stock: 1,
     img: Panaderia,
     timestamp: new Date(fechaHora.getTime() - 3600000),
-    location: {lat: -31.4444561, lng: -64.1773772}
+    detail: ["facturas", "medialunas", "criollos", "pan casero"],
+    shopId: 2
   },
   {
     id: 2,
@@ -24,12 +23,11 @@ export const products = [
     time: "8:30 - 9:15",
     price: 200,
     tags: ["celiaquía"],
-    stars: 4.7,
-    distance: 150,
     stock: 3,
     img: Supermercado,
     timestamp: new Date(fechaHora.getTime()),
-    location: {lat: -31.4443218, lng: -64.1815829}
+    detail: ["yogures", "leche descremada"],
+    shopId: 1
   },
   {
     id: 3,
@@ -37,12 +35,11 @@ export const products = [
     time: "8:30 - 9:15",
     price: 400,
     tags: [],
-    stars: 4.7,
-    distance: 150,
     stock: 1,
     img: Verdulerias1,
     timestamp: new Date(fechaHora.getTime() + 3600000),
-    location: {lat: -31.444969, lng: -64.1850559}
+    detail: ["manzanas", "bananas", "naranjas", "mandarinas"], 
+    shopId: 3
   },
   {
     id: 4,
@@ -55,6 +52,6 @@ export const products = [
     stock: 1,
     img: Verdulerias2,
     timestamp: new Date(fechaHora.getTime() + 7200000),
-    location: {lat: -31.4464999, lng: -64.1868738}
+    shopId: 4
   },
 ];

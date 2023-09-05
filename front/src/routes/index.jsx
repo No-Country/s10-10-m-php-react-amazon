@@ -9,6 +9,7 @@ import LoginShop from "../views/auth/authShop/loginShop";
 import Dashboard from "../views/dashboard";
 import ItemDetailContainer from "../components/itemDetailContainer";
 import Error404 from "../views/404";
+import UserProfile from "../views/profile/userProfile";
 
 const AppRouter = () => {
   return (
@@ -22,6 +23,7 @@ const AppRouter = () => {
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/detail/:id" component={ItemDetailContainer} />
       <Route path="/page-not-found" component={Error404} />
+      <Route path="/user/profile" component={UserProfile}/>
     </Router>
   );
 };

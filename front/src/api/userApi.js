@@ -6,8 +6,11 @@ export const getAllUsers = () => {
   return axios.get(`${BASE_URL}/all`);
 };
 
-export const getUserById = (userId) => {
-  return axios.get(`${BASE_URL}/${userId}`);
+export const getUserById = (userId, token) => {
+  return axios.get(`${BASE_URL}/${userId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }});
 };
 
 export const updateUser = (userId, newData) => {
