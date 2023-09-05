@@ -39,11 +39,17 @@
   @apply text-colorNeutral1 text-sizeFilter font-weightFilter
 }
 
+.react-swipeable-view-container > *{
+  width: 70% !important;
+}
 
-.swiper-slide{
+.swiper-slide {
   width: 240px !important;
 }
 
+.swiper-wrapper {
+  background: red;
+}
 
 .custom-google-button {
   background-image: url('../src/assets/icons/icon-google.png');
