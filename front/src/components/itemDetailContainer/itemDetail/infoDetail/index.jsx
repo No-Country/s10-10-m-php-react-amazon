@@ -1,9 +1,13 @@
+import SwipeableViews from "react-swipeable-views";
 import iconGeo from "../../../../assets/icons/geo-alt.svg"
 import Comments from "./comments";
 
 const InfoDetail = () => {
+
+    const handleSwipe = (index) => { };
+
     return (
-        <div className='p-[1rem]'>
+        <div className='pl-[2rem]'>
             <div>
                 <h3 className='text-[#3F3F46] font-bold text-[18px] mb-3'>Sobre Starbucks</h3>
 
@@ -30,7 +34,15 @@ const InfoDetail = () => {
                     <li>Aperitivos</li>
                 </ul>
             </div>
-            <Comments />
+            <div className="w-96 my-6">
+                <h3 className=' font-bold text-[#3F3F46] mb-3'>Comentarios y Valoraciones</h3>
+                <SwipeableViews enableMouseEvents onChangeIndex={handleSwipe} resistance>
+                    <Comments />
+                    <Comments />
+                    <Comments />
+                    <Comments />
+                </SwipeableViews>
+            </div>
         </div>
     );
 };

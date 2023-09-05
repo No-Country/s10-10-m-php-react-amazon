@@ -40,3 +40,7 @@
 .react-swipeable-view-container > *{
   width: 70% !important;
 }
+
+.modalUser1 p span b{
+  font-size: 700;
+}

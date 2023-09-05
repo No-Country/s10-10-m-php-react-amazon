@@ -6,8 +6,8 @@ import iconPerson from "../../../../assets/icons/fluent_person.svg"
 
 const Mission = () => {
     return (
-        <div>
-            <h2 className="px-[2rem] font-weightTitle text-colorNeutral1 text-left leading-none text-sizeTitle my-8">
+        <div className="w-full lg:px-[2rem]">
+            <h2 className="px-[2rem] lg:px-[0] font-weightTitle text-colorNeutral1 text-left leading-none text-sizeTitle my-8">
                 Salva alimentos y ahorra dinero con nosotros
             </h2>
             <section className="bg-colorPrimary h-[290px] p-[2rem] flex flex-col justify-between text-center">
@@ -23,17 +23,17 @@ const Mission = () => {
                     Conectamos a <b>establecimientos que venden comida</b> con <b>clientes</b> interesados en comprar los excedentes del día.
                 </p>
             </section>
-            <div className="flex flex-col justify-center items-center  gap-3 my-8">
+            <div className="flex flex-col lg:flex-row lg:gap-10 justify-center items-center  gap-3 my-8">
                 <Link to="/auth/user/login">
                     <Button
-                        className="rounded-lg bg-colorPrimary normal-case font-weightTextButton text-sizeButtonCTAs p-0 text-white h-[44px] w-[343px]"
+                        className="rounded-full bg-colorPrimary normal-case font-weightTextButton text-sizeButtonCTAs p-0 text-white h-[44px] w-[343px]"
                     >
                         Quiero salvar comida
                     </Button>
                 </Link>
                 <Link to="/auth/shop/login">
                     <Button
-                        className="rounded-lg h-[44px] w-[343px] normal-case p-0 bg-white text-sizeButtonCTAs text-colorPrimary border border-colorPrimary"
+                        className="rounded-full h-[44px] w-[343px] normal-case p-0 bg-white text-sizeButtonCTAs text-colorPrimary border border-colorPrimary"
                     >
                         Quiero vender comida
                     </Button>
