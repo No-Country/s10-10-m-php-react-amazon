@@ -52,11 +52,29 @@ class PackController extends Controller
     public function filter(Request $request){
         try{
             $validatedData = $request->validate([
-                'category' => 'required'
+                'category' => 'nullable',
+                'city' => 'nullable',
+                'price' => 'nullable|numeric',
+                'time' => 'nullable',
             ]);
-            $user= User::Where("type","business")
-            ->where("category",$validatedData["category"])
-            ->with("pack")
+
+            $user= User::Where("type","business");
+            if (isset($validatedData["category"])) {
+                $user->where("category", $validatedData["category"]);
+            }
+            if (isset($validatedData["city"])) {
+                $user->where("city", $validatedData["city"]);
+            }
+
+            $user->with(["pack" => function ($query) {
+                if (isset($validatedData["price"])) {
+                    $query->where($validatedData["price"], '<=', 'price');
+                }
+                if (isset($validatedData["time"])) {
+                    $query->where($validatedData["time"], '>', 'time_start')
+                    ->where($validatedData["time"], '<', 'time_end');
+                }
+            }])
             ->get();
 
             return response()->json(['Business' => $user], 201);
