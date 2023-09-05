@@ -40,13 +40,10 @@
 }
 
 
-.swiper-slide {
+.swiper-slide{
   width: 240px !important;
 }
 
-.swiper-wrapper {
-  background: red;
-}
 
 .custom-google-button {
   background-image: url('../src/assets/icons/icon-google.png');
