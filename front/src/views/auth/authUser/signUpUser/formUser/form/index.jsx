@@ -4,7 +4,7 @@ import { Link } from "wouter";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
 import { validatePassword } from "../../../../../../utils/validatePassword";
-
+import {signUpUser} from '../../../../../../api/authApi.js'
 const FormUser = ({ setData, data }) => {
   const {
     register,
@@ -22,12 +22,19 @@ const FormUser = ({ setData, data }) => {
     if (!passwordError) {
       const updatedData = {
         ...data,
-        fullname: info.fullname,
+        name: info.name,
         lastname: info.lastname,
         password: info.password,
         email: info.email,
       };
-      setData(updatedData);
+      signUpUser(updatedData).then(response => {
+        if (response.status == 201) {
+          
+          setData(updatedData);
+        } else {
+          setError("El email ya existe")
+        }
+      })
     }
   };
 

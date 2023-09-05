@@ -3,6 +3,7 @@ import Supermercado from "../../assets/superMercado.png";
 import Verdulerias1 from "../../assets/verduleria1.png";
 import Verdulerias2 from "../../assets/verdulerias2.png";
 
+const fechaHora = new Date()
 export const products = [
   {
     id: 1,
@@ -10,42 +11,47 @@ export const products = [
     time: "8:30 - 9:15",
     price: 100,
     tags: ["celiaquía", "intolerancia al gluten", "sin Lactosa"],
-    stars: 4.7,
-    distance: 150,
     stock: 1,
     img: Panaderia,
+    timestamp: new Date(fechaHora.getTime() - 3600000),
+    detail: ["facturas", "medialunas", "criollos", "pan casero"],
+    shopId: 2
   },
   {
     id: 2,
-    name: "Pack alergias e intolerancias",
+    name: "Pack de lacteos",
     time: "8:30 - 9:15",
-    price: 100,
-    tags: ["celiaquía", "intolerancia al gluten", "sin Lactosa"],
-    stars: 4.7,
-    distance: 150,
-    stock: 1,
+    price: 200,
+    tags: ["celiaquía"],
+    stock: 3,
     img: Supermercado,
+    timestamp: new Date(fechaHora.getTime()),
+    detail: ["yogures", "leche descremada"],
+    shopId: 1
   },
   {
     id: 3,
-    name: "Pack alergias e intolerancias",
+    name: "Pack de frutas",
     time: "8:30 - 9:15",
-    price: 100,
-    tags: ["celiaquía", "intolerancia al gluten", "sin Lactosa"],
-    stars: 4.7,
-    distance: 150,
+    price: 400,
+    tags: [],
     stock: 1,
     img: Verdulerias1,
+    timestamp: new Date(fechaHora.getTime() + 3600000),
+    detail: ["manzanas", "bananas", "naranjas", "mandarinas"], 
+    shopId: 3
   },
   {
     id: 4,
-    name: "Pack alergias e intolerancias",
+    name: "Pack verduras",
     time: "8:30 - 9:15",
     price: 100,
-    tags: ["celiaquía", "intolerancia al gluten", "sin Lactosa"],
+    tags: [],
     stars: 4.7,
     distance: 150,
     stock: 1,
     img: Verdulerias2,
+    timestamp: new Date(fechaHora.getTime() + 7200000),
+    shopId: 4
   },
 ];

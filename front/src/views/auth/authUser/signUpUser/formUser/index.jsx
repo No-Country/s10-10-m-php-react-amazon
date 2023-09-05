@@ -5,17 +5,21 @@ import Maps from './maps';
 const FormUser = () => {
 
     const [data, setData] = useState({
-    fullname: '',
+    name: '',
     lastname: '',
     email: '',
     password: '',
     address: '',
     latitude: '',
     longitude: '',
-    role: "user" //rol de usuario
+    type: "user",
+    description: " ",
+    city: '',
+    province: '',
+    postal_code: ''
 });
     
-    if (!data.fullname) return (<Form setData={setData} data={data}/>)
+    if (!data.name) return (<Form setData={setData} data={data}/>)
     else return (<Maps setData={setData} data={data}/>)
 }
 

@@ -39,6 +39,9 @@
   @apply text-colorNeutral1 text-sizeFilter font-weightFilter
 }
 
+.react-swipeable-view-container > *{
+  width: 70% !important;
+}
 
 .swiper-slide {
   width: 240px !important;
