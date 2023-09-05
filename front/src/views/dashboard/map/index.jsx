@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import Map from "../../../components/Map";
 import { products } from "../../../utils/products";
 
-const DashboardMap = ({ userLatitude, userLongitude, setItems, items }) => {
+const DashboardMap = ({ userLatitude, userLongitude, setBusiness, business }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState({});
   const [selectedLocation, setSelectedLocation] = useState({
@@ -37,8 +37,8 @@ const DashboardMap = ({ userLatitude, userLongitude, setItems, items }) => {
   useEffect(() => {
     if (isLoaded) {
       const calculateDistances = async () => {
-        const updatedItems = await Promise.all(
-          items.map(async (item) => {
+        const updatedShops = await Promise.all(
+          business.map(async (item) => {
             const { location } = item;
             try {
               const distance = await calculateRoute(location);
@@ -50,7 +50,7 @@ const DashboardMap = ({ userLatitude, userLongitude, setItems, items }) => {
           })
         );
   
-        setItems(updatedItems); // Actualizar el estado 'items' con los nuevos valores
+        setBusiness(updatedShops); 
         setIsLoading(false);
       };
   

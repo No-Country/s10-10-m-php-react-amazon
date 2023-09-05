@@ -3,7 +3,7 @@ import { Autocomplete } from "@react-google-maps/api";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const MapsForm = ({ setSelectedLocation, map, originRef, setMark, setDirection }) => {
+const MapsForm = ({ setSelectedLocation, map, originRef, setMark, setDirection, setCity, setProvince }) => {
   const markPoint = async () => {
     if (originRef.current.value === "") {
       return;
@@ -14,8 +14,8 @@ const MapsForm = ({ setSelectedLocation, map, originRef, setMark, setDirection }
       { address: originRef.current.value },
       (results, status) => {
         if (status === "OK" && results.length > 0) {
-          console.log(originRef)
-          console.log(results[0].address_components[results[0].address_components.length-1])
+          setProvince(results[0].address_components[results[0].address_components.length-2])
+          setCity(results[0].address_components[results[0].address_components.length-3])
           const location = results[0].geometry.location;
           setSelectedLocation({ lat: location.lat(), lng: location.lng() });
         } else {

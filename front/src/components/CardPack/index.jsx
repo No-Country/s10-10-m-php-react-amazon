@@ -55,9 +55,9 @@ export function CardPack({ item }) {
             <div className="flex-column justify-between">
               <Typography variant="lead" color="gray" className="flex ">
                 <FontAwesomeIcon icon={faStar} />
-                <span className="custom-textButton">{item.stars}</span>
+                <span className="custom-textButton">{item.shop.stars}</span>
                 <span className="px-2 custom-textButton">
-                  {item.distance}
+                  {item.shop.distance}
                 </span>
               </Typography>
               <span>$ {item.price}</span>

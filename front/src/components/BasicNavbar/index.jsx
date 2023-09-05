@@ -45,6 +45,14 @@ const BasicNavbar = () => {
       >
         <Link to="/page-not-found">Ayuda</Link>
       </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-bold"
+      >
+        <Link to="/user/profile">Mi Perfil</Link>
+      </Typography>
     </ul>
   );
 
