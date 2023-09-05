@@ -292,7 +292,6 @@ public function verificationMail( Request $request, $token)
                 return "<h1>Email verified succesfully </h1>";
         }else{
             return view('notFound');
-    }
-      
+    }    
 }
 }
