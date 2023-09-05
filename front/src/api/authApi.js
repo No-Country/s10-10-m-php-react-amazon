@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://s10-10-m-php-react-amazon-production.up.railway.app/api/auth';
+const BASE_URL = 'https://s10-10-m-php-react-amazon-production.up.railway.app/api';
 
 export const loginUser = (email, password) => {
   const data = { email, password };
@@ -13,4 +13,8 @@ export const signUpUser = (userData) => {
 
 export const signUpShop = (shopData) => {
   return axios.post(`${BASE_URL}/register`, shopData)
+}
+
+export const signUpLocation = (locationData) => {
+  return axios.post(`${BASE_URL}/location`, locationData)
 }

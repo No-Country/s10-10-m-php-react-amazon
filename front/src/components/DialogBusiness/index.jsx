@@ -9,12 +9,21 @@ import {
 export function DialogBusiness({setOpen, open, selectedBusiness}) {
  
   const handleOpen = () => setOpen(!open);
- 
   return (
     <>
       
       <Dialog open={open} handler={handleOpen}>
-        <DialogHeader>{selectedBusiness.name}</DialogHeader>
+        <DialogHeader>
+          <div className="flex">
+            <img src={selectedBusiness.avatar} alt="avatar" className="object-contain w-40 h-40"/>
+            <div>
+              <h1>{selectedBusiness.name}</h1>
+              <p>{selectedBusiness.address} {selectedBusiness.city} {selectedBusiness.province} {selectedBusiness.country}</p>
+              <p></p>
+            </div>
+          </div>
+          
+          </DialogHeader>
         <DialogBody divider>
           The key to more success is to have a lot of pillows. Put it this way,
           it took me twenty five years to get these plants, twenty five years of

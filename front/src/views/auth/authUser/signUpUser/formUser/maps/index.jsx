@@ -9,7 +9,7 @@ import { faLocationDot, faCrosshairs } from "@fortawesome/free-solid-svg-icons";
 import MapsHeader from "./components/maps-header";
 import MapsForm from "./components/maps-form";
 import MapsMap from "./components/maps-map";
-import { signUpUser } from "../../../../../../api/authApi";
+import { signUpLocation, signUpUser } from "../../../../../../api/authApi";
 import { navigate } from "wouter/use-location";
 
 library.add(faLocationDot, faCrosshairs);
@@ -29,6 +29,9 @@ const Maps = ({setData, data}) => {
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
     libraries: ["places"],
   });
+  const [city, setCity] = useState(null)
+  const [province, setProvince] = useState(null)
+
 
   useEffect(() => {
     if (isLoaded) {
@@ -48,16 +51,20 @@ const Maps = ({setData, data}) => {
     const updatedData = {
       ...data,
       address: direction,
+      province: province,
+      city: city,
       latitude: selectedLocation.lat, 
       longitude: selectedLocation.lng 
     };
-    setData(updatedData);
-    signUpUser(updatedData).then(response => {
+
+    signUpLocation(updatedData).then(response => {
       if (response.status == 201) {
         toast('Su registro fue exitoso')
         setTimeout(() => {
           navigate('/auth/user/login')
         }, 2500)
+      } else {
+        toast('Error al ingresar su ubicación')
       }
     })
     
@@ -72,6 +79,8 @@ const Maps = ({setData, data}) => {
         setSelectedLocation={setSelectedLocation}
         originRef={originRef}
         setDirection={setDirection}
+        setCity={setCity}
+        setProvince={setProvince}
       />
       <MapsMap
         selectedLocation={selectedLocation}

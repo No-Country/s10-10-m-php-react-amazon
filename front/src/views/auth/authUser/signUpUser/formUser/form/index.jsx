@@ -5,7 +5,7 @@ import { Link } from "wouter";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
 import { validatePassword } from "../../../../../../utils/validatePassword";
-
+import {signUpUser} from '../../../../../../api/authApi.js'
 const FormUser = ({ setData, data }) => {
   const {
     register,
@@ -22,12 +22,19 @@ const FormUser = ({ setData, data }) => {
     if (!passwordError) {
       const updatedData = {
         ...data,
-        fullname: info.fullname,
+        name: info.name,
         lastname: info.lastname,
         password: info.password,
         email: info.email,
       };
-      setData(updatedData);
+      signUpUser(updatedData).then(response => {
+        if (response.status == 201) {
+          
+          setData(updatedData);
+        } else {
+          setError("El email ya existe")
+        }
+      })
     }
   };
 
@@ -47,7 +54,7 @@ const FormUser = ({ setData, data }) => {
         >
           <div className="mb-4 flex flex-col gap-4">
             <label
-              htmlFor="fullname"
+              htmlFor="name"
               className="text-left custom-label -mb-3 "
               style={{ fontSize: "11px" }}
             >
@@ -55,12 +62,12 @@ const FormUser = ({ setData, data }) => {
             </label>
             <Input
               size="lg"
-              {...register("fullname", { required: true })}
-              id="fullname"
-              className={`bg-white ${errors.fullname ? "border-red-500" : ""}`}
+              {...register("name", { required: true })}
+              id="name"
+              className={`bg-white ${errors.name ? "border-red-500" : ""}`}
               placeholder="Nombre"
             />
-            {errors.fullname && (
+            {errors.name && (
               <p className="text-red-500">Campo obligatorio</p>
             )}
             <label
