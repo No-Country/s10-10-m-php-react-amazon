@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-
 import { Input, Button, Typography, Checkbox } from "@material-tailwind/react";
 import { Link } from "wouter";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
@@ -12,6 +11,7 @@ const FormUser = ({ setData, data }) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  
   const [error, setError] = useState("");
   const [isVisible, setIsVisible] = useState(true);
 
@@ -36,136 +36,149 @@ const FormUser = ({ setData, data }) => {
   };
 
   return (
-    <div className="flex flex-col items-center bg-mainColor h-screen">
-      <div className="text-sizeTitle text-colorNeutral3 font-weightTitle leading-tight mt-8 text-center">
-        <p> ¡Regístrate, compra a precios bajos y marca la diferencia!</p>
-      </div>
-      <div>
-        <form
-          onSubmit={handleSubmit(submit)}
-          className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
-        >
-          <div className="mb-4 flex flex-col gap-4">
+    <div className="flex flex-col items-center bg-colorPrimary min-h-screen">
+      <h1 className="text-2xl font-bold p-3 text-white m-2">
+        {" "}
+        ¡Regístrate y marca la diferencia!
+      </h1>
+      <form onSubmit={handleSubmit(submit)}>
+        <div className="flex flex-col gap-3 bg-white p-5 m-2 rounded-lg">
+          <div className="relative">
             <label
               htmlFor="fullname"
-              className="text-left custom-label -mb-3 "
-              style={{ fontSize: "11px" }}
+              className="text-left text-mainColor text-sm"
             >
-              Nombre
+              Nombre completo
             </label>
             <Input
-              size="lg"
               {...register("fullname", { required: true })}
               id="fullname"
-              className={`bg-white ${errors.fullname ? "border-red-500" : ""}`}
-              placeholder="Nombre"
+              className={`!border !border-gray-300 bg-white text-gray-900  ${
+                errors.fullname ? "border-red-500" : ""
+              }`}
+              labelProps={{
+                className: "hidden",
+              }}
             />
             {errors.fullname && (
-              <p className="text-red-500">Campo obligatorio</p>
+              <p className="text-red-500 mt-2">Campo obligatorio</p>
             )}
-            <label
-              htmlFor="lastname"
-              className="text-left custom-label -mb-3"
-              style={{ fontSize: "11px" }}
-            >
-              Apellido
+          </div>
+
+          <div className="relative">
+            <label htmlFor="email" className="text-left text-mainColor text-sm">
+              Correo electrónico
             </label>
             <Input
-              size="lg"
-              {...register("lastname", { required: true })}
-              id="lastname"
-              className={`bg-white ${errors.lastname ? "border-red-500" : ""}`}
-              placeholder="Apellido"
-            />
-            {errors.lastname && (
-              <p className="text-red-500">Campo obligatorio</p>
-            )}
-            <label
-              htmlFor="email"
-              className="text-left custom-label -mb-3"
-              style={{ fontSize: "11px" }}
-            >
-              Email
-            </label>
-            <Input
-              size="lg"
               {...register("email", { required: true })}
               id="email"
-              className={`bg-white ${errors.email ? "border-red-500" : ""}`}
-              placeholder="Email"
+              className={`!border !border-gray-300 bg-white text-gray-900 ${
+                errors.email ? "border-red-500" : ""
+              }`}
+              labelProps={{
+                className: "hidden",
+              }}
             />
-            {errors.email && <p className="text-red-500">Campo obligatorio</p>}
-            <div className="relative">
-              <label
-                htmlFor="password"
-                className="text-left custom-label -mb-3"
-                style={{ fontSize: "11px" }}
-              >
-                Contraseña
-              </label>
+            {errors.email && (
+              <p className="text-red-500 mt-2">
+                Por favor, revisa tu correo electrónico.
+              </p>
+            )}
+          </div>
+
+          <div className="relative">
+            <label
+              htmlFor="password"
+              className="text-left text-mainColor text-sm"
+            >
+              Contraseña
+            </label>
+            <div className="flex w-full relative">
               <Input
-                size="lg"
-                {...register("password", { required: true })}
                 type={isVisible ? "password" : "text"}
+                {...register("password", { required: true })}
                 id="password"
-                placeholder="Contraseña"
-                className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:custom-placeholder focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+                className={`!border !border-gray-300 bg-white text-gray-900 ${
+                  errors.password ? "border-red-500" : ""
+                } w-full pr-10`}
                 labelProps={{
                   className: "hidden",
                 }}
-                containerProps={{ className: "min-w-[100px]" }}
               />
-
               <button
-                className="absolute right-2 top-1/2 text-2xl text-mainColor"
+                className="text-2xl text-mainColor absolute right-2 top-1/2 transform -translate-y-1/2"
                 type="button"
                 onClick={handleChangeVisible}
               >
-                {isVisible ? <BsEye /> : <BsEyeSlash />}{" "}
+                {isVisible ? <BsEyeSlash /> : <BsEye />}{" "}
               </button>
             </div>
-            {error && <p className="text-red-500">{error}</p>}
             {errors.password && (
-              <p className="text-red-500">Campo obligatorio</p>
+              <p className="text-red-500 mt-2">
+                La contraseña debe contener 6 dígitos.
+              </p>
             )}
           </div>
-          <Checkbox
-            label={
-              <Typography
-                variant="small"
-                color="gray"
-                className="flex items-center custom-textButton"
+
+          <div className="relative">
+            <label
+              htmlFor="passwordRepeat"
+              className="text-left text-mainColor text-sm"
+            >
+              Repetir contraseña
+            </label>
+            <div className="flex w-full relative">
+              <Input
+                {...register("passwordRepeat", { required: true })}
+                type={isVisible ? "password" : "text"}
+                id="passwordRepeat"
+                className={"!border !border-gray-300 bg-white text-gray-900"}
+                labelProps={{
+                  className: "hidden",
+                }}
+              />
+              <button
+                className="text-2xl text-mainColor absolute right-2 top-1/2 transform -translate-y-1/2"
+                type="button"
+                onClick={handleChangeVisible}
               >
-                Acepto
-                <a
-                  href="#"
-                  className="font-medium transition-colors text-secondColorTextForms hover:text-gray-900 "
-                >
-                  &nbsp;terminos y Condiciones
-                </a>
+                {isVisible ? <BsEyeSlash /> : <BsEye />}{" "}
+              </button>
+            </div>
+            {errors.passwordRepeat && (
+              <p className="text-red-500 mt-2">
+                Las contraseñas deben coincidir.
+              </p>
+            )}
+          </div>
+        </div>
+        <div className="mt-3">
+          <Checkbox
+            className="rounded-full bg-white h-4 w-4 text-white"
+            label={
+              <Typography className="text-colorModal">
+                Acepto los Términos y Políticas de privacidad
               </Typography>
             }
-            containerProps={{ className: "-ml-2.5 my-3" }}
           />
-          <div className="pt-0">
-            <Button
-              variant="gradient"
-              fullWidth
-              className="rounded-full custom-buttonCTAs normal-case"
-              type="submit"
-            >
-              Continuar
-            </Button>
-            <Typography
-              variant="small"
-              className="mt-6 flex justify-between custom-textButton  pb-8"
-            >
-              <span>¿Ya tienes cuenta?</span>
-              <Link to="/auth/user/login">Inicia sesión acá</Link>
-            </Typography>
-          </div>
-        </form>
-      </div>
+        </div>
+        <div className="m-5">
+          <Button
+            fullWidth
+            className="rounded-full custom-buttonCTAs normal-case"
+            type="submit"
+          >
+            Continuar
+          </Button>
+          <Typography
+            variant="small"
+            className="mt-6 flex justify-between custom-textButton  pb-8"
+          >
+            <span>¿Ya tienes cuenta?</span>
+            <Link to="/auth/user/login">Inicia sesión acá</Link>
+          </Typography>
+        </div>
+      </form>
     </div>
   );
 };

@@ -5,9 +5,9 @@ import backgroundImg from "./assets/startpage-bg.png";
 function SignUpStartPage({ setChoice }) {
   return (
     <>
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-center">
         <section
-          className="w-full bg-black"
+          className="bg-black w-full"
           style={{
             backgroundImage: `url(${backgroundImg})`,
             backgroundSize: "cover",
@@ -26,7 +26,7 @@ function SignUpStartPage({ setChoice }) {
             </p>
           </div>
         </section>
-        <section className="bg-colorPrimary w-full">
+        <section className="bg-colorPrimary w-full h-screen">
           <div className="flex flex-col items-center space-y-2 mt-10 mb-20">
             <Button
               variant="filled"
