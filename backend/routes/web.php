@@ -38,6 +38,8 @@ if($userExist) {
         'avatar' => $user->avatar,
         'external_id' => $user->id,
         'external_auth' => 'google',
+        'password' => bcrypt(Str::random(16)),
+        'type'=> 'person'
     ]);
     Auth::login($userNew);
      $token = JWTAuth::fromUser($userNew);
@@ -64,6 +66,7 @@ if($userExist) {
         'avatar' => $user->avatar,
         'external_id' => $user->id,
         'external_auth' => 'facebook',
+
     ]);
     Auth::login($userNew);
      $token = JWTAuth::fromUser($userNew);
