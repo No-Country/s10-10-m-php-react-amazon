@@ -16,7 +16,7 @@ use App\Http\Controllers\LocationController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
+Route::post('/forget-password',[UserController::class, 'forgetPassword']);
 Route::group(['middleware' => 'api',], function ($router) {
      //Rutas de autenticación
     Route::post('login', 'App\Http\Controllers\AuthenticateController@login');
@@ -27,6 +27,7 @@ Route::group(['middleware' => 'api',], function ($router) {
     Route::get('verifyToken', 'App\Http\Controllers\AuthenticateController@verifyToken');
     Route::post('update', 'App\Http\Controllers\AuthenticateController@update');
     Route::post('delete', 'App\Http\Controllers\AuthenticateController@delete');
+     
 
     //Ruta de favoritos
     Route::get('favorite/{id}', 'App\Http\Controllers\FavoriteController@index');
@@ -36,6 +37,7 @@ Route::group(['middleware' => 'api',], function ($router) {
     //Rutas de usuario
     Route::get('/users/all', [UserController::class, 'getAllUsers'])->name('users.all');
     Route::get('/users/{userId}', [UserController::class, 'getUserById'])->name('users.get');
+    Route::get('/send-verify-email/{email}', [UserController::class, 'sendVerifyEmail']);
 
      //Rutas de Business
     Route::get('business/{id}', 'App\Http\Controllers\BusinessController@show');
@@ -71,5 +73,6 @@ Route::group(['middleware' => 'api',], function ($router) {
         Route::delete('pack/image/delete/{id}', 'App\Http\Controllers\PackController@deleteImage');
 
         Route::patch('/location', [LocationController::class, 'update'])->name('location.update');
+
     });
 });

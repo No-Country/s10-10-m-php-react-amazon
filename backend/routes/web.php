@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,5 +72,8 @@ if($userExist) {
  return redirect('/dashboard')->with('token', $token);
 });
 
+Route::get('/reset-password',[UserController::class, 'resetPasswordLoad']);
+Route::post('/reset-password',[UserController::class, 'resetPassword']);
+Route::get('/verify-email/{token}',[UserController::class, 'verificationMail']);
 
 
