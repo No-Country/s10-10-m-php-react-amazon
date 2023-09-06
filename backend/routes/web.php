@@ -1,5 +1,5 @@
 <?php
-
+header("Access-Control-Allow-Origin: *");
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
@@ -45,7 +45,7 @@ if($userExist) {
      $token = JWTAuth::fromUser($userNew);
 }
 
-return redirect('/dashboard')->with('token', $token);
+ return redirect('/dashboard')->with('token', $token);
 });
 
 Route::get('/login-facebook', function () {
