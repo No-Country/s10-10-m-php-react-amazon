@@ -1,5 +1,4 @@
 <?php
-header("Access-Control-Allow-Origin: *");
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
@@ -22,8 +21,7 @@ Route::get('/', function () {
 });
 
 Route::get('/login-google', function () {
-    return Socialite::driver('google')->redirect()
-    ->header('Access-Control-Allow-Origin', '*');
+    return Socialite::driver('google')->redirect();
 });
 
 Route::get('/google-callback', function () {
