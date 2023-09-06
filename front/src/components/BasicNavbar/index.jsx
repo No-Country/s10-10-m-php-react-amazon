@@ -9,10 +9,12 @@ import {
 import { Link } from "wouter";
 import Logo from "../../assets/logo.png";
 import { Modal } from "./modal/Modal";
+import { useSelector } from "react-redux";
 
 const BasicNavbar = () => {
   const [openNav, setOpenNav] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const user = useSelector((state) => state.user);
 
   const handleOpenModal = () => setOpenModal(!openModal);
 
@@ -49,14 +51,16 @@ const BasicNavbar = () => {
       >
         <Link to="/page-not-found">Ayuda</Link>
       </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-bold"
-      >
-        <Link to="/user/profile">Mi Perfil</Link>
-      </Typography>
+      {user.token && (
+        <Typography
+          as="li"
+          variant="small"
+          color="blue-gray"
+          className="p-1 font-bold"
+        >
+          <Link to="/user/profile">Mi Perfil</Link>
+        </Typography>
+      )}
     </ul>
   );
 
@@ -87,7 +91,11 @@ const BasicNavbar = () => {
               className="ml-10 hidden lg:inline-block bg-colorPrimary"
               style={{ textTransform: "none" }}
             >
-              <Link to="/auth/user/login">Ingresar</Link>
+              {user.token ? (
+                <Link to="/logout">Cerrar sesión</Link>
+              ) : (
+                <Link to="/auth/user/login">Ingresar</Link>
+              )}
             </Button>
           </div>
 
@@ -144,10 +152,14 @@ const BasicNavbar = () => {
               </Button>
               <Button
                 size="sm"
-                className="bg-colorPrimary w-1/2"
+                className="mb-2 bg-colorPrimary"
                 style={{ textTransform: "none" }}
               >
-                <Link to="/auth/user/login">Ingresar</Link>
+                {user.token ? (
+                  <Link to="/logout">Cerrar sesión</Link>
+                ) : (
+                  <Link to="/auth/user/login">Ingresar</Link>
+                )}
               </Button>
             </div>
           </div>

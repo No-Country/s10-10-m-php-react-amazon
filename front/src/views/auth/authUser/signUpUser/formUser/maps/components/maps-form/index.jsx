@@ -38,12 +38,14 @@ const MapsForm = ({ setSelectedLocation, map, originRef, setMark, setDirection, 
           };
           setSelectedLocation(userLocation);
           setMark(userLocation);
-          // Actualizar el valor del input con la dirección
           const geocoder = new window.google.maps.Geocoder();
           geocoder.geocode({ location: userLocation }, (results, status) => {
+            console.log(results)
             if (status === "OK" && results.length > 0) {
               originRef.current.value = results[0].formatted_address;
               setDirection(originRef.current.value)
+              setProvince(results[0].address_components[results[0].address_components.length-2].long_name)
+              setCity(results[0].address_components[results[0].address_components.length-3].long_name)
             }
           });
         },

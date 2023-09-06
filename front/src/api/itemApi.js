@@ -6,11 +6,15 @@ const BASE_URL =
 export const postPack = (pack, token) => {
   return axios.post(
     `${BASE_URL}`,
+    pack,
     {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    },
-    pack
+    }
   );
 };
+
+export const getAllPacks = () => {
+  return axios.get(`${BASE_URL}`)
+}
