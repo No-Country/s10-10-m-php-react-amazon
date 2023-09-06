@@ -17,7 +17,7 @@ import { faStar } from "@fortawesome/free-regular-svg-icons";
 export function CardPack({ item }) {
   return (
     <Link to={`/detail/${item.id}`}>
-      <Card className="w-[285px] h-[327px] flex-none m-4 overflow-hidden">
+      <Card className="w-[285px] h-[327px] flex-none m-4 overflow-hidden cursor-pointer">
         <CardHeader
           floated={false}
           shadow={false}

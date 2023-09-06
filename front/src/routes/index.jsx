@@ -9,7 +9,7 @@ import LoginShop from "../views/auth/authShop/loginShop";
 import Dashboard from "../views/dashboard";
 import ItemDetailContainer from "../components/itemDetailContainer";
 import Error404 from "../views/404";
-import UserProfile from "../views/profile/userProfile";
+import UserProfile from "../views/profile";
 
 const AppRouter = () => {
   return (
