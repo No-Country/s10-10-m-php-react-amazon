@@ -78,14 +78,17 @@ const BasicNavbar = () => {
 
           <div className="hidden lg:block">{navList}</div>
           <div>
-            <Button
-              size="sm"
-              className="ml-10 hidden lg:inline-block bg-colorPrimary font-weightText"
-              style={{ textTransform: "none" }}
-              onClick={handleOpenModal}
-            >
-              Registrarte
-            </Button>
+            {!user.token && (
+              <Button
+                size="sm"
+                className="ml-10 hidden lg:inline-block bg-colorPrimary font-weightText"
+                style={{ textTransform: "none" }}
+                onClick={handleOpenModal}
+              >
+                Registrarte
+              </Button>
+            )}
+
             <Button
               size="sm"
               className="ml-10 hidden lg:inline-block bg-colorPrimary"
@@ -142,17 +145,19 @@ const BasicNavbar = () => {
           <div className="container mx-auto text-center">
             {navList}
             <div className="flex flex-col items-center">
+              {!user.token && (
+                <Button
+                  size="sm"
+                  className="bg-colorPrimary mb-2 w-1/2 font-weightText"
+                  style={{ textTransform: "none" }}
+                  onClick={handleOpenModal}
+                >
+                  Registrarte
+                </Button>
+              )}
               <Button
                 size="sm"
-                className="bg-colorPrimary mb-2 w-1/2 font-weightText"
-                style={{ textTransform: "none" }}
-                onClick={handleOpenModal}
-              >
-                Registrarte
-              </Button>
-              <Button
-                size="sm"
-                className="mb-2 bg-colorPrimary"
+                className="mb-2 bg-colorPrimary w-1/2 font-weightText"
                 style={{ textTransform: "none" }}
               >
                 {user.token ? (
