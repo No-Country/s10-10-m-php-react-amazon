@@ -56,14 +56,14 @@ class PackController extends Controller
                 'city' => 'nullable',
                 'price' => 'nullable|numeric',
                 'time' => 'nullable',
+                'date' => 'nullable',                
             ]);
 
             $user= User::Where("type","business");
             if (isset($validatedData["category"])) {
                 $user->where("category", $validatedData["category"]);
             }
-            $user
-            ->with(["locations" => function ($query) {
+            $user->with(["locations" => function ($query) {
                 if (isset($validatedData["city"])) {
                     $query->where("city", $validatedData["city"]);
                 }
@@ -75,6 +75,9 @@ class PackController extends Controller
                 if (isset($validatedData["time"])) {
                     $query->where($validatedData["time"], '>', 'time_start')
                     ->where($validatedData["time"], '<', 'time_end');
+                }
+                if (isset($validatedData["date"])) {
+                    $query->where($validatedData["date"], '>=', 'create_at');
                 }
             }])
             ->get();
