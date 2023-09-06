@@ -30,7 +30,8 @@ const FormUser = ({ setData, data }) => {
         password: info.password,
         email: info.email,
       };
-      signUpUser(updatedData).then((response) => {
+      console.log(updatedData)
+      signUpUser(updatedData).then((response) => {          
         if (response.status == 201) {
           console.log(response.data);
           dispatch(setUser(response.data));

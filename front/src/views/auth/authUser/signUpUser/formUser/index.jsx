@@ -12,7 +12,7 @@ const FormUser = () => {
     address: '',
     latitude: '',
     longitude: '',
-    type: "user",
+    type: "person",
     description: " ",
     city: '',
     province: '',
