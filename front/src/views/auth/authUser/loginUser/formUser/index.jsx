@@ -28,11 +28,10 @@ const Form = () => {
     const passwordError = validatePassword(password);
     setError(passwordError);
     if (!passwordError) {
-      loginUser(email, password)
+      loginUser(email, password)      
         .then((response) => {
           setInvalid(false);
-          if (response.status == 200) {
-            console.log(response.data)
+          if (response.status == 200) {            
             dispatch(setUser(response.data));
             navigate("/dashboard");
           }
