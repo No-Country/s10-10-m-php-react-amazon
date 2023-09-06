@@ -58,30 +58,30 @@ class PackController extends Controller
                 'time' => 'nullable',
                 'date' => 'nullable',                
             ]);
-
-            $user= User::Where("type","business");
-            if (isset($validatedData["category"])) {
-                $user->where("category", $validatedData["category"]);
-            }
-            $user->with(["locations" => function ($query) {
-                if (isset($validatedData["city"])) {
+            
+            $user = User::where("type", "business")
+            ->when(isset($validatedData["category"]), function ($query) use ($validatedData) {
+                $query->where("category", $validatedData["category"]);
+            })
+            ->with(["location" => function ($query) use ($validatedData) {
+                $query->when(isset($validatedData["city"]), function ($query) use ($validatedData) {
                     $query->where("city", $validatedData["city"]);
-                }
+                });
             }])
-            ->with(["pack" => function ($query) {
-                if (isset($validatedData["price"])) {
-                    $query->where($validatedData["price"], '<=', 'price');
-                }
-                if (isset($validatedData["time"])) {
-                    $query->where($validatedData["time"], '>', 'time_start')
-                    ->where($validatedData["time"], '<', 'time_end');
-                }
-                if (isset($validatedData["date"])) {
-                    $query->where($validatedData["date"], '>=', 'create_at');
-                }
+            ->with(["pack" => function ($query) use ($validatedData) {
+                $query->when(isset($validatedData["price"]), function ($query) use ($validatedData) {
+                    $query->where('price', '<=', $validatedData["price"]);
+                });
+                $query->when(isset($validatedData["time"]), function ($query) use ($validatedData) {
+                    $query->where('time_start', '<', $validatedData["time"])
+                        ->where('time_end', '>', $validatedData["time"]);
+                });
+                $query->when(isset($validatedData["date"]), function ($query) use ($validatedData) {
+                    $query->where('create_at', '>=', $validatedData["date"]);
+                });
             }])
-            ->get();
-
+            ->get();        
+    
             return response()->json(['Business' => $user], 201);
         } catch (ValidationException $e) {
             return response()->json([
@@ -91,6 +91,7 @@ class PackController extends Controller
             ], 400);
         }
     }
+    
 
     public function show($id){
         $pack = Pack::find($id);
