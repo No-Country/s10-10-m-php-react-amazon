@@ -21,8 +21,7 @@ Route::get('/', function () {
 });
 
 Route::get('/login-google', function () {
-    return Socialite::driver('google')->redirect()
-    ->header('Access-Control-Allow-Origin', '*');
+    return Socialite::driver('google')->redirect();
 });
 
 Route::get('/google-callback', function () {
