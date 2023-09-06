@@ -1,6 +1,6 @@
 import { Button, Spinner } from "@material-tailwind/react";
 import { useJsApiLoader } from "@react-google-maps/api";
-import { Toaster, toast } from 'sonner'
+import { Toaster, toast } from "sonner";
 
 import React, { useEffect, useRef, useState } from "react";
 
@@ -11,12 +11,13 @@ import MapsForm from "./components/maps-form";
 import MapsMap from "./components/maps-map";
 import { signUpLocation, signUpUser } from "../../../../../../api/authApi";
 import { navigate } from "wouter/use-location";
+import { useSelector } from "react-redux";
 
 library.add(faLocationDot, faCrosshairs);
 
-const Maps = ({setData, data}) => {
+const Maps = ({ setData, data }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [map, setMap] = useState(/** @type google.maps.Map */(null));
+  const [map, setMap] = useState(/** @type google.maps.Map */ (null));
   const [direction, setDirection] = useState(null);
   /** @type React.MutableRefObject<HTMLInputElement> */
   const originRef = useRef();
@@ -29,9 +30,10 @@ const Maps = ({setData, data}) => {
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
     libraries: ["places"],
   });
-  const [city, setCity] = useState(null)
-  const [province, setProvince] = useState(null)
+  const [city, setCity] = useState(null);
+  const [province, setProvince] = useState(null);
 
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     if (isLoaded) {
@@ -53,21 +55,20 @@ const Maps = ({setData, data}) => {
       address: direction,
       province: province,
       city: city,
-      latitude: selectedLocation.lat, 
-      longitude: selectedLocation.lng 
+      latitude: selectedLocation.lat,
+      longitude: selectedLocation.lng,
     };
 
-    signUpLocation(updatedData).then(response => {
+    signUpLocation(updatedData, user.token).then((response) => {
       if (response.status == 201) {
-        toast('Su registro fue exitoso')
+        toast("Su registro fue exitoso");
         setTimeout(() => {
-          navigate('/auth/user/login')
-        }, 2500)
+          navigate("/auth/user/login");
+        }, 2500);
       } else {
-        toast('Error al ingresar su ubicación')
+        toast("Error al ingresar su ubicación");
       }
-    })
-    
+    });
   };
 
   return (
@@ -98,9 +99,8 @@ const Maps = ({setData, data}) => {
         onClick={submit}
       >
         Registrarse
-
       </Button>
-      <Toaster position="bottom-right" richColors/>
+      <Toaster position="bottom-right" richColors />
     </div>
   );
 };
