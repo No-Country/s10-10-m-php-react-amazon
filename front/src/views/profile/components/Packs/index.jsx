@@ -13,11 +13,12 @@ const Packs = () => {
   return (
     <div>
       <h1 className="custom-text my-5">Happy pack</h1>
-      <div className="flex items-center" onClick={handleOpen}> 
+      <div className="flex items-center cursor-pointer" onClick={handleOpen}> 
           <FontAwesomeIcon icon={faPlus} className="text-[12px] mr-2" />
-        <span className="custom-textButton">Añadir Nuevo Pack</span>
+        <span className="custom-textButton ">Añadir Nuevo Pack</span>
       </div>
       <PackForm handleOpen={handleOpen} open={open}/>
+      
     </div>
   );
 };

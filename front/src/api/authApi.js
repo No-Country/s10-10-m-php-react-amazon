@@ -17,13 +17,14 @@ export const signUpShop = (shopData) => {
 };
 
 export const signUpLocation = (locationData, token) => {
-  return axios.post(
+  return axios.patch(
     `${BASE_URL}/location`,
+
+    locationData,
     {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    },
-    locationData
+    }
   );
 };

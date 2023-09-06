@@ -16,17 +16,22 @@ const initialState = {
     longitude: -64.1850551,
   },
   token: "",
+  type: ""
 };
 
 export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    setToken: (state, action) => {
+      state.token = action.payload.token
+    },
     setUser: (state, action) => {
-      const { name, email, lastname, id } = action.payload.user;
+      const { name, email, lastname, id, type } = action.payload.user;
       const { address, city, postal_code, province, latitude, longitude } =
         action.payload.user.location;
       state.token = action.payload.token;
+      state.type = type
       state.id = id;
       state.name = name;
       state.lastname = lastname;
@@ -38,8 +43,21 @@ export const userSlice = createSlice({
       state.location.latitude = latitude;
       state.location.longitude = longitude;
     },
+    cerrarSesion: (state) => {
+      state.email = ""
+      state.id = ""
+      state.location.address = ""
+      state.name = ""
+      state.location.city = ""
+      state.location.postal_code = ""
+      state.location.province = ""
+      state.latitude = ""
+      state.longitude = ""
+      state.postalCode = ""
+      state.token = ""
+  },
   },
 });
 
-export const { setUser, setToken } = userSlice.actions;
+export const { setUser, setToken, cerrarSesion } = userSlice.actions;
 export default userSlice.reducer;
