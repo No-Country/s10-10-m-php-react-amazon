@@ -62,11 +62,13 @@ class PackController extends Controller
             if (isset($validatedData["category"])) {
                 $user->where("category", $validatedData["category"]);
             }
-            if (isset($validatedData["city"])) {
-                $user->where("city", $validatedData["city"]);
-            }
-
-            $user->with(["pack" => function ($query) {
+            $user
+            ->with(["locations" => function ($query) {
+                if (isset($validatedData["city"])) {
+                    $query->where("city", $validatedData["city"]);
+                }
+            }])
+            ->with(["pack" => function ($query) {
                 if (isset($validatedData["price"])) {
                     $query->where($validatedData["price"], '<=', 'price');
                 }

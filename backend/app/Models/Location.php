@@ -17,4 +17,10 @@ class Location extends Model
         'province',
         'postal_code'
     ];
+
+    public function user()
+    {
+        return $this->hasOne(user::class);
+    }
+
 }
