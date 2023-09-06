@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 Route::get('/login-google', function () {
     return Socialite::driver('google')->redirect()
-    ->header('Access-Control-Allow-Origin', 'http://s10-10-m-php-react-amazon-production.up.railway.app');
+    ->header('Access-Control-Allow-Origin', 'http://s10-10-m-php-react-amazon-production.up.railway.app, http://s10-10-m-php-react.onrender.com, http://localhost:5173');
 });
 
 Route::get('/google-callback', function () {
