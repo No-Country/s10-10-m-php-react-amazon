@@ -7,6 +7,7 @@ import { validatePassword } from "../../../../../../utils/validatePassword";
 import { signUpUser } from "../../../../../../api/authApi.js";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../../../../features/userSlice";
+
 const FormUser = ({ setData, data }) => {
   const {
     register,
@@ -18,10 +19,21 @@ const FormUser = ({ setData, data }) => {
   const [isVisible, setIsVisible] = useState(true);
   const dispatch = useDispatch();
 
+  const [passwordMatchError, setPasswordMatchError] = useState("");
+  const handlePasswordRepeatChange = (event) => {
+    const password = document.getElementById("password").value;
+    const passwordRepeat = event.target.value;
+
+    if (password !== passwordRepeat) {
+      setPasswordMatchError("Las contraseñas no coinciden");
+    } else {
+      setPasswordMatchError("");
+    }
+  };
+
   const submit = (info) => {
     const passwordError = validatePassword(info.password);
-    setError(passwordError);
-
+    setError(passwordError);    
     if (!passwordError) {
       const updatedData = {
         ...data,
@@ -30,8 +42,8 @@ const FormUser = ({ setData, data }) => {
         password: info.password,
         email: info.email,
       };
-      console.log(updatedData)
-      signUpUser(updatedData).then((response) => {          
+      console.log(updatedData);
+      signUpUser(updatedData).then((response) => {
         if (response.status == 201) {
           console.log(response.data);
           dispatch(setUser(response.data));
@@ -166,6 +178,7 @@ const FormUser = ({ setData, data }) => {
                 labelProps={{
                   className: "hidden",
                 }}
+                onChange={handlePasswordRepeatChange}
               />
               <button
                 className="text-2xl text-mainColor absolute right-2 top-1/2 transform -translate-y-1/2"
@@ -175,10 +188,8 @@ const FormUser = ({ setData, data }) => {
                 {isVisible ? <BsEyeSlash /> : <BsEye />}{" "}
               </button>
             </div>
-            {errors.passwordRepeat && (
-              <p className="text-red-500 mt-2">
-                Las contraseñas deben coincidir.
-              </p>
+            {passwordMatchError && (
+              <p className="text-red-500 mt-2">{passwordMatchError}</p>
             )}
           </div>
         </div>
