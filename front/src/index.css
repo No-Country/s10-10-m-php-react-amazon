@@ -1,12 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @font-face {
-    font-family: 'Montserrat Regular';
-    src: url('./assets/font-families/Montserrat/static/Montserrat-Regular.ttf') format('truetype');
-  }
-  * {
-    font-family: 'Montserrat Regular', 'Roboto', 'Poppins';
+  font-family: 'Montserrat Regular';
+  src: url('./assets/font-families/Montserrat/static/Montserrat-Regular.ttf') format('truetype');
+}
+
+* {
+  font-family: 'Montserrat Regular', 'Roboto', 'Poppins';
 }
 
 .custom-buttonCTAs {
@@ -35,4 +37,37 @@
 
 .custom-filter {
   @apply text-colorNeutral1 text-sizeFilter font-weightFilter
+}
+
+.react-swipeable-view-container > *{
+  width: 70% !important;
+}
+
+.swiper-slide {
+  width: 240px !important;
+}
+
+.swiper-wrapper {
+  background: red;
+}
+
+.custom-google-button {
+  background-image: url('../src/assets/icons/icon-google.png');
+  background-repeat: no-repeat;
+  background-size: 24px 24px;
+  background-position: 10px center;
+}
+
+.custom-facebook-button {
+  background-image: url('../src/assets/icons/icon-facebook.png');
+  background-repeat: no-repeat;
+  background-size: 24px 24px;
+  background-position: 10px center;
+}
+
+.custom-mail-button {
+  background-image: url('../src/assets/icons/icon-mail.png');
+  background-repeat: no-repeat;
+  background-size: 24px 24px;
+  background-position: 10px center;
 }

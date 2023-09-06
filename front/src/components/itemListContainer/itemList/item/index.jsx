@@ -1,5 +1,5 @@
 import React from 'react'
-import CardPack from '../../../cardPack'
+import CardPack from '../../../CardPack'
 
 const Item = ({item}) => {
   return (

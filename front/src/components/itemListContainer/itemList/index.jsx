@@ -10,7 +10,7 @@ const ItemList = ({ items }) => {
       <SwipeableViews enableMouseEvents onChangeIndex={handleSwipe} resistance>
         <div className="h-full overflow-x-auto flex items-center" >
           {items.length !== 0 ? (
-            items.map((item) => <Item item={item} key={item.id} />)
+            items.map((item, index) => <Item item={item} key={index} />)
           ) : (
             <div>
               <h3>No hay coincidencias con su búsqueda</h3>

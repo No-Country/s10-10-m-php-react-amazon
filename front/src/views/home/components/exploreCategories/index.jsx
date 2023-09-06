@@ -1,23 +1,34 @@
-import panaderia from '../../../../assets/panaderias.png'
-import verduleria1 from '../../../../assets/verduleria1.png'
-import verduleria2 from '../../../../assets/verdulerias2.png'
-import superMercado from '../../../../assets/superMercado.png'
-
+import SwipeableViews from 'react-swipeable-views';
 import Cards from './cards';
 
+import panaderia from '../../assets/panaderia1.jpg';
+import verduleria from '../../assets/verduleria1.jpg';
+import superMercado from '../../assets/superMercado1.jpg';
+
 const ExploreCategories = () => {
+
+    const handleSwipe = (index) => { };
+
     return (
-        <div>
-            <h2 className='font-bold text-mainColor leading-none text-sizeTitle my-10'>
-                Explora nuestras categorías
+        <div className='pl-[2rem] lg:px-[2rem] mb-12 w-96 lg:w-full lg:mb-24'>
+            <h2 className='font-bold text-colorNeutral1 text-left leading-none text-sizeSubtitle my-10'>
+                Explora nuestros rubros
             </h2>
-            <section className='grid grid-cols-2 justify-items-center'>
-                <Cards img={panaderia} title={"Panaderías"} />
-                <Cards img={verduleria1} title={"Verdulerías"} />
-                <Cards img={verduleria2} title={"Supermercados"} />
-                <Cards img={superMercado} title={"Verdulerías"} />
-            </section>
-        </div>
+            <div className='sm:hidden'>
+                <SwipeableViews enableMouseEvents onChangeIndex={handleSwipe} resistance>
+                    <Cards img={panaderia} title={"Panaderías"} />
+                    <Cards img={verduleria} title={"Verdulerías"} />
+                    <Cards img={superMercado} title={"Supermercados"} />
+                </SwipeableViews>
+            </div>
+            <div className='hidden lg:block'>
+                <div className='flex justify-between gap-7'>
+                    <Cards img={panaderia} title={"Panaderías"} />
+                    <Cards img={verduleria} title={"Verdulerías"} />
+                    <Cards img={superMercado} title={"Supermercados"} />
+                </div>
+            </div>
+        </div >
     );
 };
 

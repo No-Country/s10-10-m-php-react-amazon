@@ -1,46 +1,75 @@
 import { Button } from '@material-tailwind/react';
 import Modal from './modal';
-import useToggleVisibility from '../../../../utils/hooks/useToggleVisibility';
+import footLoverPerson from "../../assets/footLoverPerson.png"
+import businessPerson from "../../assets/businessPerson.png"
+import ModalBusiness from './modalBusiness';
+import React, { useState } from 'react';
 
 const CallToAction = () => {
 
-  const [isVisible, handleVisible] = useToggleVisibility(true);
+
+
+  const [size, setSize] = useState(null);
+  const [size1, setSize1] = useState(null);
+
+  const handleOpen = (value) => setSize(value);
+  const handleOpen1 = (value) => setSize1(value);
+
 
   return (
-    <div className='relative'>
-      <h2 className='text-mainColor leading-none text-sizeTitle font-weightTitle mt-28 mb-10'>
-        Cómo funciona
-      </h2>
-      <h3 className='text-mainColor font-weightSubtitle leading-none text-sizeSubtitle'>
-        ¿Eres un amante de la comida y el planeta?
-      </h3>
-      <Modal handleVisible={handleVisible} isVisible={isVisible} />
-      <div>
-        <p className='my-3 font-weightText text-sizeText text-mainColor '>
-          Explora ofertas locales y rescata alimentos. Regístrate y
-          compra a precios bajos. ¡Salva alimentos, marca la diferencia!
-        </p>
-        <div>
-          <Button className='rounded-full normal-case bg-mainColor text-sizeTextButton font-weightTextButton text-white w-widthMainBtn h-heightMainBtn'
-            onClick={handleVisible}
-          >
-            Saber más
-          </Button>
-        </div>
+    <div className='relative text-left w-full lg:px-[2rem] lg:mb-28'>
+      <div className='bg-colorPrimary rounded-t-3xl h-[120px] px-[2rem] flex items-center'>
+        <h2 className='text-colorNeutral3 leading-none  text-left text-sizeTitle font-weightTitle'>
+          ¿Quieres saber cómo funciona?
+        </h2>
       </div>
-      <h3 className='text-mainColor font-weightSubtitle leading-none text-sizeSubtitle mt-16'>
-        ¿Tienes un negocio y odias el desperdicio?
-      </h3>
+
       <div>
-        <p className='my-3 font-weightText text-sizeText text-mainColor'>
-          Únete, transforma excedentes en ingresos. Atrae clientes y sé más sostenible.
-        </p>
-        <div>
-          <Button className='rounded-full bg-mainColor normal-case text-sizeTextButton font-weightTextButton text-white  w-widthMainBtn h-heightMainBtn'>
-            Saber más
-          </Button>
+        <div className='lg:flex lg:w-10/12 lg:m-auto justify-center items-center'>
+
+          <img src={footLoverPerson} alt="imgFootLoverPerson" height={220} width={220} className='m-auto my-8' />
+          <div className='px-[2rem] lg:flex flex-col gap-3'>
+            <h3 className='text-colorNeutral1 font-bold leading-none text-sizeSubtitle'>
+              ¿Eres un amante de la comida y el planeta?
+            </h3>
+            <Modal handleOpen={handleOpen} size={size} />
+
+            <div>
+              <p className='my-3 font-weightText text-sizeText leading-none text-colorNeutral1'>
+                Regístrate y compra alimentos a precios bajos. Explora locales y salva alimentos.
+              </p>
+            </div>
+            <div className=''>
+              <Button className='rounded-full normal-case bg-colorNeutral3 border-2 border-colorPrimary  text-sizeTextButton font-weightTextButton w-[343px] h-[44px] text-colorPrimary'
+                onClick={() => handleOpen("xl")}
+              >
+                Saber más
+              </Button>
+            </div>
+          </div>
+
         </div>
+
+        <div className='lg:flex flex-row-reverse lg:w-10/12 lg:m-auto justify-center items-center'>
+          <img src={businessPerson} alt="imgBusinessPerson" height={220} width={220} className='m-auto my-8' />
+          <div className='px-[2rem] lg:flex flex-col gap-3'>
+            <h3 className="text-colorNeutral1 font-bold leading-none text-sizeSubtitle">
+              ¿Tienes un negocio y odias el desperdicio?
+            </h3>
+            <ModalBusiness handleOpen1={handleOpen1} size1={size1} />
+            <p className='my-3 font-weightText text-sizeText leading-none text-colorNeutral1'>
+              Únete, transforma excedentes en ingresos. Atrae clientes y sé más sostenible.
+            </p>
+            <Button className='rounded-full normal-case bg-colorNeutral3 border-2 border-colorPrimary  text-sizeTextButton font-weightTextButton w-[343px] h-[44px] text-colorPrimary'
+              onClick={() => handleOpen1("xl")}
+            >
+              Saber más
+            </Button>
+          </div>
+        </div>
+
       </div>
+
     </div>
   )
 

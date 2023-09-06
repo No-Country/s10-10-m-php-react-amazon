@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { navigate } from "wouter/use-location";
 import { Link } from "wouter";
 import { loginUser } from "../../../../../api/authApi";
-import { setToken } from "../../../../../features/userSlice";
+import { setUser } from "../../../../../features/userSlice";
 import { validatePassword } from "../../../../../utils/validatePassword";
 
 const Form = () => {
@@ -32,7 +32,7 @@ const Form = () => {
         .then((response) => {
           setInvalid(false);
           if (response.status == 200) {
-            dispatch(setToken(response.data.token));
+            dispatch(setUser(response.data));
             navigate("/");
           }
         })
