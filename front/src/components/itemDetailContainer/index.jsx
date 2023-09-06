@@ -18,11 +18,10 @@ const ItemDetailContainer = () => {
     }, 2000);
   }, []);
   
-  /** TO DO consultar al back */
   return (
     <div>
       {isLoading ? (
-        <div>
+        <div className="w-full h-screen flex justify-center items-center">
           <Spinner />
         </div>
       ) : (
