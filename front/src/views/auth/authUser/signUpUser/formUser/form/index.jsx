@@ -7,7 +7,9 @@ import { validatePassword } from "../../../../../../utils/validatePassword";
 import { signUpUser } from "../../../../../../api/authApi.js";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../../../../features/userSlice";
-const FormUser = ({ setData, data }) => {
+import { Toaster, toast } from "sonner";
+import {setToken} from '../../../../../../features/userSlice.js'
+const FormUser = ({ setNextStep}) => {
   const {
     register,
     handleSubmit,
@@ -24,20 +26,22 @@ const FormUser = ({ setData, data }) => {
 
     if (!passwordError) {
       const updatedData = {
-        ...data,
+        type: 'person',
         name: info.name,
         lastname: info.lastname,
         password: info.password,
         email: info.email,
       };
-      console.log(updatedData)
-      signUpUser(updatedData).then((response) => {          
+      signUpUser(updatedData).then((response) => {   
         if (response.status == 201) {
-          console.log(response.data);
-          dispatch(setUser(response.data));
+          dispatch(setToken(response.data));
+          setNextStep(true)
         } else {
-          setError("El email ya existe");
+          console.log("Algo")
         }
+      }).catch(err => {
+        console.log(err)
+        toast("Email existente");
       });
     }
   };
@@ -209,6 +213,7 @@ const FormUser = ({ setData, data }) => {
           </Typography>
         </div>
       </form>
+      <Toaster position="bottom-right" richColors />
     </div>
   );
 };

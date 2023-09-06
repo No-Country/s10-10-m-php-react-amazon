@@ -22,9 +22,8 @@ const ItemListContainer = ({ products }) => {
           <Spinner />
         </div>
       ) : (
-        <div>
+        
           <ItemList items={items} />
-        </div>
       )}
     </div>
   );

@@ -1,14 +1,12 @@
 import React from "react";
-import SwipeableViews from "react-swipeable-views";
 import Item from "./item";
 
 const ItemList = ({ items }) => {
-  const handleSwipe = (index) => {};
+  
 
   return (
-    <div className="w-full   flex items-center justify-center ">
-      <SwipeableViews enableMouseEvents onChangeIndex={handleSwipe} resistance>
-        <div className="h-full overflow-x-auto flex items-center" >
+    <div className="w-screen flex items-center justify-center ">
+        <div className="h-full overflow-x-auto  flex items-center" >
           {items.length !== 0 ? (
             items.map((item, index) => <Item item={item} key={index} />)
           ) : (
@@ -17,7 +15,6 @@ const ItemList = ({ items }) => {
             </div>
           )}
         </div>
-      </SwipeableViews>
     </div>
   );
 };

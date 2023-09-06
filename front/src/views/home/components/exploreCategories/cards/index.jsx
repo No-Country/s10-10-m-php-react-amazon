@@ -10,7 +10,7 @@ import { Link } from "wouter";
 const Cards = ({ img, title }) => {
 
     return (
-        <Link to="/page-not-found">
+        <Link to="/dashboard">
             <Card className=" rounded-lg relative lg:w-[424px] w-[220px] lg:h-[159px] h-[158.506px] cursor-pointer" >
                 <CardHeader
                     floated={false}
