@@ -18,8 +18,8 @@ const FormShop = ({ setData, data }) => {
         if (!passwordError) {
             const updatedData = {
                 ...data,
-                shopname: info.shopname,
-                type: info.type,
+                fullname: info.shopname,
+                lastname: info.type,
                 email: info.email,
                 password: info.password,
             };
@@ -66,13 +66,19 @@ const FormShop = ({ setData, data }) => {
                     >
                         Tipo de negocio o categoria
                     </label>
-                    <Input
+                    <select
                         size="lg"
                         {...register("type", { required: true })}
                         id="type"
                         className={`bg-white ${errors.type ? "border-red-500" : ""}`}
-                        placeholder="Tipo de negocio o categoria"
-                    />
+                    >
+                        <option value="">Selecciona una categoría</option>
+                        <option value="panaderia">Panadería</option>
+                        <option value="verduleria">Verdulería</option>
+                        <option value="supermercado">Supermercado</option>
+                        <option value="kiosco">Kiosco</option>
+                    </select>
+
                     {errors.type && (
                         <p className="text-red-500">Campo obligatorio</p>
                     )}
