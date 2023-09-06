@@ -4,16 +4,19 @@ import { Link } from "wouter";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
 import { validatePassword } from "../../../../../../utils/validatePassword";
-import {signUpUser} from '../../../../../../api/authApi.js'
+import { signUpUser } from "../../../../../../api/authApi.js";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../../../../../features/userSlice";
 const FormUser = ({ setData, data }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  
+
   const [error, setError] = useState("");
   const [isVisible, setIsVisible] = useState(true);
+  const dispatch = useDispatch();
 
   const submit = (info) => {
     const passwordError = validatePassword(info.password);
@@ -27,14 +30,14 @@ const FormUser = ({ setData, data }) => {
         password: info.password,
         email: info.email,
       };
-      signUpUser(updatedData).then(response => {
+      signUpUser(updatedData).then((response) => {
         if (response.status == 201) {
-          
-          setData(updatedData);
+          console.log(response.data);
+          dispatch(setUser(response.data));
         } else {
-          setError("El email ya existe")
+          setError("El email ya existe");
         }
-      })
+      });
     }
   };
 
@@ -51,23 +54,42 @@ const FormUser = ({ setData, data }) => {
       <form onSubmit={handleSubmit(submit)}>
         <div className="flex flex-col gap-3 bg-white p-5 m-2 rounded-lg">
           <div className="relative">
-            <label
-              htmlFor="fullname"
-              className="text-left text-mainColor text-sm"
-            >
-              Nombre completo
+            <label htmlFor="name" className="text-left text-mainColor text-sm">
+              Nombre
             </label>
             <Input
-              {...register("fullname", { required: true })}
-              id="fullname"
+              {...register("name", { required: true })}
+              id="name"
               className={`!border !border-gray-300 bg-white text-gray-900  ${
-                errors.fullname ? "border-red-500" : ""
+                errors.name ? "border-red-500" : ""
               }`}
               labelProps={{
                 className: "hidden",
               }}
             />
-            {errors.fullname && (
+            {errors.name && (
+              <p className="text-red-500 mt-2">Campo obligatorio</p>
+            )}
+          </div>
+
+          <div className="relative">
+            <label
+              htmlFor="lastname"
+              className="text-left text-mainColor text-sm"
+            >
+              Apellido
+            </label>
+            <Input
+              {...register("lastname", { required: true })}
+              id="lastname"
+              className={`!border !border-gray-300 bg-white text-gray-900  ${
+                errors.lastname ? "border-red-500" : ""
+              }`}
+              labelProps={{
+                className: "hidden",
+              }}
+            />
+            {errors.lastname && (
               <p className="text-red-500 mt-2">Campo obligatorio</p>
             )}
           </div>
