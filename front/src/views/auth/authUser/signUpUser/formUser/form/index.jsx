@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../../../../../../features/userSlice";
 import { Toaster, toast } from "sonner";
 import {setToken} from '../../../../../../features/userSlice.js'
+
 const FormUser = ({ setNextStep}) => {
   const {
     register,
@@ -20,10 +21,21 @@ const FormUser = ({ setNextStep}) => {
   const [isVisible, setIsVisible] = useState(true);
   const dispatch = useDispatch();
 
+  const [passwordMatchError, setPasswordMatchError] = useState("");
+  const handlePasswordRepeatChange = (event) => {
+    const password = document.getElementById("password").value;
+    const passwordRepeat = event.target.value;
+
+    if (password !== passwordRepeat) {
+      setPasswordMatchError("Las contraseñas no coinciden");
+    } else {
+      setPasswordMatchError("");
+    }
+  };
+
   const submit = (info) => {
     const passwordError = validatePassword(info.password);
-    setError(passwordError);
-
+    setError(passwordError);    
     if (!passwordError) {
       const updatedData = {
         type: 'person',
@@ -32,7 +44,8 @@ const FormUser = ({ setNextStep}) => {
         password: info.password,
         email: info.email,
       };
-      signUpUser(updatedData).then((response) => {   
+      console.log(updatedData);
+      signUpUser(updatedData).then((response) => {
         if (response.status == 201) {
           dispatch(setToken(response.data));
           setNextStep(true)
@@ -170,6 +183,7 @@ const FormUser = ({ setNextStep}) => {
                 labelProps={{
                   className: "hidden",
                 }}
+                onChange={handlePasswordRepeatChange}
               />
               <button
                 className="text-2xl text-mainColor absolute right-2 top-1/2 transform -translate-y-1/2"
@@ -179,10 +193,8 @@ const FormUser = ({ setNextStep}) => {
                 {isVisible ? <BsEyeSlash /> : <BsEye />}{" "}
               </button>
             </div>
-            {errors.passwordRepeat && (
-              <p className="text-red-500 mt-2">
-                Las contraseñas deben coincidir.
-              </p>
+            {passwordMatchError && (
+              <p className="text-red-500 mt-2">{passwordMatchError}</p>
             )}
           </div>
         </div>
