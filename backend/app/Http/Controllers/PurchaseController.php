@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\DB;
 
 class PurchaseController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('api');
+    }
+
     public function store(Request $request){
         try {
             DB::beginTransaction();
@@ -19,11 +24,11 @@ class PurchaseController extends Controller
                 'amount' => 'required|numeric|min:0'
             ]);
             $pack = Pack::findOrFail($validatedData['pack_id']);
-            
+
             if ($pack->stock < $validatedData['amount'])
             {
                 throw new \Exception('not enough stock');
-            }            
+            }
             $encryptedId = Auth::user()->getAuthIdentifier();
             $purchase = Purchase::create([
                 'pack_id' => $validatedData['pack_id'],
@@ -54,6 +59,8 @@ class PurchaseController extends Controller
 
     public function show(Request $request){
         try {
+            checkLogin();
+
             $validatedData = $request->validate([
                 'user_id' => 'required|exists:users,id',
             ]);
@@ -72,6 +79,8 @@ class PurchaseController extends Controller
 
     public function update(Request $request){
         try {
+            checkLogin();
+
             $validatedData = $request->validate([
                 'id' => 'required|exists:purchases,id',
                 'status' => 'required|string|max:255'
@@ -90,6 +99,8 @@ class PurchaseController extends Controller
     }
 
     public function destroy($id){
+        checkLogin();
+
         $purchase = Purchase::find($id);
         if($purchase){
             $purchase->delete();

@@ -23,7 +23,7 @@ class AuthenticateController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware('api', ['except' => ['login', 'register']]);
     }
 
     public function register(Request $request)
@@ -44,7 +44,7 @@ class AuthenticateController extends Controller
                 'description' => 'nullable',
                 'category' => 'nullable'
             ]);
-            
+
             $user = User::create([
                 'name' => $validateData['name'],
                 'lastname' => $validateData['lastname'],
@@ -56,7 +56,7 @@ class AuthenticateController extends Controller
             ]);
 
             $location = Location::create([]);
-            $user->location_id = $location->id; 
+            $user->location_id = $location->id;
             $user->assignRole($validateData['type']);
             $user->save();
             DB::commit();

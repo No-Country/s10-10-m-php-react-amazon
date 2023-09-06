@@ -1,23 +1,26 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Pack;
 
+use App\Models\Pack;
 use App\Models\User;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
-
 use Cloudinary;
 class PackController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('api');
+    }
+
     public function store(Request $request){
 
         try {
-
+            checkLogin();
 
             $validatedData = $request->validate([
                 'name' => 'required|string|max:255',
@@ -51,6 +54,8 @@ class PackController extends Controller
 
     public function filter(Request $request){
         try{
+            checkLogin();
+
             $validatedData = $request->validate([
                 'category' => 'required'
             ]);
@@ -70,6 +75,8 @@ class PackController extends Controller
     }
 
     public function show($id){
+        checkLogin();
+
         $pack = Pack::find($id);
         if($pack){
             return response()->json(['Pack' => $pack], 200);
@@ -79,6 +86,8 @@ class PackController extends Controller
     }
 
     public function update(Request $request, $id){
+        checkLogin();
+
         $pack = Pack::find($id);
 
         if($pack){
@@ -117,6 +126,8 @@ class PackController extends Controller
 
     public function destroy($id)
     {
+        checkLogin();
+
         $pack = Pack::find($id);
         if($pack){
             $pack->delete();
@@ -128,6 +139,8 @@ class PackController extends Controller
     public function image(Request $request,$id)
     {
         try {
+            checkLogin();
+
             $validationData = $request->validate([
                 'image' => 'required|image|mimes:jpeg,png'
             ], [
@@ -154,6 +167,8 @@ class PackController extends Controller
     public function deleteImage($id) {
 
         try {
+            checkLogin();
+            
             $pack = Pack::findOrFail($id);
 
             $publicId = pathinfo(parse_url($pack->photo_url, PHP_URL_PATH), PATHINFO_FILENAME);
