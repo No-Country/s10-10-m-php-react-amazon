@@ -38,7 +38,7 @@ const Form = () => {
     const passwordError = validatePassword(password);
     setError(passwordError);
     if (!passwordError) {
-      loginUser(email, password)      
+      loginUser(email, password)
         .then((response) => {
           setInvalid(false);
           if (response.status == 200) {
@@ -66,11 +66,12 @@ const Form = () => {
       </div>
       <div className="text-3xl  custom-title">
         <div className="flex flex-col items-center h-screen">
-
-          <form onSubmit={handleSubmit(submit)} className=" w-[343px] h-[292px] lg:w-[532px] p-[1rem] flex flex-col  justify-center  rounded-md bg-white">
+          <form
+            onSubmit={handleSubmit(submit)}
+            className=" w-[343px] h-[292px] lg:w-[532px] p-[1rem] flex flex-col  justify-center  rounded-md bg-white"
+          >
             <div className="mt-15 lg:w-[320px] lg:m-auto flex flex-col">
               <div>
-
                 <label
                   htmlFor="email"
                   className="text-left text-colorNeutral1 -mb-3 text-sizeLabel"
@@ -95,8 +96,7 @@ const Form = () => {
                 )}
               </div>
 
-              <div >
-
+              <div>
                 <label
                   htmlFor="password"
                   className="text-left -mb-3 text-sizeLabel text-colorNeutral1"
@@ -135,7 +135,6 @@ const Form = () => {
                     {isVisible ? <BsEye /> : <BsEyeSlash />}{" "}
                   </button>
                 </div>
-
               </div>
 
               <div className="mt-3">
@@ -157,15 +156,17 @@ const Form = () => {
                 Email y/o contraseña incorrectos
               </p>
             )}
-
+            <div className="text-center">
+              <Button
+                className="rounded-full normal-case w-[340px] text-colorPrimary bg-[#FFDBCC]"
+                type="submit"
+              >
+                Iniciá sesión
+              </Button>
+            </div>
           </form>
           <div className="m-6 custom-textButton">
             <Link to="/recover-pass">¿Has olvidado la contraseña?</Link>
-          </div>
-          <div className="text-center">
-            <Button className="rounded-full normal-case w-[340px] text-colorPrimary bg-[#FFDBCC]" type="submit">
-              Iniciá sesión
-            </Button>
           </div>
           <div className="text-sizeNote w-[330px] my-16 flex justify-between">
             <span>¿Aún no tienes cuenta?</span>
