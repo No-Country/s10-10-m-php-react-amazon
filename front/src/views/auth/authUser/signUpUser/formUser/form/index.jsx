@@ -38,9 +38,8 @@ const FormUser = ({ setNextStep}) => {
     setError(passwordError);    
     if (!passwordError) {
       const updatedData = {
-        type: 'business',
-        description: "algo",
-        category: "panaderia",
+        type: 'person',
+        
         name: info.name,
         lastname: info.lastname,
         password: info.password,
