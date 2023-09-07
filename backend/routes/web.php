@@ -1,5 +1,5 @@
 <?php
-
+ //header("Access-Control-Allow-Origin: *");
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
@@ -21,32 +21,35 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login-google', function () {
-    return Socialite::driver('google')->redirect();
-});
 
-Route::get('/google-callback', function () {
-    $user = Socialite::driver('google')->stateless()->user();
-   $userExist = User::where('external_id', $user->id)->where('external_auth','google')->first();
-if($userExist) {
-    Auth::login($userExist);
-     $token = JWTAuth::fromUser($userExist);
-} else {
-    $userNew = User::create([
-        'name' => $user->name,
-        'email' => $user->email,
-        'avatar' => $user->avatar,
-        'external_id' => $user->id,
-        'external_auth' => 'google',
-        'password' => bcrypt(Str::random(16)),
-        'type'=> 'person'
-    ]);
-    Auth::login($userNew);
-     $token = JWTAuth::fromUser($userNew);
-}
+    Route::get('/login-google', function () {
+        return Socialite::driver('google')->redirect();
+    });
 
-return redirect('/dashboard')->with('token', $token);
-});
+    Route::get('/google-callback', function () {
+        $user = Socialite::driver('google')->stateless()->user();
+        $userExist = User::where('external_id', $user->id)->where('external_auth', 'google')->first();
+
+        if ($userExist) {
+            Auth::login($userExist);
+            $token = JWTAuth::fromUser($userExist);
+        } else {
+            $userNew = User::create([
+                'name' => $user->name,
+                'email' => $user->email,
+                'avatar' => $user->avatar,
+                'external_id' => $user->id,
+                'external_auth' => 'google',
+                'password' => bcrypt(Str::random(16)),
+                'type' => 'person'
+            ]);
+            Auth::login($userNew);
+            $token = JWTAuth::fromUser($userNew);
+        }
+
+        return redirect('/dashboard')->with('token', $token);
+    });
+
 
 Route::get('/login-facebook', function () {
     return Socialite::driver('facebook')->redirect();
