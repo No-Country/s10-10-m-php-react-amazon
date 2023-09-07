@@ -1,9 +1,7 @@
 import { Button, Spinner } from "@material-tailwind/react";
 import { useJsApiLoader } from "@react-google-maps/api";
 import { Toaster, toast } from "sonner";
-
-import React, { useEffect, useRef, useState } from "react";
-
+import { useEffect, useRef, useState } from "react";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faLocationDot, faCrosshairs } from "@fortawesome/free-solid-svg-icons";
 import MapsHeader from "./components/maps-header";
@@ -57,57 +55,61 @@ const Maps = () => {
       city: city,
       latitude: selectedLocation.lat,
       longitude: selectedLocation.lng,
-      postal_code: "123"
+      postal_code: "123",
     };
 
-    signUpLocation(updatedData, user.token).then((response) => {
-      if (response.status == 200) {
-        toast("Su registro fue exitoso");
-        setTimeout(() => {
-          dispatch(setToken(""))
-          navigate("/auth/user/login");
-        }, 2500);
-      } else {
-        toast("Error al ingresar su ubicación");
-      }
-    }).catch((err) => {
-      console.log(err)
-    });
+    signUpLocation(updatedData, user.token)
+      .then((response) => {
+        if (response.status == 200) {
+          toast("Su registro fue exitoso");
+          setTimeout(() => {
+            dispatch(setToken(""));
+            navigate("/auth/user/login");
+          }, 2500);
+        } else {
+          toast("Error al ingresar su ubicación");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
-    <div className="flex flex-col items-center h-screen bg-mainColor">
-      <MapsHeader />
-      <MapsForm
-        map={map}
-        setMark={setMark}
-        setSelectedLocation={setSelectedLocation}
-        originRef={originRef}
-        setDirection={setDirection}
-        setCity={setCity}
-        setProvince={setProvince}
-      />
-      <MapsMap
-        selectedLocation={selectedLocation}
-        setMap={setMap}
-        mark={mark}
-        setMark={setMark}
-        setDirection={setDirection}
-        originRef={originRef}
-        setCity={setCity}
-        setProvince={setProvince}
-      />
-      <Button
-        variant="gradient"
-        fullWidth
-        className="rounded-full w-widthMainBtn h-heightMainBtn mt-5 custom-buttonCTAs"
-        type="submit"
-        onClick={submit}
-      >
-        Registrarse
-      </Button>
-      <Toaster position="bottom-right" richColors />
-    </div>
+    <>
+      <div className="bg-colorPrimary flex flex-col items-center justify-center">        
+          <MapsHeader />        
+        <div className="bg-colorNeutral3 rounded-lg p-5">          
+            <MapsForm
+              map={map}
+              setMark={setMark}
+              setSelectedLocation={setSelectedLocation}
+              originRef={originRef}
+              setDirection={setDirection}
+              setCity={setCity}
+              setProvince={setProvince}
+            />     
+            <MapsMap
+              selectedLocation={selectedLocation}
+              setMap={setMap}
+              mark={mark}
+              setMark={setMark}
+              setDirection={setDirection}
+              originRef={originRef}
+              setCity={setCity}
+              setProvince={setProvince}
+            />
+        </div>
+        <Button
+          className="rounded-full normal-case w-[310px] bg-buttonFilledColor m-8 mb-16 text-colorPrimary text-md"
+          type="submit"
+          onClick={submit}
+        >
+          Registrarme
+        </Button>
+        <Toaster position="bottom-right" richColors />
+      </div>
+    </>
   );
 };
 
