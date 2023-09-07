@@ -22,26 +22,20 @@ export const CardProfile = ({user}) => {
     }
 
   return (
-    <Card className="mt-6 w-[333px] h-[221px]">
-      <CardBody>
-        <Typography variant="h5" color="blue-gray" className="mb-2">
-        <div className="flex">
+    <Card className="my-6 w-[333px] h-[514px]">
+        <Typography variant="h5" color="blue-gray" className="mb-2 flex flex-col items-center justify-evenly h-full">
           {user.avatar ? <img src={user.avatar} alt="avatar" className="object-contain w-[100px] h-[100px]"/> : <img src={UserLogo} className="bg-mainColor rounded-full w-[100px] h-[100px] fit-contain"></img>}
-            <div className="m-5">
+            <div className="m-5 text-center">
               <h1 className="font-sizeText mb-3">{user.name}</h1>
-              <p className="custom-textButton">Barrio o ciudad{user.address} {user.city} {user.province} {user.country}</p>
-            </div>
-          </div>
+              <p className="custom-textButton">{user.location.city}, {user.location.province}</p>
+              </div>
+              <div className="m-5 text-center">
+              <p>{user.category}</p>
+              <p className="custom-filter underline decoration-solid">{user.location.address ? user.location.address : "No tienes designada tu ubicación"}</p>
+              </div>
+              <Button variant="outlined" className="rounded-full">Editar perfil</Button>
         </Typography>
-        <Typography className="flex justify-between mt-5">
-          <FontAwesomeIcon icon={faLocationDot} className="custom-text mx-3"/>
-          <span className="custom-filter">{user.address ? user.address : "No tienes designada tu ubicación"}</span>
-        </Typography>
-        <Typography className="flex justify-between">
-          <FontAwesomeIcon icon={icon}/>
-          <span>{user.category}</span>
-        </Typography>
-      </CardBody>
+        
      
     </Card>
   );

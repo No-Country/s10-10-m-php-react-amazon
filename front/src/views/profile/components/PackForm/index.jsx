@@ -14,7 +14,7 @@ import {
 } from "@material-tailwind/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { postPack } from "../../../../../api/itemApi";
+import {postPack} from '../../../../api/itemApi'
 import { useSelector } from "react-redux";
 import { toast, Toaster } from "sonner";
 export function PackForm({ open, handleOpen }) {

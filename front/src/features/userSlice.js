@@ -16,7 +16,9 @@ const initialState = {
     longitude: -64.1850551,
   },
   token: "",
-  type: ""
+  type: "",
+  category: "",
+  description: ""
 };
 
 export const userSlice = createSlice({
