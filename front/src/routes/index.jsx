@@ -19,13 +19,14 @@ const AppRouter = () => {
       <Route path="/detail" component={ItemDetailContainer} />
       <Route path="/" component={Home} />
       <Route path="/auth/user/signup" component={SignUpUser} />
+      <Route path="/auth/shop/signup" component={SignUpShop} />
       <Route path="/auth/user/login" component={LoginUser} />
       <Route path="/recover-pass" component={RecoverPass} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/detail/:id" component={ItemDetailContainer} />
       <Route path="/page-not-found" component={Error404} />
-      <Route path="/user/profile" component={UserProfile}/>
-      <Route path="/logout" component={Logout}/>
+      <Route path="/user/profile" component={UserProfile} />
+      <Route path="/logout" component={Logout} />
     </Router>
   );
 };
