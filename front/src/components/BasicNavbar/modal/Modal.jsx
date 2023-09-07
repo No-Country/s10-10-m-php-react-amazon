@@ -41,7 +41,7 @@ export function Modal({ open, setOpen }) {
               onClick={handleCloseModal}
               className="rounded-full bg-colorPrimary normal-case font-weightTextButton text-sizeButtonCTAs p-0 text-white h-[44px] w-1/2"
             >
-              <Link to="/auth/shop/login">Quiero vender comida </Link>
+              <Link to="/auth/shop/signup">Quiero vender comida </Link>
             </Button>
           </div>
         </DialogBody>
