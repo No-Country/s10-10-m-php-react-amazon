@@ -11,11 +11,12 @@ import MapsForm from "./components/maps-form";
 import MapsMap from "./components/maps-map";
 import { signUpLocation, signUpUser } from "../../../../../../api/authApi";
 import { navigate } from "wouter/use-location";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setToken } from "../../../../../../features/userSlice";
 
 library.add(faLocationDot, faCrosshairs);
 
-const Maps = ({ setData, data }) => {
+const Maps = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [map, setMap] = useState(/** @type google.maps.Map */ (null));
   const [direction, setDirection] = useState(null);
@@ -33,8 +34,8 @@ const Maps = ({ setData, data }) => {
   const [city, setCity] = useState(null);
   const [province, setProvince] = useState(null);
 
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-
   useEffect(() => {
     if (isLoaded) {
       setIsLoading(false);
@@ -43,7 +44,7 @@ const Maps = ({ setData, data }) => {
     setTimeout(() => {
       setMark(selectedLocation);
     }, 1000);
-  }, [isLoaded, selectedLocation, data]);
+  }, [isLoaded, selectedLocation]);
 
   if (isLoading) {
     return <Spinner />;
@@ -51,23 +52,26 @@ const Maps = ({ setData, data }) => {
 
   const submit = async () => {
     const updatedData = {
-      ...data,
       address: direction,
       province: province,
       city: city,
       latitude: selectedLocation.lat,
       longitude: selectedLocation.lng,
+      postal_code: "123"
     };
 
     signUpLocation(updatedData, user.token).then((response) => {
-      if (response.status == 201) {
+      if (response.status == 200) {
         toast("Su registro fue exitoso");
         setTimeout(() => {
+          dispatch(setToken(""))
           navigate("/auth/user/login");
         }, 2500);
       } else {
         toast("Error al ingresar su ubicación");
       }
+    }).catch((err) => {
+      console.log(err)
     });
   };
 
@@ -90,6 +94,8 @@ const Maps = ({ setData, data }) => {
         setMark={setMark}
         setDirection={setDirection}
         originRef={originRef}
+        setCity={setCity}
+        setProvince={setProvince}
       />
       <Button
         variant="gradient"

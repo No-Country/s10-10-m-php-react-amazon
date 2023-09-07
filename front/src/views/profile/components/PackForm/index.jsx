@@ -14,14 +14,14 @@ import {
 } from "@material-tailwind/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { postPack } from "../../../../../api/itemApi";
-import {useSelector} from 'react-redux'
+import {postPack} from '../../../../api/itemApi'
+import { useSelector } from "react-redux";
+import { toast, Toaster } from "sonner";
 export function PackForm({ open, handleOpen }) {
   const [stock, setStock] = useState(0);
   const [time_start, setTime_start] = useState("00:00");
   const [time_end, setTime_end] = useState("01:00");
-  const user = useSelector(state => state.user)
-
+  const user = useSelector((state) => state.user);
   const handlePlus = () => {
     setStock(stock + 1);
   };
@@ -47,28 +47,38 @@ export function PackForm({ open, handleOpen }) {
   };
 
   const submit = (info) => {
-    const pack = {
-        name: info.name,
-        description: info.description,
-        price: info.price,
-        time_start: time_start,
-        time_end: time_end,
-        stock: stock
-    }
-    postPack(pack, user.token)
-    .then((response) => {
-      console.log(response);
-  
-      if (response.status === 201) {
-        // El envío fue exitoso
-      } else {
-        console.error("Error al enviar el formulario:", response.data);
-      }
-    })
-    .catch((error) => {
-      console.error("Error al enviar el formulario:", error);
-    });
+    let dateStart = new Date();
+    const [hoursStart, minutesStart] = time_start.split(":");
+    dateStart.setHours(parseInt(hoursStart, 10));
+    dateStart.setMinutes(parseInt(minutesStart, 10));
 
+    let dateEnd = new Date();
+    const [hoursEnd, minutesEnd] = time_end.split(":");
+    dateEnd.setHours(parseInt(hoursEnd, 10));
+    dateEnd.setMinutes(parseInt(minutesEnd, 10));
+    
+
+    const pack = {
+      name: info.name,
+      description: info.description,
+      price: info.price,
+      time_start: dateStart,
+      time_end: dateEnd,
+      stock: stock,
+    };
+    postPack(pack, user.token)
+      .then((response) => {
+
+        if (response.status === 201) {
+          toast("Se registró el producto con éxito")
+          handleOpen()
+        } else {
+          console.error("Error al enviar el formulario:", response.data);
+        }
+      })
+      .catch((error) => {
+        console.error("Error al enviar el formulario:", error);
+      });
   };
 
   const timeList = [
@@ -218,6 +228,7 @@ export function PackForm({ open, handleOpen }) {
           </Button>
         </form>
       </Dialog>
+      <Toaster position="bottom-right" richColors />
     </>
   );
 }

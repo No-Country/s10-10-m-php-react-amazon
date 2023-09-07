@@ -41,12 +41,12 @@ const Form = () => {
     const passwordError = validatePassword(password);
     setError(passwordError);
     if (!passwordError) {
-      loginUser(email, password)
+      loginUser(email, password)      
         .then((response) => {
           setInvalid(false);
-          if (response.status == 200) {
+          if (response.status == 200) {            
             dispatch(setUser(response.data));
-            navigate("/");
+            navigate("/dashboard");
           }
         })
         .catch((err) => {

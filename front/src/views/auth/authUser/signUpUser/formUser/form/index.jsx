@@ -7,7 +7,10 @@ import { validatePassword } from "../../../../../../utils/validatePassword";
 import { signUpUser } from "../../../../../../api/authApi.js";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../../../../features/userSlice";
-const FormUser = ({ setData, data }) => {
+import { Toaster, toast } from "sonner";
+import { setToken } from '../../../../../../features/userSlice.js'
+
+const FormUser = ({ setNextStep }) => {
   const {
     register,
     handleSubmit,
@@ -18,13 +21,26 @@ const FormUser = ({ setData, data }) => {
   const [isVisible, setIsVisible] = useState(true);
   const dispatch = useDispatch();
 
+  const [passwordMatchError, setPasswordMatchError] = useState("");
+  const handlePasswordRepeatChange = (event) => {
+    const password = document.getElementById("password").value;
+    const passwordRepeat = event.target.value;
+
+    if (password !== passwordRepeat) {
+      setPasswordMatchError("Las contraseñas no coinciden");
+    } else {
+      setPasswordMatchError("");
+    }
+  };
+
   const submit = (info) => {
     const passwordError = validatePassword(info.password);
     setError(passwordError);
-
     if (!passwordError) {
       const updatedData = {
-        ...data,
+        type: 'business',
+        description: "algo",
+        category: "panaderia",
         name: info.name,
         lastname: info.lastname,
         password: info.password,
@@ -33,11 +49,14 @@ const FormUser = ({ setData, data }) => {
       console.log(updatedData)
       signUpUser(updatedData).then((response) => {
         if (response.status == 201) {
-          console.log(response.data);
-          dispatch(setUser(response.data));
+          dispatch(setToken(response.data));
+          setNextStep(true)
         } else {
-          setError("El email ya existe");
+          console.log("Algo")
         }
+      }).catch(err => {
+        console.log(err)
+        toast("Email existente");
       });
     }
   };
@@ -161,6 +180,7 @@ const FormUser = ({ setData, data }) => {
                 labelProps={{
                   className: "hidden",
                 }}
+                onChange={handlePasswordRepeatChange}
               />
               <button
                 className="text-2xl text-mainColor absolute right-2 top-1/2 transform -translate-y-1/2"
@@ -170,10 +190,8 @@ const FormUser = ({ setData, data }) => {
                 {isVisible ? <BsEyeSlash /> : <BsEye />}{" "}
               </button>
             </div>
-            {errors.passwordRepeat && (
-              <p className="text-red-500 mt-2">
-                Las contraseñas deben coincidir.
-              </p>
+            {passwordMatchError && (
+              <p className="text-red-500 mt-2">{passwordMatchError}</p>
             )}
           </div>
         </div>
@@ -204,6 +222,7 @@ const FormUser = ({ setData, data }) => {
           </Typography>
         </div>
       </form>
+      <Toaster position="bottom-right" richColors />
     </div>
   );
 };

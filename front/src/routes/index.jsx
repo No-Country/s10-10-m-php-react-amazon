@@ -10,6 +10,7 @@ import Dashboard from "../views/dashboard";
 import ItemDetailContainer from "../components/itemDetailContainer";
 import Error404 from "../views/404";
 import UserProfile from "../views/profile";
+import Logout from "../views/logout";
 
 const AppRouter = () => {
   return (
@@ -18,12 +19,14 @@ const AppRouter = () => {
       <Route path="/detail" component={ItemDetailContainer} />
       <Route path="/" component={Home} />
       <Route path="/auth/user/signup" component={SignUpUser} />
+      <Route path="/auth/shop/signup" component={SignUpShop} />
       <Route path="/auth/user/login" component={LoginUser} />
       <Route path="/recover-pass" component={RecoverPass} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/detail/:id" component={ItemDetailContainer} />
       <Route path="/page-not-found" component={Error404} />
-      <Route path="/user/profile" component={UserProfile}/>
+      <Route path="/user/profile" component={UserProfile} />
+      <Route path="/logout" component={Logout} />
     </Router>
   );
 };
