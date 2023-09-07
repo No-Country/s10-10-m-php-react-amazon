@@ -17,7 +17,6 @@ const Form = () => {
     setIsVisible(!isVisible);
   };
 
-
   const handleBack = () => {
     history.back();
   };
@@ -28,23 +27,22 @@ const Form = () => {
     formState: { errors },
   } = useForm();
 
-
   const [error, setError] = useState("");
 
   const dispatch = useDispatch();
 
   const [invalid, setInvalid] = useState(false);
 
-
   const submit = (data) => {
     const { email, password } = data;
     const passwordError = validatePassword(password);
     setError(passwordError);
     if (!passwordError) {
-      loginUser(email, password)      
+      console.log(email)
+      loginUser(email, password)
         .then((response) => {
           setInvalid(false);
-          if (response.status == 200) {            
+          if (response.status == 200) {
             dispatch(setUser(response.data));
             navigate("/dashboard");
           }
@@ -56,23 +54,25 @@ const Form = () => {
     }
   };
 
-
-
   return (
     <div className="bg-colorPrimary">
       <div className="flex  items-center text-left p-[2rem] text-[24px] font-bold text-colorNeutral3">
-        <button onClick={handleBack} className="rounded-full p-1 border-2 border-colorNeutral3 mr-3">
+        <button
+          onClick={handleBack}
+          className="rounded-full p-1 border-2 border-colorNeutral3 mr-3"
+        >
           <BiArrowBack size={16} color="text-colorNeutral3" />
         </button>
-        <h3 >Inicia sesión</h3>
+        <h3>Inicia sesión</h3>
       </div>
       <div className="text-3xl  custom-title">
         <div className="flex flex-col items-center h-screen">
-
-          <form onSubmit={handleSubmit(submit)} className=" w-[343px] h-[292px] lg:w-[532px] p-[1rem] flex flex-col  justify-center  rounded-md bg-white">
+          <form
+            onSubmit={handleSubmit(submit)}
+            className=" w-[343px] h-[292px] lg:w-[532px] p-[1rem] flex flex-col  justify-center  rounded-md bg-white"
+          >
             <div className="mt-15 lg:w-[320px] lg:m-auto flex flex-col">
               <div>
-
                 <label
                   htmlFor="email"
                   className="text-left text-colorNeutral1 -mb-3 text-sizeLabel"
@@ -97,8 +97,7 @@ const Form = () => {
                 )}
               </div>
 
-              <div >
-
+              <div>
                 <label
                   htmlFor="password"
                   className="text-left -mb-3 text-sizeLabel text-colorNeutral1"
@@ -137,7 +136,6 @@ const Form = () => {
                     {isVisible ? <BsEye /> : <BsEyeSlash />}{" "}
                   </button>
                 </div>
-
               </div>
 
               <div className="mt-3">
@@ -159,15 +157,17 @@ const Form = () => {
                 Email y/o contraseña incorrectos
               </p>
             )}
-
+            <div className="text-center">
+              <Button
+                className="rounded-full normal-case w-[340px] text-colorPrimary bg-[#FFDBCC]"
+                type="submit"
+              >
+                Iniciá sesión
+              </Button>
+            </div>
           </form>
           <div className="m-6 custom-textButton">
             <Link to="/recover-pass">¿Has olvidado la contraseña?</Link>
-          </div>
-          <div className="text-center">
-            <Button className="rounded-full normal-case w-[340px] text-colorPrimary bg-[#FFDBCC]" type="submit">
-              Iniciá sesión
-            </Button>
           </div>
           <div className="text-sizeNote w-[330px] my-16 flex justify-between">
             <span>¿Aún no tienes cuenta?</span>
