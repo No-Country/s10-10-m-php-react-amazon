@@ -94,6 +94,8 @@ const Maps = () => {
         setMark={setMark}
         setDirection={setDirection}
         originRef={originRef}
+        setCity={setCity}
+        setProvince={setProvince}
       />
       <Button
         variant="gradient"

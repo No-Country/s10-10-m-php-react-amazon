@@ -1,33 +1,46 @@
-import React, { useEffect } from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-import { navigate } from 'wouter/use-location'
-import { getUserById } from '../../api/userApi'
-import { setUser } from '../../features/userSlice'
-import BusinessProfile from './BusinessProfile'
-import PersonProfile from './PersonProfile'
-
+import { Spinner } from "@material-tailwind/react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { navigate } from "wouter/use-location";
+import { getUserById } from "../../api/userApi";
+import { setUser } from "../../features/userSlice";
+import BusinessProfile from "./BusinessProfile";
+import PersonProfile from "./PersonProfile";
 
 const UserProfile = () => {
-    const user = useSelector(state => state.user)
-    useEffect(() => {
-      getUserById(user.id, user.token).then(response => {
+  const user = useSelector((state) => state.user);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    getUserById(user.id, user.token)
+      .then((response) => {
         if (response.status == 200) {
-        } 
-      }).catch(err =>
-        navigate('/')
-      )
-    })
+          setIsLoading(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        navigate("/");
+      });
+  });
 
-    if (user.type == "person") return (
-      <div className='flex justify-center w-full'>
-      <PersonProfile user={user}/>
-    </div>
-    ); else if (user.type == "business") return (
-      <div  className='flex justify-center w-full'>
-        <BusinessProfile user={user}/>
+  if (isLoading)
+    return (
+      <div className="flex justify-center w-full items-center">
+        <Spinner />
       </div>
-    )
- 
-}
+    ); else
+  if (user.type == "person")
+    return (
+      <div className="flex justify-center w-full">
+        <PersonProfile user={user} />
+      </div>
+    );
+  else if (user.type == "business")
+    return (
+      <div className="flex justify-center w-full">
+        <BusinessProfile user={user} />
+      </div>
+    );
+};
 
-export default UserProfile
+export default UserProfile;

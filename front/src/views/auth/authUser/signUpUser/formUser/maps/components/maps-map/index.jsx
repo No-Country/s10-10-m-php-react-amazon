@@ -1,7 +1,7 @@
 import { GoogleMap, Marker } from "@react-google-maps/api";
 import React from "react";
 
-const MapsMap = ({selectedLocation, setMap,setMark, setDirection, originRef, mark}) => {
+const MapsMap = ({selectedLocation, setMap,setMark, setDirection, originRef, mark, setCity, setProvince}) => {
   const dragPoint = async (e) => {
     const newPosition = {
       lat: e.latLng.lat(),
@@ -15,6 +15,8 @@ const MapsMap = ({selectedLocation, setMap,setMark, setDirection, originRef, mar
       if (status === "OK" && results.length > 0) {
         originRef.current.value = results[0].formatted_address;
         setDirection(originRef.current.value);
+        setProvince(results[0].address_components[results[0].address_components.length-2])
+        setCity(results[0].address_components[results[0].address_components.length-3])
       } else {
         console.error(
           "Reverse geocode was not successful for the following reason:",
