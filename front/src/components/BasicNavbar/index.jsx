@@ -51,7 +51,7 @@ const BasicNavbar = () => {
       >
         <Link to="/page-not-found">Ayuda</Link>
       </Typography>
-      {user.token && (
+      {user.token && user.id && (
         <Typography
           as="li"
           variant="small"
@@ -78,7 +78,7 @@ const BasicNavbar = () => {
 
           <div className="hidden lg:block">{navList}</div>
           <div>
-            {!user.token && (
+            {!user.token  && (
               <Button
                 size="sm"
                 className="ml-10 hidden lg:inline-block bg-colorPrimary font-weightText"
@@ -94,7 +94,7 @@ const BasicNavbar = () => {
               className="ml-10 hidden lg:inline-block bg-colorPrimary"
               style={{ textTransform: "none" }}
             >
-              {user.token ? (
+              {user.token && user.id ? (
                 <Link to="/logout">Cerrar sesión</Link>
               ) : (
                 <Link to="/auth/user/login">Ingresar</Link>
@@ -160,7 +160,7 @@ const BasicNavbar = () => {
                 className="mb-2 bg-colorPrimary w-1/2 font-weightText"
                 style={{ textTransform: "none" }}
               >
-                {user.token ? (
+                {user.token && user.id ? (
                   <Link to="/logout">Cerrar sesión</Link>
                 ) : (
                   <Link to="/auth/user/login">Ingresar</Link>
