@@ -26,7 +26,7 @@ const AppRouter = () => {
       <Route path="/detail/:id" component={ItemDetailContainer} />
       <Route path="/page-not-found" component={Error404} />
       <Route path="/user/profile" component={UserProfile} />
-      <Route path="/logout" component={Logout} />
+      <Route path="/logout" component={Logout} />   
     </Router>
   );
 };

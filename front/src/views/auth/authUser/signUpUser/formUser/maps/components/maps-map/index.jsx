@@ -30,7 +30,7 @@ const MapsMap = ({selectedLocation, setMap,setMark, setDirection, originRef, mar
       <GoogleMap
         center={selectedLocation}
         zoom={15}
-        mapContainerStyle={{ width: "80%", height: "100%", borderRadius: "2rem" }}
+        mapContainerStyle={{ width: "100%", height: "100%", borderRadius: "1rem" }}
         options={{
           zoomControl: false,
           streetViewControl: false,

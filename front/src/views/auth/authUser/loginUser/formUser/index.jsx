@@ -132,7 +132,7 @@ const Form = () => {
                     type="button"
                     onClick={handleChangeVisible}
                   >
-                    {isVisible ? <BsEye /> : <BsEyeSlash />}{" "}
+                    {isVisible ? <BsEyeSlash /> : <BsEye />}{" "}
                   </button>
                 </div>
               </div>
