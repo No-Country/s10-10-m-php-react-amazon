@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\CalificationController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -44,6 +45,9 @@ Route::group(['middleware' => 'api',], function ($router) {
     //Rutas de Pack
     Route::get('pack/{id}', 'App\Http\Controllers\PackController@show');
 
+    // Obtener todas las calificaciones de un usuario
+    Route::get('califications/{id}', [CalificationController::class, 'index']);
+
 
 
 
@@ -74,6 +78,11 @@ Route::group(['middleware' => 'api',], function ($router) {
         Route::get('purchase', 'App\Http\Controllers\PurchaseController@show');
         Route::put('purchase/update/{id}', 'App\Http\Controllers\PurchaseController@update');
         Route::delete('purchase/delete/{id}', 'App\Http\Controllers\PurchaseController@destroy');
+
+            //Almacenar una nueva calificación
+        Route::post('califications', [CalificationController::class, 'store']);
+        Route::put('califications/{id}', [CalificationController::class, 'update']);
+
         
         Route::patch('/location', [LocationController::class, 'update'])->name('location.update');
 
