@@ -13,7 +13,11 @@ use Illuminate\Http\Response;
 use Cloudinary;
 class PackController extends Controller
 {
+    public function index(){
 
+        $packs = Pack::all();
+        return response()->json(['Packs available' => $packs], 201);
+    }
     public function store(Request $request){
 
         try {
@@ -51,14 +55,44 @@ class PackController extends Controller
 
     public function filter(Request $request){
         try{
-            $validatedData = $request->validate([
-                'category' => 'required'
-            ]);
-            $user= User::Where("type","business")
-            ->where("category",$validatedData["category"])
-            ->with("pack")
-            ->get();
 
+
+            $validatedData = $request->validate([
+                'category' => 'nullable',
+                'city' => 'nullable',
+                'price' => 'nullable|numeric',
+                'time' => 'nullable',
+                'date' => 'nullable',
+            ]);
+            
+            $user = User::where("type", "business")
+            ->when(isset($validatedData["category"]), function ($query) use ($validatedData) {
+                $query->where("category", $validatedData["category"]);
+            })
+            ->whereHas('location', function ($query) use ($validatedData) {
+                $query->when(isset($validatedData["city"]), function ($query) use ($validatedData) {
+                    $query->where("city", $validatedData["city"]);
+                });
+            })
+            ->with(["location" => function ($query) use ($validatedData) {
+                $query->when(isset($validatedData["city"]), function ($query) use ($validatedData) {
+                    $query->where("city", $validatedData["city"]);
+                });
+            }])
+            ->with(["pack" => function ($query) use ($validatedData) {
+                $query->when(isset($validatedData["price"]), function ($query) use ($validatedData) {
+                    $query->where('price', '<=', $validatedData["price"]);
+                });
+                $query->when(isset($validatedData["time"]), function ($query) use ($validatedData) {
+                    $query->where('time_start', '<=', $validatedData["time"])
+                        ->where('time_end', '>=', $validatedData["time"]);
+                });
+                $query->when(isset($validatedData["date"]), function ($query) use ($validatedData) {
+                    $query->where('created_at', '>=', $validatedData["date"]);
+                });
+            }])
+            ->get();        
+    
             return response()->json(['Business' => $user], 201);
         } catch (ValidationException $e) {
             return response()->json([
