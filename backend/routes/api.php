@@ -80,8 +80,8 @@ Route::group(['middleware' => 'api',], function ($router) {
         Route::delete('purchase/delete/{id}', 'App\Http\Controllers\PurchaseController@destroy');
 
             //Almacenar una nueva calificación
-        Route::post('califications', [CalificationController::class, 'store']);
-        Route::put('califications/{id}', [CalificationController::class, 'update']);
+        Route::post('calification', [CalificationController::class, 'store']);
+        Route::put('calification/{id}', [CalificationController::class, 'update']);
 
         
         Route::patch('/location', [LocationController::class, 'update'])->name('location.update');
