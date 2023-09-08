@@ -12,12 +12,12 @@ const ItemDetailContainer = () => {
   const handleOpen = () => setOpen(!open);
   const [item, setItem] = useState(productFindShop(id))
   useEffect(() => {
-    
+
     setTimeout(() => {
       setIsLoading(false);
     }, 2000);
   }, []);
-  
+
   return (
     <div>
       {isLoading ? (
@@ -26,7 +26,7 @@ const ItemDetailContainer = () => {
         </div>
       ) : (
         <div>
-          <ItemDetail item={item} handleOpen={handleOpen}/>
+          <ItemDetail item={item} handleOpen={handleOpen} />
         </div>
       )}
       <ItemModal open={open} handleOpen={handleOpen} item={item} />

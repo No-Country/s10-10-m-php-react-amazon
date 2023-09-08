@@ -7,14 +7,14 @@ const fechaHora = new Date()
 export const products = [
   {
     id: 1,
-    name: "Pack alergias e intolerancias",
+    name: "Pack intolerancias",
     time: "8:30 - 9:15",
     price: 100,
-    tags: ["celiaquía", "intolerancia al gluten", "sin Lactosa"],
+    tags: ["celiaquía", "sin Lactosa", "intolerancia al gluten", "celiaquía", "sin Lactosa", "intolerancia al gluten"],
     stock: 1,
     img: Panaderia,
     timestamp: new Date(fechaHora.getTime() - 3600000),
-    detail: ["facturas", "medialunas", "criollos", "pan casero"],
+    detail: ["facturas", "medialunas",],
     shopId: 2
   },
   {
@@ -22,7 +22,7 @@ export const products = [
     name: "Pack de lacteos",
     time: "8:30 - 9:15",
     price: 200,
-    tags: ["celiaquía"],
+    tags: ["celiaquía", "dulces sueños"],
     stock: 3,
     img: Supermercado,
     timestamp: new Date(fechaHora.getTime()),
@@ -34,11 +34,11 @@ export const products = [
     name: "Pack de frutas",
     time: "8:30 - 9:15",
     price: 400,
-    tags: [],
+    tags: ["Delicias", "Magias Del campo"],
     stock: 1,
     img: Verdulerias1,
     timestamp: new Date(fechaHora.getTime() + 3600000),
-    detail: ["manzanas", "bananas", "naranjas", "mandarinas"], 
+    detail: ["manzanas", "bananas", "naranjas", "mandarinas"],
     shopId: 3
   },
   {
@@ -46,7 +46,7 @@ export const products = [
     name: "Pack verduras",
     time: "8:30 - 9:15",
     price: 100,
-    tags: [],
+    tags: ["Saludables", "Magias Del campo"],
     stars: 4.7,
     distance: 150,
     stock: 1,
