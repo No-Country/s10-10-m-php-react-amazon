@@ -16,19 +16,19 @@ export function ItemModal({ open, handleOpen, item }) {
 
   const handlePlus = () => {
     if (item.stock > quantity) {
-      setQuantity(quantity+1)
+      setQuantity(quantity + 1)
     }
   }
 
   const handleMinus = () => {
     if (quantity > 0) {
-      setQuantity(quantity-1)
+      setQuantity(quantity - 1)
     }
   }
   return (
     <>
       <Dialog
-      className="max-w-full w-full absolute top-1/4  bottom-0  m-0 rounded-t-2xl rounded-b-none "
+        className="max-w-full h-[537px] w-[375px] absolute top-32  bottom-0  m-0 rounded-t-2xl rounded-b-none "
         open={open}
         handler={handleOpen}
         animate={{
@@ -36,49 +36,50 @@ export function ItemModal({ open, handleOpen, item }) {
           unmount: { translateY: '100%', originY: 'bottom' },
         }}
       >
-        <DialogHeader className="text-sizeSubtitle font-weightSubtitle text-colorNeutral1 flex justify-center">
+        <DialogHeader className="text-sizeSubtitle font-bold my-3 text-colorNeutral1 flex justify-center">
           Selecciona la cantidad
         </DialogHeader>
         <DialogBody
-          className="flex flex-col items-center text-colorNeutral1 p-12"
+          className="flex flex-col items-center border-0 text-colorNeutral1 w-[300px] m-auto"
           divider
         >
-          <div className="w-60 h-24 bg-colorNeutral2 bg-opacity-20 rounded-2xl flex items-center justify-evenly p-5">
-          <IconButton variant="outlined" className="rounded-full" color="teal" size="sm" onClick={handleMinus}>
-            <FontAwesomeIcon icon={faMinus} className="text-sizeTitle"/>
+          <div className="w-full h-[129px] border-t-0 rounded-2xl flex items-center justify-evenly bg-colorPrimary p-5">
+            <IconButton className="rounded-full border-2 border-colorNeutral3  bg-colorPrimary w-[32px] h-[32px]" onClick={handleMinus}>
+              <FontAwesomeIcon icon={faMinus} className="text-sizeTitle" color="white" />
             </IconButton>
-            <span className="text-5xl font-extrabold">{quantity}</span>
-            <IconButton variant="gradient" className="rounded-full" color="teal" size="sm" onClick={handlePlus}>
-            <FontAwesomeIcon icon={faPlus} className="text-sizeTitle"/>
+            <div className="w-24 flex justify-center items-center">
+              <span className="text-[70px] text-colorNeutral3 font-extrabold">{quantity}</span>
+            </div>
+            <IconButton className="rounded-full border-2 border-colorNeutral3  bg-colorPrimary  w-[32px] h-[32px]" onClick={handlePlus}>
+              <FontAwesomeIcon icon={faPlus} color="white" className="text-sizeTitle" />
             </IconButton>
           </div>
-          <div className="flex flex-col m-2">
+          <div className="h-[1px] w-full border border-colorNeutral2 my-6"></div>
+          <div className="flex flex-col gap-4 w-full">
             <span className="text-sizeText font-weightTitle">
               Resumen de la compra
             </span>
-            <span className="text-sizeNote">Subtotal: ${item.price * quantity}</span>
-            <span className="text-sizeNote">Coste del servicio: $0</span>
-            <span className="text-sizeNote font-weightSubtitle">
-              Total: ${item.price * quantity}
-            </span>
+            <div className="text-sizeNote flex justify-between items-center">
+              <span>Subtotal:</span> <span> ${item.price * quantity}</span>
+            </div>
+            <div className="text-sizeNote flex justify-between items-center">
+              <span> Coste del servicio:</span> <span> $0</span>
+            </div>
+            <div className="text-sizeNote flex justify-between items-center">
+              <span > Total: </span> <span>${item.price * quantity}</span>
+            </div>
           </div>
         </DialogBody>
-        <DialogFooter className="flex flex-col justify-center">
-          <div className="text-black text-xs font-medium leading-tight">
-            Consulta la política de cancelación aquí
-          </div>
+        <DialogFooter className="flex flex-col justify-center pb-10">
           <Button
             style={{ textTransform: "none" }}
-            className="bg-colorPrimary rounded-full m-5 h-12"
+            className="bg-colorPrimary rounded-full h-12 w-[300px] text-buttonFilledColor font-bold"
             onClick={handleOpen}
           >
-            <span>Comprar con **** </span>
+            <span>Ir a Pagar </span>
           </Button>
-          <div className="text-neutral-800 text-sm font-semibold leading-tight">
-            Selecciona otro método de pago
-          </div>
         </DialogFooter>
-      </Dialog>
+      </Dialog >
     </>
   );
 }
