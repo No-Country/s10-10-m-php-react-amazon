@@ -39,8 +39,9 @@ Route::group(['middleware' => 'api',], function ($router) {
 
     //Rutas de Pack
     Route::get('pack/{id}', 'App\Http\Controllers\PackController@show');
-
-
+    Route::get('pack', 'App\Http\Controllers\PackController@index');
+    Route::post('pack/filter', 'App\Http\Controllers\PackController@filter');
+    
     Route::group(['middleware' => 'jwt.auth',], function ($router) {
 
         Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.update');
@@ -52,7 +53,8 @@ Route::group(['middleware' => 'api',], function ($router) {
         Route::put('business/update/{id}', 'App\Http\Controllers\BusinessController@update');
         Route::delete('business/delete/{id}', 'App\Http\Controllers\BusinessController@destroy');
 
-        Route::post('pack/filter', 'App\Http\Controllers\PackController@filter');
+
+
         Route::post('pack', 'App\Http\Controllers\PackController@store');
         Route::put('pack/update/{id}', 'App\Http\Controllers\PackController@update');
         Route::delete('pack/delete/{id}', 'App\Http\Controllers\PackController@destroy');
