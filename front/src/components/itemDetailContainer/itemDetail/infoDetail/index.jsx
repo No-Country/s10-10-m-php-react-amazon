@@ -1,11 +1,18 @@
-
-import SwipeableViews from "react-swipeable-views";
+import Slider from "react-slick";
 import iconGeo from "../../../../assets/icons/geo-alt.svg"
 import Comments from "./comments";
 
 const InfoDetail = () => {
 
-  const handleSwipe = (index) => { };
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1.5,
+    slidesToScroll: 1
+  };
+
+  
 
   return (
     <div className='pl-[2rem]'>
@@ -37,12 +44,12 @@ const InfoDetail = () => {
       </div>
       <div className="w-96 my-6">
         <h3 className=' font-bold text-[#3F3F46] mb-3'>Comentarios y Valoraciones</h3>
-        <SwipeableViews enableMouseEvents onChangeIndex={handleSwipe} resistance>
+        <Slider {...settings}>
           <Comments />
           <Comments />
           <Comments />
           <Comments />
-        </SwipeableViews>
+        </Slider>
       </div>
     </div>
   );
