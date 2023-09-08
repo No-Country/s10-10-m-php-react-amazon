@@ -78,7 +78,7 @@ const BasicNavbar = () => {
 
           <div className="hidden lg:block">{navList}</div>
           <div>
-            {!user.token  && (
+            {!user.token && (
               <Button
                 size="sm"
                 className="ml-10 hidden lg:inline-block bg-colorPrimary font-weightText"

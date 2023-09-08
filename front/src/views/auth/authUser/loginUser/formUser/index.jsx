@@ -1,5 +1,5 @@
 import { Input, Button, Typography, Checkbox } from "@material-tailwind/react";
-import { useState } from "react";
+import useToggleVisibility from "../../../../../utils/hooks/useToggleVisibility";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { navigate } from "wouter/use-location";
@@ -9,13 +9,12 @@ import { setUser } from "../../../../../features/userSlice";
 import { validatePassword } from "../../../../../utils/validatePassword";
 import { BiArrowBack } from "react-icons/bi";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
+import { useState } from "react";
 
 const Form = () => {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, handleVisible] = useToggleVisibility(true);
 
-  const handleChangeVisible = () => {
-    setIsVisible(!isVisible);
-  };
+
 
   const handleBack = () => {
     history.back();
@@ -56,12 +55,12 @@ const Form = () => {
   return (
     <div className="bg-colorPrimary">
       <div className="flex  items-center text-left p-[2rem] text-[24px] font-bold text-colorNeutral3">
-        <button
+        <Button
           onClick={handleBack}
-          className="rounded-full p-1 border-2 border-colorNeutral3 mr-3"
+          className="rounded-full p-1 border-2 border-colorNeutral3 bg-colorPrimary mr-3"
         >
           <BiArrowBack size={16} color="text-colorNeutral3" />
-        </button>
+        </Button>
         <h3>Inicia sesión</h3>
       </div>
       <div className="text-3xl  custom-title">
