@@ -41,6 +41,7 @@ const Form = () => {
         .then((response) => {
           setInvalid(false);
           if (response.status == 200) {
+            console.log(response.data)
             dispatch(setUser(response.data));
             navigate("/dashboard");
           }

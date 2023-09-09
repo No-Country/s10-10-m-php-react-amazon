@@ -21,7 +21,7 @@ import { postPack } from "../../../../../api/itemApi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useForm } from "react-hook-form";
 
-const PackDetail = ({ open, handleOpen, handleSubmitPack, price, setPrice, description, setDescription, time_start, setTime_start, time_end, setTime_end, tagsSelected, setTagsSelected }) => {
+const PackDetail = ({ open, handleOpen, handleSubmitPack, price, setPrice, description, setDescription, time_start, setTime_start, time_end, setTime_end, tags, setTags }) => {
   const timeList = [
     "00:00",
     "01:00",
@@ -49,7 +49,7 @@ const PackDetail = ({ open, handleOpen, handleSubmitPack, price, setPrice, descr
     "23:00",
   ];
 
-  const tags = [
+  const tagsDefined = [
     "Celiaquía",
     "Sin Lactosa",
     "Sin Gluten",
@@ -65,11 +65,11 @@ const PackDetail = ({ open, handleOpen, handleSubmitPack, price, setPrice, descr
   };
 
   const handleTag = (tag) => {
-    setTagsSelected((prevTagsSelected) => {
-      if (prevTagsSelected.includes(tag)) {
-        return prevTagsSelected.filter((t) => t !== tag);
+    setTags((prevTags) => {
+      if (prevTags.includes(tag)) {
+        return prevTags.filter((t) => t !== tag);
       } else {
-        return [...prevTagsSelected, tag];
+        return [...prevTags, tag];
       }
     });
   };
@@ -160,12 +160,12 @@ const PackDetail = ({ open, handleOpen, handleSubmitPack, price, setPrice, descr
         Selecciona las palabras que describen mejor el contenido del pack
       </h1>
       <div className="flex w-full flex-wrap">
-        {tags.map((tag, index) => {
+        {tagsDefined.map((tag, index) => {
           const content = (
             <>
               <span className="mr-3 text-sizeLabel">{tag}</span>
               <FontAwesomeIcon
-                icon={tagsSelected.includes(tag) ? faCheck : faPlus}
+                icon={tags.includes(tag) ? faCheck : faPlus}
               />
             </>
           );
@@ -175,7 +175,7 @@ const PackDetail = ({ open, handleOpen, handleSubmitPack, price, setPrice, descr
               value={content}
               color={"teal"}
               className={
-                tagsSelected.includes(tag)
+                tags.includes(tag)
                   ? "rounded-full lowercase m-1 text-colorPrimary cursor-pointer bg-[#FFDBCC] border-[#FFDBCC]-200"
                   : "rounded-full lowercase m-1 text-colorPrimary cursor-pointer border border-teal-500"
               }

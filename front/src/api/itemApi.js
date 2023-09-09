@@ -15,6 +15,10 @@ export const postPack = (pack, token) => {
   );
 };
 
-export const getAllPacks = () => {
-  return axios.get(`${BASE_URL}`)
+export const getPacksByFilters = (filters, token) => {
+  return axios.post(`${BASE_URL}/filter`, filters, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
 }
