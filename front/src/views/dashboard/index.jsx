@@ -9,6 +9,7 @@ import { shops } from "../../utils/shops";
 import { productsFindShop } from "../../utils/products/functions";
 import { useSelector } from "react-redux";
 import DialogFilter from "../../components/DialogFilter";
+
 const Dashboard = () => {
   const [business, setBusiness] = useState(shops);
   const [title, setTitle] = useState("Los más deseados");

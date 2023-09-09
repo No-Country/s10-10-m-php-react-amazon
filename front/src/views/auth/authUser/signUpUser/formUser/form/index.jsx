@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../../../../../../features/userSlice";
 import { Toaster, toast } from "sonner";
 import { setToken } from '../../../../../../features/userSlice.js'
+import useToggleVisibility from "../../../../../../utils/hooks/useToggleVisibility";
 
 const FormUser = ({ setNextStep }) => {
   const {
@@ -18,7 +19,8 @@ const FormUser = ({ setNextStep }) => {
   } = useForm();
 
   const [error, setError] = useState("");
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, handleVisible] = useToggleVisibility(true);
+  const [isVisible1, handleVisible1] = useToggleVisibility(true);
   const dispatch = useDispatch();
 
   const [passwordMatchError, setPasswordMatchError] = useState("");
@@ -39,7 +41,7 @@ const FormUser = ({ setNextStep }) => {
     if (!passwordError) {
       const updatedData = {
         type: 'person',
-        
+
         name: info.name,
         lastname: info.lastname,
         password: info.password,
@@ -151,9 +153,9 @@ const FormUser = ({ setNextStep }) => {
               <button
                 className="text-2xl text-mainColor absolute right-2 top-1/2 transform -translate-y-1/2"
                 type="button"
-                onClick={handleChangeVisible}
+                onClick={handleVisible}
               >
-                {isVisible ? <BsEyeSlash /> : <BsEye />}{" "}
+                {isVisible ? <BsEye /> : <BsEyeSlash />}{" "}
               </button>
             </div>
             {errors.password && (
@@ -173,7 +175,7 @@ const FormUser = ({ setNextStep }) => {
             <div className="flex w-full relative">
               <Input
                 {...register("passwordRepeat", { required: true })}
-                type={isVisible ? "password" : "text"}
+                type={isVisible1 ? "password" : "text"}
                 id="passwordRepeat"
                 className={"!border !border-gray-300 bg-white text-gray-900"}
                 labelProps={{
@@ -184,9 +186,9 @@ const FormUser = ({ setNextStep }) => {
               <button
                 className="text-2xl text-mainColor absolute right-2 top-1/2 transform -translate-y-1/2"
                 type="button"
-                onClick={handleChangeVisible}
+                onClick={handleVisible1}
               >
-                {isVisible ? <BsEyeSlash /> : <BsEye />}{" "}
+                {isVisible1 ? <BsEye /> : <BsEyeSlash />}{" "}
               </button>
             </div>
             {passwordMatchError && (
