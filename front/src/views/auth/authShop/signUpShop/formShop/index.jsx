@@ -12,7 +12,6 @@ const FormShop = ({ setData, data }) => {
   } = useForm();
 
   const [error, setError] = useState("");
-  const [isVisible, setIsVisible] = useState(true);
 
   const submit = (info) => {
     const passwordError = validatePassword(info.password);
@@ -29,13 +28,10 @@ const FormShop = ({ setData, data }) => {
       setData(updatedData);
     }
   };
-  const handleChangeVisible = () => {
-    setIsVisible(!isVisible);
-  };
 
   return (
     <div className="flex flex-col items-center bg-colorPrimary min-h-screen">
-      <h1 className="text-2xl font-bold p-3 text-white m-2">
+      <h1 className="text-2xl font-bold p-3 text-white m-2 text-center">
         Únete y transforma excedentes en ingresos
       </h1>
       <p className="text-white text-sm mb-5">
@@ -75,16 +71,14 @@ const FormShop = ({ setData, data }) => {
             <select
               {...register("businessLine", { required: true })}
               id="businessLine"
-              className={`block w-full mt-1 p-2 border border-gray-300 bg-white text-gray-900 rounded-md ${
-                errors.businessLine ? "border-red-500" : ""
-              }`}
+              className=" w-full mt-1 p-2 border border-gray-300 bg-white text-gray-900 rounded-md"
             >
-              <option value="Elige una opción" disabled>
+              <option value="" disabled>
                 Elige una opción
               </option>
-              <option value="Panadería">Panadería</option>
-              <option value="Supermercado">Supermercado</option>
-              <option value="Verdulería">Verdulería</option>
+              <option value="panaderia">Panadería</option>
+              <option value="supermercado">Supermercado</option>
+              <option value="verduleria">Verdulería</option>
             </select>
             {errors.businessLine && (
               <p className="text-red-500">Campo obligatorio</p>
@@ -121,7 +115,7 @@ const FormShop = ({ setData, data }) => {
             >
               Teléfono
             </label>
-            <div className="flex">
+            <div className="flex flex-row">
               <Input
                 {...register("areaCode", { required: true })}
                 id="areaCode"
@@ -151,7 +145,7 @@ const FormShop = ({ setData, data }) => {
             )}
           </div>
         </div>
-        <div className="mt-10">
+        <div className="mt-10 m-2">
           <Button
             fullWidth
             className="rounded-full normal-case bg-buttonFilledColor text-colorPrimary text-sm"
