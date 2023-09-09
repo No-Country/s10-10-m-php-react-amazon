@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\CalificationController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -44,9 +45,15 @@ Route::group(['middleware' => 'api',], function ($router) {
     //Rutas de Pack
     Route::get('pack/{id}', 'App\Http\Controllers\PackController@show');
 
+    // Obtener todas las calificaciones de un usuario
+    Route::get('calification/{id}', [CalificationController::class, 'index']);
 
 
 
+
+    Route::get('pack', 'App\Http\Controllers\PackController@index');
+    Route::post('pack/filter', 'App\Http\Controllers\PackController@filter');
+    
     Route::group(['middleware' => 'jwt.auth',], function ($router) {
 
         Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.update');
@@ -58,7 +65,8 @@ Route::group(['middleware' => 'api',], function ($router) {
         Route::put('business/update/{id}', 'App\Http\Controllers\BusinessController@update');
         Route::delete('business/delete/{id}', 'App\Http\Controllers\BusinessController@destroy');
 
-        Route::post('pack/filter', 'App\Http\Controllers\PackController@filter');
+
+
         Route::post('pack', 'App\Http\Controllers\PackController@store');
         Route::put('pack/update/{id}', 'App\Http\Controllers\PackController@update');
         Route::delete('pack/delete/{id}', 'App\Http\Controllers\PackController@destroy');
@@ -74,6 +82,11 @@ Route::group(['middleware' => 'api',], function ($router) {
         Route::get('purchase', 'App\Http\Controllers\PurchaseController@show');
         Route::put('purchase/update/{id}', 'App\Http\Controllers\PurchaseController@update');
         Route::delete('purchase/delete/{id}', 'App\Http\Controllers\PurchaseController@destroy');
+
+            //Almacenar una nueva calificación
+        Route::post('calification', [CalificationController::class, 'store']);
+        Route::put('calification/{id}', [CalificationController::class, 'update']);
+
         
         Route::patch('/location', [LocationController::class, 'update'])->name('location.update');
 

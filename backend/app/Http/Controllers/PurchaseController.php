@@ -15,6 +15,7 @@ class PurchaseController extends Controller
         try {
             DB::beginTransaction();
             $validatedData = $request->validate([
+                'seller_id' => 'required|exists:users,id',
                 'pack_id' => 'required|exists:packs,id',
                 'amount' => 'required|numeric|min:0'
             ]);
@@ -27,6 +28,7 @@ class PurchaseController extends Controller
             $encryptedId = Auth::user()->getAuthIdentifier();
             $purchase = Purchase::create([
                 'pack_id' => $validatedData['pack_id'],
+                'seller_id' => $validatedData['seller_id'],
                 'user_id' => $encryptedId,
                 'code' => $this->generateCode(),
                 'amount' => $validatedData['amount']
