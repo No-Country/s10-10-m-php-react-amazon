@@ -5,23 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pack extends Model
+class Calification extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'price',
-        'description',
-        'time_start',
-        'time_end',
         'user_id',
+        'stars',
+        'comment',
         'tags',
-        'photo_url',
-        'stock'
+        'name'
     ];
 
-///relacion de pack a user    
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -32,7 +32,7 @@ class AuthenticateController extends Controller
             DB::beginTransaction();
             $validateData = $request->validate([
                 'name' => 'required',
-                'lastname' => 'required',
+                'lastname' => 'nullable',
                 'email' => 'required|email|unique:users',
                 'password' => [
                     'required',
@@ -47,7 +47,7 @@ class AuthenticateController extends Controller
             
             $user = User::create([
                 'name' => $validateData['name'],
-                'lastname' => $validateData['lastname'],
+                'lastname' => $validateData['lastname'] ?? null,
                 'email' => $validateData['email'],
                 'password' => bcrypt($validateData['password']),
                 'type' => $validateData['type'],
@@ -68,10 +68,15 @@ class AuthenticateController extends Controller
                 'errors' => $e->errors()
             ], 400);
         }
+        $credentials = request(['email', 'password']);
 
+        if (!$token = auth()->attempt($credentials)) {
+                return response()->json(['error' => 'Invalid data'], 400);
+        }
         if ($user) {
             return response()->json([
                 'message' => 'User created',
+                'token' => $token,
                 'item' => $user
             ], 201);
         } else {

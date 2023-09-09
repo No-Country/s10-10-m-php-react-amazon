@@ -21,9 +21,13 @@ return new class extends Migration
             $table->unsignedBigInteger('location_id')->nullable();
             $table->text('description')->nullable();
             $table->string('category')->nullable();
+            $table->integer('score')->nullable();
+            $table->integer('total_score')->nullable();
+            $table->integer('total_operations')->nullable();
             $table->string('avatar')->nullable();
             $table->string('external_id')->nullable();
             $table->string('external_auth')->nullable();
+            $table->boolean('is_verified')->default(false); 
             $table->rememberToken()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();

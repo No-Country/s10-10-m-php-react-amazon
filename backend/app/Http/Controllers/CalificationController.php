@@ -47,13 +47,12 @@ class CalificationController extends Controller
             $calification->save();
 
             $user->type === "business" ? $purchase->calification_received_id = $calification->id : $purchase->calification_gived_id = $calification->id;
-
+            $purchase->save();
             
             $user->total_operations += 1;
             $user->total_score += $validatedData['stars'];
             $user->score = $user->total_score / $user->total_operations;
             $user->save();
-            
 
             return response()->json(['calification'=>$calification], 201);
         } catch (ValidationException $e) {

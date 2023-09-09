@@ -20,9 +20,11 @@ class PackFactory extends Factory
             'name' => $this->faker->word,
             'price' => $this->faker->randomFloat(2, 10, 1000),
             'description' => $this->faker->paragraph,
-            'time_limit' => $this->faker->numberBetween(1, 30),
+            'time_start' => $this->faker->dateTimeBetween('now', '+30 days'),
+            'time_end' => $this->faker->dateTimeBetween('now', '+30 days'),
+            'stock' => $this->faker->numberBetween(1, 100),
             'user_id' => function () {
-                return User::factory()->create()->id; // Asociar el paquete a un usuario existente
+                return User::factory()->create()->id; 
             },
             'photo_url' => $this->faker->imageUrl(),
         ];
