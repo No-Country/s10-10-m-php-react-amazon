@@ -1,3 +1,4 @@
+
 import { Link } from "wouter";
 import iconGeo from "../../../../assets/icons/geo-alt.svg"
 import Comments from "./comments";
@@ -21,6 +22,7 @@ const InfoDetail = ({ item }) => {
       <div className="flex flex-col justify-start items-start my-6">
         <h3 className=' font-bold text-[#3F3F46] mb-3'>Comentarios y Valoraciones</h3>
         <Comments />
+
       </div>
     </div>
   );

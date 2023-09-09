@@ -16,11 +16,11 @@
 }
 
 .custom-title {
-  @apply text-colorNeutral3 text-sizeTitle font-weightTitle;
+  @apply text-sizeTitle font-weightTitle;
 }
 
 .custom-subtitle {
-  @apply text-colorNeutral3 text-sizeSubtitle font-weightSubtitle;
+  @apply text-sizeSubtitle font-weightSubtitle;
 }
 
 .custom-textButton {

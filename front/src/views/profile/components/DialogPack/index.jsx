@@ -19,7 +19,7 @@ const DialogPack = ({ setOpen, open }) => {
       handler={handleOpen}
       className=" w-max-[343px] h-min-[435px]"
     >
-      <div className=" w-max-[343px] h-[435px] flex flex-col justify-evenly items-center">
+      <div className=" w-max-[343px] h-[435px] h-[max-435px] flex flex-col justify-evenly items-center overflow-y-auto">
         <div className="flex flex-col items-center">
           <div className="w-[56px] h-[56px] rounded-full  flex justify-center items-center border-2">
             <img src={SuppliesIcon} alt="supplies" />

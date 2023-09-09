@@ -25,7 +25,7 @@ const UserProfile = () => {
 
   if (isLoading)
     return (
-      <div className="flex justify-center w-full items-center">
+      <div className="flex justify-center w-full items-center h-screen">
         <Spinner />
       </div>
     ); else
