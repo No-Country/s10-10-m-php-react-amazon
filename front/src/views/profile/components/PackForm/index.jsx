@@ -28,8 +28,10 @@ export function PackForm({ open, handleOpen }) {
   const [packs, setPacks] = useState([]);
   const [id, setId] = useState(0);
   const [packsCompleted, setPacksCompleted] = useState(false);
+ 
   const handlePlus = () => {
     setStock(stock + 1);
+    handleAddPack()
   };
 
   const {
@@ -41,6 +43,7 @@ export function PackForm({ open, handleOpen }) {
   const handleMinus = () => {
     if (stock > 0) {
       setStock(stock - 1);
+      handleRemovePack(packs.length-1)
     }
   };
 
@@ -51,14 +54,18 @@ export function PackForm({ open, handleOpen }) {
   };
 
   const handleRemovePack = (id) => {
-    console.log(id)
     const updatedPacks = packs.filter((el) => el.id !== id);
     setPacks(updatedPacks);
   };
 
   const submit = () => {
-    postPack(pack, user.token)
+    packs.map((pack, index) => {
+      console.log(user)
+      const updatedPack = {...pack, category: user.category}
+      console.log(updatedPack)
+      postPack(updatedPack, user.token)
       .then((response) => {
+        console.log(response)
         if (response.status === 201) {
           toast("Se registró el producto con éxito");
           handleOpen();
@@ -69,10 +76,10 @@ export function PackForm({ open, handleOpen }) {
       .catch((error) => {
         console.error("Error al enviar el formulario:", error);
       });
-  };
+    })
+  }
 
   useEffect(() => {
-    console.log(packs)
     if (packs.length > 0) {
       const allPacksCompleted = packs.every((pack) => {
         return (
@@ -90,12 +97,13 @@ export function PackForm({ open, handleOpen }) {
   }, [packs]);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col h-screen ">
       <div className="flex px-5">
         <IconButton
           variant="outlined"
           size="sm"
           className="rounded-full mx-5 border-2"
+          onClick={handleOpen}
         >
           <FontAwesomeIcon icon={faArrowLeft} />
         </IconButton>
@@ -109,16 +117,17 @@ export function PackForm({ open, handleOpen }) {
           Introduce la cantidad de Packs para hoy
         </div>
         <div
-          className="flex flex-col items-center text-colorNeutral1 p-12 "
+          className="flex flex-col w-full items-center text-colorNeutral1 p-12 "
           divider
         >
-          <div className="h-[134px]  w-full bg-colorPrimary  rounded-2xl flex items-center justify-evenly p-5">
+          <div className="h-[134px]  w-96 bg-colorPrimary  rounded-2xl flex items-center justify-evenly p-5">
             <IconButton
               variant="outlined"
               color="white"
               className="rounded-full"
               size="sm"
               onClick={handleMinus}
+              disabled={packs.length == 0}
             >
               <FontAwesomeIcon icon={faMinus} className="text-sizeTitle" />
             </IconButton>
@@ -129,17 +138,21 @@ export function PackForm({ open, handleOpen }) {
               className="rounded-full"
               size="sm"
               onClick={handlePlus}
+
             >
               <FontAwesomeIcon icon={faPlus} className="text-sizeTitle" />
             </IconButton>
           </div>
           <div className="border-t border-gray-500 w-full h-px my-5"></div>
-          <label className="text-left  my-5 text-sizeSubtitle font-weightTitle">
+          {packs.length > 0 &&
+          (
+            <>
+            <label className="text-left  my-5 text-sizeSubtitle font-weightTitle">
             Nombre del pack:
           </label>
           <p>Este texto aparecerá en la tarjeta de tu pack para los clientes</p>
-          <div className="flex justify-end w-full">
-            <p className="text-right">Cantidad</p>
+          <div className="flex justify-end w-full px-5">
+            <p className="text-right mr-5 pr-5">Cantidad</p>
           </div>
           {packs.map((item) => (
             <PackItem
@@ -151,11 +164,11 @@ export function PackForm({ open, handleOpen }) {
             />
           ))}
 
-          <div className="flex justify-end w-full">
-            <p className="text-right custom-textButton" onClick={handleAddPack}>
-              Añadir otro pack
-            </p>
-          </div>
+          
+            </>
+          )  
+        }
+          
         </div>
         <Button
           variant="gradient"

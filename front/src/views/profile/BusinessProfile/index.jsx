@@ -16,7 +16,7 @@ const BusinessProfile = ({ user }) => {
   }
   if (!openForm)
   return (
-    <div>
+    <div className="h-screen">
       <div className="flex justify-between w-full">
         <h1>Mi Pefil</h1>
         <Button

@@ -14,6 +14,8 @@ const DialogFilter = ({ open, handleOpen, setItems, items, showMap, setShowMap }
   const [order, setOrder] = useState("price");
   const [view, setView] = useState("list");
 
+  const buttonActive = "rounded-full border-teal-900 rounded-full sm:w-[200px] w-1/4 my-2 text-colorPrimary "
+  const buttonInactive = "rounded-full border-white-50 rounded-full sm:w-[200px] w-1/4 my-2"
   const submit = () => {
     let itemsOrdered;
     if (order == "price") {
@@ -47,39 +49,39 @@ const DialogFilter = ({ open, handleOpen, setItems, items, showMap, setShowMap }
         <h1>Recogida</h1>
         <div className="flex justify-evenly">
           <Button
-            variant={today ? "gradient" : "outlined"}
-            className="rounded-full w-min-2/5 w-2/5"
+            variant="outlined"
+            className={today ? buttonActive : buttonInactive} 
             onClick={() => setToday(true)}
           >
             Hoy
           </Button>
           <Button
-            variant={!today ? "gradient" : "outlined"}
-            className="rounded-full w-min-2/5 w-2/5"
+            variant="outlined"
+            className={!today ? buttonActive : buttonInactive}
             onClick={() => setToday(false)}
           >
             Mañana
           </Button>
         </div>
         <h1>Rubro</h1>
-        <div className="flex justify-evenly">
+        <div className="flex justify-evenly flex-wrap">
           <Button
-            variant={rubro == "panaderia" ? "gradient" : "outlined"}
-            className="rounded-full w-min-1/4 w-1/4"
+            variant="outlined"
+            className={rubro=="panaderia" ? buttonActive : buttonInactive}
             onClick={() => setRubro("panaderia")}
           >
             Panaderia
           </Button>
           <Button
-            variant={rubro == "verduleria" ? "gradient" : "outlined"}
-            className="rounded-full w-min-1/4 w-1/4"
+            variant="outlined"
+            className={rubro=="verduleria"? buttonActive : buttonInactive}
             onClick={() => setRubro("verduleria")}
           >
             Verduleria
           </Button>
           <Button
-            variant={rubro == "supermercado" ? "gradient" : "outlined"}
-            className="rounded-full w-min-1/4 w-1/4"
+            variant="outlined"
+            className={rubro=="supermercado" ? buttonActive : buttonInactive}
             onClick={() => setRubro("supermercado")}
           >
             Supermercado
@@ -88,22 +90,22 @@ const DialogFilter = ({ open, handleOpen, setItems, items, showMap, setShowMap }
         <h1>Ordenado por: </h1>
         <div className="flex justify-evenly">
           <Button
-            variant={order == "price" ? "gradient" : "outlined"}
-            className="rounded-full w-min-1/4 w-1/4"
+            variant="outlined"
+            className={order == "price" ? buttonActive : buttonInactive}
             onClick={() => setOrder("price")}
           >
             Precio
           </Button>
           <Button
-            variant={order == "distance" ? "gradient" : "outlined"}
-            className="rounded-full w-min-1/4 w-1/4"
+            variant= "outlined"
+            className={order == "distance" ? buttonActive : buttonInactive}
             onClick={() => setOrder("distance")}
           >
             Distancia
           </Button>
           <Button
-            variant={order == "date" ? "gradient" : "outlined"}
-            className="rounded-full w-min-1/4 w-1/4"
+            variant= "outlined"
+            className={order == "date" ? buttonActive : buttonInactive}
             onClick={() => setOrder("date")}
           >
             Más recientes
@@ -112,36 +114,36 @@ const DialogFilter = ({ open, handleOpen, setItems, items, showMap, setShowMap }
         <h1>Vista: </h1>
         <div className="flex justify-evenly">
           <Button
-            variant={view == "map" ? "gradient" : "outlined"}
-            className="rounded-full w-min-2/5 w-25"
+            variant="outlined"
+            className={view == "map" ? buttonActive : buttonInactive}
             onClick={() => setView("map")}
           >
             Mapa
           </Button>
           <Button
-            variant={view == "list" ? "gradient" : "outlined"}
-            className="rounded-full w-min-2/5 w-2/5"
+            variant="outlined"
+            className={view == "list" ? buttonActive : buttonInactive}
             onClick={() => setView("list")}
           >
             Lista
           </Button>
         </div>
       </DialogBody>
-      <DialogFooter className="flex flex-col justify-between items-center h-1/6">
+      <DialogFooter className="flex flex-col justify-between items-center ">
         <Button
           variant="gradient"
-          color="green"
+          color="teal"
           onClick={submit}
-          className="rounded-full"
+          className="rounded-full border-teal-900 rounded-full sm:w-[200px] w-1/4 my-2"
         >
-          <span>Aplicar filtros</span>
+          Aplicar filtros
         </Button>
         <Button
           variant="outlined"
           onClick={handleOpen}
-          className="rounded-full"
+          className="rounded-full border-teal-900 rounded-full sm:w-[200px] w-1/4 my-2"
         >
-          <span>Limpiar</span>
+          Limpiar
         </Button>
       </DialogFooter>
     </Dialog>

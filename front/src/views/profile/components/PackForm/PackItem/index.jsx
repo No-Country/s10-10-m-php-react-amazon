@@ -83,7 +83,7 @@ const PackItem = ({item, handleRemovePack, setPacks, packs}) => {
         labelProps={{
           className: "hidden",
         }}
-        containerProps={{ className: "w-[200px]" }}
+        containerProps={{ className: "max-w-[200px]" }}
         value={name} 
             onChange={(e) => setName(e.target.value)} 
       />
@@ -103,7 +103,7 @@ const PackItem = ({item, handleRemovePack, setPacks, packs}) => {
         <FontAwesomeIcon icon={faCheck}/>
       ) : (<FontAwesomeIcon icon={faWarning}/>)}
     </div>
-    <p className={buttonDetail ? "text-textButton font-sizeTextButton my-2 text-black cursor-pointer" : "custom-textButton my-2"} onClick={handleOpenDetail}>Gestionar pack</p>
+    <p className={buttonDetail ? "text-textButton font-sizeTextButton my-2 text-black cursor-pointer text-colorPrimary font-weightTitle" : "custom-textButton my-2"} onClick={handleOpenDetail}>Gestionar pack</p>
         {openDetail &&  (
     <PackDetail open={openDetail} handleOpen={handleOpenDetail} handleSubmitPack={handleSubmitPack} time_start={time_start} time_end={time_end} setTime_start={setTime_start} setTime_end={setTime_end} description={description} setDescription={setDescription} price={price} setPrice={setPrice} tagsSelected={tagsSelected} setTagsSelected={setTagsSelected}/>
   )}

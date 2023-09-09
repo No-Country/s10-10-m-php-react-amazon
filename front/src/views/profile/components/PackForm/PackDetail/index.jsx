@@ -176,8 +176,8 @@ const PackDetail = ({ open, handleOpen, handleSubmitPack, price, setPrice, descr
               color={"teal"}
               className={
                 tagsSelected.includes(tag)
-                  ? "rounded-full lowercase m-1 text-colorPrimary cursor-pointer bg-teal-500 text-white"
-                  : "rounded-full lowercase m-1 text-colorPrimary cursor-pointer border border-teal-50"
+                  ? "rounded-full lowercase m-1 text-colorPrimary cursor-pointer bg-[#FFDBCC] border-[#FFDBCC]-200"
+                  : "rounded-full lowercase m-1 text-colorPrimary cursor-pointer border border-teal-500"
               }
               onClick={() => handleTag(tag)}
               key={index}
@@ -185,7 +185,9 @@ const PackDetail = ({ open, handleOpen, handleSubmitPack, price, setPrice, descr
           );
         })}
       </div>
-      <div className="flex w-full justify-center">
+      <div className="border-t border-gray-500 w-full h-px my-5"></div>
+      <div className="flex w-full justify-center my-5">
+        
         <Button
           variant="gradient"
           fullWidth

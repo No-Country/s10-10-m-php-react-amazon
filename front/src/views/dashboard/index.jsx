@@ -21,7 +21,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="p-3">
+    <div className="p-3 h-screen">
       <div className="p-5 flex items-center justify-center">
         <InputSearch />
 
