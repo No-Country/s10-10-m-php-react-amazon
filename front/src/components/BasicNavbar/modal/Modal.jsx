@@ -9,8 +9,6 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 import image1 from "../assets/businessPerson.png";
 import image2 from "../assets/footLoverPerson.png";
 
-//TODO - AGREGAR LAS IMAGENES SOBRE LOS BOTONES
-
 export function Modal({ open, setOpen }) {
   const handleCloseModal = () => {
     setOpen(false);
@@ -30,19 +28,25 @@ export function Modal({ open, setOpen }) {
           </DialogHeader>
         </div>
         <DialogBody>
-          <div className="flex flex-col lg:flex-row lg:gap-10 justify-center items-center gap-3 my-8">
-            <Button
-              onClick={handleCloseModal}
-              className="rounded-full bg-colorPrimary normal-case font-weightTextButton text-sizeButtonCTAs p-0 text-white h-[44px] w-1/2"
-            >
-              <Link to="/auth/user/signup"> Quiero salvar comida </Link>
-            </Button>
-            <Button
-              onClick={handleCloseModal}
-              className="rounded-full bg-colorPrimary normal-case font-weightTextButton text-sizeButtonCTAs p-0 text-white h-[44px] w-1/2"
-            >
-              <Link to="/auth/shop/signup">Quiero vender comida </Link>
-            </Button>
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-10">
+            <div className="flex flex-col justify-center items-center">
+              <img src={image2} alt="" className="w-1/2 sm:w-full" />
+              <Button
+                onClick={handleCloseModal}
+                className="bg-colorPrimary normal-case text-white font-bold rounded-full w-full"
+              >
+                <Link to="/auth/user/signup">Quiero salvar comida </Link>
+              </Button>
+            </div>
+            <div className="flex flex-col justify-center items-center">
+              <img src={image1} alt="" className="w-1/2 sm:w-full" />
+              <Button
+                onClick={handleCloseModal}
+                className="bg-colorPrimary normal-case text-white font-bold rounded-full w-full"
+              >
+                <Link to="/auth/shop/signup">Quiero vender comida </Link>
+              </Button>
+            </div>
           </div>
         </DialogBody>
       </Dialog>
