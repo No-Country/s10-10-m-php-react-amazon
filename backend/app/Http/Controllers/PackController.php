@@ -28,6 +28,7 @@ class PackController extends Controller
                 'price' => 'required|numeric',
                 'description' => 'required|string|max:255',
                 'time_start' => 'nullable|date',
+                'tags' => 'required',
                 'time_end' => 'nullable|date',
                 'stock' => 'required|numeric'
             ]);
@@ -38,6 +39,7 @@ class PackController extends Controller
                 'description' => $validatedData['description'],
                 'time_start' => $validatedData['time_start'],
                 'time_end' => $validatedData['time_end'],
+                'tags' => json_encode( $validatedData['tags']),
                 'user_id' => $encryptedId,
                 'stock' => $validatedData['stock']
             ]);

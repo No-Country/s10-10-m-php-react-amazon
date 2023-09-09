@@ -46,7 +46,7 @@ Route::group(['middleware' => 'api',], function ($router) {
     Route::get('pack/{id}', 'App\Http\Controllers\PackController@show');
 
     // Obtener todas las calificaciones de un usuario
-    Route::get('califications/{id}', [CalificationController::class, 'index']);
+    Route::get('calification/{id}', [CalificationController::class, 'index']);
 
 
 

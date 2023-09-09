@@ -16,7 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('pack_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('seller_id');
-            $table->unsignedBigInteger('calification_id')->nullable();
+            $table->unsignedBigInteger('calification_gived_id')->nullable();
+            $table->unsignedBigInteger('feedback_received_id')->nullable();
             $table->string('code');
             $table->enum('status', ['reserved', 'delivered', 'cancelled'])->default('reserved');
             $table->string('amount');
@@ -35,7 +36,12 @@ return new class extends Migration
             ->on('users')
             ->onDelete('cascade');
 
-            $table->foreign('calification_id')
+            $table->foreign('calification_gived_id')
+            ->references('id')
+            ->on('califications')
+            ->onDelete('cascade');
+
+            $table->foreign('feedback_received_id')
             ->references('id')
             ->on('califications')
             ->onDelete('cascade');

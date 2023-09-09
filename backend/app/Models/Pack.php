@@ -16,6 +16,7 @@ class Pack extends Model
         'time_start',
         'time_end',
         'user_id',
+        'tags',
         'photo_url',
         'stock'
     ];

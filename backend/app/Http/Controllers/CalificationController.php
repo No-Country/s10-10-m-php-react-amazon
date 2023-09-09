@@ -1,18 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
 use App\Models\Calification;
 use App\Models\Purchase;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class CalificationController extends Controller
 {
-    public function index($user_id)
+    public function index($id)
     {
         try{
-            $califications = Calification::where('user_id', $user_id)->get();
+            $califications = Calification::where('user_id', $id)->get();
             return response()->json($califications);
         } catch (ValidationException $e) {
             return response()->json([
@@ -26,23 +27,33 @@ class CalificationController extends Controller
     public function store(Request $request)
     {
         try{
-            $validatedData = $request->validate([
-                'user_id' => 'required|exists:users,id',
-                'score' => 'required|integer|between:1,5',
+             $validatedData = $request->validate([
+                'purchase_id' => 'required|exists:purchases,id',
+                'stars' => 'required|integer|between:1,5',
                 'comment' => 'nullable|string',
-                'tags' => 'nullable|string',
+                'tags' => 'nullable|required',
                 'name' => 'nullable|string',
+            ]); 
+            $user = Auth::user();
+            $purchase = Purchase::findOrFail($validatedData['purchase_id']);
+
+            $calification = Calification::create([
+                'user_id' => $user->id,
+                'stars' => $validatedData['stars'],  
+                'comment' => $validatedData['comment'],
+                'tags' => json_encode( $validatedData['tags']),  
+                'name' => $validatedData['name'] 
             ]);
+            $calification->save();
 
-            $calification = Calification::create($validatedData);
-            $user = User::findOrFail($validatedData['user_id']);
-
+            $user->type === "business" ? $purchase->calification_received_id = $calification->id : $purchase->calification_gived_id = $calification->id;
+          
             $user->total_operations += 1;
-            $user->total_score += $validatedData['score'];
+            $user->total_score += $validatedData['stars'];
             $user->score = $user->total_score / $user->total_operations;
             $user->save();
 
-            return response()->json($calification, 201);
+            return response()->json(['calification'=>$calification], 201);
         } catch (ValidationException $e) {
             return response()->json([
                 'error' => 'Invalidated data',

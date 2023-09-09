@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedTinyInteger('stars')->nullable(false);
             $table->text('name')->nullable();
             $table->text('comment')->nullable();
-            $table->string('tags')->nullable();
+            $table->json('tags')->nullable();
             $table->timestamps();
         });
     }
