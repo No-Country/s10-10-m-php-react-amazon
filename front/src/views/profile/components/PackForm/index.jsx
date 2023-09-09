@@ -1,5 +1,8 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPlus,
+  faMinus,
+  faArrowLeft,
+} from "@fortawesome/free-solid-svg-icons";
 
 import {
   Button,
@@ -12,18 +15,23 @@ import {
   Input,
   Textarea,
 } from "@material-tailwind/react";
-import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import {postPack} from '../../../../api/itemApi'
+import { postPack } from "../../../../api/itemApi";
 import { useSelector } from "react-redux";
 import { toast, Toaster } from "sonner";
+import PackItem from "./PackItem";
 export function PackForm({ open, handleOpen }) {
-  const [stock, setStock] = useState(0);
-  const [time_start, setTime_start] = useState("00:00");
-  const [time_end, setTime_end] = useState("01:00");
+  const [quantity, setQuantity] = useState(0);
   const user = useSelector((state) => state.user);
+  const [packs, setPacks] = useState([]);
+  const [id, setId] = useState(0);
+  const [packsCompleted, setPacksCompleted] = useState(false);
+ 
   const handlePlus = () => {
-    setStock(stock + 1);
+    setQuantity(quantity + 1);
+    handleAddPack()
   };
 
   const {
@@ -34,44 +42,33 @@ export function PackForm({ open, handleOpen }) {
 
   const handleMinus = () => {
     if (stock > 0) {
-      setStock(stock - 1);
+      setQuantity(quantity - 1);
+      handleRemovePack(packs.length-1)
     }
   };
 
-  const handleTimeStart = (time) => {
-    setTime_start(time);
+  const handleAddPack = () => {
+    setId(id+1)
+    const newPack = { id, name: "", stock: 0, price: 0, description: "¡Dale un toque delicioso a tu día! Este pack puede incluir una variedad de productos de panadería como pan, bollos, galletas y más. Es una forma genial de disfrutar diferentes sabores y texturas que te ofrece la panadería. ¿Listo para la sorpresa?", time_start: "00:00", time_end: "01:00", tags: [] };
+    setPacks([...packs, newPack]);
   };
 
-  const handleTimeEnd = (time) => {
-    setTime_end(time);
+  const handleRemovePack = (id) => {
+    const updatedPacks = packs.filter((el) => el.id !== id);
+    setPacks(updatedPacks);
   };
 
-  const submit = (info) => {
-    let dateStart = new Date();
-    const [hoursStart, minutesStart] = time_start.split(":");
-    dateStart.setHours(parseInt(hoursStart, 10));
-    dateStart.setMinutes(parseInt(minutesStart, 10));
-
-    let dateEnd = new Date();
-    const [hoursEnd, minutesEnd] = time_end.split(":");
-    dateEnd.setHours(parseInt(hoursEnd, 10));
-    dateEnd.setMinutes(parseInt(minutesEnd, 10));
-    
-
-    const pack = {
-      name: info.name,
-      description: info.description,
-      price: info.price,
-      time_start: dateStart,
-      time_end: dateEnd,
-      stock: stock,
-    };
-    postPack(pack, user.token)
+  const submit = () => {
+    packs.map((pack, index) => {
+      console.log(user)
+      const updatedPack = {...pack, category: user.category}
+      console.log(updatedPack)
+      postPack(updatedPack, user.token)
       .then((response) => {
-
+        console.log(response)
         if (response.status === 201) {
-          toast("Se registró el producto con éxito")
-          handleOpen()
+          toast("Se registró el producto con éxito");
+          handleOpen();
         } else {
           console.error("Error al enviar el formulario:", response.data);
         }
@@ -79,156 +76,111 @@ export function PackForm({ open, handleOpen }) {
       .catch((error) => {
         console.error("Error al enviar el formulario:", error);
       });
-  };
+    })
+  }
 
-  const timeList = [
-    "00:00",
-    "01:00",
-    "02:00",
-    "03:00",
-    "04:00",
-    "05:00",
-    "06:00",
-    "07:00",
-    "08:00",
-    "09:00",
-    "10:00",
-    "11:00",
-    "12:00",
-    "13:00",
-    "14:00",
-    "15:00",
-    "16:00",
-    "17:00",
-    "18:00",
-    "19:00",
-    "20:00",
-    "21:00",
-    "22:00",
-    "23:00",
-  ];
+  useEffect(() => {
+    if (packs.length > 0) {
+      const allPacksCompleted = packs.every((pack) => {
+        return (
+          pack.name &&
+          pack.price &&
+          pack.description &&
+          pack.stock &&
+          pack.time_end &&
+          pack.time_start
+        );
+      });
+
+      setPacksCompleted(allPacksCompleted);
+    }
+  }, [packs]);
+
   return (
-    <>
-      <Dialog
-        className="max-w-full w-full absolute top-1/6 bottom-0  m-0 rounded-t-2xl rounded-b-none z-10"
-        open={open}
-        handler={handleOpen}
-        animate={{
-          mount: { translateY: 0, originY: "bottom" },
-          unmount: { translateY: "100%", originY: "bottom" },
-        }}
-      >
-        <form
-          className="flex flex-col mb-2 mt-5 items-center"
-          onSubmit={handleSubmit(submit)}
+    <div className="flex flex-col h-screen ">
+      <div className="flex px-5">
+        <IconButton
+          variant="outlined"
+          size="sm"
+          className="rounded-full mx-5 border-2"
+          onClick={handleOpen}
         >
-          <div className="text-sizeSubtitle font-weightSubtitle text-colorNeutral1 flex justify-center">
-            Introduce el número de Packs para hoy
-          </div>
-          <div
-            className="flex flex-col items-center text-colorNeutral1 p-12"
-            divider
-          >
-            <div className="w-60 h-24 bg-colorNeutral2 bg-opacity-20 rounded-2xl flex items-center justify-evenly p-5">
-              <IconButton
-                variant="outlined"
-                className="rounded-full"
-                size="sm"
-                onClick={handleMinus}
-              >
-                <FontAwesomeIcon icon={faMinus} className="text-sizeTitle" />
-              </IconButton>
-              <span className="text-5xl font-extrabold">{stock}</span>
-              <IconButton
-                variant="gradient"
-                className="rounded-full"
-                size="sm"
-                onClick={handlePlus}
-              >
-                <FontAwesomeIcon icon={faPlus} className="text-sizeTitle" />
-              </IconButton>
-            </div>
-            <label className="text-left custom-text my-5 ">
-              Nombre del pack:
-            </label>
-            <Input
-              type={"text"}
-              label="Pack"
-              {...register("name", { required: true })}
-            />
+          <FontAwesomeIcon icon={faArrowLeft} />
+        </IconButton>
+        <h1 className="custom-title">Añadir pack</h1>
+      </div>
+      <form
+        className="flex flex-col mb-2 mt-5 items-center"
+        onSubmit={handleSubmit(submit)}
+      >
+        <div className="text-sizeSubtitle font-weightTitle flex justify-center">
+          Introduce la cantidad de Packs para hoy
+        </div>
+        <div
+          className="flex flex-col w-full items-center text-colorNeutral1 p-12 "
+          divider
+        >
+          <div className="h-[134px]  w-96 bg-colorPrimary  rounded-2xl flex items-center justify-evenly p-5">
+            <IconButton
+              variant="outlined"
+              color="white"
+              className="rounded-full"
+              size="sm"
+              onClick={handleMinus}
+              disabled={packs.length == 0}
+            >
+              <FontAwesomeIcon icon={faMinus} className="text-sizeTitle" />
+            </IconButton>
+            <span className="text-6xl font-extrabold text-white ">{quantity}</span>
+            <IconButton
+              variant="outlined"
+              color="white"
+              className="rounded-full"
+              size="sm"
+              onClick={handlePlus}
 
-            <label className="text-left custom-text mb-2 mt-5">
-              Selecciona el horario de recogida
-            </label>
-            <div>
-              <span className="mx-4">De: </span>
-              <Menu>
-                <MenuHandler>
-                  <Button variant="outlined" className="px-3 py-2">
-                    {time_start}
-                  </Button>
-                </MenuHandler>
-                <MenuList className="max-h-72 z-[10000]">
-                  {timeList.map((hour, index) => {
-                    return (
-                      <MenuItem
-                        key={index}
-                        onClick={() => handleTimeStart(hour)}
-                      >
-                        {hour}
-                      </MenuItem>
-                    );
-                  })}
-                </MenuList>
-              </Menu>
-              <span className="mx-4">a:</span>
-              <Menu>
-                <MenuHandler>
-                  <Button variant="outlined" className="px-3 py-2">
-                    {time_end}
-                  </Button>
-                </MenuHandler>
-                <MenuList className="max-h-72 z-[10000]">
-                  {timeList.map((hour, index) => {
-                    return (
-                      <MenuItem key={index} onClick={() => handleTimeEnd(hour)}>
-                        {hour}
-                      </MenuItem>
-                    );
-                  })}
-                </MenuList>
-              </Menu>
-            </div>
-
-            <label className="text-left custom-text mb-2 mt-5 ">
-              Introduce el precio de venta
-            </label>
-            <Input
-              type={"number"}
-              label={"$"}
-              {...register("price", { required: true })}
-            />
-            <label className="text-left custom-text mb-2 mt-5 ">
-              Introduce una descripción del pack:
-            </label>
-            <div className="w-96">
-              <Textarea
-                label="Message"
-                {...register("description", { required: true })}
-              />
-            </div>
+            >
+              <FontAwesomeIcon icon={faPlus} className="text-sizeTitle" />
+            </IconButton>
           </div>
-          <Button
-            variant="gradient"
-            fullWidth
-            className="rounded-full custom-buttonCTAs normal-case w-60"
-            type="submit"
-          >
-            Continuar
-          </Button>
-        </form>
-      </Dialog>
+          <div className="border-t border-gray-500 w-full h-px my-5"></div>
+          {packs.length > 0 &&
+          (
+            <>
+            <label className="text-left  my-5 text-sizeSubtitle font-weightTitle">
+            Nombre del pack:
+          </label>
+          <p>Este texto aparecerá en la tarjeta de tu pack para los clientes</p>
+          <div className="flex justify-end w-full px-5">
+            <p className="text-right mr-5 pr-5">Cantidad</p>
+          </div>
+          {packs.map((item) => (
+            <PackItem
+              item={item}
+              key={item.id}
+              handleRemovePack={handleRemovePack}
+              setPacks={setPacks}
+              packs={packs}
+            />
+          ))}
+
+          
+            </>
+          )  
+        }
+          
+        </div>
+        <Button
+          variant="gradient"
+          fullWidth
+          className="rounded-full custom-buttonCTAs normal-case w-60"
+          type="submit"
+          disabled={!packsCompleted}
+        >
+          Listo, Añadir Pack
+        </Button>
+      </form>
       <Toaster position="bottom-right" richColors />
-    </>
+    </div>
   );
 }

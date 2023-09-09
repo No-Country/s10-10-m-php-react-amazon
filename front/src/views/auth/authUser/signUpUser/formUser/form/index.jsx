@@ -8,7 +8,8 @@ import { signUpUser } from "../../../../../../api/authApi.js";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../../../../features/userSlice";
 import { Toaster, toast } from "sonner";
-import { setToken } from "../../../../../../features/userSlice.js";
+import { setToken } from '../../../../../../features/userSlice.js'
+import useToggleVisibility from "../../../../../../utils/hooks/useToggleVisibility";
 
 const FormUser = ({ setNextStep }) => {
   const {
@@ -18,7 +19,8 @@ const FormUser = ({ setNextStep }) => {
   } = useForm();
 
   const [error, setError] = useState("");
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, handleVisible] = useToggleVisibility(true);
+  const [isVisible1, handleVisible1] = useToggleVisibility(true);
   const dispatch = useDispatch();
 
   const [passwordMatchError, setPasswordMatchError] = useState("");
@@ -38,31 +40,29 @@ const FormUser = ({ setNextStep }) => {
     setError(passwordError);
     if (!passwordError) {
       const updatedData = {
-        type: "person",
+        type: 'person',
+
         name: info.name,
         lastname: info.lastname,
         password: info.password,
         email: info.email,
-      };      
-      signUpUser(updatedData)
-        .then((response) => {
-          if (response.status == 201) {
-            dispatch(setToken(response.data));
-            setNextStep(true);
-          } else {
-            console.log(response.data);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          toast("Email existente");
-        });
+      };
+      console.log(updatedData)
+      signUpUser(updatedData).then((response) => {
+        if (response.status == 201) {
+          dispatch(setToken(response.data));
+          setNextStep(true)
+        } else {
+          console.log("Algo")
+        }
+      }).catch(err => {
+        console.log(err)
+        toast("Email existente");
+      });
     }
   };
 
-  const handleChangeVisible = () => {
-    setIsVisible(!isVisible);
-  };
+
 
   return (
     <div className="flex flex-col items-center bg-colorPrimary min-h-screen">
@@ -78,9 +78,8 @@ const FormUser = ({ setNextStep }) => {
             <Input
               {...register("name", { required: true })}
               id="name"
-              className={`!border !border-gray-300 bg-white text-gray-900  ${
-                errors.name ? "border-red-500" : ""
-              }`}
+              className={`!border !border-gray-300 bg-white text-gray-900  ${errors.name ? "border-red-500" : ""
+                }`}
               labelProps={{
                 className: "hidden",
               }}
@@ -100,9 +99,8 @@ const FormUser = ({ setNextStep }) => {
             <Input
               {...register("lastname", { required: true })}
               id="lastname"
-              className={`!border !border-gray-300 bg-white text-gray-900  ${
-                errors.lastname ? "border-red-500" : ""
-              }`}
+              className={`!border !border-gray-300 bg-white text-gray-900  ${errors.lastname ? "border-red-500" : ""
+                }`}
               labelProps={{
                 className: "hidden",
               }}
@@ -119,9 +117,8 @@ const FormUser = ({ setNextStep }) => {
             <Input
               {...register("email", { required: true })}
               id="email"
-              className={`!border !border-gray-300 bg-white text-gray-900 ${
-                errors.email ? "border-red-500" : ""
-              }`}
+              className={`!border !border-gray-300 bg-white text-gray-900 ${errors.email ? "border-red-500" : ""
+                }`}
               labelProps={{
                 className: "hidden",
               }}
@@ -145,7 +142,8 @@ const FormUser = ({ setNextStep }) => {
                 type={isVisible ? "password" : "text"}
                 {...register("password", { required: true })}
                 id="password"
-                className="!border !border-gray-300 bg-white text-gray-900"
+                className={`!border !border-gray-300 bg-white text-gray-900 ${errors.password ? "border-red-500" : ""
+                  } w-full pr-10`}
                 labelProps={{
                   className: "hidden",
                 }}
@@ -153,18 +151,15 @@ const FormUser = ({ setNextStep }) => {
               <button
                 className="text-2xl text-mainColor absolute right-2 top-1/2 transform -translate-y-1/2"
                 type="button"
-                onClick={handleChangeVisible}
+                onClick={handleVisible}
               >
-                {isVisible ? <BsEyeSlash /> : <BsEye />}{" "}
+                {isVisible ? <BsEye /> : <BsEyeSlash />}{" "}
               </button>
             </div>
-            {error && (
-              <p className="text-red-500" style={{ fontSize: "14px" }}>
-                {error}
-              </p>
-            )}
             {errors.password && (
-              <p className="text-red-500 mt-2">Campo obligatorio.</p>
+              <p className="text-red-500 mt-2">
+                La contraseña debe contener 6 dígitos.
+              </p>
             )}
           </div>
 
@@ -178,7 +173,7 @@ const FormUser = ({ setNextStep }) => {
             <div className="flex w-full relative">
               <Input
                 {...register("passwordRepeat", { required: true })}
-                type={isVisible ? "password" : "text"}
+                type={isVisible1 ? "password" : "text"}
                 id="passwordRepeat"
                 className={"!border !border-gray-300 bg-white text-gray-900"}
                 labelProps={{
@@ -189,9 +184,9 @@ const FormUser = ({ setNextStep }) => {
               <button
                 className="text-2xl text-mainColor absolute right-2 top-1/2 transform -translate-y-1/2"
                 type="button"
-                onClick={handleChangeVisible}
+                onClick={handleVisible1}
               >
-                {isVisible ? <BsEyeSlash /> : <BsEye />}{" "}
+                {isVisible1 ? <BsEye /> : <BsEyeSlash />}{" "}
               </button>
             </div>
             {passwordMatchError && (
@@ -212,7 +207,7 @@ const FormUser = ({ setNextStep }) => {
         <div className="m-5">
           <Button
             fullWidth
-            className="rounded-full normal-case bg-buttonFilledColor text-colorPrimary text-sm"
+            className="rounded-full custom-buttonCTAs normal-case"
             type="submit"
           >
             Continuar

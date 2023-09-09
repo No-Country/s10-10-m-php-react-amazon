@@ -1,33 +1,65 @@
-import { useForm } from "react-hook-form";
-import { Input, Button } from "@material-tailwind/react";
-import { useState } from "react";
+import { useForm } from 'react-hook-form'
+import { Input, Button, Typography, Checkbox } from "@material-tailwind/react";
+import React, { useState } from 'react'
 import { Link } from "wouter";
-import { validatePassword } from "../../../../../utils/validatePassword";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
+import { validatePassword } from '../../../../../utils/validatePassword';
+import { signUpShop } from '../../../../../api/authApi';
+import { useDispatch } from 'react-redux';
+import { setToken } from '../../../../../features/userSlice';
+import { Toaster, toast } from 'sonner';
 
-const FormShop = ({ setData, data }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+const FormShop = ({ setNextStep }) => {
+    const { register, handleSubmit, formState: { errors }, } = useForm()
 
-  const [error, setError] = useState("");
-
-  const submit = (info) => {
-    const passwordError = validatePassword(info.password);
-    setError(passwordError);
-
-    if (!passwordError) {
-      const updatedData = {
-        ...data,
-        shopname: info.shopname,
-        type: info.type,
-        email: info.email,
-        password: info.password,
-      };
-      setData(updatedData);
+    const [error, setError] = useState("");
+    const [isVisible, setIsVisible] = useState(true);
+    // submit de prueba
+    const submit = (info) => {
+      alert()
     }
-  };
+    // const dispatch = useDispatch()
+    // const submit = (info) => {
+    //     const passwordError = validatePassword(info.password);
+    //     setError(passwordError);
+
+    //     if (!passwordError) {
+    //         const updatedData = {
+    //             type: 'business',
+    //             description: "algo",
+    //             name: info.shopname,
+    //             category: info.type,
+    //             email: info.email,
+    //             password: info.password,
+    //         };
+    //         signUpShop(updatedData).then((response) => {
+    //             if (response.status == 201) {
+    //               dispatch(setToken(response.data));
+    //               setNextStep(true)
+    //             } else {
+    //               console.log("Algo")
+    //             }
+    //           }).catch(err => {
+    //             console.log(err)
+    //             toast("Email existente");
+    //           });
+    //     }
+    // };
+    // const handleChangeVisible = () => {
+    //     setIsVisible(!isVisible);
+    // };
+
+    // if (!passwordError) {
+    //   const updatedData = {
+    //     ...data,
+    //     shopname: info.shopname,
+    //     type: info.type,
+    //     email: info.email,
+    //     password: info.password,
+    //   };
+    //   setData(updatedData);
+    // }
+  
 
   return (
     <div className="flex flex-col items-center bg-colorPrimary min-h-screen">
@@ -159,4 +191,5 @@ const FormShop = ({ setData, data }) => {
   );
 };
 
-export default FormShop;
+
+export default FormShop

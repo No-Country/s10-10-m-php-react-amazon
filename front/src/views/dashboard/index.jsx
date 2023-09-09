@@ -9,19 +9,38 @@ import { shops } from "../../utils/shops";
 import { productsFindShop } from "../../utils/products/functions";
 import { useSelector } from "react-redux";
 import DialogFilter from "../../components/DialogFilter";
+import { getPacksByFilters } from "../../api/itemApi";
+import { Spinner } from "@material-tailwind/react";
+
 const Dashboard = () => {
-  const [business, setBusiness] = useState(shops);
+  const [business, setBusiness] = useState([]);
   const [title, setTitle] = useState("Los más deseados");
-  const [items, setItems] = useState(productsFindShop(business));
   const user = useSelector((state) => state.user);
   const [showFilter, setShowFilter] = useState(false);
   const [showMap, setShowMap] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [filters, setFilters] = useState([]);
   const handleFilter = () => {
     setShowFilter(!showFilter);
   };
 
+  console.log(business)
+
+  useEffect(() => {
+    setIsLoading(true);
+    getPacksByFilters("", user.token)
+      .then((response) => {
+        setBusiness(response.data.Business);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [setBusiness]);
   return (
-    <div className="p-3">
+    <div className="p-3 h-screen">
       <div className="p-5 flex items-center justify-center">
         <InputSearch />
 
@@ -33,8 +52,8 @@ const Dashboard = () => {
         <DialogFilter
           open={showFilter}
           handleOpen={handleFilter}
-          items={items}
-          setItems={setItems}
+          filters={filters}
+          setFilters={setFilters}
           setTitle={setTitle}
           showMap={showMap}
           setShowMap={setShowMap}
@@ -57,7 +76,13 @@ const Dashboard = () => {
           </div>
           <h1 className="text-sizeTitle font-weightTitle">{title}</h1>
           <div className="flex justify-center w-full">
-            <ItemListContainer products={items} />
+            {isLoading ? (
+              <div className="flex items-center justify-center">
+                <Spinner />
+              </div>
+            ) : (
+              <ItemListContainer business={business} />
+            )}
           </div>
         </>
       )}

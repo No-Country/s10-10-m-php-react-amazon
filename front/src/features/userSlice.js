@@ -18,7 +18,7 @@ const initialState = {
   token: "",
   type: "",
   category: "",
-  description: ""
+  description: "",
 };
 
 export const userSlice = createSlice({
@@ -26,14 +26,18 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setToken: (state, action) => {
-      state.token = action.payload.token
+      state.token = action.payload.token;
     },
     setUser: (state, action) => {
-      const { name, email, lastname, id, type } = action.payload.user;
+      const { name, email, lastname, id, type, category, avatar, description } =
+        action.payload.user;
       const { address, city, postal_code, province, latitude, longitude } =
         action.payload.user.location;
+      state.category = category;
+      state.avatar = avatar;
+      state.description = description;
       state.token = action.payload.token;
-      state.type = type
+      state.type = type;
       state.id = id;
       state.name = name;
       state.lastname = lastname;
@@ -46,18 +50,18 @@ export const userSlice = createSlice({
       state.location.longitude = longitude;
     },
     cerrarSesion: (state) => {
-      state.email = ""
-      state.id = ""
-      state.location.address = ""
-      state.name = ""
-      state.location.city = ""
-      state.location.postal_code = ""
-      state.location.province = ""
-      state.latitude = ""
-      state.longitude = ""
-      state.postalCode = ""
-      state.token = ""
-  },
+      state.email = "";
+      state.id = "";
+      state.location.address = "";
+      state.name = "";
+      state.location.city = "";
+      state.location.postal_code = "";
+      state.location.province = "";
+      state.latitude = "";
+      state.longitude = "";
+      state.postalCode = "";
+      state.token = "";
+    },
   },
 });
 

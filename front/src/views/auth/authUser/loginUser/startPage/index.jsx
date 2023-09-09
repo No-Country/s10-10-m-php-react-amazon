@@ -6,17 +6,9 @@ function LoginStartPage({ setChoice }) {
   return (
     <>
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-evenly lg:h-screen lg:relative lg:bg-[#000000eb] ">
-        <img
-          src={backgroundImg}
-          alt="backgroundImg"
-          className="absolute w-full h-full "
-        />
+        <img src={backgroundImg} alt="backgroundImg" className="hidden lg:block absolute w-full h-full" />
         <section className="relative h-[370px] lg:w-[700px] overflow-hidden bg-[#000000eb] lg:bg-transparent flex flex-col justify-center items-center lg:items-start">
-          <img
-            src={backgroundImg}
-            alt="backgroundImg"
-            className="absolute left-10 md:left-48 w-[541px] h-full lg:hidden"
-          />
+          <img src={backgroundImg} alt="backgroundImg" className="absolute left-10 md:left-48 w-[541px] h-full lg:hidden" />
           <div className="text-center text-white   m-6 lg:m-0 lg:text-left">
             <div className="w-48 m-auto lg:w-full lg:m-0">
               <h1 className="text-2xl font-bold  leading-none lg:mb-8 mb-3">

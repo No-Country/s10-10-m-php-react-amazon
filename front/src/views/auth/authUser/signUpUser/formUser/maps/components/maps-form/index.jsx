@@ -1,4 +1,4 @@
-import { Button, Input } from "@material-tailwind/react";
+import { Button, IconButton, Input } from "@material-tailwind/react";
 import { Autocomplete } from "@react-google-maps/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -24,12 +24,12 @@ const MapsForm = ({
           setProvince(
             results[0].address_components[
               results[0].address_components.length - 2
-            ]
+            ].long_name
           );
           setCity(
             results[0].address_components[
               results[0].address_components.length - 3
-            ]
+            ].long_name
           );
           const location = results[0].geometry.location;
           setSelectedLocation({ lat: location.lat(), lng: location.lng() });
@@ -96,6 +96,13 @@ const MapsForm = ({
             }}
           />
         </Autocomplete>
+        <IconButton
+            className="rounded-full"
+            color="white"
+            onClick={markPoint}
+          >
+            <FontAwesomeIcon icon="location-dot" />
+          </IconButton>
       </div>
       <div>
         <Button

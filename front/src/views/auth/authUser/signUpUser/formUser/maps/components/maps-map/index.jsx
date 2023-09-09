@@ -15,8 +15,8 @@ const MapsMap = ({selectedLocation, setMap,setMark, setDirection, originRef, mar
       if (status === "OK" && results.length > 0) {
         originRef.current.value = results[0].formatted_address;
         setDirection(originRef.current.value);
-        setProvince(results[0].address_components[results[0].address_components.length-2])
-        setCity(results[0].address_components[results[0].address_components.length-3])
+        setProvince(results[0].address_components[results[0].address_components.length-2].long_name)
+        setCity(results[0].address_components[results[0].address_components.length-3].long_name)
       } else {
         console.error(
           "Reverse geocode was not successful for the following reason:",
