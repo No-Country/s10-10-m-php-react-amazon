@@ -23,14 +23,14 @@ import { useSelector } from "react-redux";
 import { toast, Toaster } from "sonner";
 import PackItem from "./PackItem";
 export function PackForm({ open, handleOpen }) {
-  const [stock, setStock] = useState(0);
+  const [quantity, setQuantity] = useState(0);
   const user = useSelector((state) => state.user);
   const [packs, setPacks] = useState([]);
   const [id, setId] = useState(0);
   const [packsCompleted, setPacksCompleted] = useState(false);
  
   const handlePlus = () => {
-    setStock(stock + 1);
+    setQuantity(quantity + 1);
     handleAddPack()
   };
 
@@ -42,14 +42,14 @@ export function PackForm({ open, handleOpen }) {
 
   const handleMinus = () => {
     if (stock > 0) {
-      setStock(stock - 1);
+      setQuantity(quantity - 1);
       handleRemovePack(packs.length-1)
     }
   };
 
   const handleAddPack = () => {
     setId(id+1)
-    const newPack = { id, name: "", quantity: 0, price: 0, description: "¡Dale un toque delicioso a tu día! Este pack puede incluir una variedad de productos de panadería como pan, bollos, galletas y más. Es una forma genial de disfrutar diferentes sabores y texturas que te ofrece la panadería. ¿Listo para la sorpresa?", time_start: "00:00", time_end: "01:00", tags: [] };
+    const newPack = { id, name: "", stock: 0, price: 0, description: "¡Dale un toque delicioso a tu día! Este pack puede incluir una variedad de productos de panadería como pan, bollos, galletas y más. Es una forma genial de disfrutar diferentes sabores y texturas que te ofrece la panadería. ¿Listo para la sorpresa?", time_start: "00:00", time_end: "01:00", tags: [] };
     setPacks([...packs, newPack]);
   };
 
@@ -86,7 +86,7 @@ export function PackForm({ open, handleOpen }) {
           pack.name &&
           pack.price &&
           pack.description &&
-          pack.quantity &&
+          pack.stock &&
           pack.time_end &&
           pack.time_start
         );
@@ -131,7 +131,7 @@ export function PackForm({ open, handleOpen }) {
             >
               <FontAwesomeIcon icon={faMinus} className="text-sizeTitle" />
             </IconButton>
-            <span className="text-6xl font-extrabold text-white ">{stock}</span>
+            <span className="text-6xl font-extrabold text-white ">{quantity}</span>
             <IconButton
               variant="outlined"
               color="white"

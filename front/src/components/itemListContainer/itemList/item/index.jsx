@@ -1,10 +1,10 @@
 import React from 'react'
 import CardPack from '../../../CardPack'
 
-const Item = ({ item }) => {
+const Item = ({ item, shop }) => {
   return (
     <div>
-      <CardPack item={item} />
+      <CardPack item={item} shop={shop} />
     </div>
   )
 }

@@ -62,9 +62,7 @@ const FormUser = ({ setNextStep }) => {
     }
   };
 
-  const handleChangeVisible = () => {
-    setIsVisible(!isVisible);
-  };
+
 
   return (
     <div className="flex flex-col items-center bg-colorPrimary min-h-screen">

@@ -2,49 +2,50 @@ import React from "react";
 import Item from "./item";
 import Slider from "react-slick";
 
-const ItemList = ({ items }) => {
-  
+const ItemList = ({ business }) => {
   var settings = {
     dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 1,
+    slidesToScroll: 4,
     initialSlide: 2,
     responsive: [
-      
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
-        }
+          slidesToScroll: 3
+        },
       },
       {
         breakpoint: 900,
         settings: {
           slidesToShow: 2,
-        }
+          slidesToScroll: 2
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 1.5,
-        }
-      }
-    ]
+          slidesToScroll: 1.5
+        },
+      },
+    ],
   };
-  
+
   return (
     <div className="w-screen ">
-        <Slider {...settings}>
-          {items.length !== 0 ? (
-            items.map((item, index) => <Item item={item} key={index} />)
-          ) : (
-            <div>
-              <h3>No hay coincidencias con su búsqueda</h3>
-            </div>
-          )}
-          </Slider>
+      <Slider {...settings}>
+        {business.length !== 0 && business ? (
+          business.map((shop, index) =>
+            shop.pack.map((item) => item ? <Item item={item} shop={shop} key={item.id} /> : null)
+          )
+        ) : (
+          <p>No hay packs disponibles.</p>
+        )}
+      </Slider>
     </div>
   );
 };

@@ -4,26 +4,41 @@ import React, { useState } from 'react'
 import { Link } from "wouter";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { validatePassword } from '../../../../../utils/validatePassword';
+import { signUpShop } from '../../../../../api/authApi';
+import { useDispatch } from 'react-redux';
+import { setToken } from '../../../../../features/userSlice';
+import { Toaster, toast } from 'sonner';
 
-const FormShop = ({ setData, data }) => {
+const FormShop = ({ setNextStep }) => {
     const { register, handleSubmit, formState: { errors }, } = useForm()
 
     const [error, setError] = useState("");
     const [isVisible, setIsVisible] = useState(true);
-
+    const dispatch = useDispatch()
     const submit = (info) => {
         const passwordError = validatePassword(info.password);
         setError(passwordError);
 
         if (!passwordError) {
             const updatedData = {
-                ...data,
-                shopname: info.shopname,
-                type: info.type,
+                type: 'business',
+                description: "algo",
+                name: info.shopname,
+                category: info.type,
                 email: info.email,
                 password: info.password,
             };
-            setData(updatedData);
+            signUpShop(updatedData).then((response) => {
+                if (response.status == 201) {
+                  dispatch(setToken(response.data));
+                  setNextStep(true)
+                } else {
+                  console.log("Algo")
+                }
+              }).catch(err => {
+                console.log(err)
+                toast("Email existente");
+              });
         }
     };
     const handleChangeVisible = () => {
@@ -160,6 +175,7 @@ const FormShop = ({ setData, data }) => {
                     </Typography>
                 </div>
             </form>
+            <Toaster position="bottom-right" richColors />
         </div>
 
 

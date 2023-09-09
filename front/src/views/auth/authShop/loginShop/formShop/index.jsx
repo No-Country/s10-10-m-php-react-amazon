@@ -11,7 +11,6 @@ import { navigate } from 'wouter/use-location';
 const FormShop = () => {
 
 
-
     return (
         <div className='flex flex-col items-center bg-mainColor h-screen'>
             <div className='p-10 text-3xl mt-8 custom-tittle'>
