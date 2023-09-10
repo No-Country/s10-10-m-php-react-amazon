@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 const BasicNavbar = () => {
   const [openNav, setOpenNav] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [userAction, setUserAction] = useState("");
   const user = useSelector((state) => state.user);
 
   const handleOpenModal = () => setOpenModal(!openModal);
@@ -33,7 +34,7 @@ const BasicNavbar = () => {
         color="blue-gray"
         className="p-1 font-bold"
       >
-        <a href="#how-works">¿Cómo funciona?</a>
+        <Link to="/page-not-found">Ayuda</Link>
       </Typography>
       <Typography
         as="li"
@@ -41,7 +42,7 @@ const BasicNavbar = () => {
         color="blue-gray"
         className="p-1 font-bold"
       >
-        <a href="#about-us">Sobre nosotros</a>
+        <Link to="/page-not-found">Ayuda</Link>
       </Typography>
       <Typography
         as="li"
@@ -83,23 +84,35 @@ const BasicNavbar = () => {
                 size="sm"
                 className="ml-10 hidden lg:inline-block bg-colorPrimary font-weightText"
                 style={{ textTransform: "none" }}
-                onClick={handleOpenModal}
+                onClick={() => {
+                  handleOpenModal();
+                  setUserAction("signUp");
+                }}
               >
                 Registrarte
               </Button>
             )}
 
-            <Button
-              size="sm"
-              className="ml-10 hidden lg:inline-block bg-colorPrimary"
-              style={{ textTransform: "none" }}
-            >
-              {user.token && user.id ? (
+            {user.token && user.id ? (
+              <Button
+                size="sm"
+                className="ml-10 hidden lg:inline-block bg-colorPrimary font-weightTextButton"
+                style={{ textTransform: "none" }}
+              >
                 <Link to="/logout">Cerrar sesión</Link>
-              ) : (
-                <Link to="/auth/user/login">Ingresar</Link>
-              )}
-            </Button>
+              </Button>
+            ) : (
+              <Button
+                size="sm"
+                className="ml-10 hidden normal-case lg:inline-block bg-colorPrimary font-weightTextButton"
+                onClick={() => {
+                  handleOpenModal();
+                  setUserAction("login");
+                }}
+              >
+                Ingresar
+              </Button>
+            )}
           </div>
 
           <IconButton
@@ -142,35 +155,47 @@ const BasicNavbar = () => {
         </div>
 
         <Collapse open={openNav}>
-          <div className="container mx-auto text-center">
-            {navList}
+          <div className="container mx-auto text-center mt-5">
             <div className="flex flex-col items-center">
               {!user.token && (
                 <Button
                   size="sm"
-                  className="bg-colorPrimary mb-2 w-1/2 font-weightText"
+                  className=" bg-colorPrimary font-weightTextButton"
                   style={{ textTransform: "none" }}
-                  onClick={handleOpenModal}
+                  onClick={() => {
+                    handleOpenModal();
+                    setUserAction("signUp");
+                  }}
                 >
                   Registrarte
                 </Button>
               )}
-              <Button
-                size="sm"
-                className="mb-2 bg-colorPrimary w-1/2 font-weightText"
-                style={{ textTransform: "none" }}
-              >
-                {user.token && user.id ? (
+              {user.token && user.id ? (
+                <Button
+                  size="sm"
+                  className="normal-case bg-colorPrimary font-weightTextButton"
+                  style={{ textTransform: "none" }}
+                >
                   <Link to="/logout">Cerrar sesión</Link>
-                ) : (
-                  <Link to="/auth/user/login">Ingresar</Link>
-                )}
-              </Button>
+                </Button>
+              ) : (
+                <Button
+                  size="sm"
+                  className="normal-case bg-colorPrimary font-weightTextButton mt-2"
+                  onClick={() => {
+                    handleOpenModal();
+                    setUserAction("login");
+                  }}
+                >
+                  Ingresar
+                </Button>
+              )}
             </div>
+            {navList}
           </div>
         </Collapse>
       </Navbar>
-      <Modal open={openModal} setOpen={setOpenModal} />
+      <Modal open={openModal} setOpen={setOpenModal} userAction={userAction} />
     </>
   );
 };
