@@ -44,9 +44,9 @@ const ExploreCategories = () => {
             </h2>
             
                 <Slider {...settings}>
-                    <Cards  img={panaderia} title={"Panaderías"} />
-                    <Cards img={verduleria} title={"Verdulerías"} />
-                    <Cards img={superMercado} title={"Supermercados"} />
+                    <Cards  img={panaderia} title={"Panaderías"} category={"panaderia"}/>
+                    <Cards img={verduleria} title={"Verdulerías"} category={"verduleria"}/>
+                    <Cards img={superMercado} title={"Supermercados"} category={"supermercado"}/>
                 </Slider>
             
         </div >

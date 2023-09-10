@@ -5,7 +5,7 @@ import Slider from "react-slick";
 const ItemList = ({ business }) => {
   var settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 4,
@@ -38,12 +38,10 @@ const ItemList = ({ business }) => {
   return (
     <div className="w-screen ">
       <Slider {...settings}>
-        {business.length !== 0 && business ? (
-          business.map((shop, index) =>
+        {business && business.length !== 0 && (
+          business.map((shop) =>
             shop.pack.map((item) => item ? <Item item={item} shop={shop} key={item.id} /> : null)
           )
-        ) : (
-          <p>No hay packs disponibles.</p>
         )}
       </Slider>
     </div>

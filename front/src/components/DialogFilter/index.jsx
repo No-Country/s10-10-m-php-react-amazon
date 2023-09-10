@@ -7,30 +7,71 @@ import {
   DialogFooter,
 } from "@material-tailwind/react";
 import { orderByDate, orderByPrice } from "../../utils/products/functions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMap } from "@fortawesome/free-regular-svg-icons";
+import { faList } from "@fortawesome/free-solid-svg-icons";
 
-const DialogFilter = ({ open, handleOpen, setItems, items, showMap, setShowMap }) => {
-  const [today, setToday] = useState(true);
-  const [rubro, setRubro] = useState("panaderia");
-  const [order, setOrder] = useState("price");
-  const [view, setView] = useState("list");
-
+const DialogFilter = ({ open, handleOpen, setFilters, filters }) => {
   const buttonActive = "rounded-full border-teal-900 rounded-full sm:w-[200px] w-1/4 my-2 text-colorPrimary "
   const buttonInactive = "rounded-full border-white-50 rounded-full sm:w-[200px] w-1/4 my-2"
   const submit = () => {
-    let itemsOrdered;
+    /* let itemsOrdered;
     if (order == "price") {
       itemsOrdered = orderByPrice([...items]);
     } else if (order == "date") {
       itemsOrdered = orderByDate([...items]);
     }
-    setItems(itemsOrdered);
-    if (view == "map") {
-      setShowMap(true)
-    } else {
-      setShowMap(false)
-    }
+    setItems(itemsOrdered); */
+   
     handleOpen();
   };
+  let updatedFilters = {...filters}
+  const handleFilter = (filter) => {
+  const updatedFilters = { ...filters };
+
+  if (filter === "today") {
+    updatedFilters.today = true;
+  } else if (filter === "tomorrow") {
+    updatedFilters.today = false;
+  } else if (filter === "panaderia") {
+    if (!updatedFilters.category.includes("panaderia")) {
+      updatedFilters.category.push("panaderia");
+    } else {
+      updatedFilters.category = updatedFilters.category.filter(
+        (item) => item !== "panaderia"
+      );
+    }
+  } else if (filter === "verduleria") {
+    if (!updatedFilters.category.includes("verduleria")) {
+      updatedFilters.category.push("verduleria");
+    } else {
+      updatedFilters.category = updatedFilters.category.filter(
+        (item) => item !== "verduleria"
+      );
+    }
+  } else if (filter === "supermercado") {
+    if (!updatedFilters.category.includes("supermercado")) {
+      updatedFilters.category.push("supermercado");
+    } else {
+      updatedFilters.category = updatedFilters.category.filter(
+        (item) => item !== "supermercado"
+      );
+    }
+  } else if (filter === "distance") {
+    updatedFilters.order = "distance";
+  } else if (filter === "price") {
+    updatedFilters.order = "price";
+  } else if (filter === "date") {
+    updatedFilters.order = "date";
+  } else if (filter === "map") {
+    updatedFilters.view = "map";
+  } else if (filter === "list") {
+    updatedFilters.view = "list";
+  }
+
+  setFilters(updatedFilters);
+  console.log(updatedFilters)
+};
 
   return (
     <Dialog
@@ -50,15 +91,15 @@ const DialogFilter = ({ open, handleOpen, setItems, items, showMap, setShowMap }
         <div className="flex justify-evenly">
           <Button
             variant="outlined"
-            className={today ? buttonActive : buttonInactive} 
-            onClick={() => setToday(true)}
+            className={filters.today ? buttonActive : buttonInactive} 
+            onClick={() => handleFilter("today")}
           >
             Hoy
           </Button>
           <Button
             variant="outlined"
-            className={!today ? buttonActive : buttonInactive}
-            onClick={() => setToday(false)}
+            className={!filters.today ? buttonActive : buttonInactive}
+            onClick={() => handleFilter("tomorrow")}
           >
             Mañana
           </Button>
@@ -67,22 +108,22 @@ const DialogFilter = ({ open, handleOpen, setItems, items, showMap, setShowMap }
         <div className="flex justify-evenly flex-wrap">
           <Button
             variant="outlined"
-            className={rubro=="panaderia" ? buttonActive : buttonInactive}
-            onClick={() => setRubro("panaderia")}
+            className={updatedFilters.category.find(item => item == "panaderia") ? buttonActive : buttonInactive}
+            onClick={() => handleFilter("panaderia")}
           >
             Panaderia
           </Button>
           <Button
             variant="outlined"
-            className={rubro=="verduleria"? buttonActive : buttonInactive}
-            onClick={() => setRubro("verduleria")}
+            className={updatedFilters.category.find(item => item == "verduleria")? buttonActive : buttonInactive}
+            onClick={() => handleFilter("verduleria")}
           >
             Verduleria
           </Button>
           <Button
             variant="outlined"
-            className={rubro=="supermercado" ? buttonActive : buttonInactive}
-            onClick={() => setRubro("supermercado")}
+            className={updatedFilters.category.find(item => item == "supermercado") ? buttonActive : buttonInactive}
+            onClick={() => handleFilter("supermercado")}
           >
             Supermercado
           </Button>
@@ -91,22 +132,22 @@ const DialogFilter = ({ open, handleOpen, setItems, items, showMap, setShowMap }
         <div className="flex justify-evenly">
           <Button
             variant="outlined"
-            className={order == "price" ? buttonActive : buttonInactive}
-            onClick={() => setOrder("price")}
+            className={filters.order == "price" ? buttonActive : buttonInactive}
+            onClick={() => handleFilter("price")}
           >
             Precio
           </Button>
           <Button
             variant= "outlined"
-            className={order == "distance" ? buttonActive : buttonInactive}
-            onClick={() => setOrder("distance")}
+            className={filters.order == "distance" ? buttonActive : buttonInactive}
+            onClick={() => handleFilter("distance")}
           >
             Distancia
           </Button>
           <Button
             variant= "outlined"
-            className={order == "date" ? buttonActive : buttonInactive}
-            onClick={() => setOrder("date")}
+            className={filters.order == "date" ? buttonActive : buttonInactive}
+            onClick={() => handleFilter("date")}
           >
             Más recientes
           </Button>
@@ -115,17 +156,19 @@ const DialogFilter = ({ open, handleOpen, setItems, items, showMap, setShowMap }
         <div className="flex justify-evenly">
           <Button
             variant="outlined"
-            className={view == "map" ? buttonActive : buttonInactive}
-            onClick={() => setView("map")}
+            className={filters.view == "map" ? buttonActive : buttonInactive}
+            onClick={() => handleFilter("map")}
           >
-            Mapa
+            <FontAwesomeIcon icon={faMap}/>
+            <span className="ml-3">Mapa</span>
           </Button>
           <Button
             variant="outlined"
-            className={view == "list" ? buttonActive : buttonInactive}
-            onClick={() => setView("list")}
+            className={filters.view == "list" ? buttonActive : buttonInactive}
+            onClick={() => handleFilter("list")}
           >
-            Lista
+            <FontAwesomeIcon icon={faList}/>
+            <span className="ml-3">Lista</span>
           </Button>
         </div>
       </DialogBody>

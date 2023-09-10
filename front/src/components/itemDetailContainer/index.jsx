@@ -4,19 +4,30 @@ import { Spinner } from "@material-tailwind/react";
 import { useRoute } from 'wouter'
 import { productFindShop } from "../../utils/products/functions";
 import { ItemModal } from "./itemModal";
+import { getPackById } from "../../api/itemApi";
+import { useSelector } from "react-redux";
 const ItemDetailContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [match, params] = useRoute("/detail/:id");
   const id = params.id
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
-  const [item, setItem] = useState(productFindShop(id))
-  useEffect(() => {
+  const user = useSelector(state => state.user)
+  const [item, setItem] = useState({})
 
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  }, []);
+  useEffect(() => {
+    setIsLoading(true);
+    getPackById(id, user.token)
+      .then((response) => {
+        setItem(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [setItem]);
 
   return (
     <div>

@@ -1,8 +1,8 @@
 import { products } from ".";
 import { shops } from "../shops";
 
-export const orderByPrice = (items) => {
-  return items.sort((a, b) => a.price - b.price);
+export const orderByPrice = (business) => {
+  return business.sort((a, b) => a.price - b.price);
 };
 
 export const orderByDate = (items) => {
