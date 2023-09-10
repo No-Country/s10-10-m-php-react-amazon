@@ -5,6 +5,7 @@ import { Button, Dialog } from '@material-tailwind/react';
 import iconPacks from "../../../assets/iconsModalBusiness/addpacks.svg"
 import iconComplete from "../../../assets/iconsModalBusiness/complete.svg"
 import iconCommerce from "../../../assets/iconsModalBusiness/commerce.svg"
+import { Link } from 'wouter';
 
 
 const ModalBusiness = ({ size1, handleOpen1 }) => {
@@ -27,8 +28,8 @@ const ModalBusiness = ({ size1, handleOpen1 }) => {
             <InstructionBusiness number={"3"} img={iconComplete} paragraph={<span>Carga el <b>precio, horario</b> de recogida, <b>foto</b>, etc. de los packs.</span>} />
             <InstructionBusiness number={"4"} img={iconCommerce} paragraph={<span>¡Los clientes ya <b>pueden visualizar los packs disponibles</b> en tu local!</span>} />
             <div className='lg:absolute  bottom-8'>
-                <Button className='rounded-lg normal-case bg-colorPrimary p-0 w-[330px] h-[44px] '>
-                    Quiero vender comida
+            <Button className='rounded-full normal-case bg-colorPrimary p-0 w-[330px] h-[44px] '>                    
+                    <Link to="/auth/shop/signup">Quiero vender comida</Link>
                 </Button>
             </div>
         </Dialog>
