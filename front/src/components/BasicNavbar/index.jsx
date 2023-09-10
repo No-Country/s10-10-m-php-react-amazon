@@ -34,7 +34,7 @@ const BasicNavbar = () => {
         color="blue-gray"
         className="p-1 font-bold"
       >
-        <Link to="/page-not-found">Ayuda</Link>
+        <Link to="/page-not-found">¿Cómo funciona?</Link>
       </Typography>
       <Typography
         as="li"
@@ -42,7 +42,7 @@ const BasicNavbar = () => {
         color="blue-gray"
         className="p-1 font-bold"
       >
-        <Link to="/page-not-found">Ayuda</Link>
+        <Link to="/page-not-found">Sobre nosotros</Link>
       </Typography>
       <Typography
         as="li"
