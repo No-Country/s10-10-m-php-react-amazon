@@ -9,7 +9,7 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 import image1 from "../assets/businessPerson.png";
 import image2 from "../assets/footLoverPerson.png";
 
-export function Modal({ open, setOpen }) {
+export function Modal({ open, setOpen, userAction }) {
   const handleCloseModal = () => {
     setOpen(false);
   };
@@ -35,7 +35,11 @@ export function Modal({ open, setOpen }) {
                 onClick={handleCloseModal}
                 className="bg-colorPrimary normal-case text-white font-bold rounded-full w-full"
               >
-                <Link to="/auth/user/signup">Quiero salvar comida </Link>
+                {userAction == "login" ? (
+                  <Link to="/auth/user/login">Quiero salvar comida </Link>
+                ) : (
+                  <Link to="/auth/user/signup">Quiero salvar comida </Link>
+                )}
               </Button>
             </div>
             <div className="flex flex-col justify-center items-center">
@@ -44,7 +48,11 @@ export function Modal({ open, setOpen }) {
                 onClick={handleCloseModal}
                 className="bg-colorPrimary normal-case text-white font-bold rounded-full w-full"
               >
-                <Link to="/auth/shop/signup">Quiero vender comida </Link>
+                {userAction == "signUp" ? (
+                  <Link to="/auth/shop/signup">Quiero vender comida </Link>
+                ) : (
+                  <Link to="/auth/shop/login">Quiero vender comida </Link>
+                )}
               </Button>
             </div>
           </div>

@@ -1,13 +1,11 @@
-import React from 'react'
+import FormShop from "./formShop/";
 
-const
-    LoginShop = () => {
-        return (
-            <div>
+const LoginShop = () => {
+  return (
+    <>
+      <FormShop />
+    </>
+  );
+};
 
-            </div>
-        )
-    }
-
-export default
-    LoginShop
+export default LoginShop;
