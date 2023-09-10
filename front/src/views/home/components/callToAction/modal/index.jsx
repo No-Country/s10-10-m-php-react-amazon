@@ -6,6 +6,7 @@ import iconPack from "../../../assets/iconsModalUser/pack.png"
 import iconPay from "../../../assets/iconsModalUser/pay.svg"
 import iconTakeaway from "../../../assets/iconsModalUser/takeaway.svg"
 import iconFoot from "../../../assets/iconsModalUser/food.svg"
+import {Link} from "wouter"
 
 const Modal = ({ size, handleOpen }) => {
 
@@ -30,8 +31,8 @@ const Modal = ({ size, handleOpen }) => {
             <Instruction number={"4"} img={iconTakeaway} paragraph={<span>Ve al local, muestra tu código y <b>recoge tu producto.</b></span>} />
             <Instruction number={"5"} img={iconFoot} paragraph={<span>¡<b>Disfruta</b> tus alimentos a un menor precio!</span>} />
             <div className='lg:absolute  bottom-8'>
-                <Button className='rounded-lg normal-case bg-colorPrimary p-0 w-[330px] h-[44px] '>
-                    Quiero salvar comida
+                <Button className='rounded-full normal-case bg-colorPrimary p-0 w-[330px] h-[44px] '>                    
+                    <Link to="/auth/user/signup">Quiero salvar comida</Link>
                 </Button>
             </div>
         </Dialog>
