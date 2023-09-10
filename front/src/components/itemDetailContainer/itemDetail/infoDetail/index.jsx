@@ -14,7 +14,7 @@ const InfoDetail = ({ item }) => {
         </div>
 
         <p className="text-sizeText font-weightSubtitle mb-3">
-          Ubicación <Link to="" className="font-thin border-b border-black text-[13px]"> Avenida Costanera 83</Link>
+          Ubicación <Link to="" className="font-thin border-b border-black text-[13px]">{item.shop.address}</Link>
         </p>
         <p>Teléfono <span className="text-[13px]">  358-5123456</span></p>
 

@@ -7,10 +7,9 @@ import { Link } from "wouter";
 
 
 
-const Cards = ({ img, title }) => {
-
+const Cards = ({ img, title, category }) => {
     return (
-        <Link to="/dashboard">
+        <Link to={`/dashboard/${category}`}>
             <Card className=" rounded-lg relative lg:w-[424px] w-[220px] lg:h-[159px] h-[158.506px] cursor-pointer" >
                 <CardHeader
                     floated={false}

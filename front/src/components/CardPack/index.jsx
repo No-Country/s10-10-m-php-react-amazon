@@ -15,7 +15,6 @@ import { Link } from "wouter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 export function CardPack({ item, shop }) {
-  
   const tags = JSON.parse(item.tags)
   const timeStartParts = item.time_start.split(' ')[1].split(':'); 
 const timeStart = `${timeStartParts[0]}:${timeStartParts[1]}`;
@@ -52,7 +51,7 @@ const timeEnd = `${timeEndParts[0]}:${timeEndParts[1]}`;
               <span>{shop.stars ? shop.stars : "0"}</span>
             </div>
             <span className="px-2  text-colorNeutral1">
-              0.00
+              {shop.distance}
             </span>
           </div>
 
