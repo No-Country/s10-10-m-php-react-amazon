@@ -72,6 +72,12 @@ Route::group(['middleware' => 'api',], function ($router) {
         Route::put('purchase/update/{id}', 'App\Http\Controllers\PurchaseController@update');
         Route::delete('purchase/delete/{id}', 'App\Http\Controllers\PurchaseController@destroy');
 
+        //Rutas de categorias
+        Route::get('category', 'App\Http\Controllers\CategoryController@index');
+        Route::post('category', 'App\Http\Controllers\CategoryController@store');
+        Route::put('category/update/{id}', 'App\Http\Controllers\CategoryController@update');
+        Route::delete('category/delete/{id}', 'App\Http\Controllers\CategoryController@destroy');
+
         Route::patch('/location', [LocationController::class, 'update'])->name('location.update');
 
     });

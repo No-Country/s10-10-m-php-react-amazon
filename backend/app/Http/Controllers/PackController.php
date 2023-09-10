@@ -8,7 +8,8 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Cloudinary;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 class PackController extends Controller
 {
 
@@ -168,7 +169,7 @@ class PackController extends Controller
 
         try {
             checkLogin();
-            
+
             $pack = Pack::findOrFail($id);
 
             $publicId = pathinfo(parse_url($pack->photo_url, PHP_URL_PATH), PATHINFO_FILENAME);
