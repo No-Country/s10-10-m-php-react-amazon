@@ -4,12 +4,13 @@ import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
 import { validatePassword } from "../../../../../../utils/validatePassword";
 import { signUpShop } from "../../../../../../api/authApi.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Toaster, toast } from "sonner";
 import { setToken } from "../../../../../../features/userSlice.js";
 import useToggleVisibility from "../../../../../../utils/hooks/useToggleVisibility";
+import { navigate } from "wouter/use-location";
 
-const StoreSignUp = ({ name, category }) => {
+const StoreSignUp = () => {
   const {
     register,
     handleSubmit,
@@ -21,6 +22,7 @@ const StoreSignUp = ({ name, category }) => {
   const dispatch = useDispatch();
 
   const [passwordMatchError, setPasswordMatchError] = useState("");
+
   const handlePasswordRepeatChange = (event) => {
     const password = document.getElementById("password").value;
     const passwordRepeat = event.target.value;
@@ -32,6 +34,9 @@ const StoreSignUp = ({ name, category }) => {
     }
   };
 
+  const shopname = useSelector((state) => state.businessInfo.name);
+  const category = useSelector((state) => state.businessInfo.category);
+
   const submit = (info) => {
     const passwordError = validatePassword(info.password);
     setError(passwordError);
@@ -39,16 +44,18 @@ const StoreSignUp = ({ name, category }) => {
       const updatedData = {
         type: "business",
         description: "algo",
-        name: name,
+        name: shopname,
         category: category,
         email: info.email,
         password: info.password,
       };
       signUpShop(updatedData)
         .then((response) => {
+          console.log(response.data);
           if (response.status == 201) {
             toast("Registro con éxito");
             dispatch(setToken(response.data));
+            navigate("/user/profile");
           }
         })
         .catch((err) => {
@@ -161,10 +168,10 @@ const StoreSignUp = ({ name, category }) => {
             }
           />
         </div>
-        <div className="m-5">
+        <div className="mt-10 m-2">
           <Button
             fullWidth
-            className="rounded-full custom-buttonCTAs normal-case"
+            className="rounded-full normal-case bg-buttonFilledColor text-colorPrimary text-sm"
             type="submit"
           >
             Registrarme
