@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form";
 import { Input, Button } from "@material-tailwind/react";
-import StoreSignUp from "./storeSignUp";
-import { useState } from "react";
+import { navigate } from "wouter/use-location";
+import { useDispatch } from "react-redux";
+import { setName, setCategory } from "../../../../../features/businessSlice";
 
 const FormShop = () => {
   const {
@@ -10,12 +11,14 @@ const FormShop = () => {
     formState: { errors },
   } = useForm();
 
-  const [shopname, setShopname] = useState("");
-  const [category, setCategory] = useState("");
+  const dispatch = useDispatch();
 
   const submit = (data) => {
-    setShopname(data.shopname);
-    setCategory(data.category);    
+    if (data.shopname && data.category) {
+      dispatch(setName(data.shopname));
+      dispatch(setCategory(data.category));
+      navigate("/auth/shop/signup/store-manager");
+    }
   };
 
   return (
@@ -144,7 +147,6 @@ const FormShop = () => {
           </Button>
         </div>
       </form>
-      <StoreSignUp name={shopname} category={category} />;
     </div>
   );
 };
