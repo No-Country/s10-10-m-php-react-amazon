@@ -11,6 +11,8 @@ import ItemDetailContainer from "../components/itemDetailContainer";
 import Error404 from "../views/404";
 import UserProfile from "../views/profile";
 import Logout from "../views/logout";
+import StoreManager from "../views/auth/authShop/signUpShop/formShop/storeManager";
+import StoreSignUp from "../views/auth/authShop/signUpShop/formShop/storeSignUp";
 
 const AppRouter = () => {
   return (
@@ -21,6 +23,8 @@ const AppRouter = () => {
       <Route path="/auth/user/signup" component={SignUpUser} />
       <Route path="/auth/user/login" component={LoginUser} />
       <Route path="/auth/shop/signup" component={SignUpShop} />
+      <Route path="/auth/shop/signup/store-manager" component={StoreManager} />
+      <Route path="/auth/shop/signup/store-signup" component={StoreSignUp} />
       <Route path="/auth/shop/login" component={LoginShop} />
       <Route path="/recover-pass" component={RecoverPass} />
       <Route path="/detail/:id" component={ItemDetailContainer} />
