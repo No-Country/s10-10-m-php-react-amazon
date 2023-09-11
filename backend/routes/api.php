@@ -66,8 +66,8 @@ Route::group(['middleware' => 'api',], function ($router) {
         Route::delete('pack/image/delete/{id}', 'App\Http\Controllers\PackController@deleteImage');
 
             //Ruta de favoritos
-        Route::get('favorite/{id}', 'App\Http\Controllers\FavoriteController@index');
-        Route::post('favorite', 'App\Http\Controllers\FavoriteController@store');   
+        Route::get('favorite', 'App\Http\Controllers\FavoriteController@index');
+        Route::post('favorite', 'App\Http\Controllers\FavoriteController@store');
         Route::delete('favorite/delete/{id}', 'App\Http\Controllers\FavoriteController@destroy');
             //Rutas de purchases
         Route::post('purchase', 'App\Http\Controllers\PurchaseController@store');

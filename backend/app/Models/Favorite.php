@@ -14,6 +14,16 @@ class Favorite extends Model
         'business_id',
     ];
 
+    protected $hidden = [
+        'password',
+        'remember_token',
+        'email',
+        'external_id',
+        'external_auth',
+        'is_verified',
+        'email_verified_at',
+    ];
+
 ///relacion entre user a pack
     public function User(){
         return $this->belongsTo(User::class);
