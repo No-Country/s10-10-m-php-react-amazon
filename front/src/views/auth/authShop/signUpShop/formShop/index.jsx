@@ -1,65 +1,22 @@
-import { useForm } from 'react-hook-form'
-import { Input, Button, Typography, Checkbox } from "@material-tailwind/react";
-import React, { useState } from 'react'
-import { Link } from "wouter";
-import { BsEye, BsEyeSlash } from "react-icons/bs";
-import { validatePassword } from '../../../../../utils/validatePassword';
-import { signUpShop } from '../../../../../api/authApi';
-import { useDispatch } from 'react-redux';
-import { setToken } from '../../../../../features/userSlice';
-import { Toaster, toast } from 'sonner';
+import { useForm } from "react-hook-form";
+import { Input, Button } from "@material-tailwind/react";
+import StoreSignUp from "./storeSignUp";
+import { useState } from "react";
 
-const FormShop = ({ setNextStep }) => {
-    const { register, handleSubmit, formState: { errors }, } = useForm()
+const FormShop = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-    const [error, setError] = useState("");
-    const [isVisible, setIsVisible] = useState(true);
-    // submit de prueba
-    const submit = (info) => {
-      alert()
-    }
-    // const dispatch = useDispatch()
-    // const submit = (info) => {
-    //     const passwordError = validatePassword(info.password);
-    //     setError(passwordError);
+  const [shopname, setShopname] = useState("");
+  const [category, setCategory] = useState("");
 
-    //     if (!passwordError) {
-    //         const updatedData = {
-    //             type: 'business',
-    //             description: "algo",
-    //             name: info.shopname,
-    //             category: info.type,
-    //             email: info.email,
-    //             password: info.password,
-    //         };
-    //         signUpShop(updatedData).then((response) => {
-    //             if (response.status == 201) {
-    //               dispatch(setToken(response.data));
-    //               setNextStep(true)
-    //             } else {
-    //               console.log("Algo")
-    //             }
-    //           }).catch(err => {
-    //             console.log(err)
-    //             toast("Email existente");
-    //           });
-    //     }
-    // };
-    // const handleChangeVisible = () => {
-    //     setIsVisible(!isVisible);
-    // };
-
-    // if (!passwordError) {
-    //   const updatedData = {
-    //     ...data,
-    //     shopname: info.shopname,
-    //     type: info.type,
-    //     email: info.email,
-    //     password: info.password,
-    //   };
-    //   setData(updatedData);
-    // }
-  
+  const submit = (data) => {
+    setShopname(data.shopname);
+    setCategory(data.category);    
+  };
 
   return (
     <div className="flex flex-col items-center bg-colorPrimary min-h-screen">
@@ -95,14 +52,14 @@ const FormShop = ({ setNextStep }) => {
 
           <div className="relative">
             <label
-              htmlFor="businessLine"
+              htmlFor="category"
               className="text-left text-mainColor text-sm"
             >
               Rubro
             </label>
             <select
-              {...register("businessLine", { required: true })}
-              id="businessLine"
+              {...register("category", { required: true })}
+              id="category"
               className=" w-full mt-1 p-2 border border-gray-300 bg-white text-gray-900 rounded-md"
             >
               <option value="" disabled>
@@ -112,7 +69,7 @@ const FormShop = ({ setNextStep }) => {
               <option value="supermercado">Supermercado</option>
               <option value="verduleria">Verdulería</option>
             </select>
-            {errors.businessLine && (
+            {errors.category && (
               <p className="text-red-500">Campo obligatorio</p>
             )}
           </div>
@@ -187,9 +144,9 @@ const FormShop = ({ setNextStep }) => {
           </Button>
         </div>
       </form>
+      <StoreSignUp name={shopname} category={category} />;
     </div>
   );
 };
 
-
-export default FormShop
+export default FormShop;

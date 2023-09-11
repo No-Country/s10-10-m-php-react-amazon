@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
-import FormShop from './formShop/index'
-import Maps from '../../authUser/signUpUser/formUser/maps'
+import FormShop from "./formShop/index";
+// import StoreSignUp from "./formShop/storeSignUp";
 
 const SignUpShop = () => {
-    const [nextStep, setNextStep] = useState(false);
+  return (
+    <>
+      {/* <StoreSignUp  /> */}
+      <FormShop/>
+    </>
+  );
+};
 
-    if (!nextStep) return <FormShop setNextStep={setNextStep} />;
-    else return <Maps />;
-  };
-  
-
-export default SignUpShop
+export default SignUpShop;
