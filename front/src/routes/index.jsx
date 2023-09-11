@@ -13,6 +13,8 @@ import UserProfile from "../views/profile";
 import Logout from "../views/logout";
 import StoreManager from "../views/auth/authShop/signUpShop/formShop/storeManager";
 import StoreSignUp from "../views/auth/authShop/signUpShop/formShop/storeSignUp";
+import MapProfile from "../views/profile/components/MapProfile";
+import ActivePacks from "../views/profile/components/ActivePacks";
 
 const AppRouter = () => {
   return (
@@ -32,6 +34,8 @@ const AppRouter = () => {
       <Route path="/user/profile" component={UserProfile} />
       <Route path="/logout" component={Logout} />
       <Route path="/dashboard/:category" component={Dashboard} />
+      <Route path='/user/profile/map' component={MapProfile}/>
+      <Route path='/user/profile/activepacks' component={ActivePacks}/>
     </Router>
   );
 };

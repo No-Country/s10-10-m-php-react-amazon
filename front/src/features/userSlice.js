@@ -49,6 +49,16 @@ export const userSlice = createSlice({
       state.location.latitude = latitude;
       state.location.longitude = longitude;
     },
+    setLocation: (state, action) => {
+      const { address, city, postal_code, province, latitude, longitude } =
+        action.payload;
+        state.location.address = address;
+      state.location.city = city;
+      state.location.postal_code = postal_code;
+      state.location.province = province;
+      state.location.latitude = latitude;
+      state.location.longitude = longitude;
+    },
     cerrarSesion: (state) => {
       state.email = "";
       state.id = "";
@@ -62,8 +72,11 @@ export const userSlice = createSlice({
       state.postalCode = "";
       state.token = "";
     },
+    setPhoto: (state, action) => {
+      state.avatar = action.payload
+    }
   },
 });
 
-export const { setUser, setToken, cerrarSesion } = userSlice.actions;
+export const { setUser, setToken, cerrarSesion, setLocation, setPhoto } = userSlice.actions;
 export default userSlice.reducer;

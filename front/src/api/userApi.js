@@ -16,3 +16,24 @@ export const getUserById = (userId, token) => {
 export const updateUser = (userId, newData) => {
   return axios.patch(`${BASE_URL}/${userId}`, newData);
 };
+
+export const addPhoto = async (selectedFile, token) => {
+
+  try {
+    const formData = new FormData();
+    formData.append('image', selectedFile);
+
+    const response = await axios.post(`${BASE_URL}/avatar`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`, 
+      },
+    });
+
+    console.log('File uploaded successfully:', response.data);
+    return response.data
+  } catch (error) {
+    console.error('Error uploading file:', error);
+  }
+}
+

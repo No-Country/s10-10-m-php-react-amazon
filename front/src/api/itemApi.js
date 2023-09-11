@@ -39,3 +39,9 @@ export const getPackById = async (id, token) => {
     throw error; 
   }
 }
+
+export const getShopPacks = async () => {
+  return getAllPacks()
+  
+
+}
