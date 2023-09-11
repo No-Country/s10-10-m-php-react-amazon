@@ -13,6 +13,7 @@ import UserProfile from "../views/profile";
 import Logout from "../views/logout";
 import StoreManager from "../views/auth/authShop/signUpShop/formShop/storeManager";
 import StoreSignUp from "../views/auth/authShop/signUpShop/formShop/storeSignUp";
+import Purchases from "../views/purchases";
 
 const AppRouter = () => {
   return (
@@ -20,6 +21,7 @@ const AppRouter = () => {
       <BasicNavbar />
       <Route path="/detail" component={ItemDetailContainer} />
       <Route path="/" component={Home} />
+      <Route path="/purchases" component={Purchases} />
       <Route path="/auth/user/signup" component={SignUpUser} />
       <Route path="/auth/user/login" component={LoginUser} />
       <Route path="/auth/shop/signup" component={SignUpShop} />
