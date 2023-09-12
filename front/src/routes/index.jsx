@@ -14,6 +14,8 @@ import Logout from "../views/logout";
 import StoreManager from "../views/auth/authShop/signUpShop/formShop/storeManager";
 import StoreSignUp from "../views/auth/authShop/signUpShop/formShop/storeSignUp";
 import Purchases from "../views/purchases";
+import PaymentOption from "../components/paymentMethod/paymentOption";
+import CreditCard from "../components/paymentMethod/creditCard";
 
 const AppRouter = () => {
   return (
@@ -22,6 +24,8 @@ const AppRouter = () => {
       <Route path="/detail" component={ItemDetailContainer} />
       <Route path="/" component={Home} />
       <Route path="/purchases" component={Purchases} />
+      <Route path="/payment" component={PaymentOption} />
+      <Route path="/payment/creditCard" component={CreditCard} />
       <Route path="/auth/user/signup" component={SignUpUser} />
       <Route path="/auth/user/login" component={LoginUser} />
       <Route path="/auth/shop/signup" component={SignUpShop} />

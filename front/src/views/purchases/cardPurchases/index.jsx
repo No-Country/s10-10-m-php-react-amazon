@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import bagPurchases from '../../home/assets/bagCardPurchases.png'
 import { Button } from '@material-tailwind/react';
 import { RiDeleteBinLine } from 'react-icons/ri';
+import ModalDeletePurchases from './modalDeletePurchases';
 
 const CardPurchases = () => {
+
+    const [open, setOpen] = useState(false);
+
+    const handleOpen = () => setOpen(!open);
+
     return (
         <div className='border-2 border-colorNeutral2 h-[192px] lg:w-[950px]  w-full rounded-xl flex m-0 lg:m-auto'>
 
@@ -25,7 +31,9 @@ const CardPurchases = () => {
                 <div className='h-full p-[1rem] pr-[2rem] w-full flex flex-col justify-between'>
                     <div className='w-full flex justify-between'>
                         <span >10/09/23</span>
-                        <button className='mr-2 text-sizeTitle'><RiDeleteBinLine /></button>
+                        <button className='mr-2 text-sizeTitle' onClick={handleOpen}>
+                            <RiDeleteBinLine />
+                        </button>
                     </div>
                     <span className='font-bold text-sizeText text-colorNeutral1'>Goloso</span>
 
@@ -42,11 +50,15 @@ const CardPurchases = () => {
                             Ver Detalle
                         </Button>
                     </div>
+
+                    <ModalDeletePurchases handleOpen={handleOpen} open={open} />
+
                 </div>
             </section >
 
         </div >
     );
+
 };
 
 export default CardPurchases;
