@@ -12,6 +12,7 @@ const PaymentOption = () => {
         history.back();
     };
 
+
     return (
         <div className='h-screen'>
 

@@ -36,12 +36,12 @@ export const getPackById = async (id, token) => {
     return product;
   } catch (error) {
     console.log(error);
-    throw error; 
+    throw error;
   }
 }
 
 export const getShopPacks = async () => {
   return getAllPacks()
-  
+
 
 }

@@ -21,6 +21,8 @@ export function ItemModal({ open, handleOpen, item }) {
     }
   }
 
+
+
   const handleMinus = () => {
     if (quantity > 0) {
       setQuantity(quantity - 1)
