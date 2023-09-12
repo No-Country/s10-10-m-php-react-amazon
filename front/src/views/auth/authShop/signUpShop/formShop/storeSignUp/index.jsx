@@ -4,9 +4,8 @@ import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useState } from "react";
 import { validatePassword } from "../../../../../../utils/validatePassword";
 import { signUpShop } from "../../../../../../api/authApi.js";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Toaster, toast } from "sonner";
-// import { setToken } from "../../../../../../features/userSlice.js";
 import useToggleVisibility from "../../../../../../utils/hooks/useToggleVisibility";
 import { navigate } from "wouter/use-location";
 
@@ -19,7 +18,6 @@ const StoreSignUp = () => {
 
   const [error, setError] = useState("");
   const [isVisible, handleVisible] = useToggleVisibility(true);
-  // const dispatch = useDispatch();
 
   const [passwordMatchError, setPasswordMatchError] = useState("");
 
@@ -52,14 +50,12 @@ const StoreSignUp = () => {
       signUpShop(updatedData)
         .then((response) => {
           if (response.status == 201) {
-            toast("Registro con éxito");
-            // dispatch(setToken(response.data));
+            toast.success("Registro con éxito");
             navigate("/auth/shop/login");
           }
         })
-        .catch((err) => {
-          console.log(err);
-          toast("Email existente");
+        .catch((error) => {
+          toast.error("Email existente");
         });
     }
   };
@@ -86,9 +82,7 @@ const StoreSignUp = () => {
               }}
             />
             {errors.email && (
-              <p className="text-red-500 mt-2">
-                Por favor, revisa tu correo electrónico.
-              </p>
+              <p className="text-red-500 mt-2">Campo obligatorio.</p>
             )}
           </div>
 
@@ -119,10 +113,13 @@ const StoreSignUp = () => {
                 {isVisible ? <BsEyeSlash /> : <BsEye />}{" "}
               </button>
             </div>
-            {errors.password && (
-              <p className="text-red-500 mt-2">
-                La contraseña debe contener 6 dígitos.
+            {error && (
+              <p className="text-red-800" style={{ fontSize: "10px" }}>
+                {error}
               </p>
+            )}
+            {errors.password && (
+              <p className="text-red-500 mt-2">Campo obligatorio.</p>
             )}
           </div>
 
