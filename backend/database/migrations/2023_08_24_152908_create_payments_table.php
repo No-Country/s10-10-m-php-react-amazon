@@ -13,11 +13,12 @@ return new class extends Migration
    {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            // $table->unsignedBigInteger('user_id');
-            // $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('user_id');
             $table->string('payment_preference_id'); // ID de la preferencia de pago de MercadoPago
-            $table->decimal('amount', 10, 2); 
+            $table->decimal('amount', 10, 2);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

@@ -36,10 +36,8 @@ class MercadoPagoController extends Controller
 
         $preference->save();
 
-        // $userId = Auth::check() ? Auth::user()->id : null;
-
             Payment::create([
-                // 'user_id' => $userId,
+                'user_id' => Auth::user()->id,
                 'payment_preference_id' => $preference->id,
                 'amount' => $orderData['price'],
             ]);

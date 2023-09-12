@@ -13,12 +13,13 @@ class Purchase extends Model
         'pack_id',
         'user_id',
         'seller_id',
+        'calification_gived_id',
+        'feedback_received_id',
+        'payment_id',
         'code',
         'status',
         'amount',
-        'calification_gived_id',
-        'feedback_received_id',
-        // 'payment_id'
+
     ];
     public function user()
     {
@@ -41,9 +42,10 @@ class Purchase extends Model
     {
         return $this->belongsTo(User::class, 'feedback_received_id');
     }
-    //  public function payment()
-    // {
-    //     return $this->hasOne(Payment::class);
-    // }
-    
+
+    public function payment()
+    {
+        return $this->hasOne(Payment::class);
+    }
+
 }
