@@ -53,7 +53,8 @@ Route::group(['middleware' => 'api',], function ($router) {
 
     Route::get('pack', 'App\Http\Controllers\PackController@index');
     Route::post('pack/filter', 'App\Http\Controllers\PackController@filter');
-    
+    Route::get('pack/collection/{id}', 'App\Http\Controllers\PackController@getallbyid');
+
     Route::group(['middleware' => 'jwt.auth',], function ($router) {
 
         Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.update');

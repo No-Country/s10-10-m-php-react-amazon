@@ -26,7 +26,7 @@ class PackFactory extends Factory
             'user_id' => function () {
                 return User::factory()->create()->id; 
             },
-            'photo_url' => $this->faker->imageUrl(),
+            'photo_url' => 'https://res.cloudinary.com/dtvngobyy/image/upload/v1694470684/hmeycscun0jezhdrg0fq.png',
         ];
     }
 }
