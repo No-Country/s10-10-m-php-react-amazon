@@ -3,7 +3,7 @@ import useToggleVisibility from "../../../../../utils/hooks/useToggleVisibility"
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { navigate } from "wouter/use-location";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { loginUser } from "../../../../../api/authApi";
 import { setUser } from "../../../../../features/userSlice";
 import { validatePassword } from "../../../../../utils/validatePassword";
@@ -13,6 +13,7 @@ import { useState } from "react";
 
 export default function FormShop() {
   const [isVisible, handleVisible] = useToggleVisibility(true);
+  const [location] = useLocation();
 
   const handleBack = () => {
     history.back();
@@ -118,7 +119,7 @@ export default function FormShop() {
                       type="button"
                       onClick={handleVisible}
                     >
-                      {isVisible ? <BsEye /> : <BsEyeSlash />}{" "}
+                      {isVisible ? <BsEyeSlash /> : <BsEye />}{" "}
                     </button>
                   </div>
                   {error && (
@@ -156,22 +157,36 @@ export default function FormShop() {
                 </p>
               )}
             </div>
-            <div className="m-6 custom-textButton">
-              <Link to="/recover-pass">¿Has olvidado la contraseña?</Link>
+            <div className="m-6 text-center text-sm text-colorModal">
+              <Link to="/page-not-found">¿Has olvidado la contraseña?</Link>
             </div>
             <div className="text-center">
               <Button
-                className="rounded-full normal-case w-[340px] text-colorPrimary bg-[#FFDBCC]"
+                className="rounded-full text-lg normal-case w-[340px] text-colorPrimary bg-[#FFDBCC]"
                 type="submit"
               >
-                Iniciá sesión
+                Iniciar
               </Button>
             </div>
           </form>
 
-          <div className="text-sizeNote w-[330px] my-16 flex justify-between">
-            <span>¿Aún no tienes cuenta?</span>
-            <Link to="/auth/user/signup">Regístrate</Link>
+          <div className="flex justify-between mt-10 text-sm text-colorModal">
+            <div className="mr-10">
+              <span>¿Aún no tienes cuenta?</span>
+            </div>
+            <div className="font-bold cursor-pointer">
+              <a
+                onClick={() =>
+                  navigate(
+                    location === "/auth/shop/login"
+                      ? "/auth/shop/signup"
+                      : "/auth/user/signup"
+                  )
+                }
+              >
+                Regístrate
+              </a>
+            </div>
           </div>
         </div>
       </div>

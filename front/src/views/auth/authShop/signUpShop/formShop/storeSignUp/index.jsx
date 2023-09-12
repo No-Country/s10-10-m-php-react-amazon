@@ -6,7 +6,7 @@ import { validatePassword } from "../../../../../../utils/validatePassword";
 import { signUpShop } from "../../../../../../api/authApi.js";
 import { useDispatch, useSelector } from "react-redux";
 import { Toaster, toast } from "sonner";
-import { setToken } from "../../../../../../features/userSlice.js";
+// import { setToken } from "../../../../../../features/userSlice.js";
 import useToggleVisibility from "../../../../../../utils/hooks/useToggleVisibility";
 import { navigate } from "wouter/use-location";
 
@@ -19,7 +19,7 @@ const StoreSignUp = () => {
 
   const [error, setError] = useState("");
   const [isVisible, handleVisible] = useToggleVisibility(true);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const [passwordMatchError, setPasswordMatchError] = useState("");
 
@@ -51,11 +51,10 @@ const StoreSignUp = () => {
       };
       signUpShop(updatedData)
         .then((response) => {
-          console.log(response.data);
           if (response.status == 201) {
             toast("Registro con éxito");
-            dispatch(setToken(response.data));
-            navigate("/user/profile");
+            // dispatch(setToken(response.data));
+            navigate("/auth/shop/login");
           }
         })
         .catch((err) => {

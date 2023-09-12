@@ -8,7 +8,7 @@ import { signUpUser } from "../../../../../../api/authApi.js";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../../../../features/userSlice";
 import { Toaster, toast } from "sonner";
-import { setToken } from '../../../../../../features/userSlice.js'
+import { setToken } from "../../../../../../features/userSlice.js";
 import useToggleVisibility from "../../../../../../utils/hooks/useToggleVisibility";
 
 const FormUser = ({ setNextStep }) => {
@@ -40,29 +40,28 @@ const FormUser = ({ setNextStep }) => {
     setError(passwordError);
     if (!passwordError) {
       const updatedData = {
-        type: 'person',
-
+        type: "person",
         name: info.name,
         lastname: info.lastname,
         password: info.password,
         email: info.email,
       };
-      console.log(updatedData)
-      signUpUser(updatedData).then((response) => {
-        if (response.status == 201) {
-          dispatch(setToken(response.data));
-          setNextStep(true)
-        } else {
-          console.log("Algo")
-        }
-      }).catch(err => {
-        console.log(err)
-        toast("Email existente");
-      });
+      console.log(updatedData);
+      signUpUser(updatedData)
+        .then((response) => {
+          if (response.status == 201) {
+            dispatch(setToken(response.data));
+            setNextStep(true);
+          } else {
+            console.log("Algo");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          toast("Email existente");
+        });
     }
   };
-
-
 
   return (
     <div className="flex flex-col items-center bg-colorPrimary min-h-screen">
@@ -78,8 +77,9 @@ const FormUser = ({ setNextStep }) => {
             <Input
               {...register("name", { required: true })}
               id="name"
-              className={`!border !border-gray-300 bg-white text-gray-900  ${errors.name ? "border-red-500" : ""
-                }`}
+              className={`!border !border-gray-300 bg-white text-gray-900  ${
+                errors.name ? "border-red-500" : ""
+              }`}
               labelProps={{
                 className: "hidden",
               }}
@@ -99,8 +99,9 @@ const FormUser = ({ setNextStep }) => {
             <Input
               {...register("lastname", { required: true })}
               id="lastname"
-              className={`!border !border-gray-300 bg-white text-gray-900  ${errors.lastname ? "border-red-500" : ""
-                }`}
+              className={`!border !border-gray-300 bg-white text-gray-900  ${
+                errors.lastname ? "border-red-500" : ""
+              }`}
               labelProps={{
                 className: "hidden",
               }}
@@ -117,8 +118,9 @@ const FormUser = ({ setNextStep }) => {
             <Input
               {...register("email", { required: true })}
               id="email"
-              className={`!border !border-gray-300 bg-white text-gray-900 ${errors.email ? "border-red-500" : ""
-                }`}
+              className={`!border !border-gray-300 bg-white text-gray-900 ${
+                errors.email ? "border-red-500" : ""
+              }`}
               labelProps={{
                 className: "hidden",
               }}
@@ -142,8 +144,9 @@ const FormUser = ({ setNextStep }) => {
                 type={isVisible ? "password" : "text"}
                 {...register("password", { required: true })}
                 id="password"
-                className={`!border !border-gray-300 bg-white text-gray-900 ${errors.password ? "border-red-500" : ""
-                  } w-full pr-10`}
+                className={`!border !border-gray-300 bg-white text-gray-900 ${
+                  errors.password ? "border-red-500" : ""
+                } w-full pr-10`}
                 labelProps={{
                   className: "hidden",
                 }}
