@@ -33,12 +33,22 @@ export function Modal({ open, setOpen, userAction }) {
               <img src={image2} alt="" className="w-1/2 sm:w-full" />
               <Button
                 onClick={handleCloseModal}
-                className="bg-colorPrimary normal-case text-white font-bold rounded-full w-full"
+                className="bg-colorPrimary normal-case text-white font-bold rounded-full w-full p-5 relative"
               >
                 {userAction == "login" ? (
-                  <Link to="/auth/user/login">Quiero salvar comida </Link>
+                  <Link
+                    className="absolute inset-0 flex items-center justify-center text-center text-white"
+                    to="/auth/user/login"
+                  >
+                    Quiero salvar comida{" "}
+                  </Link>
                 ) : (
-                  <Link to="/auth/user/signup">Quiero salvar comida </Link>
+                  <Link
+                    className="absolute inset-0 flex items-center justify-center text-center text-white"
+                    to="/auth/user/signup"
+                  >
+                    Quiero salvar comida{" "}
+                  </Link>
                 )}
               </Button>
             </div>
@@ -46,12 +56,22 @@ export function Modal({ open, setOpen, userAction }) {
               <img src={image1} alt="" className="w-1/2 sm:w-full" />
               <Button
                 onClick={handleCloseModal}
-                className="bg-colorPrimary normal-case text-white font-bold rounded-full w-full"
+                className="bg-colorPrimary normal-case text-white font-bold rounded-full w-full p-5 relative"
               >
                 {userAction == "signUp" ? (
-                  <Link to="/auth/shop/signup">Quiero vender comida </Link>
+                  <Link
+                    className="absolute inset-0 flex items-center justify-center text-center text-white"
+                    to="/auth/shop/signup"
+                  >
+                    Quiero vender comida{" "}
+                  </Link>
                 ) : (
-                  <Link to="/auth/shop/login">Quiero vender comida </Link>
+                  <Link
+                    className="absolute inset-0 flex items-center justify-center text-center text-white"
+                    to="/auth/shop/login"
+                  >
+                    Quiero vender comida{" "}
+                  </Link>
                 )}
               </Button>
             </div>
