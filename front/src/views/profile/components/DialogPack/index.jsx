@@ -21,8 +21,11 @@ const DialogPack = ({ setOpen, open }) => {
       className=" w-max-[343px] h-min-[435px]"
     >
       <div className=" w-max-[343px] h-[435px] h-[max-435px] flex flex-col justify-evenly items-center overflow-y-auto">
-        <div >
-          <Link to="/user/profile/activepacks" className="flex flex-col items-center">
+        <div>
+          <Link
+            to="/user/profile/activepacks"
+            className="flex flex-col items-center"
+          >
             <div className="w-[56px] h-[56px] rounded-full  flex justify-center items-center border-2 cursor-pointer">
               <img src={SuppliesIcon} alt="supplies" />
             </div>
@@ -31,10 +34,14 @@ const DialogPack = ({ setOpen, open }) => {
         </div>
 
         <div className="flex flex-col items-center">
-          <div className="w-[56px] h-[56px] rounded-full  flex justify-center items-center border-2">
-            <img src={DeliveryBoxIcon} alt="delivery box icon" />
+          <div>
+            <Link to="/user/profile/selledpacks"  className="flex flex-col items-center">
+              <div className="w-[56px] h-[56px] rounded-full  flex justify-center items-center border-2">
+                <img src={DeliveryBoxIcon} alt="delivery box icon" />
+              </div>
+              <p>packs vendidos</p>
+            </Link>
           </div>
-          <p>124 packs vendidos este mes</p>
         </div>
         <div className="flex flex-col items-center">
           <div className="w-[56px] h-[56px] rounded-full  flex justify-center items-center border-2">

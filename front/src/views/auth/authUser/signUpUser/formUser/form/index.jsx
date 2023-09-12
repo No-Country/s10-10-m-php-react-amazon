@@ -6,7 +6,6 @@ import { useState } from "react";
 import { validatePassword } from "../../../../../../utils/validatePassword";
 import { signUpUser } from "../../../../../../api/authApi.js";
 import { useDispatch } from "react-redux";
-import { setUser } from "../../../../../../features/userSlice";
 import { Toaster, toast } from "sonner";
 import { setToken } from "../../../../../../features/userSlice.js";
 import useToggleVisibility from "../../../../../../utils/hooks/useToggleVisibility";
@@ -52,13 +51,11 @@ const FormUser = ({ setNextStep }) => {
           if (response.status == 201) {
             dispatch(setToken(response.data));
             setNextStep(true);
-          } else {
-            console.log("Algo");
           }
         })
         .catch((err) => {
           console.log(err);
-          toast("Email existente");
+          toast.error("Email existente");
         });
     }
   };
@@ -156,13 +153,16 @@ const FormUser = ({ setNextStep }) => {
                 type="button"
                 onClick={handleVisible}
               >
-                {isVisible ? <BsEye /> : <BsEyeSlash />}{" "}
+                {isVisible ? <BsEyeSlash /> : <BsEye />}{" "}
               </button>
             </div>
-            {errors.password && (
-              <p className="text-red-500 mt-2">
-                La contraseña debe contener 6 dígitos.
+            {error && (
+              <p className="text-red-800" style={{ fontSize: "10px" }}>
+                {error}
               </p>
+            )}
+            {errors.password && (
+              <p className="text-red-500 mt-2">Campo obligatorio.</p>
             )}
           </div>
 
@@ -189,7 +189,7 @@ const FormUser = ({ setNextStep }) => {
                 type="button"
                 onClick={handleVisible1}
               >
-                {isVisible1 ? <BsEye /> : <BsEyeSlash />}{" "}
+                {isVisible1 ? <BsEyeSlash /> : <BsEye />}{" "}
               </button>
             </div>
             {passwordMatchError && (
@@ -207,21 +207,22 @@ const FormUser = ({ setNextStep }) => {
             }
           />
         </div>
-        <div className="m-5">
+        <div className="mt-10 m-2">
           <Button
             fullWidth
-            className="rounded-full custom-buttonCTAs normal-case"
+            className="rounded-full normal-case bg-buttonFilledColor text-colorPrimary text-sm"
             type="submit"
           >
             Continuar
           </Button>
-          <Typography
-            variant="small"
-            className="mt-6 flex justify-between custom-textButton  pb-8"
-          >
-            <span>¿Ya tienes cuenta?</span>
+        </div>
+        <div className="m-5 mb-10">
+          <div className="flex justify-between mt-10 text-sm text-colorModal">
+            <div className="mr-10">
+              <span>¿Ya tienes cuenta?</span>
+            </div>
             <Link to="/auth/user/login">Inicia sesión acá</Link>
-          </Typography>
+          </div>
         </div>
       </form>
       <Toaster position="bottom-right" richColors />

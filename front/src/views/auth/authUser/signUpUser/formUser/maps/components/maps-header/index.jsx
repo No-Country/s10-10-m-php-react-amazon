@@ -1,9 +1,9 @@
 const MapsHeader = () => {
   return (
     <div>
-      <p className="custom-title p-5">
+      <h1 className="text-sizeTitle font-bold text-white p-5">
       ¡Estás a un paso de salvar comida!
-      </p>
+      </h1>
     </div>
   )
 }

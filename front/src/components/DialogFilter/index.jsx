@@ -70,7 +70,6 @@ const DialogFilter = ({ open, handleOpen, setFilters, filters }) => {
   }
 
   setFilters(updatedFilters);
-  console.log(updatedFilters)
 };
 
   return (

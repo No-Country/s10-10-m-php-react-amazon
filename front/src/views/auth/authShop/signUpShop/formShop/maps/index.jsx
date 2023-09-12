@@ -1,99 +1,55 @@
-import { Button, Spinner } from "@material-tailwind/react";
 import { useJsApiLoader } from "@react-google-maps/api";
-import { Toaster, toast } from 'sonner'
-
-import React, { useEffect, useRef, useState } from "react";
-    
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faLocationDot, faCrosshairs } from "@fortawesome/free-solid-svg-icons";
-import MapsHeader from "../../../../authUser/signUpUser/formUser/maps/components/maps-header";
-import MapsForm from "../../../../authUser/signUpUser/formUser/maps/components/maps-form";
-import MapsMap from "../../../../authUser/signUpUser/formUser/maps/components/maps-map";
-import { signUpShop } from "../../../../../../api/authApi";
-import { navigate } from "wouter/use-location";
-
-library.add(faLocationDot, faCrosshairs);
+import { useEffect, useRef, useState } from "react";
+import MapsForm from "./maps-form";
 
 const Maps = ({ setData, data }) => {
-    const [isLoading, setIsLoading] = useState(true);
-    const [map, setMap] = useState(/** @type google.maps.Map */(null));
-    const [direction, setDirection] = useState(null);
-    /** @type React.MutableRefObject<HTMLInputElement> */
-    const originRef = useRef();
-    const [selectedLocation, setSelectedLocation] = useState({
-        lat: -31.4458799,
-        lng: -64.18070480000002,
-    });
-    const [mark, setMark] = useState(null);
-    const { isLoaded } = useJsApiLoader({
-        googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
-        libraries: ["places"],
-    });
+  const [isLoading, setIsLoading] = useState(true);
+  const [mark, setMark] = useState(null);
+  const [map, setMap] = useState(/** @type google.maps.Map */ (null));
+  const [direction, setDirection] = useState(null);
+  /** @type React.MutableRefObject<HTMLInputElement> */
+  const originRef = useRef();
+  const [selectedLocation, setSelectedLocation] = useState({
+    lat: -31.4458799,
+    lng: -64.18070480000002,
+  });
 
-    useEffect(() => {
-        if (isLoaded) {
-            setIsLoading(false);
-        }
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
+    libraries: ["places"],
+  });
 
-        setTimeout(() => {
-            setMark(selectedLocation);
-        }, 1000);
-    }, [isLoaded, selectedLocation, data]);
-
-    if (isLoading) {
-        return <Spinner />;
+  useEffect(() => {
+    if (isLoaded) {
+      setIsLoading(false);
     }
+  }, [isLoaded, data]);
 
-    const submit = async () => {
-        const updatedData = {
-            ...data,
-            address: direction,
-            latitude: selectedLocation.lat,
-            longitude: selectedLocation.lng
-        };
-        setData(updatedData);
-        signUpShop(updatedData).then(response => {
-            if (response.status == 201) {
-                toast('Su registro fue exitoso')
-                setTimeout(() => {
-                    navigate('/auth/shop/login')
-                }, 2500)
-            }
-        })
+  if (isLoading) {
+    return;
+  }
 
+  const submit = async () => {
+    const updatedData = {
+      ...data,
+      address: direction,
+      latitude: selectedLocation.lat,
+      longitude: selectedLocation.lng,
     };
+    setData(updatedData);
+  };
 
-    return (
-        <div className="flex flex-col items-center h-screen bg-mainColor">
-            <MapsHeader />
-            <MapsForm
-                map={map}
-                setMark={setMark}
-                setSelectedLocation={setSelectedLocation}
-                originRef={originRef}
-                setDirection={setDirection}
-            />
-            <MapsMap
-                selectedLocation={selectedLocation}
-                setMap={setMap}
-                mark={mark}
-                setMark={setMark}
-                setDirection={setDirection}
-                originRef={originRef}
-            />
-            <Button
-                variant="gradient"
-                fullWidth
-                className="rounded-full w-widthMainBtn h-heightMainBtn mt-5 custom-buttonCTAs"
-                type="submit"
-                onClick={submit}
-            >
-                Registrar Negocio
-
-            </Button>
-            <Toaster position="bottom-right" richColors />
-        </div>
-    );
+  return (
+    <div>
+      <MapsForm
+        map={map}
+        setMark={setMark}
+        setSelectedLocation={setSelectedLocation}
+        originRef={originRef}
+        setDirection={setDirection}
+      />
+    </div>
+  );
 };
 
 export default Maps;

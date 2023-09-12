@@ -18,6 +18,7 @@ import PaymentOption from "../components/paymentMethod/paymentOption";
 import CreditCard from "../components/paymentMethod/creditCard";
 import MapProfile from "../views/profile/components/MapProfile";
 import ActivePacks from "../views/profile/components/ActivePacks";
+import SelledPacks from "../views/profile/components/SelledPacks";
 
 const AppRouter = () => {
   return (
@@ -40,8 +41,10 @@ const AppRouter = () => {
       <Route path="/user/profile" component={UserProfile} />
       <Route path="/logout" component={Logout} />
       <Route path="/dashboard/:category" component={Dashboard} />
-      <Route path='/user/profile/map' component={MapProfile} />
-      <Route path='/user/profile/activepacks' component={ActivePacks} />
+      <Route path='/user/profile/map' component={MapProfile}/>
+      <Route path='/user/profile/activepacks' component={ActivePacks}/>
+      <Route path='/user/profile/selledpacks' component={SelledPacks}/>
+
     </Router>
   );
 };

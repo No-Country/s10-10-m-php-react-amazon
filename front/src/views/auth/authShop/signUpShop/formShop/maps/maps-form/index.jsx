@@ -1,6 +1,5 @@
-import { Button, IconButton, Input } from "@material-tailwind/react";
+import { Input } from "@material-tailwind/react";
 import { Autocomplete } from "@react-google-maps/api";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const MapsForm = ({
   setSelectedLocation,
@@ -82,43 +81,19 @@ const MapsForm = ({
   };
   return (
     <section>
-      <p className="text-sm">Selecciona tu ubicación</p>
-      <div className="flex flex-row">
-        <div className="flex items-center">
-          {" "}
-          <Autocomplete>
-            <Input
-              type="text"
-              placeholder="Ingresa tu domicilio"
-              inputRef={originRef}
-              size="md"
-              className="!border !border-gray-300 bg-white text-gray-900 placeholder:text-sizePlaceholder"
-              labelProps={{
-                className: "hidden",
-              }}
-            />
-          </Autocomplete>
-        </div>
-        <IconButton
-          className="rounded-full ml-5"
-          color="white"
-          onClick={markPoint}
-        >
-          <FontAwesomeIcon icon="location-dot" />
-        </IconButton>
-      </div>
-
       <div>
-        <Button
-          variant="text"
-          className="rounded-full custom-label mt-5"
-          onClick={getUserLocation}
-        >
-          <FontAwesomeIcon icon="crosshairs" className="text-black" />
-          <span className="px-3 normal-case text-colorPrimary">
-            Utilizar mi ubicación actual
-          </span>
-        </Button>
+        <Autocomplete>
+          <Input
+            type="text"
+            placeholder="Ingresa tu domicilio"
+            inputRef={originRef}
+            size="md"
+            className="!border !border-gray-300 bg-white text-gray-900  placeholder:text-sizeTextButton"
+            labelProps={{
+              className: "hidden",
+            }}
+          />
+        </Autocomplete>
       </div>
     </section>
   );
