@@ -46,6 +46,11 @@ return new class extends Migration
             ->on('califications')
             ->onDelete('cascade');
 
+            //  $table->foreign('payment_id') 
+            //  ->references('id')
+            //  ->on('payments')
+            //  ->onDelete('cascade'); 
+
             $table->timestamps();
         });
     }
