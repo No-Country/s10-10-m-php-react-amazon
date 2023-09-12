@@ -14,6 +14,7 @@ const UserProfile = () => {
     getUserById(user.id, user.token)
       .then((response) => {
         if (response.status == 200) {
+          
           setIsLoading(false);
         }
       })

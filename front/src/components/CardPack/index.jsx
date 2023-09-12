@@ -14,6 +14,10 @@ import {
 import { Link } from "wouter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
+import Panaderia from '../../assets/bakery.jpg'
+import Supermercado from '../../assets/superMercado.png'
+import Verduleria from '../../assets/verduleria1.png'
+
 export function CardPack({ item, shop }) {
   const tags = JSON.parse(item.tags)
   const timeStartParts = item.time_start.split(' ')[1].split(':'); 
@@ -21,6 +25,9 @@ const timeStart = `${timeStartParts[0]}:${timeStartParts[1]}`;
 
 const timeEndParts = item.time_end.split(' ')[1].split(':'); 
 const timeEnd = `${timeEndParts[0]}:${timeEndParts[1]}`; 
+
+const img = shop.category == "panaderia" ? Panaderia : shop.category == "supermercado" ? Supermercado : Verduleria
+
   return (
     <Link to={`/detail/${item.id}`}>
 
@@ -32,7 +39,7 @@ const timeEnd = `${timeEndParts[0]}:${timeEndParts[1]}`;
           className="m-0 rounded-none h-[120px] w-full relative "
         >
           <img
-            src={item.photo_url}
+            src={item.photo_url || img}
             alt="pack image"
             className="h-full w-full object-cover"
           />

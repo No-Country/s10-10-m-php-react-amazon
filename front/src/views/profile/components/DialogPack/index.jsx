@@ -9,6 +9,7 @@ import {
 import SuppliesIcon from "../../../../assets/icons/Supplies.png";
 import DeliveryBoxIcon from "../../../../assets/icons/Delivery box.png";
 import FeedbackIcon from "../../../../assets/icons/Feedback.png";
+import { Link } from "wouter";
 
 const DialogPack = ({ setOpen, open }) => {
   const handleOpen = () => setOpen(!open);
@@ -20,11 +21,13 @@ const DialogPack = ({ setOpen, open }) => {
       className=" w-max-[343px] h-min-[435px]"
     >
       <div className=" w-max-[343px] h-[435px] h-[max-435px] flex flex-col justify-evenly items-center overflow-y-auto">
-        <div className="flex flex-col items-center">
-          <div className="w-[56px] h-[56px] rounded-full  flex justify-center items-center border-2">
-            <img src={SuppliesIcon} alt="supplies" />
-          </div>
-          <p>4 packs activos</p>
+        <div >
+          <Link to="/user/profile/activepacks" className="flex flex-col items-center">
+            <div className="w-[56px] h-[56px] rounded-full  flex justify-center items-center border-2 cursor-pointer">
+              <img src={SuppliesIcon} alt="supplies" />
+            </div>
+            <p>packs activos</p>
+          </Link>
         </div>
 
         <div className="flex flex-col items-center">
