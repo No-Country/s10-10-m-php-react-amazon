@@ -13,6 +13,9 @@ import UserProfile from "../views/profile";
 import Logout from "../views/logout";
 import StoreManager from "../views/auth/authShop/signUpShop/formShop/storeManager";
 import StoreSignUp from "../views/auth/authShop/signUpShop/formShop/storeSignUp";
+import Purchases from "../views/purchases";
+import PaymentOption from "../components/paymentMethod/paymentOption";
+import CreditCard from "../components/paymentMethod/creditCard";
 import MapProfile from "../views/profile/components/MapProfile";
 import ActivePacks from "../views/profile/components/ActivePacks";
 
@@ -22,6 +25,9 @@ const AppRouter = () => {
       <BasicNavbar />
       <Route path="/detail" component={ItemDetailContainer} />
       <Route path="/" component={Home} />
+      <Route path="/purchases" component={Purchases} />
+      <Route path="/payment" component={PaymentOption} />
+      <Route path="/payment/creditCard" component={CreditCard} />
       <Route path="/auth/user/signup" component={SignUpUser} />
       <Route path="/auth/user/login" component={LoginUser} />
       <Route path="/auth/shop/signup" component={SignUpShop} />
@@ -34,8 +40,8 @@ const AppRouter = () => {
       <Route path="/user/profile" component={UserProfile} />
       <Route path="/logout" component={Logout} />
       <Route path="/dashboard/:category" component={Dashboard} />
-      <Route path='/user/profile/map' component={MapProfile}/>
-      <Route path='/user/profile/activepacks' component={ActivePacks}/>
+      <Route path='/user/profile/map' component={MapProfile} />
+      <Route path='/user/profile/activepacks' component={ActivePacks} />
     </Router>
   );
 };
