@@ -27,6 +27,10 @@ class User extends Authenticatable implements JWTSubject
         'avatar',
         'external_id',
         'external_auth',
+        'score',
+        'total_operations',
+        'total_score'
+
     ];
 
     protected $hidden = [

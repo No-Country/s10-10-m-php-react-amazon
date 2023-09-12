@@ -11,27 +11,24 @@ use Illuminate\Support\Facades\DB;
 
 class PurchaseController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('api');
-    }
-
     public function store(Request $request){
         try {
             DB::beginTransaction();
             $validatedData = $request->validate([
+                'seller_id' => 'required|exists:users,id',
                 'pack_id' => 'required|exists:packs,id',
                 'amount' => 'required|numeric|min:0'
             ]);
             $pack = Pack::findOrFail($validatedData['pack_id']);
-
+            
             if ($pack->stock < $validatedData['amount'])
             {
                 throw new \Exception('not enough stock');
-            }
+            }            
             $encryptedId = Auth::user()->getAuthIdentifier();
             $purchase = Purchase::create([
                 'pack_id' => $validatedData['pack_id'],
+                'seller_id' => $validatedData['seller_id'],
                 'user_id' => $encryptedId,
                 'code' => $this->generateCode(),
                 'amount' => $validatedData['amount']
@@ -59,14 +56,20 @@ class PurchaseController extends Controller
 
     public function show(Request $request){
         try {
-            checkLogin();
+            $currentUser = Auth::user();
+            $encryptedId = Auth::user()->getAuthIdentifier();
 
-            $validatedData = $request->validate([
-                'user_id' => 'required|exists:users,id',
-            ]);
-            $purchase = Purchase::where('user_id', $validatedData['user_id'])->get();
+            if($currentUser->type === 'business'){
+                $purchase = Purchase::where('seller_id',$encryptedId)
+                ->with(['user', 'pack','seller'])
+                ->get();
+            } else {
+                $purchase = Purchase::where('user_id',$encryptedId)
+                ->with(['user', 'pack','seller'])
+                ->get();
+            }
 
-            return response()->json(['Purchase' => $purchase], 201);
+            return response()->json(['Purchases' => $purchase], 201);
 
         } catch (ValidationException $e) {
             return response()->json([
@@ -79,8 +82,6 @@ class PurchaseController extends Controller
 
     public function update(Request $request){
         try {
-            checkLogin();
-
             $validatedData = $request->validate([
                 'id' => 'required|exists:purchases,id',
                 'status' => 'required|string|max:255'
@@ -99,8 +100,6 @@ class PurchaseController extends Controller
     }
 
     public function destroy($id){
-        checkLogin();
-
         $purchase = Purchase::find($id);
         if($purchase){
             $purchase->delete();
@@ -114,4 +113,3 @@ class PurchaseController extends Controller
         return substr(uniqid(), -6);
     }
 }
-

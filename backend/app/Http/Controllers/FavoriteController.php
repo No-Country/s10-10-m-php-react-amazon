@@ -20,7 +20,8 @@ class FavoriteController extends Controller
         checkLogin();
 
         $encryptedId = Auth::user()->getAuthIdentifier();
-        $favorite = Favorite::Where('user_id',$encryptedId)
+        $favorite = Favorite::where('user_id', $encryptedId)
+        ->join('users', 'favorites.business_id', '=', 'users.id')
         ->with('user')
         ->get();
 
