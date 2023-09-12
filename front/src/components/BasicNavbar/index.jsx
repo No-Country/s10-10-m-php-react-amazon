@@ -79,7 +79,7 @@ const BasicNavbar = () => {
 
           <div className="hidden lg:block">{navList}</div>
           <div>
-            {!user.token && (
+            {!user.token || !user.id ? (
               <Button
                 size="sm"
                 className="ml-10 hidden lg:inline-block bg-colorPrimary font-weightText"
@@ -91,6 +91,8 @@ const BasicNavbar = () => {
               >
                 Registrarte
               </Button>
+            ) : (
+              ""
             )}
 
             {user.token && user.id ? (
@@ -157,7 +159,7 @@ const BasicNavbar = () => {
         <Collapse open={openNav}>
           <div className="container mx-auto text-center mt-5">
             <div className="flex flex-col items-center">
-              {!user.token && (
+              {!user.token || !user.id ? (
                 <Button
                   size="sm"
                   className=" bg-colorPrimary font-weightTextButton"
@@ -169,6 +171,8 @@ const BasicNavbar = () => {
                 >
                   Registrarte
                 </Button>
+              ) : (
+                ""
               )}
               {user.token && user.id ? (
                 <Button

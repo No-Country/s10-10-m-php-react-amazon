@@ -3,7 +3,7 @@ import useToggleVisibility from "../../../../../utils/hooks/useToggleVisibility"
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { navigate } from "wouter/use-location";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { loginUser } from "../../../../../api/authApi";
 import { setUser } from "../../../../../features/userSlice";
 import { validatePassword } from "../../../../../utils/validatePassword";
@@ -14,7 +14,7 @@ import { useState } from "react";
 const Form = () => {
   const [isVisible, handleVisible] = useToggleVisibility(true);
 
-
+  const [location] = useLocation();
 
   const handleBack = () => {
     history.back();
@@ -41,9 +41,8 @@ const Form = () => {
         .then((response) => {
           setInvalid(false);
           if (response.status == 200) {
-            console.log(response.data)
             dispatch(setUser(response.data));
-            navigate("/dashboard");
+            navigate("/user/profile");
           }
         })
         .catch((err) => {
@@ -66,9 +65,7 @@ const Form = () => {
       </div>
       <div className="text-3xl  custom-title">
         <div className="flex flex-col items-center h-screen">
-          <form
-            onSubmit={handleSubmit(submit)}
-          >
+          <form onSubmit={handleSubmit(submit)}>
             <div className=" w-[343px] h-[292px] lg:w-[532px] p-[1rem] flex flex-col  justify-center  rounded-md bg-white">
               <div className="mt-15 lg:w-[320px] lg:m-auto flex flex-col">
                 <div>
@@ -122,7 +119,7 @@ const Form = () => {
                       type="button"
                       onClick={handleVisible}
                     >
-                      {isVisible ? <BsEye /> : <BsEyeSlash />}{" "}
+                      {isVisible ? <BsEyeSlash /> : <BsEye />}{" "}
                     </button>
                   </div>
                   {error && (
@@ -131,11 +128,13 @@ const Form = () => {
                     </p>
                   )}
                   {errors.password && (
-                    <p className="text-red-800 leading-none" style={{ fontSize: "10px" }}>
+                    <p
+                      className="text-red-800 leading-none"
+                      style={{ fontSize: "10px" }}
+                    >
                       Campo obligatorio
                     </p>
                   )}
-
                 </div>
 
                 <div className="mt-3">
@@ -158,22 +157,36 @@ const Form = () => {
                 </p>
               )}
             </div>
-            <div className="m-6 custom-textButton">
-              <Link to="/recover-pass">¿Has olvidado la contraseña?</Link>
+            <div className="m-6 text-center text-sm text-colorModal">
+              <Link to="/page-not-found">¿Has olvidado la contraseña?</Link>
             </div>
             <div className="text-center">
               <Button
-                className="rounded-full normal-case w-[340px] text-colorPrimary bg-[#FFDBCC]"
+                className="rounded-full text-lg normal-case w-[340px] text-colorPrimary bg-[#FFDBCC]"
                 type="submit"
               >
-                Iniciá sesión
+                Iniciar
               </Button>
             </div>
           </form>
 
-          <div className="text-sizeNote w-[330px] my-16 flex justify-between">
-            <span>¿Aún no tienes cuenta?</span>
-            <Link to="/auth/user/signup">Regístrate</Link>
+          <div className="flex justify-between mt-10 text-sm text-colorModal">
+            <div className="mr-10">
+              <span>¿Aún no tienes cuenta?</span>
+            </div>
+            <div className="font-bold cursor-pointer">
+              <a
+                onClick={() =>
+                  navigate(
+                    location === "/auth/user/login"
+                      ? "/auth/user/signup"
+                      : "/auth/shop/signup"
+                  )
+                }
+              >
+                Regístrate
+              </a>
+            </div>
           </div>
         </div>
       </div>

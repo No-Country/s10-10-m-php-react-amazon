@@ -52,7 +52,12 @@ const Dashboard = () => {
 
         />
       </div>
-      
+      <div className="flex items-center justify-center">
+          <FontAwesomeIcon icon={faMap} className="text-2xl m-2" />
+          <span className="underline decoration-1">
+            {user.location.province || "CABA, Caballito"}
+          </span>
+        </div>
         <DashboardMap
           userLatitude={lat || -31.444961}
           userLongitude={lng || -64.1850551}
@@ -65,13 +70,8 @@ const Dashboard = () => {
       
 
       <>
-        <div className="flex items-center justify-center">
-          <FontAwesomeIcon icon={faMap} className="text-2xl m-2" />
-          <span className="underline decoration-1">
-            {user.location.province || "CABA, Caballito"}
-          </span>
-        </div>
-        <h1 className="text-sizeTitle font-weightTitle">{title}</h1>
+        
+        {filters.view !== "map" && <h1 className="text-sizeTitle font-weightTitle">{title}</h1>}
         <div className="flex justify-center w-full">
           {isLoading ? (
             <div className="flex items-center justify-center">

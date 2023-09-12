@@ -8,6 +8,9 @@ import {
 import profile from "../../../../assets/profileExample.png";
 import startBasic from "../../../../assets/icons/starTransparents.svg";
 import iconHeart from "../../../../assets/icons/heart.svg";
+import Panaderia from '../../../../assets/bakery.jpg'
+import Supermercado from '../../../../assets/superMercado.png'
+import Verduleria from "../../../../assets/verduleria1.png"
 
 const Cards = ({ item, handleOpen }) => {
   const tags = JSON.parse(item.tags);
@@ -16,6 +19,9 @@ const Cards = ({ item, handleOpen }) => {
 
   const timeEndParts = item.time_end.split(" ")[1].split(":");
   const timeEnd = `${timeEndParts[0]}:${timeEndParts[1]}`;
+
+  const img = item.shop.category == "panaderia" ? Panaderia : item.shop.category == "supermercado" ? Supermercado : Verduleria
+
   if (!item) {
     return <div>Loading...</div>;
   }
@@ -30,7 +36,7 @@ const Cards = ({ item, handleOpen }) => {
             className="m-0 rounded-none h-[9.834rem]"
           >
             <img
-              src={item.photo_url}
+              src={item.photo_url || img}
               alt="imgPack"
               className="absolute -top-8 w-full"
             />
