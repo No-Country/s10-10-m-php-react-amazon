@@ -17,8 +17,9 @@ use App\Http\Controllers\LocationController;
 |
 */
 Route::post('/forget-password',[UserController::class, 'forgetPassword']);
-Route::group(['middleware' => 'api',], function ($router) {
+Route::group(['middleware' => 'api','cors'], function ($router) {
      //Rutas de autenticación
+    Route::post('create_preference', 'App\Http\Controllers\MercadoPagoController@createPreference');
     Route::post('login', 'App\Http\Controllers\AuthenticateController@login');
     Route::post('register', 'App\Http\Controllers\AuthenticateController@register');
     Route::post('logout', 'App\Http\Controllers\AuthenticateController@logout');

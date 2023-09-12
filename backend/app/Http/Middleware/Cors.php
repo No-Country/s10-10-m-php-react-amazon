@@ -15,11 +15,22 @@ class Cors
      */
     public function handle(Request $request, Closure $next): Response
     {
+        // Si la solicitud es OPTIONS, devuelve una respuesta OK con las cabeceras CORS
+        if ($request->isMethod('OPTIONS')) {
+            return response('OK', 200)
+                ->header('Access-Control-Allow-Origin', '*')
+                ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+                ->header('Access-Control-Allow-Credentials', true)
+                ->header('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type,X-Token-Auth,Authorization')
+                ->header('Accept', 'application/json');
+        }
+
+        // Si no es una solicitud OPTIONS, continúa con el flujo normal
         return $next($request)
-         ->header('Access-Control-Allow-Origin', '*')
-         ->header('Access-Control-Allow-Methods', '*')
-         ->header('Access-Control-Allow-Credentials', true)
-         ->header('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type,X-Token-Auth,Authorization')
-         ->header('Accept', 'application/json');
+            ->header('Access-Control-Allow-Origin', '*')
+            ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+            ->header('Access-Control-Allow-Credentials', true)
+            ->header('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type,X-Token-Auth,Authorization')
+            ->header('Accept', 'application/json');
     }
 }
