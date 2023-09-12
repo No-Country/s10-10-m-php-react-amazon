@@ -16,12 +16,17 @@ class Pack extends Model
         'time_start',
         'time_end',
         'user_id',
+        'tags',
         'photo_url',
         'stock'
     ];
 
 ///relacion de pack a user    
     public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function Seller()
     {
         return $this->belongsTo(User::class);
     }

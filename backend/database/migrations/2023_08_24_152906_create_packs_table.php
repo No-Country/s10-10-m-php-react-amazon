@@ -17,6 +17,7 @@ return new class extends Migration
             $table->float('price');
             $table->integer('stock');
             $table->text('description');
+            $table->json('tags')->nullable();
             $table->datetime('time_start')->nullable();
             $table->datetime('time_end')->nullable();
             $table->unsignedBigInteger('user_id');
