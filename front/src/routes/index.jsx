@@ -15,6 +15,7 @@ import StoreManager from "../views/auth/authShop/signUpShop/formShop/storeManage
 import StoreSignUp from "../views/auth/authShop/signUpShop/formShop/storeSignUp";
 import MapProfile from "../views/profile/components/MapProfile";
 import ActivePacks from "../views/profile/components/ActivePacks";
+import SelledPacks from "../views/profile/components/SelledPacks";
 
 const AppRouter = () => {
   return (
@@ -36,6 +37,7 @@ const AppRouter = () => {
       <Route path="/dashboard/:category" component={Dashboard} />
       <Route path='/user/profile/map' component={MapProfile}/>
       <Route path='/user/profile/activepacks' component={ActivePacks}/>
+      <Route path='/user/profile/selledpacks' component={SelledPacks}/>
     </Router>
   );
 };
