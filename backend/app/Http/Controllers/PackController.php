@@ -15,7 +15,7 @@ class PackController extends Controller
 {
     public function index(){
 
-        $packs = Pack::all();
+        $packs = Pack::with('user:id,name,score,avatar')->get();
         return response()->json(['Packs available' => $packs], 201);
     }
     public function store(Request $request){
@@ -109,6 +109,15 @@ class PackController extends Controller
         $pack = Pack::find($id);
         if($pack){
             return response()->json(['Pack' => $pack], 200);
+        }else{
+            return response()->json(['message' => 'Pack not found'], 404);
+        }
+    }
+    public function getallbyid($id){
+
+        $pack = Pack::Where("user_id",$id)->with('user:id,name,score,avatar')->get();
+        if($pack){
+            return response()->json(['Packs' => $pack], 200);
         }else{
             return response()->json(['message' => 'Pack not found'], 404);
         }
