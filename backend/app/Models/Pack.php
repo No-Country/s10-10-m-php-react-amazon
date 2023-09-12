@@ -26,4 +26,8 @@ class Pack extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function Seller()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

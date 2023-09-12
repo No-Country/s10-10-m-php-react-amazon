@@ -56,12 +56,20 @@ class PurchaseController extends Controller
 
     public function show(Request $request){
         try {
-            $validatedData = $request->validate([
-                'user_id' => 'required|exists:users,id',
-            ]);
-            $purchase = Purchase::where('user_id', $validatedData['user_id'])->get();
+            $currentUser = Auth::user();
+            $encryptedId = Auth::user()->getAuthIdentifier();
 
-            return response()->json(['Purchase' => $purchase], 201);
+            if($currentUser->type === 'business'){
+                $purchase = Purchase::where('seller_id',$encryptedId)
+                ->with(['user', 'pack','seller'])
+                ->get();
+            } else {
+                $purchase = Purchase::where('user_id',$encryptedId)
+                ->with(['user', 'pack','seller'])
+                ->get();
+            }
+
+            return response()->json(['Purchases' => $purchase], 201);
 
         } catch (ValidationException $e) {
             return response()->json([

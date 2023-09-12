@@ -19,6 +19,18 @@ class Purchase extends Model
         'calification_gived_id',
         'feedback_received_id'
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function seller()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function pack()
+    {
+        return $this->belongsTo(Pack::class);
+    }
     public function calificationGivenBy()
     {
         return $this->belongsTo(User::class, 'calification_given_id');
