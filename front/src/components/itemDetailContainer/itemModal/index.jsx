@@ -9,6 +9,7 @@ import {
   IconButton
 } from "@material-tailwind/react";
 import { useState } from "react";
+import { Link } from "wouter";
 
 export function ItemModal({ open, handleOpen, item }) {
 
@@ -71,13 +72,15 @@ export function ItemModal({ open, handleOpen, item }) {
           </div>
         </DialogBody>
         <DialogFooter className="flex flex-col justify-center pb-10">
-          <Button
-            style={{ textTransform: "none" }}
-            className="bg-colorPrimary rounded-full h-12 w-[300px] text-buttonFilledColor font-bold"
-            onClick={handleOpen}
-          >
-            <span>Ir a Pagar </span>
-          </Button>
+          <Link to={"/payment"}>
+            <Button
+              style={{ textTransform: "none" }}
+              className="bg-colorPrimary rounded-full h-12 w-[300px] text-buttonFilledColor font-bold"
+              onClick={handleOpen}
+            >
+              <span>Ir a Pagar </span>
+            </Button>
+          </Link>
         </DialogFooter>
       </Dialog >
     </>

@@ -72,6 +72,10 @@ const MapProfile = () => {
       })
       .catch((err) => {
         console.log(err);
+        if (user.type == "person")
+        navitage('/auth/user/login')
+        else if (user.type == "business")
+        navigate('/auth/shop/login')
       });
   };
 

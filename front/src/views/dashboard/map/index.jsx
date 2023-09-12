@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Spinner } from "@material-tailwind/react";
 import { useJsApiLoader } from "@react-google-maps/api";
-import Map from "../../../components/Map";
+import Map from "./components/Map";
 import { getPacksByFilters } from "../../../api/itemApi";
 import { useSelector } from "react-redux";
 
@@ -22,6 +22,7 @@ const DashboardMap = ({
   const [directionsResponse, setDirectionsResponse] = useState(null);
   const [mark, setMark] = useState(null);
   const user = useSelector((state) => state.user);
+  const [selectedShop, setSelectedShop] = useState({})
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
     libraries: ["places"],
@@ -51,7 +52,7 @@ const DashboardMap = ({
             const distance = await calculateRoute({ lat, lng });
             return { ...item, distance };
           } catch (error) {
-            console.error("Error al calcular la distancia:", error);
+            
             return { ...item, distance: "Error" };
           }
         })
@@ -80,12 +81,11 @@ const DashboardMap = ({
         });
       })
       .catch((err) => {
-        console.log(err);
       });
   }, [isLoaded, setBusiness, filters]);
 
   return (
-    <div>
+    <div >
       {business && business.length > 0 && (
         <Map
           selectedLocation={selectedLocation}

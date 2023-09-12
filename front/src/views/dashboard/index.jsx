@@ -52,7 +52,7 @@ const Dashboard = () => {
 
         />
       </div>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center w-full">
           <FontAwesomeIcon icon={faMap} className="text-2xl m-2" />
           <span className="underline decoration-1">
             {user.location.province || "CABA, Caballito"}
