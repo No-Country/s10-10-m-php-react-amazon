@@ -39,14 +39,12 @@ export default function FormShop() {
       loginUser(email, password)
         .then((response) => {
           setInvalid(false);
-          if (response.status == 200) {
-            console.log(response.data);
+          if (response.status == 200) {            
             dispatch(setUser(response.data));
-            navigate("/dashboard");
+            navigate("/user/profile");
           }
         })
-        .catch((err) => {
-          console.log(err);
+        .catch((err) => {          
           setInvalid(true);
         });
     }
