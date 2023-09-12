@@ -28,25 +28,25 @@ Route::group(['middleware' => 'api','cors'], function ($router) {
     Route::get('verifyToken', 'App\Http\Controllers\AuthenticateController@verifyToken');
     Route::post('update', 'App\Http\Controllers\AuthenticateController@update');
     Route::post('delete', 'App\Http\Controllers\AuthenticateController@delete');
-     
-
-
 
     //Rutas de usuario
     Route::get('/users/all', [UserController::class, 'getAllUsers'])->name('users.all');
     Route::get('/users/{userId}', [UserController::class, 'getUserById'])->name('users.get');
     Route::get('/send-verify-email/{email}', [UserController::class, 'sendVerifyEmail']);
 
-     //Rutas de Business
-    Route::get('business/{id}', 'App\Http\Controllers\BusinessController@show');
-    Route::get('business', 'App\Http\Controllers\BusinessController@showAll');
-
 
     //Rutas de Pack
     Route::get('pack/{id}', 'App\Http\Controllers\PackController@show');
+    Route::post('pack/filter', 'App\Http\Controllers\PackController@filter');
+    Route::post('pack', 'App\Http\Controllers\PackController@store');
+    Route::put('pack/update/{id}', 'App\Http\Controllers\PackController@update');
+    Route::delete('pack/delete/{id}', 'App\Http\Controllers\PackController@destroy');
+    Route::post('pack/image/{id}', 'App\Http\Controllers\PackController@image');
+    Route::delete('pack/image/delete/{id}', 'App\Http\Controllers\PackController@deleteImage');
 
 
-
+    //Rutas de location
+    Route::patch('/location', [LocationController::class, 'update'])->name('location.update');
 
     Route::group(['middleware' => 'jwt.auth',], function ($router) {
 
@@ -54,10 +54,6 @@ Route::group(['middleware' => 'api','cors'], function ($router) {
         Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.update');
         Route::post('/users/avatar', [UserController::class, 'avatar'])->name('users.avatar');
         Route::delete('/users/avatar/delete/{id}', [UserController::class, 'deleteImage'])->name('users.deleteImage');
-
-        Route::post('business', 'App\Http\Controllers\BusinessController@store');
-        Route::put('business/update/{id}', 'App\Http\Controllers\BusinessController@update');
-        Route::delete('business/delete/{id}', 'App\Http\Controllers\BusinessController@destroy');
 
         Route::post('pack/filter', 'App\Http\Controllers\PackController@filter');
         Route::post('pack', 'App\Http\Controllers\PackController@store');
@@ -68,15 +64,21 @@ Route::group(['middleware' => 'api','cors'], function ($router) {
 
             //Ruta de favoritos
         Route::get('favorite/{id}', 'App\Http\Controllers\FavoriteController@index');
-        Route::post('favorite', 'App\Http\Controllers\FavoriteController@store');   
+        Route::post('favorite', 'App\Http\Controllers\FavoriteController@store');
         Route::delete('favorite/delete/{id}', 'App\Http\Controllers\FavoriteController@destroy');
             //Rutas de purchases
         Route::post('purchase', 'App\Http\Controllers\PurchaseController@store');
         Route::get('purchase', 'App\Http\Controllers\PurchaseController@show');
         Route::put('purchase/update/{id}', 'App\Http\Controllers\PurchaseController@update');
         Route::delete('purchase/delete/{id}', 'App\Http\Controllers\PurchaseController@destroy');
-        
+
         Route::patch('/location', [LocationController::class, 'update'])->name('location.update');
 
     });
 });
+
+/* Route::group(['middleware' => 'jwt.auth',], function ($router) {
+
+}); */
+
+
