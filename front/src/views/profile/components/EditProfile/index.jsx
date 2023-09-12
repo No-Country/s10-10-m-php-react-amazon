@@ -1,20 +1,39 @@
 import { Button, Input } from "@material-tailwind/react";
 import UserLogo from "../../../../assets/user-profile.svg";
-import { addPhoto } from "../../../../api/userApi";
+import { addPhoto, updateUser } from "../../../../api/userApi";
 import { setPhoto } from "../../../../features/userSlice";
 import { useDispatch } from "react-redux";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import Maps from "../../../auth/authShop/signUpShop/formShop/maps";
+import { Toaster,toast } from "sonner";
 
 export default function EditProfile({ user, open, handleOpen }) {
   const dispatch = useDispatch();
   const fileInputRef = useRef(null);
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
 
   const handleFileSelect = (event) => {
     const selectedFile = event.target.files[0];
     addPhoto(selectedFile, user.token).then((response) => {
-      console.log(response);
       dispatch(setPhoto(response.message));
     });
+  };
+
+  const handleSaveChanges = () => {
+    const updatedData = {
+      email,
+      name,
+    };
+
+    updateUser(user.id, updatedData, user.token)
+      .then((response) => {
+      toast.success("Se actualizaron los datos")
+      })
+      .catch((error) => {
+        console.error("Error al enviar la solicitud:", error);
+        toast.error("No se actualizaron los datos")
+      });
   };
 
   return (
@@ -57,8 +76,11 @@ export default function EditProfile({ user, open, handleOpen }) {
           Correo electrónico
         </label>
         <Input
+          placeholder={user.email}
           id="email"
           type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
           labelProps={{
             className: "hidden",
@@ -72,8 +94,11 @@ export default function EditProfile({ user, open, handleOpen }) {
           Nombre completo
         </label>
         <Input
+          placeholder={user.name}
           id="name"
           type="email"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
           labelProps={{
             className: "hidden",
@@ -86,18 +111,14 @@ export default function EditProfile({ user, open, handleOpen }) {
         >
           Selecciona tu ubicación
         </label>
-        <Input
-          id="address"
-          type="email"
-          className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
-          labelProps={{
-            className: "hidden",
-          }}
-          containerProps={{ className: "min-w-[100px]" }}
-        />
-        <Button className="normal-case bg-colorPrimary rounded-full mt-10">
+        <Maps />
+        <Button
+          className="normal-case bg-colorPrimary rounded-full mt-10"
+          onClick={handleSaveChanges}
+        >
           Guardar cambios
         </Button>
+        <Toaster richColors/>
       </div>
     </>
   );
