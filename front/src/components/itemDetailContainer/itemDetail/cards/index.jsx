@@ -75,7 +75,7 @@ const Cards = ({ item, handleOpen }) => {
             <span className="text-[12px] text-colorNeutral1">
               Retirar entre{" "}
               <span className="border-[2px] border-colorNeutral2 px-2 py-[2px] rounded-md">
-              {timeStart} y {timeEnd}
+                {timeStart} y {timeEnd}
               </span>
             </span>
             <span className="text-[20px] text-colorPrimary font-extrabold">

@@ -28,3 +28,11 @@ export const signUpLocation = (locationData, token) => {
     }
   );
 };
+
+export const getPurchases = (token) => {
+  return axios.get(`${BASE_URL}/purchase`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  })
+}

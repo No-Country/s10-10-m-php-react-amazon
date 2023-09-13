@@ -11,7 +11,7 @@ export const getUserById = (userId, token) => {
   return axios.get(`${BASE_URL}/${userId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
-    },
+    }
   });
 };
 
@@ -30,7 +30,7 @@ export const addPhoto = async (selectedFile, token) => {
 
     const response = await axios.post(`${BASE_URL}/avatar`, formData, {
       headers: {
-        "Content-Type": "multipart/form-data",
+        'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${token}`,
       },
     });
@@ -40,4 +40,10 @@ export const addPhoto = async (selectedFile, token) => {
   } catch (error) {
     console.error("Error uploading file:", error);
   }
-};
+}
+
+
+
+
+
+

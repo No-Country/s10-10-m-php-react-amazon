@@ -10,20 +10,25 @@ import {
 } from "@material-tailwind/react";
 import { useState } from "react";
 import { Link } from "wouter";
+import { useDispatch, useSelector } from "react-redux";
+import { setQuantity } from "../../../features/quantitySlice";
 
 export function ItemModal({ open, handleOpen, item }) {
 
-  const [quantity, setQuantity] = useState(0)
+  const dispatch = useDispatch();
+  const quantity = useSelector((state) => state.quantity.quantity);
 
   const handlePlus = () => {
     if (item.stock > quantity) {
-      setQuantity(quantity + 1)
+      dispatch(setQuantity(quantity + 1))
     }
   }
 
+
+
   const handleMinus = () => {
     if (quantity > 0) {
-      setQuantity(quantity - 1)
+      dispatch(setQuantity(quantity - 1))
     }
   }
   return (

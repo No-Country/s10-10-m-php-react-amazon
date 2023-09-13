@@ -19,7 +19,7 @@ const ExploreCategories = () => {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
         }
       },
       {
@@ -31,7 +31,7 @@ const ExploreCategories = () => {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
         }
       }
     ]
@@ -43,11 +43,20 @@ const ExploreCategories = () => {
         Explora nuestros rubros
       </h2>
 
-      <Slider {...settings} className=''>
-        <Cards img={panaderia} title={"Panaderías"} category={"panaderia"} />
-        <Cards img={verduleria} title={"Verdulerías"} category={"verduleria"} />
-        <Cards img={superMercado} title={"Supermercados"} category={"supermercado"} />
-      </Slider>
+      <div className='lg:hidden'>
+        <Slider {...settings} className=''>
+          <Cards img={panaderia} title={"Panaderías"} category={"panaderia"} />
+          <Cards img={verduleria} title={"Verdulerías"} category={"verduleria"} />
+          <Cards img={superMercado} title={"Supermercados"} category={"supermercado"} />
+        </Slider>
+      </div>
+      <div className='hidden lg:block'>
+        <div className='flex justify-between gap-6'>
+          <Cards img={panaderia} title={"Panaderías"} category={"panaderia"} />
+          <Cards img={verduleria} title={"Verdulerías"} category={"verduleria"} />
+          <Cards img={superMercado} title={"Supermercados"} category={"supermercado"} />
+        </div>
+      </div>
 
     </div >
   );

@@ -1,20 +1,21 @@
-import {configureStore} from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import userSlice from '../features/userSlice'
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
 import cartSlice from '../features/cartSlice';
 import businessInfoSlice from "../features/businessSlice"
+import quantitySlice from '../features/quantitySlice';
 
 const userPersistConfig = {
     key: 'user',
     storage,
-    blacklist: [], 
+    blacklist: [],
 };
 
 const cartPersistConfig = {
     key: 'cart',
     storage,
-    blacklist: [], 
+    blacklist: [],
 }
 
 const persistedUserReducer = persistReducer(userPersistConfig, userSlice);
@@ -24,6 +25,7 @@ const rootReducer = {
     user: persistedUserReducer,
     cart: persistedCartReducer,
     businessInfo: businessInfoSlice,
+    quantity: quantitySlice,
 };
 
 export const store = configureStore({
