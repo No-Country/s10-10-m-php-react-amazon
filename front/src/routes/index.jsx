@@ -20,6 +20,7 @@ import ActivePacks from "../views/profile/components/ActivePacks";
 import SelledPacks from "../views/profile/components/SelledPacks";
 import { CardProfile } from "../components/CardProfile";
 import Purchases from "../views/profile/PersonProfile/components/purchases";
+import EditProfile from "../views/profile/components/EditProfile";
 
 const AppRouter = () => {
   return (
@@ -38,15 +39,15 @@ const AppRouter = () => {
       <Route path="/auth/shop/login" component={LoginShop} />
       <Route path="/recover-pass" component={RecoverPass} />
       <Route path="/detail/:id" component={ItemDetailContainer} />
-      <Route path="/detail/profile/:id" component={CardProfile}/>
+      <Route path="/detail/profile/:id" component={CardProfile} />
       <Route path="/page-not-found" component={Error404} />
       <Route path="/user/profile" component={UserProfile} />
       <Route path="/logout" component={Logout} />
       <Route path="/dashboard/:category" component={Dashboard} />
-      <Route path='/user/profile/map' component={MapProfile}/>
-      <Route path='/user/profile/activepacks' component={ActivePacks}/>
-      <Route path='/user/profile/selledpacks' component={SelledPacks}/>
-
+      <Route path="/user/profile/map" component={MapProfile} />
+      <Route path="/user/profile/activepacks" component={ActivePacks} />
+      <Route path="/user/profile/selledpacks" component={SelledPacks} />
+      <Route path="/user/profile/edit" component={EditProfile} />
     </Router>
   );
 };
