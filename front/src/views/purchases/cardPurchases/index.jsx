@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import bagPurchases from '../../home/assets/bagCardPurchases.png'
+import bagPurchases from '../assets/BagCardPurchases.png'
 import { Button } from '@material-tailwind/react';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import ModalDeletePurchases from './modalDeletePurchases';

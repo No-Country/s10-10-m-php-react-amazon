@@ -8,8 +8,6 @@ import {
 
 const ModalDeletePurchases = ({ handleOpen, open }) => {
 
-    console.log(open);
-
     return (
 
         <>

@@ -7,7 +7,6 @@ import {
     Typography,
 } from "@material-tailwind/react";
 import { Link } from 'wouter';
-import { postPurchases } from '../../../api/userApi';
 import { useForm } from "react-hook-form";
 import { useSelector } from 'react-redux';
 
@@ -52,7 +51,6 @@ const CreditCard = () => {
 
     const submit = (data) => {
         console.log(data);
-        postPurchases(data, user.token)
     }
 
     return (

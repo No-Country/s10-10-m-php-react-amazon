@@ -61,13 +61,13 @@ const MapProfile = () => {
     signUpLocation(updatedData, user.token)
       .then((response) => {
         if (response.status == 200) {
-          toast("Se guardaron los cambios");
+          toast.success("Se guardaron los cambios");
           setTimeout(() => {
             dispatch(setLocation(updatedData));
             navigate("/user/profile");
           }, 2500);
         } else {
-          toast("Error al ingresar su ubicación");
+          toast.error("Error al ingresar su ubicación");
         }
       })
       .catch((err) => {
