@@ -19,6 +19,7 @@ import Supermercado from '../../assets/superMercado.png'
 import Verduleria from '../../assets/verduleria1.png'
 
 export function CardPack({ item, shop }) {
+  console.log(item)
   const tags = JSON.parse(item.tags)
   const timeStartParts = item.time_start.split(' ')[1].split(':'); 
 const timeStart = `${timeStartParts[0]}:${timeStartParts[1]}`;

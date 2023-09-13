@@ -38,10 +38,12 @@ const ItemList = ({ business }) => {
   return (
     <div className="w-screen ">
       <Slider {...settings}>
-        {business && business.length !== 0 && (
+        {business && business.length !== 0 ? (
           business.map((shop) =>
             shop.pack.map((item) => item ? <Item item={item} shop={shop} key={item.id} /> : null)
           )
+        ): (
+          <h1>No hay packs disponibles</h1>
         )}
       </Slider>
     </div>
