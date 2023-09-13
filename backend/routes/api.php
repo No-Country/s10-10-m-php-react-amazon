@@ -20,7 +20,7 @@ use App\Http\Controllers\CalificationController;
 Route::post('/forget-password',[UserController::class, 'forgetPassword']);
 Route::group(['middleware' => 'api'], function ($router) {
      //Rutas de autenticación
-    Route::post('create_preference', 'App\Http\Controllers\MercadoPagoController@createPreference');
+
     Route::post('login', 'App\Http\Controllers\AuthenticateController@login');
     Route::post('register', 'App\Http\Controllers\AuthenticateController@register');
     Route::post('logout', 'App\Http\Controllers\AuthenticateController@logout');
@@ -57,6 +57,8 @@ Route::group(['middleware' => 'api'], function ($router) {
     Route::get('pack/collection/{id}', 'App\Http\Controllers\PackController@getallbyid');
 
     Route::group(['middleware' => 'jwt.auth',], function ($router) {
+
+        Route::post('create_preference', 'App\Http\Controllers\MercadoPagoController@createPreference');
 
         Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.update');
         Route::patch('/users/{user}', [UserController::class, 'update'])->name('users.update');
