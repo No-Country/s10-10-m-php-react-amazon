@@ -4,7 +4,9 @@ const BASE_URL =
   "https://s10-10-m-php-react-amazon-production.up.railway.app/api/users";
 
 export const getAllUsers = () => {
-  return axios.get(`${BASE_URL}/all`);
+  const response = axios.get(`${BASE_URL}/all`);
+  console.log(response.data)
+  return response
 };
 
 export const getUserById = (userId, token) => {
