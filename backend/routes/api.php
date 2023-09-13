@@ -18,7 +18,7 @@ use App\Http\Controllers\CalificationController;
 |
 */
 Route::post('/forget-password',[UserController::class, 'forgetPassword']);
-Route::group(['middleware' => 'api','cors'], function ($router) {
+Route::group(['middleware' => 'api'], function ($router) {
      //Rutas de autenticación
     Route::post('create_preference', 'App\Http\Controllers\MercadoPagoController@createPreference');
     Route::post('login', 'App\Http\Controllers\AuthenticateController@login');
