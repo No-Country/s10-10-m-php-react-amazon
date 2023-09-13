@@ -1,6 +1,7 @@
 # s10-10-m-php-react
-![Logo de Listo para Llevar]()
-
+<p align="center">
+  <img src="https://res.cloudinary.com/dvd8m4kfl/image/upload/v1694614751/logo-clear.png" alt="Logo">
+</p>
 
 <br>
 
@@ -14,13 +15,15 @@ La experiencia de usuario se ha diseñado para ser intuitiva y accesible, enfoc�
 
 ## :rocket: Deploy
 
-(Insertar información sobre el deploy aquí)
+Descubre y navega en vivo aquí 👉 ["Listo Para Llevar"](https://s10-10-m-php-react.onrender.com)
+
 
 <br>
 
 ## :triangular_ruler: Prototipado
 
-(Insertar información sobre el prototipo aquí)
+Échale un ojo al prototipo de Figma aquí 👉 ["Listo Para Llevar"](https://www.figma.com/proto/hb2M6bnLpv2fHWNhKNsttY/s10-10-m-php-react-amazon?page-id=1%3A4&type=design&node-id=1426-3930&viewport=-680%2C297%2C0.13&t=t1VpRptVwOAxKMtF-1&scaling=scale-down&starting-point-node-id=412%3A1370&show-proto-sidebar=1&mode=design)
+
 
 <br>
 
@@ -33,8 +36,9 @@ La experiencia de usuario se ha diseñado para ser intuitiva y accesible, enfoc�
 3. **Compra**: Selecciona un pack y realiza la compra.
 4. **Valoración**: Evalúa la experiencia y el pack adquirido.
 
-(Insertar foto de wireframes aquí)
 ![app consumidores](https://res.cloudinary.com/dvd8m4kfl/image/upload/v1694612415/app-consumidores.jpg)
+
+<br>
 
 #### Para Negocios
 
@@ -43,7 +47,8 @@ La experiencia de usuario se ha diseñado para ser intuitiva y accesible, enfoc�
 3. **Publicar Packs**: Publica los packs que deseas ofrecer.
 4. **Gestión**: Administra tus ventas, ajusta la disponibilidad de los packs y recopila valoraciones.
 
-(Insertar foto de wireframes aquí)
+![app consumidores](https://res.cloudinary.com/dvd8m4kfl/image/upload/v1694615546/app-negocio.jpg)
+
 
 <br>
 
@@ -51,10 +56,12 @@ La experiencia de usuario se ha diseñado para ser intuitiva y accesible, enfoc�
 
 #### ⚙️ BackEnd
 
-| <img src="https://avatars.githubusercontent.com/u/67226453?v=4" width="100"> | <img src="https://avatars.githubusercontent.com/u/60443834?v=4" width="100"> | <img src="https://avatars.githubusercontent.com/u/122415240?v=4" width="100"> | <img src="https://avatars.githubusercontent.com/u/114106304?v=4" width="100"> | <img src="https://avatars.githubusercontent.com/u/61032706?v=4" width="100"> |
+| <img src="https://avatars.githubusercontent.com/u/67226453?v=4" width="100"> | <img src="https://avatars.githubusercontent.com/u/60443834?v=4" width="100"> | <img src="https://avatars.githubusercontent.com/u/122415240?v=4" width="100"> | <img src="https://avatars.githubusercontent.com/u/114106304?v=4" width="100"> | <img src="https://res.cloudinary.com/dvd8m4kfl/image/upload/v1694614692/Osdalys.jpg" width="100"> |
 |:---:|:---:|:---:|:---:|:---:|
 | **Cristian Gomez** | **Jesús Salazar** | **Lorenzo Rueda** | **Magali Ruiz Diaz** | **Osdalys Gomez** |
-| [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/cristiangomezdev) [![LinkedIn](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](URL_linkedin_Cristian) | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Bucchiarati) [![LinkedIn](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](URL_linkedin_Jesús) | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/zightcode) [![LinkedIn](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](URL_linkedin_Lorenzo) | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/maggieruizdiaz22) [![LinkedIn](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)]([URL_linkedin_Magali](https://www.linkedin.com/in/magalíruizdiaz/)) | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/OsdaGomez99) [![LinkedIn](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)]([URL_linkedin_Osdalys](https://www.linkedin.com/in/osdalys-gomez/)) |
+| [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/cristiangomezdev) [![LinkedIn](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](URL_linkedin_Cristian) | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Bucchiarati) [![LinkedIn](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](URL_linkedin_Jesús) | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/zightcode) [![LinkedIn](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](URL_linkedin_Lorenzo) | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/maggieruizdiaz22) [![LinkedIn](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)]([URL_linkedin_Magali](https://www.linkedin.com/in/magalíruizdiaz/)) | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/OsdaGomez99) [![LinkedIn](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/osdalys-gomez/) |
+
+:hammer_and_wrench:	**Tech Stack:**
 
 <br>
 
@@ -65,6 +72,8 @@ La experiencia de usuario se ha diseñado para ser intuitiva y accesible, enfoc�
 | **Aron Resni** | **Diego Cantillo Meza** | **Gustavo Torres** | **Pablo Aquino** |
 | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/aronresni) [![LinkedIn](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/aron-resnicoff-333b2a215/) | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/DiegoCantillo) [![LinkedIn](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/luiscantillomeza-2460b6253/) | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/betogus) [![LinkedIn](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/betogus2009/) | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/WebDevCod) [![LinkedIn](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jpabloaquino/) |
 
+:hammer_and_wrench:	**Tech Stack:**
+
 <br>
 
 #### 🔍 Testing
@@ -73,6 +82,8 @@ La experiencia de usuario se ha diseñado para ser intuitiva y accesible, enfoc�
 |:---:|
 | **Melisa Araoz** |
 | [![LinkedIn](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](URL_linkedin_Melisa) |
+
+:hammer_and_wrench:	**Tech Stack:**
 
 <br>
 
