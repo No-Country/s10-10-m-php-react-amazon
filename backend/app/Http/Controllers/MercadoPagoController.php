@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use MercadoPago\Preference;
 use MercadoPago\Item;
 use App\Models\Payment;
+use App\Models\Purchase;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
@@ -35,13 +36,16 @@ class MercadoPagoController extends Controller
         $preference->auto_return = "approved";
 
         $preference->save();
-
-            Payment::create([
+        
+        $payment = Payment::create([
                 'user_id' => Auth::user()->id,
                 'payment_preference_id' => $preference->id,
                 'amount' => $orderData['price'],
             ]);
 
-        return response()->json(['preference_id' => $preference->id]);
+        return response()->json([
+            'preference_id' => $preference->id,
+            'payment_id' => $payment->id
+        ]);
     }
 }

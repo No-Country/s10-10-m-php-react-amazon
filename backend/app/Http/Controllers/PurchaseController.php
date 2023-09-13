@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Purchase;
+use App\Models\Payment;
 use App\Models\Pack;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
@@ -13,11 +14,17 @@ class PurchaseController extends Controller
 {
     public function store(Request $request){
         try {
+
             DB::beginTransaction();
             $validatedData = $request->validate([
                 'seller_id' => 'required|exists:users,id',
                 'pack_id' => 'required|exists:packs,id',
-                'amount' => 'required|numeric|min:0'
+                'payment_id' => 'nullable|exists:payments,id',
+                'amount' => 'required|numeric|min:0',
+                'credit_card_number' => 'numeric',
+                'cvv' => 'numeric',
+                'expiration_date' => 'string',
+                'price' => 'required|numeric'
             ]);
             $pack = Pack::findOrFail($validatedData['pack_id']);
 
@@ -25,13 +32,32 @@ class PurchaseController extends Controller
             {
                 throw new \Exception('not enough stock');
             }
+            $user = Auth::user();
+            if ($user->hasRole('business')) 
+            {
+                return response()->json(['error' => 'Invalid role, must be a customer to purchase'], 400);
+            }
+            if(!isset($validatedData['payment_id']))
+            {
+                $payment = Payment::create([
+                    'user_id' => Auth::user()->id,
+                    'amount' => $validatedData['amount'],
+                    'credit_card_number'=> $validatedData['credit_card_number'] ?? null,
+                    'cvv'=> $validatedData['cvv'] ?? null,
+                    'expiration_date'=>$validatedData['expiration_date'] ?? null
+                ]);
+            }
             $encryptedId = Auth::user()->getAuthIdentifier();
+
+            
+
             $purchase = Purchase::create([
                 'pack_id' => $validatedData['pack_id'],
                 'seller_id' => $validatedData['seller_id'],
                 'user_id' => $encryptedId,
                 'code' => $this->generateCode(),
-                'amount' => $validatedData['amount']
+                'amount' => $validatedData['price'],
+                'payment_id' => $validatedData['payment_id'] ?? $payment->id
             ]);
 
             $pack->stock -= $validatedData['amount'];

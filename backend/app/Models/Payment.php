@@ -13,6 +13,9 @@ class Payment extends Model
         'user_id',
         'payment_preference_id',
         'amount',
+        'credit_card_number',
+        'cvv',
+        'expiration_date'
     ];
 
     public function user()

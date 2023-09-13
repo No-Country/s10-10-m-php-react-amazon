@@ -32,6 +32,11 @@ class PackController extends Controller
                 'time_end' => 'nullable|date',
                 'stock' => 'required|numeric'
             ]);
+            $user = Auth::user();
+            if ($user->hasRole('person')) 
+            {
+                return response()->json(['error' => 'Invalid role, must be a business to post new packs'], 400);
+            }
             $encryptedId = Auth::user()->getAuthIdentifier();
             $pack = Pack::create([
                 'name' => $validatedData['name'],

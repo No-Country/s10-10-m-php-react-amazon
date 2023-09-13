@@ -84,6 +84,7 @@ Route::group(['middleware' => 'api','cors'], function ($router) {
         Route::get('purchase', 'App\Http\Controllers\PurchaseController@show');
         Route::put('purchase/update', 'App\Http\Controllers\PurchaseController@update');
         Route::delete('purchase/delete/{id}', 'App\Http\Controllers\PurchaseController@destroy');
+        
 
             //Almacenar una nueva calificación
         Route::post('calification', [CalificationController::class, 'store']);
