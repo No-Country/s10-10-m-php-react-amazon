@@ -13,8 +13,8 @@ const ActivePacksListContainer = () => {
         setIsLoading(true);
         getShopPacks()
           .then((response) => {
-            const allPacks = response.data['Packs available']
-            const packs = allPacks.filter(item => item.user_id == user.id)
+            console.log(response)
+            const packs = response.data['Packs available']
             setItems(packs)
             })
           .catch((err) => {

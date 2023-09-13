@@ -15,7 +15,6 @@ export const postPack = (pack, token) => {
     }
   );
 };
-
 export const getAllPacks = () => {
   return axios.get(`${BASE_URL}`)
 }
@@ -26,9 +25,11 @@ export const getPacksByFilters = (filters, token) => {
     },
   })
 }
+
+
 export const getPackById = async (id, token) => {
   try {
-    const response = await axios.get(`${BASE_URL}`);
+    const response = await axios.get(`${BASE_URL}/collection/${id}`);
     const products = response.data["Packs available"];
     const product = products.find(item => item.id == id);
     const userResponse = await getUserById(product.user_id, token);
@@ -40,8 +41,8 @@ export const getPackById = async (id, token) => {
   }
 }
 
-export const getShopPacks = async () => {
-  return getAllPacks()
+export const getShopPacks = (id) => {
+  return axios.get(`${BASE_URL}/collection/${id}`)
 
 
 }

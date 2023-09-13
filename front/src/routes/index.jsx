@@ -13,12 +13,13 @@ import UserProfile from "../views/profile";
 import Logout from "../views/logout";
 import StoreManager from "../views/auth/authShop/signUpShop/formShop/storeManager";
 import StoreSignUp from "../views/auth/authShop/signUpShop/formShop/storeSignUp";
-import Purchases from "../views/purchases";
 import PaymentOption from "../components/paymentMethod/paymentOption";
 import CreditCard from "../components/paymentMethod/creditCard";
 import MapProfile from "../views/profile/components/MapProfile";
 import ActivePacks from "../views/profile/components/ActivePacks";
 import SelledPacks from "../views/profile/components/SelledPacks";
+import { CardProfile } from "../components/CardProfile";
+import Purchases from "../views/profile/PersonProfile/components/purchases";
 
 const AppRouter = () => {
   return (
@@ -26,7 +27,7 @@ const AppRouter = () => {
       <BasicNavbar />
       <Route path="/detail" component={ItemDetailContainer} />
       <Route path="/" component={Home} />
-      <Route path="/purchases" component={Purchases} />
+      <Route path="/user/profile/purchases" component={Purchases} />
       <Route path="/payment" component={PaymentOption} />
       <Route path="/payment/creditCard" component={CreditCard} />
       <Route path="/auth/user/signup" component={SignUpUser} />
@@ -37,6 +38,7 @@ const AppRouter = () => {
       <Route path="/auth/shop/login" component={LoginShop} />
       <Route path="/recover-pass" component={RecoverPass} />
       <Route path="/detail/:id" component={ItemDetailContainer} />
+      <Route path="/detail/profile/:id" component={CardProfile}/>
       <Route path="/page-not-found" component={Error404} />
       <Route path="/user/profile" component={UserProfile} />
       <Route path="/logout" component={Logout} />
