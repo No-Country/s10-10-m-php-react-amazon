@@ -18,9 +18,12 @@ return new class extends Migration
             $table->unsignedBigInteger('seller_id');
             $table->unsignedBigInteger('calification_gived_id')->nullable();
             $table->unsignedBigInteger('feedback_received_id')->nullable();
+            $table->unsignedBigInteger('payment_id')->nullable();
             $table->string('code');
             $table->enum('status', ['reserved', 'delivered', 'cancelled'])->default('reserved');
             $table->string('amount');
+            $table->timestamps();
+
             $table->foreign('pack_id')
             ->references('id')
             ->on('packs')
@@ -46,7 +49,10 @@ return new class extends Migration
             ->on('califications')
             ->onDelete('cascade');
 
-            $table->timestamps();
+            $table->foreign('payment_id')
+            ->references('id')
+            ->on('payments')
+            ->onDelete('cascade');
         });
     }
 
@@ -57,5 +63,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('purchases');
     }
-    
+
 };

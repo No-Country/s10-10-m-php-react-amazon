@@ -8,20 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 class LocationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function __construct()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $this->middleware('api');
     }
 
     /**
@@ -41,49 +30,42 @@ class LocationController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Location $location)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request)
     {
         try{
-        $validateData = $request->validate([
-            'address' => 'required',
-            'latitude' => 'required|numeric',
-            'longitude' => 'required|numeric',
-            'postal_code' => 'required',
-            'city' => 'required',
-            'province' => 'required'
-        ]);
-        $user = Auth::user();
 
-        $location = Location::find($user->location_id);
-        $location->update([
-            'address' => $validateData['address'],
-            'latitude' => $validateData['latitude'],
-            'longitude' => $validateData['longitude'],
-            'postal_code' => $validateData['postal_code'],
-            'city' => $validateData['city'],
-            'province' => $validateData['province']
+            $validateData = $request->validate([
+                'address' => 'required',
+                'latitude' => 'required|numeric',
+                'longitude' => 'required|numeric',
+                'postal_code' => 'required',
+                'city' => 'required',
+                'province' => 'required'
+            ]);
+            $user = Auth::user();
 
-        ]);
-        $user->location_id = $location->id;
-        $user->save();
-        return response()->json(['location' => $location]);
-        } catch (ValidationException $e){
-            return response()->json([
-                'error' => 'Invalid data',
-                'message' => $e->getMessage(),
-                'errors' => $e->errors()
-            ], 400);
-        }
+            $location = Location::find($user->location_id);
+            $location->update([
+                'address' => $validateData['address'],
+                'latitude' => $validateData['latitude'],
+                'longitude' => $validateData['longitude'],
+                'postal_code' => $validateData['postal_code'],
+                'city' => $validateData['city'],
+                'province' => $validateData['province']
+
+            ]);
+            $user->location_id = $location->id;
+            $user->save();
+            return response()->json(['location' => $location]);
+            } catch (ValidationException $e){
+                return response()->json([
+                    'error' => 'Invalid data',
+                    'message' => $e->getMessage(),
+                    'errors' => $e->errors()
+                ], 400);
+            }
     }
 
     /**

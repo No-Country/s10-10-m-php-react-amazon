@@ -9,7 +9,14 @@ use Illuminate\Http\Request;
 
 class FavoriteController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('api');
+    }
+
     public function index(){
+
 
         $encryptedId = Auth::user()->getAuthIdentifier();
         $favorite = Favorite::where('user_id', $encryptedId)
@@ -27,6 +34,7 @@ class FavoriteController extends Controller
     public function store(Request $request){
 
         try {
+
             $validatedData = $request->validate([
                 'business_id' => 'required|numeric',
             ]);
@@ -48,6 +56,7 @@ class FavoriteController extends Controller
     }
 
     public function destroy($id){
+
         
         $encryptedId = Auth::user()->getAuthIdentifier();
         $favorite = Favorite::Where('user_id',$encryptedId)

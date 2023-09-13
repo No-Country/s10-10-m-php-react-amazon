@@ -20,11 +20,11 @@ class PurchaseController extends Controller
                 'amount' => 'required|numeric|min:0'
             ]);
             $pack = Pack::findOrFail($validatedData['pack_id']);
-            
+
             if ($pack->stock < $validatedData['amount'])
             {
                 throw new \Exception('not enough stock');
-            }            
+            }
             $encryptedId = Auth::user()->getAuthIdentifier();
             $purchase = Purchase::create([
                 'pack_id' => $validatedData['pack_id'],
@@ -57,14 +57,14 @@ class PurchaseController extends Controller
     public function show(Request $request){
         try {
             $currentUser = Auth::user();
-            $encryptedId = Auth::user()->getAuthIdentifier();
+            //$encryptedId = Auth::user()->getAuthIdentifier();
 
             if($currentUser->type === 'business'){
-                $purchase = Purchase::where('seller_id',$encryptedId)
+                $purchase = Purchase::where('seller_id',$currentUser->id)
                 ->with(['user', 'pack','seller'])
                 ->get();
             } else {
-                $purchase = Purchase::where('user_id',$encryptedId)
+                $purchase = Purchase::where('user_id',$currentUser->id)
                 ->with(['user', 'pack','seller'])
                 ->get();
             }
@@ -113,4 +113,3 @@ class PurchaseController extends Controller
         return substr(uniqid(), -6);
     }
 }
-
