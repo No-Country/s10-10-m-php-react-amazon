@@ -9,19 +9,25 @@ import axios from 'axios';
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import { useSelector } from 'react-redux';
 
+
 const PaymentOption = () => {
 
     const handleBack = () => {
         history.back();
     };
 
+
+
     const quantity = useSelector((state) => state.quantity.quantity);
     const [preferenceId, setPreferenceId] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     initMercadoPago("TEST-9e8b3f4f-c4b6-4c5d-9c99-ce8dc363b227");
 
-    console.log("aquiiii", preferenceId);
+    console.log("preferenceId", preferenceId);
 
+    const user = useSelector((state) => state.user);
+    const token = user.token
+    console.log(user.id);
     const createPreference = async () => {
         setIsLoading(true);
 
@@ -37,12 +43,13 @@ const PaymentOption = () => {
                 orderData,
                 {
                     headers: {
+                        Authorization: `Bearer ${token}`,
                         "Content-Type": "application/json",
                     },
                 }
             );
 
-            setPreferenceId(response.data.preference_id);
+            setPreferenceId(user.id);
         } catch (error) {
             console.error("Error:", error);
         } finally {

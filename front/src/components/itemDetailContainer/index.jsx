@@ -6,6 +6,8 @@ import { productFindShop } from "../../utils/products/functions";
 import { ItemModal } from "./itemModal";
 import { getPackById } from "../../api/itemApi";
 import { useSelector } from "react-redux";
+
+
 const ItemDetailContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [match, params] = useRoute("/detail/:id");
@@ -14,6 +16,8 @@ const ItemDetailContainer = () => {
   const handleOpen = () => setOpen(!open);
   const user = useSelector(state => state.user)
   const [item, setItem] = useState({})
+
+  console.log("desde acá", productFindShop);
 
   useEffect(() => {
     setIsLoading(true);

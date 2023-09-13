@@ -4,7 +4,7 @@ import { Button } from '@material-tailwind/react';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import ModalDeletePurchases from './modalDeletePurchases';
 import { useSelector } from 'react-redux';
-import { getPurchases } from '../../../../../../api/authApi';
+import { getPurchases } from '../../../../../api/authApi';
 
 const CardPurchases = () => {
 
