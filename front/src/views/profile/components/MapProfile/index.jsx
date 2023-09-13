@@ -66,16 +66,11 @@ const MapProfile = () => {
             dispatch(setLocation(updatedData));
             navigate("/user/profile");
           }, 2500);
-        } else {
-          toast.error("Error al ingresar su ubicación");
         }
       })
       .catch((err) => {
         console.log(err);
-        if (user.type == "person")
-        navitage('/auth/user/login')
-        else if (user.type == "business")
-        navigate('/auth/shop/login')
+        toast.error("Error al ingresar su ubicación");
       });
   };
 
@@ -103,7 +98,6 @@ const MapProfile = () => {
             setCity={setCity}
             setProvince={setProvince}
           />
-
           <Button
             className="rounded-full normal-case w-[310px] bg-buttonFilledColor m-8 mb-16 text-colorPrimary text-md"
             type="submit"

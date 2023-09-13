@@ -1,5 +1,5 @@
 import { Button } from "@material-tailwind/react";
-import React, { useState } from "react";
+import { useState } from "react";
 import { CardProfile } from "../components/CardProfile";
 import DialogPack from "../components/DialogPack";
 import { PackForm } from "../components/PackForm";
@@ -16,26 +16,23 @@ const BusinessProfile = ({ user }) => {
   };
   if (!openForm)
     return (
-      <div className="h-screen">
-        <div className="flex justify-between w-full">
-          <h1>Mi Pefil</h1>
+      <div className="flex flex-col items-center h-screen w-full mb-10">
+        <h1 className="text-sizeTitle font-bold mt-5">Mi perfil</h1>
+        <div>
           <Button
-            variant="gradient"
-            className="rounded-full"
+            className="normal-case bg-colorPrimary rounded-full m-2"
             onClick={handleOpenForm}
           >
             Añadir Pack
           </Button>
+          <Button
+            className="normal-case bg-colorPrimary rounded-full m-2"
+            onClick={handleOpenDialog}
+          >
+            Ver actividad
+          </Button>
         </div>
         <CardProfile user={user} />
-
-        <Button
-          variant="gradient"
-          className="rounded-full w-full"
-          onClick={handleOpenDialog}
-        >
-          Ver actividad
-        </Button>
         <DialogPack setOpen={setOpenDialog} open={openDialog} />
       </div>
     );

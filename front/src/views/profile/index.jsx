@@ -1,9 +1,8 @@
 import { Spinner } from "@material-tailwind/react";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { navigate } from "wouter/use-location";
 import { getUserById } from "../../api/userApi";
-import { setUser } from "../../features/userSlice";
 import BusinessProfile from "./BusinessProfile";
 import PersonProfile from "./PersonProfile";
 
@@ -14,7 +13,6 @@ const UserProfile = () => {
     getUserById(user.id, user.token)
       .then((response) => {
         if (response.status == 200) {
-          
           setIsLoading(false);
         }
       })
@@ -24,13 +22,13 @@ const UserProfile = () => {
       });
   });
 
-  if (isLoading)
+  if (isLoading)  
     return (
       <div className="flex justify-center w-full items-center h-screen">
-        <Spinner />
+        <Spinner />        
       </div>
-    ); else
-  if (user.type == "person")
+    );
+  else if (user.type == "person")
     return (
       <div className="flex justify-center w-full">
         <PersonProfile user={user} />
