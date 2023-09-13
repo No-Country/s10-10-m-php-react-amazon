@@ -21,6 +21,12 @@ return new class extends Migration
                 ->on('users')
                 ->onDelete('cascade');
             $table->timestamps();
+            
+            $table->foreign('business_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade');
+        $table->timestamps();
         });
     }
 

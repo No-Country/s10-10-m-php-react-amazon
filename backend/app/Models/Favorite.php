@@ -26,4 +26,7 @@ class Favorite extends Model
     public function User(){
         return $this->belongsTo(User::class);
     }
+    public function Business(){
+        return $this->belongsTo(User::class);
+    }
 }

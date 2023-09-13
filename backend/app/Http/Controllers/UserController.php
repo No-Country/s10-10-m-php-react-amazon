@@ -63,7 +63,7 @@ public function getAllUsers()
 {
     try {
         $user = User::findOrFail($userId);
- $userLocation = $user->location;
+        $userLocation = $user->location;
 
             return [
                 'name' => $user->name,
