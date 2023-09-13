@@ -23,10 +23,10 @@ class Favorite extends Model
         'email_verified_at',
     ];
 
-    public function User(){
+    public function user(){
         return $this->belongsTo(User::class);
     }
-    public function Business(){
+    public function business(){
         return $this->belongsTo(User::class);
     }
 }
