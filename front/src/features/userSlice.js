@@ -52,7 +52,7 @@ export const userSlice = createSlice({
     setLocation: (state, action) => {
       const { address, city, postal_code, province, latitude, longitude } =
         action.payload;
-        state.location.address = address;
+      state.location.address = address;
       state.location.city = city;
       state.location.postal_code = postal_code;
       state.location.province = province;
@@ -73,10 +73,15 @@ export const userSlice = createSlice({
       state.token = "";
     },
     setPhoto: (state, action) => {
-      state.avatar = action.payload
-    }
+      state.avatar = action.payload;
+    },
+    setUpdateUser: (state, action) => {
+      state.name = action.payload.name;
+      state.email = action.payload.email;
+    },
   },
 });
 
-export const { setUser, setToken, cerrarSesion, setLocation, setPhoto } = userSlice.actions;
+export const { setUser, setToken, cerrarSesion, setLocation, setPhoto, setUpdateUser } =
+  userSlice.actions;
 export default userSlice.reducer;

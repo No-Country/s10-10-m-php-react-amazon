@@ -1,7 +1,7 @@
 import { Button, Input } from "@material-tailwind/react";
 import UserLogo from "../../../../assets/user-profile.svg";
 import { addPhoto, updateUser } from "../../../../api/userApi";
-import { setPhoto } from "../../../../features/userSlice";
+import { setPhoto, setUpdateUser } from "../../../../features/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useRef, useState } from "react";
 import { Toaster, toast } from "sonner";
@@ -29,6 +29,7 @@ export default function EditProfile() {
 
     updateUser(user.id, updatedData, user.token)
       .then((response) => {
+        dispatch(setUpdateUser(updatedData));
         toast.success("Se actualizaron los datos");
         navigate("/user/profile");
       })
@@ -108,7 +109,7 @@ export default function EditProfile() {
               className: "hidden",
             }}
             containerProps={{ className: "min-w-[100px]" }}
-          />         
+          />
           <Button
             className="normal-case bg-colorPrimary rounded-full mt-5"
             onClick={handleSaveChanges}
