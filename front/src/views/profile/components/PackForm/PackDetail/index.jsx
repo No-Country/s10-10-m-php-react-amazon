@@ -191,7 +191,7 @@ const PackDetail = ({ open, handleOpen, handleSubmitPack, price, setPrice, descr
         <Button
           variant="gradient"
           fullWidth
-          className={"rounded-full custom-buttonCTAs normal-case w-60"}
+          className={"rounded-full custom-buttonCTAs normal-case w-60 mb-5"}
         disabled={!price || !description || !time_start || !time_end}
         onClick={handleSubmitPack}
         >
