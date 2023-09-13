@@ -60,12 +60,10 @@ export function PackForm({ open, handleOpen }) {
 
   const submit = () => {
     packs.map((pack, index) => {
-      console.log(user)
       const updatedPack = {...pack, category: user.category}
       console.log(updatedPack)
       postPack(updatedPack, user.token)
       .then((response) => {
-        console.log(response)
         if (response.status === 201) {
           toast.success("Se registró el producto con éxito");
           handleOpen();
