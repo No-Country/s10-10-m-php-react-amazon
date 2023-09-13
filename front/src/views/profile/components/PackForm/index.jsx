@@ -67,7 +67,7 @@ export function PackForm({ open, handleOpen }) {
       .then((response) => {
         console.log(response)
         if (response.status === 201) {
-          toast("Se registró el producto con éxito");
+          toast.success("Se registró el producto con éxito");
           handleOpen();
         } else {
           console.error("Error al enviar el formulario:", response.data);

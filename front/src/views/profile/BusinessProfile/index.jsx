@@ -6,34 +6,40 @@ import { PackForm } from "../components/PackForm";
 
 const BusinessProfile = ({ user }) => {
   const [openForm, setOpenForm] = useState(false);
-  const [openDialog, setOpenDialog] = useState(false)
+  const [openDialog, setOpenDialog] = useState(false);
   const handleOpenForm = () => {
     setOpenForm(!openForm);
   };
 
   const handleOpenDialog = () => {
-    setOpenDialog(!openDialog)
-  }
+    setOpenDialog(!openDialog);
+  };
   if (!openForm)
-  return (
-    <div className="h-screen">
-      <div className="flex justify-between w-full">
-        <h1>Mi Pefil</h1>
+    return (
+      <div className="h-screen">
+        <div className="flex justify-between w-full">
+          <h1>Mi Pefil</h1>
+          <Button
+            variant="gradient"
+            className="rounded-full"
+            onClick={handleOpenForm}
+          >
+            Añadir Pack
+          </Button>
+        </div>
+        <CardProfile user={user} />
+
         <Button
           variant="gradient"
-          className="rounded-full"
-          onClick={handleOpenForm}
+          className="rounded-full w-full"
+          onClick={handleOpenDialog}
         >
-          Añadir Pack
+          Ver actividad
         </Button>
+        <DialogPack setOpen={setOpenDialog} open={openDialog} />
       </div>
-      <CardProfile user={user} />
-      
-      <Button variant="gradient" className="rounded-full w-full" onClick={handleOpenDialog} >Ver actividad</Button>
-      <DialogPack setOpen={setOpenDialog} open={openDialog}/>
-    </div>
-  );
-  else return (<PackForm handleOpen={handleOpenForm} open={openForm} />)
+    );
+  else return <PackForm handleOpen={handleOpenForm} open={openForm} />;
 };
 
 export default BusinessProfile;
