@@ -61,13 +61,13 @@ const Maps = () => {
     signUpLocation(updatedData, user.token)
       .then((response) => {
         if (response.status == 200) {
-          toast("Su registro fue exitoso");
+          toast.success("Su registro fue exitoso");
           setTimeout(() => {
             dispatch(setToken(""));
             navigate("/auth/user/login");
           }, 2500);
         } else {
-          toast("Error al ingresar su ubicación");
+          toast.error("Error al ingresar su ubicación");
         }
       })
       .catch((err) => {
