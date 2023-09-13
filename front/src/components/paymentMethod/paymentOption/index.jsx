@@ -1,15 +1,60 @@
 import { Button } from '@material-tailwind/react';
-import React from 'react';
+import React, { useState } from 'react';
 import { BiArrowBack } from "react-icons/bi";
 import { GrNext } from "react-icons/gr";
 import cardCredit from '../assets/credit-card.svg'
 import paymentMarket from '../assets/image 2.png'
 import { Link } from 'wouter';
+import axios from 'axios';
+import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+import { useSelector } from 'react-redux';
 
 const PaymentOption = () => {
 
     const handleBack = () => {
         history.back();
+    };
+
+    const quantity = useSelector((state) => state.quantity.quantity);
+    const [preferenceId, setPreferenceId] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    initMercadoPago("TEST-9e8b3f4f-c4b6-4c5d-9c99-ce8dc363b227");
+
+    console.log("aquiiii", preferenceId);
+
+    const createPreference = async () => {
+        setIsLoading(true);
+
+        const orderData = {
+            quantity: quantity,
+            price: 200,
+            description: "item",
+        };
+
+        try {
+            const response = await axios.post(
+                "https://s10-10-m-php-react-amazon-production.up.railway.app/api/create_preference",
+                orderData,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+
+            setPreferenceId(response.data.preference_id);
+        } catch (error) {
+            console.error("Error:", error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleBuy = async () => {
+        const id = await createPreference();
+        if (id) {
+            setPreferenceId(id);
+        }
     };
 
 
@@ -48,8 +93,9 @@ const PaymentOption = () => {
                             <img src={paymentMarket} alt="IconPaymentMarket" />
                             <span>Mercado pago</span>
                         </div>
-                        <button><GrNext /></button>
+                        <button onClick={handleBuy}><GrNext /></button>
                     </div>
+                    {preferenceId && <Wallet initialization={{ preferenceId }} />}
                 </div>
 
             </div>

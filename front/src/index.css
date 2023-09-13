@@ -81,3 +81,38 @@
 .purchases{
   font-family: 'Montserrat', sans-serif;
 }
+
+
+/* @media screen and (max-width: 484px) {
+  .slick-slider{
+   background:rebeccapurple; 
+   display: flex !important;
+   width: 400px !important;
+   overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 484px) {
+  .slick-list{
+   background:rebeccapurple; 
+   display: flex !important;
+   width: 450px !important;
+   overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 484px) {
+  .slick-list > *{
+   background: red; 
+   display: flex !important;
+   margin-right: 20px !important;
+   width: 450px !important;
+  }
+}
+
+@media screen and (max-width: 484px) {
+  .slick-track .slick-slide {
+    background: pink;
+    margin-right: 40px;
+  }
+} */

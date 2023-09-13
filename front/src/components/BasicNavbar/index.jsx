@@ -26,6 +26,8 @@ const BasicNavbar = () => {
     );
   }, []);
 
+
+
   const navList = (
     <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
@@ -60,6 +62,16 @@ const BasicNavbar = () => {
           className="p-1 font-bold"
         >
           <Link to="/user/profile">Mi Perfil</Link>
+        </Typography>
+      )}
+      {user.token && (
+        <Typography
+          as="li"
+          variant="small"
+          color="blue-gray"
+          className="p-1 font-bold"
+        >
+          <Link to="/purchases">Mis Compras</Link>
         </Typography>
       )}
     </ul>

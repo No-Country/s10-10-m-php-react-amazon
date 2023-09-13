@@ -1,5 +1,5 @@
 import { Button, Checkbox } from '@material-tailwind/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BiArrowBack } from "react-icons/bi";
 import {
     Card,
@@ -7,6 +7,9 @@ import {
     Typography,
 } from "@material-tailwind/react";
 import { Link } from 'wouter';
+import { postPurchases } from '../../../api/userApi';
+import { useForm } from "react-hook-form";
+import { useSelector } from 'react-redux';
 
 const formatCardNumber = (value) => {
     const val = value.replace(/\s+/g, "").replace(/[^0-9]/gi, "");
@@ -34,13 +37,23 @@ const formatExpires = (value) => {
 }
 
 const CreditCard = () => {
+
     const [cardNumber, setCardNumber] = useState("");
     const [cardExpires, setCardExpires] = useState("");
+
+    const user = useSelector((state) => state.user);
+
+    const { register, handleSubmit } = useForm()
+
 
     const handleBack = () => {
         history.back();
     };
 
+    const submit = (data) => {
+        console.log(data);
+        postPurchases(data, user.token)
+    }
 
     return (
         <div className='h-screen'>
@@ -59,15 +72,16 @@ const CreditCard = () => {
                 <h3 className='text-[24px] font-bold text-colorNeutral1'>Tarjeta de crédito o débito</h3>
             </div>
 
-            <form action="" className='w-[343px] lg:w-[550px] m-auto'>
+            <form onSubmit={handleSubmit(submit)} className='w-[343px] lg:w-[550px] m-auto'>
 
                 <Card className='w-[343px] h-[238px] px-[1rem] lg:w-[550px]  lg:h-[278px] flex justify-center items-center rounded-lg border-2 border-colorNeutral2 m-auto '>
                     <div className="my-6 flex flex-col items-center gap-10 ">
                         <Input
-                            label="Card Number"
+                            label="CardNumber"
                             maxLength={19}
                             value={formatCardNumber(cardNumber)}
                             onChange={(event) => setCardNumber(event.target.value)}
+                            {...register("cardNumber")}
                         // icon={
                         //     <CreditCardIcon className="h-5 w-5 text-blue-gray-300" />
                         // }
@@ -79,11 +93,13 @@ const CreditCard = () => {
                                 value={formatExpires(cardExpires)}
                                 onChange={(event) => setCardExpires(event.target.value)}
                                 containerProps={{ className: "min-w-[72px]" }}
+                                {...register("expiries")}
                             />
                             <Input
                                 label="CVC"
                                 maxLength={4}
                                 containerProps={{ className: "min-w-[72px]" }}
+                                {...register("CVV")}
                             />
                         </div>
 

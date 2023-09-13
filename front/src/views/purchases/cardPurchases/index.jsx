@@ -1,14 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import bagPurchases from '../../home/assets/bagCardPurchases.png'
 import { Button } from '@material-tailwind/react';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import ModalDeletePurchases from './modalDeletePurchases';
+import { useSelector } from 'react-redux';
+import { getPurchases } from '../../../api/authApi';
 
 const CardPurchases = () => {
 
     const [open, setOpen] = useState(false);
-
     const handleOpen = () => setOpen(!open);
+
+    const user = useSelector((state) => state.user);
+    const [purchases, setPurchases] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+
+    console.log(purchases);
+
+
+    useEffect(() => {
+        setIsLoading(true);
+        getPurchases(user.token)
+            .then((response) => {
+                setPurchases(response.data)
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+            .finally(() => {
+                setIsLoading(false)
+            })
+    }, []);
 
     return (
         <div className='border-2 border-colorNeutral2 h-[192px] lg:w-[950px]  w-full rounded-xl flex m-0 lg:m-auto'>

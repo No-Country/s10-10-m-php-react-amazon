@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
 import cartSlice from '../features/cartSlice';
 import businessInfoSlice from "../features/businessSlice"
+import quantitySlice from '../features/quantitySlice';
 
 const userPersistConfig = {
     key: 'user',
@@ -24,6 +25,7 @@ const rootReducer = {
     user: persistedUserReducer,
     cart: persistedCartReducer,
     businessInfo: businessInfoSlice,
+    quantity: quantitySlice,
 };
 
 export const store = configureStore({
