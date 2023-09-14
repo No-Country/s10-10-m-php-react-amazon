@@ -27,7 +27,7 @@ const PaymentOption = () => {
 
     const user = useSelector((state) => state.user);
     const token = user.token
-    console.log(user.id);
+
     const createPreference = async () => {
         setIsLoading(true);
 
@@ -49,7 +49,7 @@ const PaymentOption = () => {
                 }
             );
 
-            setPreferenceId(user.id);
+            setPreferenceId(response.data.preference_id);
         } catch (error) {
             console.error("Error:", error);
         } finally {
@@ -61,6 +61,7 @@ const PaymentOption = () => {
         const id = await createPreference();
         if (id) {
             setPreferenceId(id);
+            console.log("from handleBuy", id);
         }
     };
 

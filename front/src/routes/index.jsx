@@ -21,6 +21,7 @@ import SelledPacks from "../views/profile/components/SelledPacks";
 import { CardProfile } from "../components/CardProfile";
 import Purchases from "../views/profile/PersonProfile/components/purchases";
 import EditProfile from "../views/profile/components/EditProfile";
+import FormUser from "../views/auth/authUser/signUpUser/formUser";
 
 const AppRouter = () => {
   return (
@@ -33,6 +34,7 @@ const AppRouter = () => {
       <Route path="/payment/creditCard" component={CreditCard} />
       <Route path="/auth/user/signup" component={SignUpUser} />
       <Route path="/auth/user/login" component={LoginUser} />
+      <Route path="/auth/user/login/payment" component={FormUser} />
       <Route path="/auth/shop/signup" component={SignUpShop} />
       <Route path="/auth/shop/signup/store-manager" component={StoreManager} />
       <Route path="/auth/shop/signup/store-signup" component={StoreSignUp} />
