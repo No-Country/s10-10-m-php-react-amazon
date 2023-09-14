@@ -160,7 +160,7 @@ export default function FormShop() {
             </div>
             <div className="text-center">
               <Button
-                className="rounded-full text-lg normal-case w-[340px] text-colorPrimary bg-[#FFDBCC]"
+                className="rounded-full font-weightText text-lg normal-case w-[340px] text-colorPrimary bg-[#FFDBCC]"
                 type="submit"
               >
                 Iniciar

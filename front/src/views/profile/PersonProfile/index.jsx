@@ -14,7 +14,7 @@ const PersonProfile = ({ user }) => {
       <h1 className="text-sizeTitle font-bold mt-5">Mi perfil</h1>
       <CardProfile user={user} />
       <Button
-        className="normal-case bg-colorPrimary rounded-full m-5"
+        className="normal-case bg-colorPrimary font-weightText rounded-full m-5"
         onClick={handleOpenDialog}
       >
         Ver actividad
