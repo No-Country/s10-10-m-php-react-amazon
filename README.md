@@ -85,6 +85,8 @@ Descubre y navega en vivo aquí 👉 ["Listo Para Llevar"](https://s10-10-m-php-
 
 :hammer_and_wrench:	**Tech Stack:**
 
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+
 <br>
 
 #### 🎨 UX/UI
