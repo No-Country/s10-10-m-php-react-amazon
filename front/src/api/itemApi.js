@@ -40,8 +40,9 @@ export const getPackById = async (id, token) => {
   }
 }
 
-export const getShopPacks = async () => {
-  return getAllPacks()
-
+export const getShopPacks = async (id) => {
+  const response = await getAllPacks()
+  const activePacks = response.data["Packs available"].filter(item => item.user_id == id)
+  return activePacks
 
 }

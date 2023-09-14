@@ -11,11 +11,9 @@ const ActivePacksListContainer = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        getShopPacks()
+        getShopPacks(user.id)
           .then((response) => {
-            console.log(response)
-            const packs = response.data['Packs available']
-            setItems(packs)
+            setItems(response)
             })
           .catch((err) => {
             console.log(err);

@@ -29,7 +29,7 @@ const timeEnd = `${timeEndParts[0]}:${timeEndParts[1]}`;
             <h1 className="custom-text font-bold my-2">{item.name}</h1>
             <BiTrash size={30}/>
             </div>
-            <p className="custom-textButton"><span>Retirar a las </span><span className="border-black rounded-md border-gray-200 border-2  p-1">{timeStart} - {timeEnd}</span></p>
+            <p className="custom-textButton"><span>Retirar de </span><span className="border-black rounded-md border-gray-200 border-2  p-1">{timeStart} - {timeEnd}</span></p>
             <div className="flex justify-between items-center">
                 <h1 className="text-sizeSubtitle font-extrabold text-colorPrimary">$ {item.price}</h1>
                 <Button variant="outlined" className="rounded-full border-[#045162] text-[#045162] text-md font-extrabold py-2 px-3" color="teal">

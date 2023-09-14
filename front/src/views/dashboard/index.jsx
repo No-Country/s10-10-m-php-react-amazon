@@ -17,7 +17,6 @@ const Dashboard = () => {
   const [match, params] = useRoute("/dashboard/:category");
   const category = match ? params.category : null
   const [business, setBusiness] = useState([]);
-  const [title, setTitle] = useState("Los más deseados");
   const user = useSelector((state) => state.user);
   const [showFilter, setShowFilter] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -48,7 +47,6 @@ const Dashboard = () => {
           handleOpen={handleFilter}
           filters={filters}
           setFilters={setFilters}
-          setTitle={setTitle}
 
         />
       </div>
@@ -71,7 +69,6 @@ const Dashboard = () => {
 
       <>
         
-        {filters.view !== "map" && <h1 className="text-sizeTitle font-weightTitle">{title}</h1>}
         <div className="flex justify-center w-full">
           {isLoading ? (
             <div className="flex items-center justify-center">

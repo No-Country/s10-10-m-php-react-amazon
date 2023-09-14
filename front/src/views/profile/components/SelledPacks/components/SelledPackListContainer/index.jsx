@@ -1,7 +1,7 @@
 import { Spinner } from '@material-tailwind/react';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
-import { getShopPacks } from '../../../../../../api/itemApi';
+import { getPurchasesByShopId } from '../../../../../../api/purchaseApi';
 import SelledPackList from '../SelledPackList';
 
 const SelledPacksListContainer = () => {
@@ -11,11 +11,9 @@ const SelledPacksListContainer = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        getShopPacks()
+        getPurchasesByShopId(user.id, user.token)
           .then((response) => {
-            const allPacks = response.data['Packs available']
-            const packs = allPacks.filter(item => item.user_id == user.id)
-            setItems(packs)
+            setItems(response)
             })
           .catch((err) => {
             console.log(err);
