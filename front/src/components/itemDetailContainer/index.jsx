@@ -5,7 +5,10 @@ import { useRoute } from 'wouter'
 import { productFindShop } from "../../utils/products/functions";
 import { ItemModal } from "./itemModal";
 import { getPackById } from "../../api/itemApi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setItem } from "../../features/quantitySlice";
+
+
 const ItemDetailContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [match, params] = useRoute("/detail/:id");
@@ -13,13 +16,17 @@ const ItemDetailContainer = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   const user = useSelector(state => state.user)
-  const [item, setItem] = useState({})
+  const [item1, setItem1] = useState({})
+
+  const dispatch = useDispatch();
+
+
 
   useEffect(() => {
     setIsLoading(true);
     getPackById(id, user.token)
       .then((response) => {
-        setItem(response);
+        setItem1(response);
       })
       .catch((err) => {
         console.log(err);
@@ -27,7 +34,8 @@ const ItemDetailContainer = () => {
       .finally(() => {
         setIsLoading(false);
       });
-  }, [setItem]);
+  }, [setItem1]);
+
 
   return (
     <div>
@@ -37,10 +45,10 @@ const ItemDetailContainer = () => {
         </div>
       ) : (
         <div>
-          <ItemDetail item={item} handleOpen={handleOpen} />
+          <ItemDetail item={item1} handleOpen={handleOpen} />
         </div>
       )}
-      <ItemModal open={open} handleOpen={handleOpen} item={item} />
+      <ItemModal open={open} handleOpen={handleOpen} item={item1} />
     </div>
   );
 };

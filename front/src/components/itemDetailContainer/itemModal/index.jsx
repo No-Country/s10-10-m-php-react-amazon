@@ -24,6 +24,8 @@ export function ItemModal({ open, handleOpen, item }) {
     }
   }
 
+  const token = useSelector((state) => state.user.token);
+  const userId = useSelector((state) => state.user.id);
 
 
   const handleMinus = () => {
@@ -77,15 +79,18 @@ export function ItemModal({ open, handleOpen, item }) {
           </div>
         </DialogBody>
         <DialogFooter className="flex flex-col justify-center pb-10">
-          <Link to={"/payment"}>
+
+          <Link to={token ? "/payment" : '/auth/user/login/payment'}>
             <Button
               style={{ textTransform: "none" }}
-              className="bg-colorPrimary rounded-full h-12 w-[300px] text-buttonFilledColor font-bold"
+              className="bg-colorPrimary rounded-full h-12 w-[280px] text-buttonFilledColor font-bold"
               onClick={handleOpen}
+              disabled={quantity === 0}
             >
               <span>Ir a Pagar </span>
             </Button>
           </Link>
+
         </DialogFooter>
       </Dialog >
     </>
