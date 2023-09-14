@@ -1,14 +1,36 @@
 import { Button } from '@material-tailwind/react';
+import { useEffect, useState } from 'react';
 import { BiArrowBack } from "react-icons/bi";
+import { useSelector } from 'react-redux';
+import { getPurchases } from '../../../../../api/authApi';
 import CardPurchases from './cardPurchases';
 
 
 const Purchases = () => {
 
+
+    const user = useSelector((state) => state.user);
+    const [purchases, setPurchases] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+
     const handleBack = () => {
         history.back();
     };
 
+
+    useEffect(() => {
+        setIsLoading(true);
+        getPurchases(user.token)
+            .then((response) => {
+                setPurchases(response.data.Purchases)
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+            .finally(() => {
+                setIsLoading(false)
+            })
+    }, []);
     return (
         <div className='h-screen p-[1rem]'>
             <div className=' w-full h-full'>
@@ -24,10 +46,14 @@ const Purchases = () => {
                 </div>
 
                 <div className='flex flex-col h-[85vh] gap-6 overflow-y-auto min-w-[350px] snap-y w-full'>
-                    <CardPurchases />
-                    <CardPurchases />
-                    <CardPurchases />
-                    <CardPurchases />
+                    {purchases && purchases.length > 0 ? 
+                        (purchases.map(item => 
+                            <CardPurchases item={item} />
+                        )
+                    ): (
+                        <h1 className='mt-5'>No hay packs comprados</h1>
+                    )}
+                   
                 </div>
 
             </div>

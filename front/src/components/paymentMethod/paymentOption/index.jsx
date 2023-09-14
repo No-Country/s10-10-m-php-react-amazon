@@ -19,12 +19,12 @@ const PaymentOption = () => {
 
 
     const quantity = useSelector((state) => state.quantity.quantity);
+    const item = useSelector((state) => state.item.item)
     const [preferenceId, setPreferenceId] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     initMercadoPago("TEST-9e8b3f4f-c4b6-4c5d-9c99-ce8dc363b227");
 
     console.log("preferenceId", preferenceId);
-
     const user = useSelector((state) => state.user);
     const token = user.token
 
@@ -33,9 +33,12 @@ const PaymentOption = () => {
 
         const orderData = {
             quantity: quantity,
-            price: 200,
+            price: item.price * quantity,
             description: "item",
+
         };
+
+        console.log(orderData)
 
         try {
             const response = await axios.post(
