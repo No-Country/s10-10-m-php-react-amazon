@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRef, useState } from "react";
 import { Toaster, toast } from "sonner";
 import { navigate } from "wouter/use-location";
+import { BiArrowBack } from "react-icons/bi";
 
 export default function EditProfile() {
   const dispatch = useDispatch();
@@ -13,6 +14,10 @@ export default function EditProfile() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const user = useSelector((state) => state.user);
+
+  const handleBack = () => {
+    history.back();
+  };
 
   const handleFileSelect = (event) => {
     const selectedFile = event.target.files[0];
@@ -42,7 +47,17 @@ export default function EditProfile() {
   return (
     <>
       <div className="flex flex-col items-center h-screen">
-        <h1 className="text-sizeTitle font-bold mt-5">Editar perfil</h1>
+        <div className="flex items-center mt-5">
+          <Button
+            variant="outlined"
+            onClick={handleBack}
+            className="rounded-full p-3 flex justify-center border-2"
+          >
+            <BiArrowBack size={16} color="black" />
+          </Button>
+          <h1 className="ml-10 text-sizeTitle font-bold">Editar perfil</h1>
+        </div>
+
         <div className="flex flex-row items-center mt-10">
           <div className="w-[100px] h-[100px]">
             {user.avatar ? (
