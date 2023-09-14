@@ -11,17 +11,18 @@ import iconHeart from "../../../../assets/icons/heart.svg";
 import Panaderia from '../../../../assets/bakery.jpg'
 import Supermercado from '../../../../assets/superMercado.png'
 import Verduleria from "../../../../assets/verduleria1.png"
+import { useEffect } from "react";
 
 const Cards = ({ item, handleOpen }) => {
   const tags = JSON.parse(item.tags);
   const timeStartParts = item.time_start.split(" ")[1].split(":");
   const timeStart = `${timeStartParts[0]}:${timeStartParts[1]}`;
-
   const timeEndParts = item.time_end.split(" ")[1].split(":");
   const timeEnd = `${timeEndParts[0]}:${timeEndParts[1]}`;
 
   const img = item.shop.category == "panaderia" ? Panaderia : item.shop.category == "supermercado" ? Supermercado : Verduleria
 
+ 
   if (!item) {
     return <div>Loading...</div>;
   }
@@ -55,7 +56,7 @@ const Cards = ({ item, handleOpen }) => {
                 <img src={startBasic} alt="iconStart" />
               </span>
               <span>{item.shop.stars}</span>
-              <span className="ml-3">{"150 m."}</span>
+              <span className="ml-3">{"X m."}</span>
             </div>
           </div>
 

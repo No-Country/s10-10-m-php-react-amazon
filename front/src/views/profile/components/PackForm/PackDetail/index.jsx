@@ -76,7 +76,7 @@ const PackDetail = ({ open, handleOpen, handleSubmitPack, price, setPrice, descr
 
   return (
     <Dialog
-      className="max-w-full w-full absolute top-1/4  p-5 bottom-0  m-0 rounded-t-2xl rounded-b-none "
+      className="max-w-full w-full absolute top-1/4  px-5 pt-3 bottom-0  m-0 rounded-t-2xl rounded-b-none "
       open={open}
       handler={handleOpen}
       animate={{
@@ -186,7 +186,7 @@ const PackDetail = ({ open, handleOpen, handleSubmitPack, price, setPrice, descr
         })}
       </div>
       <div className="border-t border-gray-500 w-full h-px my-5"></div>
-      <div className="flex w-full justify-center my-5">
+      <div className="flex w-full justify-center mb-5 ">
         
         <Button
           variant="gradient"
