@@ -15,14 +15,14 @@ La experiencia de usuario se ha diseñado para ser intuitiva y accesible, enfoc�
 
 ## :rocket: Deploy
 
-Descubre y navega en vivo aquí 👉 ["Listo Para Llevar"](https://s10-10-m-php-react.onrender.com)
+Descubre y navega en vivo aquí 👉 ["Listo Para Llevar"](https://listoparallevar.onrender.com/)
 
 
 <br>
 
 ## :triangular_ruler: Prototipado
 
-Échale un ojo al prototipo de Figma aquí 👉 ["Listo Para Llevar"](https://www.figma.com/proto/hb2M6bnLpv2fHWNhKNsttY/s10-10-m-php-react-amazon?page-id=1%3A4&type=design&node-id=1426-3930&viewport=-680%2C297%2C0.13&t=t1VpRptVwOAxKMtF-1&scaling=scale-down&starting-point-node-id=412%3A1370&show-proto-sidebar=1&mode=design)
+Échale un ojo al prototipo de Figma aquí 👉 ["Listo Para Llevar"](https://www.figma.com/proto/hb2M6bnLpv2fHWNhKNsttY/s10-10-m-php-react-amazon?type=design&node-id=412-1370&t=jlVQGX4LQf0bTagq-1&scaling=scale-down&page-id=1%3A4&starting-point-node-id=412%3A1370&show-proto-sidebar=1&mode=design)
 
 
 <br>
@@ -78,7 +78,7 @@ Descubre y navega en vivo aquí 👉 ["Listo Para Llevar"](https://s10-10-m-php-
 
 #### 🔍 Testing
 
-| <img src="URL_imagen_Melisa" width="100"> |
+| <img src="https://media.licdn.com/dms/image/D4E03AQHFVPqFa53Xvg/profile-displayphoto-shrink_800_800/0/1694475307323?e=1700092800&v=beta&t=JPOy5K-7nXuZxVpLnp5oE0ieLBxjkc2nXh-T_iRwMUU" width="100"> |
 |:---:|
 | **Melisa Araoz** |
 | [![LinkedIn](https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/melisa-araoz/) |
