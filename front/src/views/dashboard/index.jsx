@@ -69,7 +69,7 @@ const Dashboard = () => {
 
       <>
         
-        <div className="flex justify-center w-full">
+        <div className="flex justify-center h-screen w-full">
           {isLoading ? (
             <div className="flex items-center justify-center">
               <Spinner />
