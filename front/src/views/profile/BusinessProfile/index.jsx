@@ -17,22 +17,24 @@ const BusinessProfile = ({ user }) => {
   if (!openForm)
     return (
       <div className="flex flex-col items-center h-screen w-full mb-10">
-        <h1 className="text-sizeTitle font-bold mt-5">Mi perfil</h1>
-        <div>
+        <div className="flex flex-row justify-center items-center">
+          <h1 className="text-sizeTitle font-bold mr-10">Mi perfil</h1>
           <Button
-            className="normal-case bg-colorPrimary rounded-full m-2"
+            className="normal-case bg-colorPrimary font-weightText rounded-full m-2"
             onClick={handleOpenForm}
           >
             Añadir Pack
           </Button>
-          <Button
-            className="normal-case bg-colorPrimary rounded-full m-2"
-            onClick={handleOpenDialog}
-          >
-            Ver actividad
-          </Button>
         </div>
+
         <CardProfile user={user} />
+        <Button
+          className="normal-case bg-colorPrimary font-weightText rounded-full m-2"
+          onClick={handleOpenDialog}
+        >
+          Ver actividad
+        </Button>
+
         <DialogPack setOpen={setOpenDialog} open={openDialog} />
       </div>
     );
