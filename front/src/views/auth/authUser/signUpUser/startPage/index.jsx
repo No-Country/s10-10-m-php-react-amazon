@@ -33,19 +33,19 @@ function SignUpStartPage({ setChoice }) {
           <div className="flex flex-col items-center gap-3 ">
             <Button
               variant="filled"
-              className="rounded-full normal-case w-[340px] lg:w-[310px] bg-buttonFilledColor text-colorPrimary text-sm custom-google-button"
+              className="rounded-full font-weightText  normal-case w-[340px] lg:w-[310px] bg-buttonFilledColor text-colorPrimary text-sm custom-google-button"
             >
               Registrarme con Google
             </Button>
             <Button
               variant="filled"
-              className="rounded-full normal-case w-[340px] lg:w-[310px] bg-buttonFilledColor text-colorPrimary text-sm custom-facebook-button"
+              className="rounded-full font-weightText  normal-case w-[340px] lg:w-[310px] bg-buttonFilledColor text-colorPrimary text-sm custom-facebook-button"
             >
               Registrarme con Facebook
             </Button>
             <Button
               variant="filled"
-              className="rounded-full normal-case w-[340px] lg:w-[310px] bg-buttonFilledColor text-colorPrimary text-sm custom-mail-button"
+              className="rounded-full font-weightText  normal-case w-[340px] lg:w-[310px] bg-buttonFilledColor text-colorPrimary text-sm custom-mail-button"
               onClick={() => setChoice("email")}
             >
               Registrarme con correo

@@ -126,7 +126,7 @@ export default function EditProfile() {
             containerProps={{ className: "min-w-[100px]" }}
           />
           <Button
-            className="normal-case bg-colorPrimary rounded-full mt-5"
+            className="normal-case bg-colorPrimary font-weightText rounded-full mt-5"
             onClick={handleSaveChanges}
           >
             Guardar cambios

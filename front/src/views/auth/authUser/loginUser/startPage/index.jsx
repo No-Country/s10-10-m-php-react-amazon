@@ -30,23 +30,23 @@ function LoginStartPage({ setChoice }) {
             </p>
           </div>
         </section>
-        <section className="bg-colorPrimary w-full h-96 flex flex-col lg:rounded-lg items-center justify-center z-10 lg:w-[450px] lg:h-[500px]">
+        <section className="bg-colorPrimary font-weightText  w-full h-96 flex flex-col lg:rounded-lg items-center justify-center z-10 lg:w-[450px] lg:h-[500px]">
           <div className="flex flex-col items-center gap-3 ">
             <Button
               variant="filled"
-              className="rounded-full normal-case w-[340px] lg:w-[310px] bg-buttonFilledColor text-colorPrimary text-sm custom-google-button"
+              className="rounded-full font-weightText  normal-case w-[340px] lg:w-[310px] bg-buttonFilledColor text-colorPrimary text-sm custom-google-button"
             >
               Continuar con Google
             </Button>
             <Button
               variant="filled"
-              className="rounded-full normal-case w-[340px] lg:w-[310px] bg-buttonFilledColor text-colorPrimary text-sm custom-facebook-button"
+              className="rounded-full font-weightText  normal-case w-[340px] lg:w-[310px] bg-buttonFilledColor text-colorPrimary text-sm custom-facebook-button"
             >
               Continuar con Facebook
             </Button>
             <Button
               variant="filled"
-              className="rounded-full normal-case w-[340px] lg:w-[310px] bg-buttonFilledColor text-colorPrimary text-sm custom-mail-button"
+              className="rounded-full font-weightText  normal-case w-[340px] lg:w-[310px] bg-buttonFilledColor text-colorPrimary text-sm custom-mail-button"
               onClick={() => setChoice("email")}
             >
               Continuar con correo

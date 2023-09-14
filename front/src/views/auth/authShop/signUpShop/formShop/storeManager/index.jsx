@@ -75,7 +75,7 @@ const StoreManager = () => {
         <div className="mt-10 m-2">
           <Button
             fullWidth
-            className="rounded-full normal-case bg-buttonFilledColor text-colorPrimary text-sm"
+            className="rounded-full font-weightText  normal-case bg-buttonFilledColor text-colorPrimary text-sm"
             type="submit"
           >
             Continuar
