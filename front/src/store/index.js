@@ -19,15 +19,30 @@ const cartPersistConfig = {
     blacklist: [],
 }
 
+const itemPersistConfig = {
+    key: 'item',
+    storage,
+    blacklist: []
+}
+
+const quantityPersistConfig = {
+    key: 'quantity',
+    storage,
+    blacklist: []
+}
+
 const persistedUserReducer = persistReducer(userPersistConfig, userSlice);
 const persistedCartReducer = persistReducer(cartPersistConfig, cartSlice);
+const persistedItemReducer = persistReducer(itemPersistConfig, itemSlice);
+const persistedQuantityReducer = persistReducer(quantityPersistConfig, quantitySlice);
 
 const rootReducer = {
     user: persistedUserReducer,
     cart: persistedCartReducer,
     businessInfo: businessInfoSlice,
-    quantity: quantitySlice,
-    item: itemSlice
+    quantity: persistedQuantityReducer,
+    item: persistedItemReducer
+
 };
 
 export const store = configureStore({

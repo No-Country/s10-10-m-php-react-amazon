@@ -6,7 +6,7 @@ import { productFindShop } from "../../utils/products/functions";
 import { ItemModal } from "./itemModal";
 import { getPackById } from "../../api/itemApi";
 import { useDispatch, useSelector } from "react-redux";
-import { setItem } from "../../features/quantitySlice";
+import { setItem } from "../../features/itemSlice";
 
 
 const ItemDetailContainer = () => {
@@ -14,13 +14,17 @@ const ItemDetailContainer = () => {
   const [match, params] = useRoute("/detail/:id");
   const id = params.id
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(!open);
+
+ 
   const user = useSelector(state => state.user)
   const [item1, setItem1] = useState({})
 
   const dispatch = useDispatch();
 
-
+  const handleOpen = () => {
+    dispatch(setItem(item1))
+    setOpen(!open);
+  }
 
   useEffect(() => {
     setIsLoading(true);
