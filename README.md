@@ -99,6 +99,7 @@ Descubre y navega en vivo aquí 👉 ["Listo Para Llevar"](https://listoparallev
 <br>
 
 <br>
+
 #### 🔍 Testing
 
 | <img src="https://media.licdn.com/dms/image/D4E03AQHFVPqFa53Xvg/profile-displayphoto-shrink_800_800/0/1694475307323?e=1700092800&v=beta&t=JPOy5K-7nXuZxVpLnp5oE0ieLBxjkc2nXh-T_iRwMUU" width="100"> |
@@ -115,6 +116,7 @@ Descubre y navega en vivo aquí 👉 ["Listo Para Llevar"](https://listoparallev
 <br>
 
 <br>
+
 #### 🎨 UX/UI
 
 | <img src="https://ca.slack-edge.com/T032Y55Q6VC-U05C293EC0M-1496c22c84bf-512" width="100"> | <img src="https://mir-s3-cdn-cf.behance.net/user/276/b76931603417759.636193075d904.jpg" width="100"> |
