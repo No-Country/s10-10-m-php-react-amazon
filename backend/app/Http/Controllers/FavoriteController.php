@@ -17,7 +17,6 @@ class FavoriteController extends Controller
 
     public function index(){
 
-
         $encryptedId = Auth::user()->getAuthIdentifier();
         $favorite = Favorite::where('user_id', $encryptedId)
         ->join('users', 'favorites.business_id', '=', 'users.id')
