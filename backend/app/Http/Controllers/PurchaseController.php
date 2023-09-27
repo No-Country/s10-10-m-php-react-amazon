@@ -106,6 +106,31 @@ class PurchaseController extends Controller
         }
     }
 
+    public function showbyid(Request $request,$id){
+        try {
+            $currentUser = Auth::user();
+            //$encryptedId = Auth::user()->getAuthIdentifier();
+
+            if($currentUser->type === 'business'){
+                $purchase = Purchase::where('id',$id)
+                ->with(['user', 'pack','seller'])
+                ->get();
+            } else {
+                $purchase = Purchase::where('id',$id)
+                ->with(['user', 'pack','seller'])
+                ->get();
+            }
+
+            return response()->json(['Purchase:' => $purchase], 201);
+
+        } catch (ValidationException $e) {
+            return response()->json([
+                'error' => 'Invalidated data',
+                'message' => $e->getMessage(),
+                'errors' => $e->errors()
+            ], 400);
+        }
+    }
     public function update(Request $request){
         try {
             $validatedData = $request->validate([
