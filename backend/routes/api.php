@@ -84,6 +84,7 @@ Route::group(['middleware' => 'api'], function ($router) {
             //Rutas de purchases
         Route::post('purchase', 'App\Http\Controllers\PurchaseController@store');
         Route::get('purchase', 'App\Http\Controllers\PurchaseController@show');
+        Route::get('purchase/{id}', 'App\Http\Controllers\PurchaseController@showbyid');
         Route::put('purchase/update', 'App\Http\Controllers\PurchaseController@update');
         Route::delete('purchase/delete/{id}', 'App\Http\Controllers\PurchaseController@destroy');
         
