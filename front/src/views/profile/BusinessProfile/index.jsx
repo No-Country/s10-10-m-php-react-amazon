@@ -5,6 +5,7 @@ import DialogPack from "../components/DialogPack";
 import { PackForm } from "../components/PackForm";
 
 const BusinessProfile = ({ user }) => {
+
   const [openForm, setOpenForm] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
   const handleOpenForm = () => {
@@ -16,7 +17,7 @@ const BusinessProfile = ({ user }) => {
   };
   if (!openForm)
     return (
-      <div className="flex flex-col items-center h-screen w-full mb-10">
+      <div className="flex flex-col items-center h-screen w-full  mb-10">
         <div className="flex flex-row justify-center items-center">
           <h1 className="text-sizeTitle font-bold mr-10">Mi perfil</h1>
           <Button

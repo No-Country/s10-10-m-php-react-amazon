@@ -14,6 +14,7 @@ const Purchases = () => {
     history.back();
   };
 
+
   useEffect(() => {
     setIsLoading(true);
     getPurchases(user.token)
@@ -27,6 +28,8 @@ const Purchases = () => {
         setIsLoading(false);
       });
   }, []);
+
+
   return (
     <div className="h-screen p-[1rem]">
       <div className=" w-full h-full">

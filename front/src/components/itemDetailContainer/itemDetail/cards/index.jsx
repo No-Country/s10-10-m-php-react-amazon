@@ -22,7 +22,7 @@ const Cards = ({ item, handleOpen }) => {
 
   const img = item.shop.category == "panaderia" ? Panaderia : item.shop.category == "supermercado" ? Supermercado : Verduleria
 
- 
+
   if (!item) {
     return <div>Loading...</div>;
   }
@@ -74,7 +74,7 @@ const Cards = ({ item, handleOpen }) => {
 
           <div className="text-sizeNote font-bold flex items-center justify-between">
             <span className="text-[12px] text-colorNeutral1">
-              Retirar entre{" "}
+              Retirar entre
               <span className="border-[2px] border-colorNeutral2 px-2 py-[2px] rounded-md">
                 {timeStart} y {timeEnd}
               </span>

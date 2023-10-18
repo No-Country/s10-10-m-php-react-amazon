@@ -21,7 +21,7 @@ const DialogPack = ({ setOpen, open }) => {
       handler={handleOpen}
       className=" w-max-[343px] h-min-[435px]"
     >
-      <div className=" w-max-[343px] h-[435px] h-[max-435px] flex flex-col justify-evenly items-center overflow-y-auto">
+      <div className=" w-max-[343px] h-[435px]  flex flex-col justify-evenly items-center overflow-y-auto">
         <div>
           {user.type == "business" ? (
             <Link

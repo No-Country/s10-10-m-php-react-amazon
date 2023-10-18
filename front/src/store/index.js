@@ -6,6 +6,7 @@ import cartSlice from '../features/cartSlice';
 import businessInfoSlice from "../features/businessSlice"
 import quantitySlice from '../features/quantitySlice';
 import itemSlice from '../features/itemSlice';
+import purchaseidSlice from '../features/purchaseidSlice';
 
 const userPersistConfig = {
     key: 'user',
@@ -41,8 +42,8 @@ const rootReducer = {
     cart: persistedCartReducer,
     businessInfo: businessInfoSlice,
     quantity: persistedQuantityReducer,
-    item: persistedItemReducer
-
+    item: persistedItemReducer,
+    purchaseId: purchaseidSlice,
 };
 
 export const store = configureStore({

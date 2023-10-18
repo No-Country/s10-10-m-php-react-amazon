@@ -13,7 +13,7 @@ const ModalDeletePurchases = ({ handleOpen, open }) => {
         <>
             <Dialog open={open} handler={() => handleOpen()} className='h-[200px] py-[1rem] flex flex-col justify-between'>
                 <DialogBody className=' text-sizeText text-colorNeutral1'>
-                    ¿Estas seguro que quieres eilimar este pack?
+                    ¿Estas seguro que quieres elimar este pack?
                 </DialogBody>
                 <div className='flex justify-end px-[1rem] gap-4'>
                     <Button

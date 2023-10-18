@@ -35,3 +35,24 @@ export const addPurchase = async (data, token) => {
   );
   return response;
 };
+
+export const getPurchaseById = (token, id) => {
+  const response = axios.get(`${BASE_URL}/purchase/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+  );
+  return response;
+}
+
+export const updatePurchase = (data, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    },
+  };
+
+  return axios.put(`${BASE_URL}/purchase/update`, data, config);
+}

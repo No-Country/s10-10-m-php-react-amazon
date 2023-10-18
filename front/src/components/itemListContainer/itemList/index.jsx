@@ -36,16 +36,24 @@ const ItemList = ({ business }) => {
   };
 
   return (
-    <div className="w-screen ">
-      <Slider {...settings}>
+    <div className="w-screen overflow-hidden">
+      {/* <Slider {...settings} className="lg:hidden">
         {business && business.length !== 0 ? (
           business.map((shop) =>
             shop.pack.map((item) => item ? <Item item={item} shop={shop} key={item.id} /> : null)
           )
-        ): (
+        ) : (
           <h1>No hay packs disponibles</h1>
         )}
-      </Slider>
+      </Slider> */}
+
+      <div className="flex flex-wrap h-screen justify-center overflow-y-auto">
+        {
+          business.map((shop) =>
+            shop.pack.map((item) => item ? <Item item={item} shop={shop} key={item.id} /> : null)
+          )
+        }
+      </div>
     </div>
   );
 };
