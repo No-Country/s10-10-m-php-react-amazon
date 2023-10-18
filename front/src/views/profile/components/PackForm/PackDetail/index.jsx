@@ -55,6 +55,7 @@ const PackDetail = ({ open, handleOpen, handleSubmitPack, price, setPrice, descr
     "Sin Gluten",
     "Vegetariano",
     "Vegano",
+    "Saludable",
   ];
   const handleTimeStart = (time) => {
     setTime_start(time);
@@ -76,7 +77,7 @@ const PackDetail = ({ open, handleOpen, handleSubmitPack, price, setPrice, descr
 
   return (
     <Dialog
-      className="max-w-full w-full absolute top-1/4  px-5 pt-3 bottom-0  m-0 rounded-t-2xl rounded-b-none "
+      className="max-w-full w-full absolute   px-5 pt-3 bottom-0   m-0 rounded-t-2xl rounded-b-none "
       open={open}
       handler={handleOpen}
       animate={{
@@ -134,8 +135,8 @@ const PackDetail = ({ open, handleOpen, handleSubmitPack, price, setPrice, descr
           className: "hidden ",
         }}
         containerProps={{ className: "max-w-[80px] min-w-[80px]" }}
-        value={price} 
-            onChange={(e) => setPrice(e.target.value)} 
+        value={price}
+        onChange={(e) => setPrice(e.target.value)}
       />
       <h1 className="text-left text-sizeSubtitle font-weightTitle text-black my-3">
         Descripción del pack:
@@ -152,8 +153,8 @@ const PackDetail = ({ open, handleOpen, handleSubmitPack, price, setPrice, descr
             className: "hidden ",
           }}
           label="Message"
-          value={description} 
-            onChange={(e) => setDescription(e.target.value)} 
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
         />
       </div>
       <h1 className="text-left text-sizeSubtitle font-weightTitle text-black my-3">
@@ -187,13 +188,13 @@ const PackDetail = ({ open, handleOpen, handleSubmitPack, price, setPrice, descr
       </div>
       <div className="border-t border-gray-500 w-full h-px my-5"></div>
       <div className="flex w-full justify-center mb-5 ">
-        
+
         <Button
           variant="gradient"
           fullWidth
           className={"rounded-full font-weightText custom-buttonCTAs normal-case w-60 mb-5"}
-        disabled={!price || !description || !time_start || !time_end}
-        onClick={handleSubmitPack}
+          disabled={!price || !description || !time_start || !time_end}
+          onClick={handleSubmitPack}
         >
           Continuar
         </Button>

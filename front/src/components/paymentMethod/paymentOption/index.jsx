@@ -38,7 +38,6 @@ const PaymentOption = () => {
 
         };
 
-        console.log(orderData)
 
         try {
             const response = await axios.post(

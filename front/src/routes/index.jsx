@@ -22,6 +22,11 @@ import { CardProfile } from "../components/CardProfile";
 import Purchases from "../views/profile/PersonProfile/components/purchases";
 import EditProfile from "../views/profile/components/EditProfile";
 import FormUser from "../views/auth/authUser/signUpUser/formUser";
+import ConfirmedPayment from "../components/paymentMethod/creditCard/ConfirmedPayment";
+import errorPayment from "../components/paymentMethod/creditCard/errorPayment";
+import PurchaseById from "../views/profile/PersonProfile/purchases/cardPurchases/purchaseDetail";
+import { Modal } from "../components/BasicNavbar/modal/Modal";
+import ModalConfirmPickup from "../views/profile/PersonProfile/purchases/cardPurchases/purchaseDetail/modalConfirmPickup";
 
 const AppRouter = () => {
   return (
@@ -30,8 +35,12 @@ const AppRouter = () => {
       <Route path="/detail" component={ItemDetailContainer} />
       <Route path="/" component={Home} />
       <Route path="/user/profile/purchases" component={Purchases} />
+      <Route path="/user/profile/purchases/confirm" component={ModalConfirmPickup} />
+      <Route path="/user/profile/purchases/detail:id" component={PurchaseById} />
       <Route path="/payment" component={PaymentOption} />
       <Route path="/payment/creditCard" component={CreditCard} />
+      <Route path="/payment/creditCard/ConfirmedPayment" component={ConfirmedPayment} />
+      <Route path="/payment/creditCard/errorPayment" component={errorPayment} />
       <Route path="/auth/user/signup" component={SignUpUser} />
       <Route path="/auth/user/login" component={LoginUser} />
       <Route path="/auth/user/login/payment" component={FormUser} />

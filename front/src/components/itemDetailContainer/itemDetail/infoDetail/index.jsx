@@ -4,6 +4,8 @@ import { Link } from "wouter";
 import Comments from "./comments";
 
 const InfoDetail = ({ item }) => {
+
+  console.log(item);
   return (
     <div className='pl-[1rem] flex flex-col justify-start items-start w-full'>
       <div className="w-full">

@@ -11,6 +11,7 @@ const ItemDetail = ({ item, handleOpen }) => {
     history.back();
   };
 
+
   return (
     <div>
       <div className="flex  items-center text-left text-[24px] font-bold text-colorNeutral1 p-[2rem]">
