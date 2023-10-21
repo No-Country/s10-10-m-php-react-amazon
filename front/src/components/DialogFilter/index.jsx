@@ -15,14 +15,6 @@ const DialogFilter = ({ open, handleOpen, setFilters, filters }) => {
   const buttonActive = "rounded-full border-teal-900 rounded-full sm:w-[200px] w-1/4 my-2 text-colorPrimary "
   const buttonInactive = "rounded-full border-white-50 rounded-full sm:w-[200px] w-1/4 my-2"
   const submit = () => {
-    /* let itemsOrdered;
-    if (order == "price") {
-      itemsOrdered = orderByPrice([...items]);
-    } else if (order == "date") {
-      itemsOrdered = orderByDate([...items]);
-    }
-    setItems(itemsOrdered); */
-   
     handleOpen();
   };
   let updatedFilters = {...filters}
@@ -67,6 +59,10 @@ const DialogFilter = ({ open, handleOpen, setFilters, filters }) => {
     updatedFilters.view = "map";
   } else if (filter === "list") {
     updatedFilters.view = "list";
+  } else if (filter == "all") {
+    updatedFilters.all = true
+  } else if (filter == "available") {
+    updatedFilters.all = false
   }
 
   setFilters(updatedFilters);
@@ -101,6 +97,23 @@ const DialogFilter = ({ open, handleOpen, setFilters, filters }) => {
             onClick={() => handleFilter("tomorrow")}
           >
             Mañana
+          </Button>
+        </div>
+        <h1>Mostrar</h1>
+        <div className="flex justify-evenly">
+          <Button
+            variant="outlined"
+            className={filters.all ? buttonActive : buttonInactive} 
+            onClick={() => handleFilter("all")}
+          >
+            Todos
+          </Button>
+          <Button
+            variant="outlined"
+            className={!filters.all ? buttonActive : buttonInactive}
+            onClick={() => handleFilter("available")}
+          >
+            Disponibles
           </Button>
         </div>
         <h1>Rubro</h1>

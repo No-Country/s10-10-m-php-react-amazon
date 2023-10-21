@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Spinner } from "@material-tailwind/react";
 import { useJsApiLoader } from "@react-google-maps/api";
 import Map from "./components/Map";
 import { getPacksByFilters } from "../../../api/itemApi";

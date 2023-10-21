@@ -1,0 +1,33 @@
+.gray-color-animation {
+  background-color: rgb(80, 80, 80);
+  animation: colorChange 2s linear infinite;
+}
+
+.tag-color-animation {
+    background-color: #FFDBCC;
+    animation: colorChange 2s linear infinite;
+}
+
+.white-color-animation {
+  background-color: rgb(255, 255, 255);
+  animation: colorChange 2s linear infinite;
+}
+
+.button-color-animation {
+    background-color: #045162;
+    animation: colorChange 2s linear infinite;
+  }
+
+
+
+@keyframes colorChange {
+  0% {
+    opacity: 0.8;
+  } 
+  50% {
+    opacity: 0.6;
+  } 
+  100% {
+    opacity: 0.8;
+  } 
+}
