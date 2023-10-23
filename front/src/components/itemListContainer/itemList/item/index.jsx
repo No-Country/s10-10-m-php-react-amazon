@@ -1,9 +1,9 @@
 import React from 'react'
 import CardPack from '../../../CardPack'
 
-const Item = ({ item, shop }) => {
+const Item = ({ pack }) => {
   return (
-      <CardPack item={item} shop={shop} />
+      <CardPack item={pack.item} shop={pack.shop} />
   )
 }
 

@@ -1,58 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Item from "./item";
-import Slider from "react-slick";
 
-const ItemList = ({ business }) => {
-  var settings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    initialSlide: 2,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3
-        },
-      },
-      {
-        breakpoint: 900,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1.5,
-          slidesToScroll: 1.5
-        },
-      },
-    ],
+const ItemList = ({ business, filters }) => {
+  const [filteredPackList, setFilteredPackList] = useState([]);
+  useEffect(() => {
+    const updatedpacklist = business.flatMap((shop) =>
+      shop.pack.map((item) => ({
+        item,
+        shop,
+      }))
+    );
+    filterProducts(updatedpacklist);
+  }, [business, filters]);
+  
+  let filterProducts = (updatedpacklist) => {
+    let filteredPackList = [...updatedpacklist]; // Copia original
+  
+    if (filters.order == "price") {
+      filteredPackList = filteredPackList.sort(
+        (a, b) => a.item.price - b.item.price
+      );
+    } else if (filters.order == "distance") {
+      filteredPackList = filteredPackList.sort(
+        (a, b) => a.shop.distance - b.shop.distance
+      );
+    } else if (filters.order == "date") {
+      filteredPackList = filteredPackList.sort(
+        (a, b) => new Date(a.item.created_at) - new Date(b.item.created_at)
+      );
+    }
+    if (filters.all !== true) {
+      filteredPackList = filteredPackList.filter(
+        (pack) => pack.item.stock != 0
+      );
+    }
+    if (filters.search !== "") {
+      filteredPackList = filteredPackList.filter((pack) =>
+        pack.item.name.toLowerCase().includes(filters.search.toLowerCase())
+      );
+    }
+  
+    setFilteredPackList(filteredPackList);
   };
 
   return (
     <div className="w-screen overflow-hidden">
-      {/* <Slider {...settings} className="lg:hidden">
-        {business && business.length !== 0 ? (
-          business.map((shop) =>
-            shop.pack.map((item) => item ? <Item item={item} shop={shop} key={item.id} /> : null)
-          )
-        ) : (
-          <h1>No hay packs disponibles</h1>
-        )}
-      </Slider> */}
-
       <div className="flex flex-wrap h-screen justify-center overflow-y-auto">
-        {
-          business.map((shop) =>
-            shop.pack.map((item) => item ? <Item item={item} shop={shop} key={item.id} /> : null)
-          )
-        }
+        {filteredPackList.map((pack) =>
+          pack ? <Item pack={pack} key={pack.item.id} /> : null
+        )}
       </div>
     </div>
   );
