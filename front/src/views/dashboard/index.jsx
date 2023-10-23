@@ -12,15 +12,26 @@ import DialogFilter from "../../components/DialogFilter";
 import { getPacksByFilters } from "../../api/itemApi";
 import { Spinner } from "@material-tailwind/react";
 import { useRoute } from "wouter";
+import SkeletonCardPack from "../../components/Skeletons/SkeleronCardPack";
 
 const Dashboard = () => {
   const [match, params] = useRoute("/dashboard/:category");
-  const category = match ? params.category : null
+  const category = match ? params.category : null;
   const [business, setBusiness] = useState([]);
   const user = useSelector((state) => state.user);
   const [showFilter, setShowFilter] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [filters, setFilters] = useState({ today: true, category: category !== null ? [category] : ["panaderia", "verduleria", "supermercado"], order: "price", view: "list" });
+  const [filters, setFilters] = useState({
+    today: true,
+    category:
+      category !== null
+        ? [category]
+        : ["panaderia", "verduleria", "supermercado"],
+    order: "price",
+    view: "list",
+    all: true,
+    search: ""
+  });
   const userLatitude = user.location?.latitude;
   const lat = parseFloat(userLatitude);
   const userLongitude = user.location?.longitude;
@@ -28,6 +39,7 @@ const Dashboard = () => {
   const handleFilter = () => {
     setShowFilter(!showFilter);
   };
+  const skeleton = [1,2,3,4,5,6]
   return (
     <div
       className={
@@ -35,7 +47,7 @@ const Dashboard = () => {
       }
     >
       <div className="p-5 lg:p-0 flex items-center justify-center">
-        <InputSearch />
+        <InputSearch setFilters={setFilters} filters={filters}/>
 
         <FontAwesomeIcon
           icon={faSliders}
@@ -47,7 +59,6 @@ const Dashboard = () => {
           handleOpen={handleFilter}
           filters={filters}
           setFilters={setFilters}
-
         />
       </div>
       <div className="flex items-center justify-center w-full">
@@ -66,16 +77,21 @@ const Dashboard = () => {
         filters={filters}
       />
 
-
       <>
-
         <div className="flex justify-center h-screen w-full">
           {isLoading ? (
-            <div className="flex items-center justify-center">
-              <Spinner />
+            <div className="flex flex-wrap h-screen justify-center overflow-y-auto">
+              {skeleton.map((item, index) => {
+                return <SkeletonCardPack key={index} />
+              })
+            }
             </div>
-          ) : filters.view !== "map" && (
-            <ItemListContainer business={business} />
+          ) : (
+            filters.view !== "map" && (
+              <>
+                <ItemListContainer business={business} filters={filters}/>
+              </>
+            )
           )}
         </div>
       </>
