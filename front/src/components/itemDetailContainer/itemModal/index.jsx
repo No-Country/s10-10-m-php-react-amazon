@@ -36,7 +36,7 @@ export function ItemModal({ open, handleOpen, item }) {
   return (
     <>
       <Dialog
-        className="max-w-full h-[537px] w-[375px] absolute  bottom-0   m-0 rounded-t-2xl rounded-b-none "
+        className="max-w-full h-[537px] w-[375px] absolute  bottom-28 lg:bottom-0 m-0 rounded-t-2xl rounded-b-none "
         open={open}
         handler={handleOpen}
         animate={{
