@@ -80,7 +80,7 @@ const Dashboard = () => {
       <>
         <div className="flex justify-center h-screen w-full overflow-hidden">
           {isLoading ? (
-            <div className="flex flex-wrap h-[85vh]  overflow-y-auto justify-center ">
+            <div className="flex flex-wrap h-[84vh]  overflow-y-auto justify-center ">
               {skeleton.map((item, index) => {
                 return <SkeletonCardPack key={index} />
               })
