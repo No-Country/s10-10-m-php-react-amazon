@@ -48,7 +48,6 @@ const CreditCard = () => {
 
 
   const [prueba, setPrueba] = useState({});
-  console.log(prueba);
   const handleBack = () => {
     history.back();
   };
@@ -58,7 +57,6 @@ const CreditCard = () => {
 
   const submit = (data) => {
     const credit_card_number = parseInt(cardNumber);
-    console.log(credit_card_number);
     const enviar = {
       cvv: CVV,
       credit_card_number: credit_card_number,

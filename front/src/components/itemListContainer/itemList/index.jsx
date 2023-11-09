@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Item from "./item";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFaceSadTear } from "@fortawesome/free-regular-svg-icons";
 
 const ItemList = ({ business, filters }) => {
   const [filteredPackList, setFilteredPackList] = useState([]);
@@ -42,7 +44,6 @@ const ItemList = ({ business, filters }) => {
   
     setFilteredPackList(filteredPackList);
   };
-
   return (
     <div className="w-screen overflow-hidden">
       <div className="flex flex-wrap h-screen justify-center overflow-y-auto">

@@ -52,11 +52,10 @@ const Cards = ({ item, handleOpen }) => {
           <div className=" flex items-center justify-between text-colorNeutral1">
             <h3 className="text-sizeText  font-bold">{item.name}</h3>
             <div className="flex items-center justify-end text-sizeText w-40 ">
-              <span className="IconStart">
-                <img src={startBasic} alt="iconStart" />
+              <span >
+                <img src={startBasic}  alt="iconStart" />
               </span>
               <span>{item.shop.stars}</span>
-              <span className="ml-3">{"X m."}</span>
             </div>
           </div>
 
@@ -75,7 +74,7 @@ const Cards = ({ item, handleOpen }) => {
           <div className="text-sizeNote font-bold flex items-center justify-between">
             <span className="text-[12px] text-colorNeutral1">
               Retirar entre
-              <span className="border-[2px] border-colorNeutral2 px-2 py-[2px] rounded-md">
+              <span className="border-[2px] border-colorNeutral2 px-2 py-[2px] mx-2 rounded-md">
                 {timeStart} y {timeEnd}
               </span>
             </span>

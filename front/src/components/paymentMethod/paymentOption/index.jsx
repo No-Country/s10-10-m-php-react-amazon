@@ -24,7 +24,6 @@ const PaymentOption = () => {
     const [isLoading, setIsLoading] = useState(false);
     initMercadoPago("TEST-9e8b3f4f-c4b6-4c5d-9c99-ce8dc363b227");
 
-    console.log("preferenceId", preferenceId);
     const user = useSelector((state) => state.user);
     const token = user.token
 

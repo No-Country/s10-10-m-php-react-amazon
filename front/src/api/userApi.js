@@ -5,7 +5,6 @@ const BASE_URL =
 
 export const getAllUsers = () => {
   const response = axios.get(`${BASE_URL}/all`);
-  console.log(response.data)
   return response
 };
 

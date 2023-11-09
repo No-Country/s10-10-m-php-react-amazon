@@ -3,6 +3,7 @@ import { useJsApiLoader } from "@react-google-maps/api";
 import Map from "./components/Map";
 import { getPacksByFilters } from "../../../api/itemApi";
 import { useSelector } from "react-redux";
+const libraries = ["places"];
 
 const DashboardMap = ({
   userLatitude,
@@ -24,7 +25,7 @@ const DashboardMap = ({
   const [selectedShop, setSelectedShop] = useState({})
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
-    libraries: ["places"],
+    libraries,
   });
 
 
@@ -93,6 +94,7 @@ const DashboardMap = ({
           mark={mark}
           business={business}
           filters={filters}
+          libraries={libraries}
         />
       )}
     </div>
