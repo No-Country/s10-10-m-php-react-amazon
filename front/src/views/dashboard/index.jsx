@@ -30,7 +30,7 @@ const Dashboard = () => {
     order: "price",
     view: "list",
     all: true,
-    search: ""
+    search: "",
   });
   const userLatitude = user.location?.latitude;
   const lat = parseFloat(userLatitude);
@@ -39,7 +39,7 @@ const Dashboard = () => {
   const handleFilter = () => {
     setShowFilter(!showFilter);
   };
-  const skeleton = [1,2,3,4,5,6]
+  const skeleton = [1, 2, 3, 4, 5, 6];
   return (
     <div
       className={
@@ -47,7 +47,7 @@ const Dashboard = () => {
       }
     >
       <div className="p-5 lg:p-0 flex items-center justify-center">
-        <InputSearch setFilters={setFilters} filters={filters}/>
+        <InputSearch setFilters={setFilters} filters={filters} />
 
         <FontAwesomeIcon
           icon={faSliders}
@@ -78,22 +78,21 @@ const Dashboard = () => {
       />
 
       <>
-        <div className="flex justify-center h-screen w-full">
-          {isLoading ? (
+        {isLoading ? (
+          <div className="flex justify-center h-screen w-full">
             <div className="flex flex-wrap h-screen justify-center overflow-y-auto">
               {skeleton.map((item, index) => {
-                return <SkeletonCardPack key={index} />
-              })
-            }
+                return <SkeletonCardPack key={index} />;
+              })}
             </div>
-          ) : (
-            filters.view !== "map" && (
-              <>
-                <ItemListContainer business={business} filters={filters}/>
-              </>
-            )
-          )}
-        </div>
+          </div>
+        ) : (
+          filters.view !== "map" && (
+            <>
+              <ItemListContainer business={business} filters={filters} />
+            </>
+          )
+        )}
       </>
     </div>
   );

@@ -4,7 +4,7 @@ import bagDesktop from "../../assets/bag-desktop.png";
 
 const AboutUs = () => {
   return (
-    <div className="mt-18 lg:mb-0 lg:mt-0 text-left  h-[771px] lg:h-[1140px] relative w-full lg:flex justify-center items-center">
+    <div id="about-us" className="mt-18 lg:mb-0 lg:mt-0 text-left  h-[771px] lg:h-[1140px] relative w-full lg:flex justify-center items-center">
       <img
         src={bagMobileImg}
         alt="bagMobileImg"

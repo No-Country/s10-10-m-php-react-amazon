@@ -16,11 +16,12 @@ const Map = ({
   mark,
   filters,
   business,
+  libraries
 }) => {
   const [selectedBusiness, setSelectedBusiness] = useState(null);
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
-    libraries: ["places"],
+    libraries,
   });
 
   const handleMarkerClick = (business) => {
@@ -62,7 +63,7 @@ const Map = ({
     <section
       className={
         filters.view == "map"
-          ? "h-96 mt-6 flex justify-center w-screen"
+          ? "h-screen mt-6 flex justify-center w-screen"
           : "h-0 w-0"
       }
     >

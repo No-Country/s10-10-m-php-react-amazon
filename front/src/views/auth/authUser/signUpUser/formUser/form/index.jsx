@@ -45,7 +45,6 @@ const FormUser = ({ setNextStep }) => {
         password: info.password,
         email: info.email,
       };
-      console.log(updatedData);
       signUpUser(updatedData)
         .then((response) => {
           if (response.status == 201) {
