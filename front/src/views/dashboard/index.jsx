@@ -39,7 +39,11 @@ const Dashboard = () => {
   const handleFilter = () => {
     setShowFilter(!showFilter);
   };
+<<<<<<< HEAD
   const skeleton = [1, 2, 3, 4, 5, 6];
+=======
+  const skeleton = [1, 2, 3, 4, 5, 6]
+>>>>>>> front-dev
   return (
     <div
       className={
@@ -78,6 +82,7 @@ const Dashboard = () => {
       />
 
       <>
+<<<<<<< HEAD
         {isLoading ? (
           <div className="flex justify-center h-screen w-full">
             <div className="flex flex-wrap h-screen justify-center overflow-y-auto">
@@ -93,6 +98,24 @@ const Dashboard = () => {
             </>
           )
         )}
+=======
+        <div className="flex justify-center h-screen w-full overflow-hidden">
+          {isLoading ? (
+            <div className="flex flex-wrap h-[84vh]  overflow-y-auto justify-center ">
+              {skeleton.map((item, index) => {
+                return <SkeletonCardPack key={index} />
+              })
+              }
+            </div>
+          ) : (
+            filters.view !== "map" && (
+              <>
+                <ItemListContainer business={business} filters={filters} />
+              </>
+            )
+          )}
+        </div>
+>>>>>>> front-dev
       </>
     </div>
   );

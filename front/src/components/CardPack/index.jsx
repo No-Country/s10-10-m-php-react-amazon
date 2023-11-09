@@ -34,7 +34,7 @@ export function CardPack({ item, shop }) {
   return (
 
 
-    <Card className='w-[254px] h-[413px] relative flex-none m-4  overflow-hidden cursor-pointer shadow-none border-[2px] border-colorNeutral2'>
+    <Card className='w-[254px] h-[416px] relative flex-none m-4  overflow-hidden cursor-pointer shadow-none border-[2px] border-colorNeutral2'>
       {
         item.stock === 0 &&
         <div>
@@ -85,7 +85,9 @@ export function CardPack({ item, shop }) {
 
         <div className="text-sizeNote font-weightSubtitle flex items-center justify-between  text-colorNeutral1 mb-3">
           <span className="text-[14px]">Retirar entre</span>
-          <span className="border-[2px] border-colorNeutral2 px-4 py-[2px] rounded-md">{timeStart} y {timeEnd}</span>
+          <div className="border-[2px] border-colorNeutral2  py-[2px] rounded-md">
+            <span className="px-4 text-[12px]">{timeStart} y {timeEnd}</span>
+          </div>
         </div>
 
         <div className="h-[1px] border-t-[2px] border-colorNeutral2"></div>
