@@ -30,6 +30,10 @@ const Purchases = () => {
   }, []);
 
 
+
+  const orderedPurchase = purchases.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
+
   return (
     <div className="h-screen p-[1rem]">
       <div className=" w-full h-full">
@@ -45,7 +49,7 @@ const Purchases = () => {
 
         <div className="flex flex-col h-[85vh] gap-6 overflow-y-auto min-w-[350px] snap-y w-full items-center text-sizeTitle">
           {purchases && purchases.length > 0 ? (
-            purchases.map((item) => <CardPurchases key={item.id} item={item} />)
+            orderedPurchase.map((item) => <CardPurchases key={item.id} item={item} />)
           ) : (
             <h1 className="mt-5">No hay packs comprados</h1>
           )}

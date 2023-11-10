@@ -7,11 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "wouter";
 import { setPurchaseId } from "../../../../../../features/purchaseidSlice";
 
-const CardPurchases = ({ item }) => {
+const CardPurchases = ({ item, setPurchase, response1 }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
 
-  console.log(item);
+
+
 
 
   const timeStartParts = item.pack.time_start.split(" ")[1].split(":");
@@ -24,7 +25,7 @@ const CardPurchases = ({ item }) => {
   const dispatch = useDispatch()
 
   return (
-    <div className="border-2 border-colorNeutral2 h-[192px] lg:w-[950px]  w-full rounded-xl flex m-0 lg:m-auto">
+    <div className="border-2 border-colorNeutral2 h-[192px]  lg:w-[950px] rounded-xl flex m-0 lg:m-auto">
       <section className="h-full">
         <div className="h-full flex justify-center w-[90px] items-center relative">
           <img src={bagPurchases} alt="bagPurchases" />
@@ -42,24 +43,26 @@ const CardPurchases = ({ item }) => {
 
         <div className="h-full p-[1rem] pr-[2rem] w-full flex flex-col justify-between">
           <div className="w-full flex justify-between">
-            <span>10/09/23</span>
-            <button className="mr-2 text-sizeTitle" onClick={handleOpen}>
-              <RiDeleteBinLine />
-            </button>
+            <span className="text-[16px]">10/09/23</span>
+            {item.status !== "reserved" && (
+              <button className="mr-2 text-sizeTitle" onClick={handleOpen}>
+                <RiDeleteBinLine className="text-colorDenotativo1" />
+              </button>
+            )}
           </div>
-          <span className="font-bold text-sizeText text-colorNeutral1">
+          <span className="font-bold text-[14px] lg:text-sizeText text-colorNeutral1">
             {item.pack.name}
           </span>
 
-          <div className="flex justify-between items-center">
-            <span>{item.status === "reserved" ? <span className="text-[#ed922af5]">Reservado</span> : <span className="text-[#6ee909f5]">Recogido</span>}</span>
-            <div className="border-[2px] border-colorNeutral2 px-2 py-[2px] w-32 rounded-md ml-8 text-sizeNote">
-              <span> {timeStart} - {timeEnd}</span>
+          <div className="flex justify-between items-center w-[250px]">
+            <span className="text-[20px]">{item.status === "reserved" ? <span className="text-[#ed922af5]">Reservado</span> : <span className="text-[#6ee909f5]">Recogido</span>}</span>
+            <div className="border-[2px] border-colorNeutral2 px-2 py-[2px] lg:w-32 rounded-md ml-8 text-sizeNote flex justify-center items-center">
+              <span className="text-[10px] lg:text-[14px]"> {timeStart} - {timeEnd}</span>
             </div>
           </div>
 
           <div className="flex justify-between items-center">
-            <span className="font-bold text-colorPrimary text-sizeSubtitle">
+            <span className="font-bold text-colorPrimary text-[17px] lg:text-sizeSubtitle">
               $ {item.amount}
             </span>
             <Link to={`/user/profile/purchases/detail${item.id}`} onClick={() => dispatch(setPurchaseId(item.id))}>
@@ -69,7 +72,7 @@ const CardPurchases = ({ item }) => {
             </Link>
           </div>
 
-          <ModalDeletePurchases handleOpen={handleOpen} open={open} />
+          <ModalDeletePurchases handleOpen={handleOpen} open={open} deleteId={item.id} setPurchase={setPurchase} response1={response1} />
         </div>
       </section>
     </div>

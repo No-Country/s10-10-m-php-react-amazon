@@ -27,12 +27,14 @@ import errorPayment from "../components/paymentMethod/creditCard/errorPayment";
 import PurchaseById from "../views/profile/PersonProfile/purchases/cardPurchases/purchaseDetail";
 import { Modal } from "../components/BasicNavbar/modal/Modal";
 import ModalConfirmPickup from "../views/profile/PersonProfile/purchases/cardPurchases/purchaseDetail/modalConfirmPickup";
+import TermsPrivacy from "../components/BasicFooter/terminosYprivacidad";
 
 const AppRouter = () => {
   return (
     <Router>
       <BasicNavbar />
       <Route path="/detail" component={ItemDetailContainer} />
+      <Route path="/terms&Privacy" component={TermsPrivacy} />
       <Route path="/" component={Home} />
       <Route path="/user/profile/purchases" component={Purchases} />
       <Route path="/user/profile/purchases/confirm" component={ModalConfirmPickup} />

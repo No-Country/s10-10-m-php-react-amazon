@@ -45,7 +45,7 @@ const Form = () => {
             navigate("/user/profile");
           }
         })
-        .catch((err) => {          
+        .catch((err) => {
           setInvalid(true);
         });
     }

@@ -56,3 +56,12 @@ export const updatePurchase = (data, token) => {
 
   return axios.put(`${BASE_URL}/purchase/update`, data, config);
 }
+
+export const deletePurchase = (token, deleteId) => {
+  const response = axios.delete(`${BASE_URL}/purchase/delete/${deleteId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  return response;
+}

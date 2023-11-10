@@ -77,7 +77,7 @@ const PackDetail = ({ open, handleOpen, handleSubmitPack, price, setPrice, descr
 
   return (
     <Dialog
-      className="max-w-full w-full absolute   px-5 pt-3 bottom-0   m-0 rounded-t-2xl rounded-b-none "
+      className="max-w-full w-full absolute   px-5 pt-3  lg:bottom-0   m-0 rounded-t-2xl rounded-b-none "
       open={open}
       handler={handleOpen}
       animate={{
