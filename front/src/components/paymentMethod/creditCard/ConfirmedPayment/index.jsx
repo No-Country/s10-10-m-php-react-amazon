@@ -9,7 +9,6 @@ import { useSelector } from 'react-redux';
 const ConfirmedPayment = () => {
 
     const purchaseId = useSelector((state) => state.purchaseId.purchaseId);
-    console.log(purchaseId);
 
     return (
         <div className='h-screen bg-colorPrimary flex flex-col justify-center items-center'>

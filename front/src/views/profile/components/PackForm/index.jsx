@@ -70,7 +70,6 @@ export function PackForm({ open, handleOpen }) {
   const submit = () => {
     packs.map((pack, index) => {
       const updatedPack = { ...pack, category: user.category }
-      console.log(updatedPack)
       postPack(updatedPack, user.token)
         .then((response) => {
           if (response.status === 201) {

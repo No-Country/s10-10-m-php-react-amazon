@@ -12,12 +12,12 @@ import { faMap } from "@fortawesome/free-regular-svg-icons";
 import { faList } from "@fortawesome/free-solid-svg-icons";
 
 const DialogFilter = ({ open, handleOpen, setFilters, filters }) => {
-  const buttonActive = "rounded-full border-teal-900 rounded-full sm:w-[200px] w-1/4 my-2 text-colorPrimary "
-  const buttonInactive = "rounded-full border-white-50 rounded-full sm:w-[200px] w-1/4 my-2"
-  const submit = () => {
-    handleOpen();
-  };
+  const buttonActive = "rounded-full border-teal-900 rounded-full sm:w-[200px] w-1/4 min-w-fit my-2 text-colorPrimary "
+  const buttonInactive = "rounded-full border-white-50 rounded-full sm:w-[200px] w-1/4 min-w-fit my-2"
+  
+
   let updatedFilters = {...filters}
+
   const handleFilter = (filter) => {
   const updatedFilters = { ...filters };
 
@@ -81,24 +81,7 @@ const DialogFilter = ({ open, handleOpen, setFilters, filters }) => {
       <DialogHeader className="flex justify-center">
         <h1>Filtros</h1>
       </DialogHeader>
-      <DialogBody divider className="flex flex-col justify-between  h-2/3">
-        <h1>Recogida</h1>
-        <div className="flex justify-evenly">
-          <Button
-            variant="outlined"
-            className={filters.today ? buttonActive : buttonInactive} 
-            onClick={() => handleFilter("today")}
-          >
-            Hoy
-          </Button>
-          <Button
-            variant="outlined"
-            className={!filters.today ? buttonActive : buttonInactive}
-            onClick={() => handleFilter("tomorrow")}
-          >
-            Mañana
-          </Button>
-        </div>
+      <DialogBody divider className="flex flex-col justify-between  h-4/5">
         <h1>Mostrar</h1>
         <div className="flex justify-evenly">
           <Button
@@ -186,19 +169,11 @@ const DialogFilter = ({ open, handleOpen, setFilters, filters }) => {
       </DialogBody>
       <DialogFooter className="flex flex-col justify-between items-center ">
         <Button
-          variant="gradient"
-          color="teal"
-          onClick={submit}
-          className="rounded-full border-teal-900 rounded-full sm:w-[200px] w-1/4 my-2"
-        >
-          Aplicar filtros
-        </Button>
-        <Button
           variant="outlined"
           onClick={handleOpen}
           className="rounded-full border-teal-900 rounded-full sm:w-[200px] w-1/4 my-2"
         >
-          Limpiar
+          Cerrar
         </Button>
       </DialogFooter>
     </Dialog>

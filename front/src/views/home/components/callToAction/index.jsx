@@ -13,9 +13,9 @@ const CallToAction = () => {
   const handleOpen1 = (value) => setSize1(value);
 
   return (
-    <div className="relative text-left w-full lg:px-[2rem] lg:mb-0">
+    <div className="relative text-left w-full lg:px-[2rem] lg:mb-0"      id="how-works">
       <div
-        id="how-works"
+   
         className="bg-colorPrimary rounded-t-3xl h-[120px] px-[2rem] flex items-center"
       >
         <h2 className="text-colorNeutral3 leading-none  text-left text-sizeTitle font-weightTitle">

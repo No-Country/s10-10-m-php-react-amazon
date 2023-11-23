@@ -6,7 +6,8 @@ import {
   IconButton,
   Collapse,
 } from "@material-tailwind/react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
+import { navigate } from "wouter/use-location"
 import Logo from "../../assets/logo.png";
 import { Modal } from "./modal/Modal";
 import { useSelector } from "react-redux";
@@ -16,7 +17,7 @@ const BasicNavbar = () => {
   const [openModal, setOpenModal] = useState(false);
   const [userAction, setUserAction] = useState("");
   const user = useSelector((state) => state.user);
-
+  const [location] = useLocation();
   const handleOpenModal = () => setOpenModal(!openModal);
 
   useEffect(() => {
@@ -26,6 +27,38 @@ const BasicNavbar = () => {
     );
   }, []);
 
+  const handleHowWorks = () => {
+    if (location != "/") {
+      navigate("/")
+    }
+    setTimeout(() => {
+      const howWorksSection = document.getElementById("how-works");
+      console.log(howWorksSection)
+      if (howWorksSection) {
+        window.scrollTo({
+          top: howWorksSection.offsetTop,
+          behavior: "smooth",
+        });
+      }
+    }, 100);
+  }
+
+  const handleAboutUs = () => {
+    if (location != "/") {
+      navigate("/")
+    }
+    setTimeout(() => {
+      const aboutUsSection = document.getElementById("about-us");
+      if (aboutUsSection) {
+        window.scrollTo({
+          top: aboutUsSection.offsetTop,
+          behavior: "smooth",
+        });
+      }
+    }, 100);
+  }
+
+
   const navList = (
     <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
@@ -34,7 +67,7 @@ const BasicNavbar = () => {
         color="blue-gray"
         className="p-1 font-bold"
       >
-        <Link to="/#callToAction">¿Cómo funciona?</Link>
+        <span className="cursor-pointer" onClick={handleHowWorks}>¿Cómo funciona?</span>
       </Typography>
       <Typography
         as="li"
@@ -42,7 +75,7 @@ const BasicNavbar = () => {
         color="blue-gray"
         className="p-1 font-bold"
       >
-        <Link to="/#exploreCategories">Sobre nosotros</Link>
+        <span className="cursor-pointer" onClick={handleAboutUs}>Sobre nosotros</span>
       </Typography>
       <Typography
         as="li"
@@ -50,7 +83,7 @@ const BasicNavbar = () => {
         color="blue-gray"
         className="p-1 font-bold"
       >
-        <Link to="/">Ayuda</Link>
+        <Link to="/page-not-found">Ayuda</Link>
       </Typography>
       {user.token && user.id && (
         <Typography

@@ -19,7 +19,6 @@ export const CardProfile = () => {
   useEffect(() => {
     if (match)
       getUserById(id, user.token).then((response) => {
-        console.log(response.data);
         setShop(response.data);
       });
   }, []);
@@ -38,12 +37,12 @@ export const CardProfile = () => {
   }
 
   return (
-    <div className="flex flex-col p-5 items-center justify-center ">
+    <div className="flex flex-col p-5 items-center  h-screen">
       <div className="flex items-center w-[333px] ">
         <Button
           variant="outlined"
           onClick={handleBack}
-          className="rounded-full p-3 flex justify-center border-2 items-center w-[15px] h-[15px] p-3"
+          className="rounded-full flex justify-center border-2 items-center w-[15px] h-[15px] p-3"
         >
           <span>X</span>
         </Button>

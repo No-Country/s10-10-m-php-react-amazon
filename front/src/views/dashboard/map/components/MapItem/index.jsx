@@ -14,7 +14,7 @@ const MapItem = ({ item, shop }) => {
   const timeEnd = `${timeEndParts[0]}:${timeEndParts[1]}`;
   return (
     <Link to={`/detail/${item.id}`}>
-      <Card className="w-[285px] h-[200px] flex flex-col rounded-none mx-3 px-3  z-[100] cursor-pointer">
+      <Card className="w-[285px] h-[200px] flex flex-col rounded-none mx-3  z-[100] cursor-pointer">
         <div className="h-1/2">
           <div
             className="absolute inset-0 h-1/2"
@@ -26,7 +26,7 @@ const MapItem = ({ item, shop }) => {
               backgroundImage: `url('${Panaderia}')`,
             }}
           ></div>
-          <div className="relative z-10 flex py-3 flex items-center">
+          <div className="relative z-10 p-3 flex items-center">
             <img
               src={shop.avatar || LogoExample}
               alt="avatar"
@@ -37,7 +37,7 @@ const MapItem = ({ item, shop }) => {
             </div>
           </div>
         </div>
-        <div className="h-1/2 flex flex-col justify-evenly">
+        <div className="h-1/2 flex flex-col justify-evenly p-3">
           <h1 className="custom-text">{item.name}</h1>
           <p className="custom-note">
             Buscalo entre las {timeStart} - {timeEnd}

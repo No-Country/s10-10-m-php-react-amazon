@@ -33,11 +33,8 @@ const PurchaseById = () => {
 
 
     const purchaseDetail = purchaseDetailId?.["Purchase:"][0];
-    console.log(purchaseDetail);
     const timeStartParts = purchaseDetail?.pack?.time_start.split(" ")[1].split(":");
-    console.log(timeStartParts);
     const timeStart = `${timeStartParts?.[0]}:${timeStartParts?.[1]}`;
-    console.log(timeStart);
     const timeEndParts = purchaseDetail?.pack.time_end?.split(" ")[1].split(":");
     const timeEnd = `${timeEndParts?.[0]}:${timeEndParts?.[1]}`;
 
