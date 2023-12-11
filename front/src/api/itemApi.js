@@ -1,8 +1,7 @@
 import axios from "axios";
 import { getUserById } from "./userApi";
 
-const BASE_URL =
-  "https://s10-10-m-php-react-amazon-production.up.railway.app/api/pack";
+const BASE_URL = "https://listoparallevar-production.up.railway.app/api/pack";
 
 export const postPack = (pack, token) => {
   return axios.post(

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE_URL =
-  "https://s10-10-m-php-react-amazon-production.up.railway.app/api";
+  "https://listoparallevar-production.up.railway.app/api";
 
 export const getPurchasesByShopId = async (id, token) => {
   const response = await axios.get(`${BASE_URL}/purchase`, {
@@ -55,4 +55,13 @@ export const updatePurchase = (data, token) => {
   };
 
   return axios.put(`${BASE_URL}/purchase/update`, data, config);
+}
+
+export const deletePurchase = (token, deleteId) => {
+  const response = axios.delete(`${BASE_URL}/purchase/delete/${deleteId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  return response;
 }

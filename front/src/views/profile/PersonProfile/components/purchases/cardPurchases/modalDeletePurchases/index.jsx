@@ -1,12 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Button,
     Dialog,
     DialogBody,
 } from "@material-tailwind/react";
+import { deletePurchase } from '../../../../../../../api/purchaseApi';
+import { useSelector } from 'react-redux';
+import { Toaster, toast } from 'sonner';
+import { getPurchases } from '../../../../../../../api/authApi';
 
 
-const ModalDeletePurchases = ({ handleOpen, open }) => {
+const ModalDeletePurchases = ({ handleOpen, open, deleteId }) => {
+
+    const token = useSelector((state) => state.user.token)
+
+    const [data, setData] = useState(null)
+
+    const purchaseDeleted = async () => {
+        try {
+            const response = await deletePurchase(token, deleteId);
+            setData(response)
+            if (response.status === 200) {
+                toast.success("eliminado con éxito");
+                window.location.reload()
+            }
+            console.log(response);
+        } catch (error) {
+            console.log("Error al eliminar la compra", error);
+        }
+    }
 
     return (
 
@@ -22,11 +44,14 @@ const ModalDeletePurchases = ({ handleOpen, open }) => {
                     >
                         <span>Cancelar</span>
                     </Button>
-                    <Button className='bg-colorPrimary text-colorNeutral3 rounded-full  border-colorPrimary' onClick={() => handleOpen()}>
+                    <Button className='bg-colorPrimary text-colorNeutral3 rounded-full  border-colorPrimary'
+                        onClick={() => { purchaseDeleted() && handleOpen() }}
+                    >
                         <span>Eliminar</span>
                     </Button>
                 </div>
             </Dialog>
+            <Toaster richColors />
         </>
     );
 };

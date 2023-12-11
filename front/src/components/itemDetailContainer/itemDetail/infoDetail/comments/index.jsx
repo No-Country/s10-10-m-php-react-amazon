@@ -8,7 +8,7 @@ const Comments = () => {
     return (
         <div>
             <div className='w-[249px] h-[113px]  text-colorFooter p-[1rem] rounded-sm shadow-md shadow-blue-gray-200'>
-                <div className='flex '>
+                <div className='flex'>
                     <img src={starYellow} alt="starYellow" />
                     <img src={starYellow} alt="starYellow" />
                     <img src={starYellow} alt="starYellow" />

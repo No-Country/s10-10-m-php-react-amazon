@@ -7,10 +7,10 @@ const Home = () => {
   return (
     <>
       <div className=" flex flex-col items-center justify-center text-center">
-        <Mission />
-        <ExploreCategories />
-        <CallToAction />
-        <AboutUs />
+        <Mission id="mission" />
+        <ExploreCategories id="exploreCategories" />
+        <CallToAction id="callToAction" />
+        <AboutUs id="aboutUs" />
       </div>
     </>
   );

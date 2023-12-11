@@ -7,7 +7,7 @@ import {
   Collapse,
 } from "@material-tailwind/react";
 import { Link, useLocation } from "wouter";
-import {navigate} from "wouter/use-location"
+import { navigate } from "wouter/use-location"
 import Logo from "../../assets/logo.png";
 import { Modal } from "./modal/Modal";
 import { useSelector } from "react-redux";
@@ -42,7 +42,7 @@ const BasicNavbar = () => {
       }
     }, 100);
   }
-  
+
   const handleAboutUs = () => {
     if (location != "/") {
       navigate("/")
