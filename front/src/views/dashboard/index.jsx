@@ -44,7 +44,7 @@ const Dashboard = () => {
   return (
     <div
       className={
-        isLoading || !business || business.length == 0 ? "p-3 h-screen" : "p-3"
+        isLoading || !business || business.length == 0 ? "p-3 h-auto" : "p-3"
       }
     >
       <div className="p-5 lg:p-0 flex items-center justify-center">

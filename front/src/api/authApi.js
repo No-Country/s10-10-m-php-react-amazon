@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const BASE_URL =
-  "https://s10-10-m-php-react-amazon-production.up.railway.app/api";
+const BASE_URL = "https://listoparallevar-production.up.railway.app/api";
 
 export const loginUser = (email, password) => {
   const data = { email, password };
